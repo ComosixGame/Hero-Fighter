@@ -4,7 +4,8 @@ using UnityEngine.AI;
 public class Ultils
 {
     //return force for rigi add force
-    public static Vector3 CalculateVelocity(Vector3 target, Vector3 origin, float time) {
+    public static Vector3 CalculateVelocity(Vector3 target, Vector3 origin, float time)
+    {
         Vector3 dis = target - origin;
         Vector3 disXZ = dis;
         disXZ.y = 0;
@@ -22,15 +23,17 @@ public class Ultils
         return reuslt;
     }
 
-    public static Vector3 RandomNavmeshLocation(Vector3 origin, float minRange = 5, float maxRange = 10) {
+    public static Vector3 RandomNavmeshLocation(Vector3 origin, float minRange = 5, float maxRange = 10)
+    {
         //tính random điểm có thể đi trên nav mesh
         Vector3 finalPosition = Vector3.zero;
         float RandomDistance = Random.Range(minRange, maxRange);
         Vector3 randomDirection = Random.insideUnitSphere * RandomDistance;
         randomDirection += origin;
         NavMeshHit hit;
-        if (NavMesh.SamplePosition(randomDirection, out hit, 4f, 1)) {
-            finalPosition = hit.position;  
+        if (NavMesh.SamplePosition(randomDirection, out hit, 4f, 1))
+        {
+            finalPosition = hit.position;
         }
         return finalPosition;
     }

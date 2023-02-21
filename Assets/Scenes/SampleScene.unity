@@ -396,7 +396,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_LocalRotation: {x: 0.16599748, y: 0.000000008483832, z: -0.000000001428108, w: 0.9861262}
+  m_LocalRotation: {x: 0.16599748, y: -0.00000000848383, z: 0.0000000014281075, w: 0.9861262}
   m_LocalPosition: {x: 0, y: 23.1, z: -58.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -648,7 +648,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 426879410}
-  m_LocalRotation: {x: 0.16599748, y: 0.000000008483832, z: -0.000000001428108, w: 0.9861262}
+  m_LocalRotation: {x: 0.16599748, y: -0.00000000848383, z: 0.0000000014281075, w: 0.9861262}
   m_LocalPosition: {x: 0, y: 23.1, z: -58.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1134,7 +1134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e26f108ee7d8fa4f9d0e476a7355aa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 60
+  speed: 80
   isReady: 1
   skill1: {fileID: 0}
   skill2: {fileID: 0}
@@ -1173,7 +1173,7 @@ MonoBehaviour:
   skillName: 
   skillDescription: 
   skillHolder: 0
-  cooldownTime: 0
+  cooldownTime: 1
   executionTime: 1
   speedJump: 60
   forwardFlipCurve:

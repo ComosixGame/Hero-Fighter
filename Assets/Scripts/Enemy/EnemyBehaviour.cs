@@ -36,7 +36,7 @@ public class EnemyBehaviour : MonoBehaviour
     private Transform targetChase;
     private Vector3 playerPosition;
     public LayerMask playerLayer;
-    private bool isAttack, isChase, isComboDone;
+    private bool isAttack, isChase;
 
     private void Awake()
     {
@@ -62,6 +62,7 @@ public class EnemyBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(current_Combo_State);
         playerPosition = targetChase.position;
         HandleAnimation();
         switch (state)
@@ -83,26 +84,29 @@ public class EnemyBehaviour : MonoBehaviour
     //Attacking
     private void Attacking()
     {
-        if (current_Combo_State == ComboState.Attack3)
-            return;
+        // if (current_Combo_State == ComboState.Attack3)
+        //     return;
 
-        current_Combo_State++;
-        activeTimerToReset = true;
+        // current_Combo_State++;
+        // activeTimerToReset = true;
         
-        if (current_Combo_State == ComboState.Attack1)
-        {
-            animator.SetTrigger(attack1Hash);
-        }
+        // if (current_Combo_State == ComboState.Attack1)
+        // {
+        //     animator.SetTrigger(attack1Hash);
+        // }
 
-        if (current_Combo_State == ComboState.Attack2)
-        {
-            animator.SetTrigger(attack2Hash);
-        }
+        // if (current_Combo_State == ComboState.Attack2)
+        // {
+        //     animator.SetTrigger(attack2Hash);
+        // }
 
-        if (current_Combo_State == ComboState.Attack3)
-        {
-            animator.SetTrigger(attack3Hash);
-        }
+        // if (current_Combo_State == ComboState.Attack3)
+        // {
+        //     animator.SetTrigger(attack3Hash);
+        // }
+        
+        agent.stoppingDistance = 10;
+
     }
 
     private void ResetComboState()
@@ -159,14 +163,6 @@ public class EnemyBehaviour : MonoBehaviour
     {
         agent.SetDestination(transform.position);
         Attacking();
-
-        if (isChase)
-        {
-            state = State.Idle;
-            isChase = false;
-            isComboDone = false;
-            return;
-        }
     }
 
     private void Chase(Vector3 pos)
@@ -174,13 +170,6 @@ public class EnemyBehaviour : MonoBehaviour
         NavMeshHit hit;
         NavMesh.SamplePosition(playerPosition, out hit, agent.height * 2, 1);
         agent.SetDestination(hit.position);
-
-        if (isAttack)
-        {
-            state = State.Attack;
-            isAttack = false;
-            return;
-        }
     }
 
     private void Looking()
@@ -208,8 +197,7 @@ public class EnemyBehaviour : MonoBehaviour
     {
         if ((playerLayer & (1 << other.gameObject.layer)) != 0)
         {
-            isAttack = true;
-            isChase  = false;
+            state = State.Attack;
         }
     }
 
@@ -217,8 +205,7 @@ public class EnemyBehaviour : MonoBehaviour
     {
         if ((playerLayer & (1 << other.gameObject.layer)) != 0)
         {
-            isChase = true;
-            isAttack = false;
+            state = State.Chase;
         }
     }
 }

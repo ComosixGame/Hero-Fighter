@@ -61,9 +61,6 @@ crashlytics-build.properties
 #user setting 
 /[Uu]ser[Ss]ettings/
 
-<<<<<<< HEAD
-=======
 # Visual Studio setting
 .vscode/
 
->>>>>>> dev

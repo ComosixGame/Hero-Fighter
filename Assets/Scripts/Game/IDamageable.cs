@@ -2,5 +2,5 @@ using UnityEngine;
 
 public interface IDamageable
 {
-    public void TakeDamge(Vector3 hitPoint, Vector3 force, float damage = 0);
+    public void TakeDamgae(Vector3 hitPoint, float damage = 0);
 }

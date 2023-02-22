@@ -1,23 +1,23 @@
-using System.Linq;
+using System;
 using UnityEngine;
-using UnityEngine.Events;
 
-public class EnemyDamageable : MonoBehaviour
+public class EnemyDamageable : MonoBehaviour, IDamageable
 {
     public AudioClip audioClip, deathAudioClip;
     [Range(0,1)] public float volumeScale;
-    public UnityEvent<Vector3> OnTakeDamge;
+    public event Action<float> OnTakeDamage;
     private SoundManager soundManager;
     private float standUpTimer = 2f;
+    [SerializeField] private float timer;
 
     private void Awake() 
     {
         soundManager = SoundManager.Instance;
     }
 
-    public void TakeDamge(Vector3 hitPoint, Vector3 force, float damage)
+    public void TakeDamgae(Vector3 hitPoint, float damage = 0)
     {
-
+        OnTakeDamage?.Invoke(damage);
     }
-
+    
 }

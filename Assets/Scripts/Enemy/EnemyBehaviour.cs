@@ -1,197 +1,156 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-
-
 [RequireComponent(typeof(NavMeshAgent))]
 public class EnemyBehaviour : MonoBehaviour
 {
-    private enum ComboState
-    {
-        None,
-        Attack1,
-        Attack2,
-        Attack3
-    }
 
-    private enum State
-    {
-        Idle,
-        Patrol,
-        Chase,
-        Attack,
-        Looking
-    }
-
+    [SerializeField] private LayerMask playerLayer;
+    [SerializeField] private Transform targetChase;
+    [SerializeField] private float attackRange;
+    [SerializeField] private float readyRange;
+    [SerializeField] private Vector3 centerAttackRange;
+    [SerializeField] private float attackCooldown;
+    [SerializeField] private float attackAnimTime;
+    [SerializeField] private float stepBackTime;
+    [SerializeField] private float maxSpeed;
+    [SerializeField] private float walkSpeed;
+    [SerializeField] AnimationCurve speepStepBackCuvre;
+    [SerializeField] EnemyAttack[] enemyAttacks;
+    public float damage;
+    private float stepBackTimer;
+    private int attackHash, velocityHash, stepBackHash, hitHash, hitIndeHash;
+    private bool readyAttack = true, stepBack;
+    public bool attacking { get; private set; }
+    public bool inTakeDamage { get; private set; }
+    private bool inAttackRange;
+    private int hitIndex;
     private NavMeshAgent agent;
     private Animator animator;
-    private int attack1Hash;
-    private int attack2Hash;
-    private int attack3Hash;
-    private int velocityHash;
-    private bool activeTimerToReset;
-    private ComboState current_Combo_State;
-    private State state, preState;
-    public GameObject leftHandAttackPoint, rightHandAttackPoint, RightLegAttackPoint;
-    private Transform targetChase;
-    private Vector3 playerPosition;
-    public LayerMask playerLayer;
-    private bool isAttack, isChase, isComboDone;
+    private EnemyDamageable damageable;
+
 
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
-        attack1Hash = Animator.StringToHash("Attack1");
-        attack2Hash = Animator.StringToHash("Attack2");
-        attack3Hash = Animator.StringToHash("Attack3");
+        damageable = GetComponent<EnemyDamageable>();
+
         velocityHash = Animator.StringToHash("Velocity");
+        attackHash = Animator.StringToHash("Attack");
+        stepBackHash = Animator.StringToHash("StepBack");
+        hitHash = Animator.StringToHash("Hit");
+        hitIndeHash = Animator.StringToHash("HitIndex");
 
-        targetChase = FindObjectOfType<CharacterController>().transform;
+        agent.speed = maxSpeed;
+        agent.updateRotation = false;
+
+        foreach (EnemyAttack enemyAttack in enemyAttacks)
+        {
+            enemyAttack.enemyBehaviour = this;
+        }
+
     }
 
-
-    private void Start()
+    private void OnEnable()
     {
-        current_Combo_State = ComboState.None;
-
-        isChase = true;
-        isAttack = false;
+        damageable.OnTakeDamage += HandleHitReaction;
     }
 
-    // Update is called once per frame
+    private void OnDisable()
+    {
+        damageable.OnTakeDamage -= HandleHitReaction;
+    }
+
+
     void Update()
     {
-        playerPosition = targetChase.position;
-        HandleAnimation();
-        switch (state)
+        if (!inTakeDamage)
         {
-            case State.Idle:
-                Idle();
-                break;
-            case State.Chase:
-                Chase(playerPosition);
-                break;
-            case State.Attack:
-                Attack(playerPosition);
-                break;
-            default:
-                break;
+            Collider[] hitColliders = Physics.OverlapSphere(transform.position + centerAttackRange, readyRange, playerLayer);
+            if (hitColliders.Length == 0)
+            {
+                inAttackRange = false;
+                agent.speed = maxSpeed;
+                if (!attacking && !stepBack)
+                {
+                    agent.SetDestination(targetChase.position);
+                }
+            }
+            else
+            {
+                inAttackRange = true;
+                agent.speed = walkSpeed;
+                HandleAttack();
+            }
+        }
+        HandleStepBack();
+        HandleLook();
+        HandleAnimationMove();
+
+    }
+
+    private void HandleAttack()
+    {
+        if (readyAttack)
+        {
+            Collider[] hitCollidersAttack = Physics.OverlapSphere(transform.position + centerAttackRange, attackRange, playerLayer);
+            if (hitCollidersAttack.Length > 0)
+            {
+                agent.SetDestination(transform.position);
+                readyAttack = false;
+                attacking = true;
+                animator.SetTrigger(attackHash);
+                Invoke("AttackCoolDown", attackCooldown);
+                Invoke("AttackDone", attackAnimTime);
+            }
+            else
+            {
+                agent.SetDestination(targetChase.position);
+            }
+        }
+        else
+        {
+            agent.SetDestination(transform.position);
         }
     }
 
-    //Attacking
-    private void Attacking()
+    private void AttackCoolDown()
     {
-        if (current_Combo_State == ComboState.Attack3)
-            return;
+        readyAttack = true;
+    }
 
-        current_Combo_State++;
-        activeTimerToReset = true;
-        
-        if (current_Combo_State == ComboState.Attack1)
+    private void AttackDone()
+    {
+        attacking = false;
+        if (inAttackRange)
         {
-            animator.SetTrigger(attack1Hash);
-        }
-
-        if (current_Combo_State == ComboState.Attack2)
-        {
-            animator.SetTrigger(attack2Hash);
-        }
-
-        if (current_Combo_State == ComboState.Attack3)
-        {
-            animator.SetTrigger(attack3Hash);
+            stepBack = true;
+            animator.SetTrigger(stepBackHash);
+            Invoke("StepBackDone", stepBackTime);
         }
     }
 
-    private void ResetComboState()
+    private void StepBackDone()
     {
-        if (activeTimerToReset)
+        stepBack = false;
+        stepBackTimer = 0;
+    }
+
+    private void HandleStepBack()
+    {
+        if (stepBack)
         {
-            current_Combo_State = ComboState.None;
-            activeTimerToReset = false;
+            stepBackTimer += Time.deltaTime;
+            float speed = speepStepBackCuvre.Evaluate(stepBackTimer / stepBackTime) * 2f * Time.deltaTime;
+            agent.Move(-transform.forward.normalized * speed);
         }
     }
 
-    //Assign Key Frame Animation Clip
-    public void Attack1On()
-    {
-        leftHandAttackPoint.SetActive(true);
-    }
-    public void Attack2On()
-    {
-        rightHandAttackPoint.SetActive(true);
-    }
-    public void Attack3On()
-    {
-        RightLegAttackPoint.SetActive(true);
-    }
-
-    public void Attack1Off()
-    {
-        leftHandAttackPoint.SetActive(false);
-    }
-    public void Attack2Off()
-    {
-        rightHandAttackPoint.SetActive(false);
-    }
-    public void Attack3Off()
-    {
-        RightLegAttackPoint.SetActive(false);
-    }
-
-
-    //State Machine
-    private void Idle()
-    {
-        ResetComboState();
-        agent.SetDestination(transform.position);
-        state = State.Chase;
-    }
-
-    private void Patrol()
-    {
-
-    }
-
-    private void Attack(Vector3 playerPos)
-    {
-        agent.SetDestination(transform.position);
-        Attacking();
-
-        if (isChase)
-        {
-            state = State.Idle;
-            isChase = false;
-            isComboDone = false;
-            return;
-        }
-    }
-
-    private void Chase(Vector3 pos)
-    {
-        NavMeshHit hit;
-        NavMesh.SamplePosition(playerPosition, out hit, agent.height * 2, 1);
-        agent.SetDestination(hit.position);
-
-        if (isAttack)
-        {
-            state = State.Attack;
-            isAttack = false;
-            return;
-        }
-    }
-
-    private void Looking()
-    {
-
-    }
-
-    private void HandleAnimation()
+    private void HandleAnimationMove()
     {
         Vector3 horizontalVelocity = new Vector3(agent.velocity.x, 0, agent.velocity.z);
-        float Velocity = horizontalVelocity.magnitude / agent.speed;
+        float Velocity = horizontalVelocity.magnitude / maxSpeed;
         if (Velocity > 0)
         {
             animator.SetFloat(velocityHash, Velocity);
@@ -199,26 +158,63 @@ public class EnemyBehaviour : MonoBehaviour
         else
         {
             float v = animator.GetFloat(velocityHash);
-            v = Mathf.Lerp(v, -0.1f, 20f * Time.deltaTime);
+            v = Mathf.MoveTowards(v, 0, 2f * Time.deltaTime);
             animator.SetFloat(velocityHash, v);
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void HandleHitReaction(float damage)
     {
-        if ((playerLayer & (1 << other.gameObject.layer)) != 0)
+        agent.ResetPath();
+        CancelInvoke("HitDone");
+        inTakeDamage = true;
+        animator.SetFloat(hitIndeHash, hitIndex);
+        animator.SetTrigger(hitHash);
+        hitIndex++;
+        if (hitIndex > 1)
         {
-            isAttack = true;
-            isChase  = false;
+            hitIndex = 0;
+        }
+        Invoke("HitDone", 0.4f);
+    }
+
+    private void HitDone()
+    {
+        inTakeDamage = false;
+        hitIndex = 0;
+
+    }
+
+    private void HandleLook()
+    {
+        if (!attacking)
+        {
+            if (agent.velocity.x > 0)
+            {
+                Quaternion rot = Quaternion.LookRotation(Vector3.right);
+                transform.rotation = Quaternion.LerpUnclamped(transform.rotation, rot, 40 * Time.deltaTime);
+            }
+            else if (agent.velocity.x < 0)
+            {
+                Quaternion rot = Quaternion.LookRotation(Vector3.left);
+                transform.rotation = Quaternion.LerpUnclamped(transform.rotation, rot, 40 * Time.deltaTime);
+            }
+        }
+        else
+        {
+            Quaternion rot = Quaternion.LookRotation(targetChase.position - transform.position);
+            transform.rotation = Quaternion.LerpUnclamped(transform.rotation, rot, 40 * Time.deltaTime);
         }
     }
 
-    private void OnTriggerExit(Collider other)
+#if UNITY_EDITOR
+    private void OnDrawGizmosSelected()
     {
-        if ((playerLayer & (1 << other.gameObject.layer)) != 0)
-        {
-            isChase = true;
-            isAttack = false;
-        }
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position + centerAttackRange, readyRange);
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position + centerAttackRange, attackRange);
     }
+#endif
+
 }

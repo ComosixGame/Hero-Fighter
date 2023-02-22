@@ -1135,6 +1135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 80
+  isReady: 1
   skill1: {fileID: 0}
   skill2: {fileID: 0}
   skill3: {fileID: 0}
@@ -1169,7 +1170,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae918e8cc92dbfe4e8b22393ef959229, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldownTimer: 0
   skillName: 
   skillDescription: 
   skillHolder: 0

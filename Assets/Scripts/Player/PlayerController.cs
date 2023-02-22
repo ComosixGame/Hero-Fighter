@@ -1,26 +1,24 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using MyCustomAttribute;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
 {
-    private PlayerInputSystem playerInputSystem;
+    public PlayerInputSystem playerInputSystem;
     private Animator animator;
     private CharacterController characterController;
     private Vector3 direction;
     private bool turnLeft, turnRight;
-    private float fallingVelocity;
-    private float jumpVelocity;
     [SerializeField] private float speed = 20f;
-    [SerializeField] private float forceJump;
-    private float gravity = -9.81f;
     private int velocityHash;
-    private int jumpHash;
-    private bool inJump;
-    public AbsSkill skill1;
-    public AbsSkill skill2;
-    public AbsSkill skill3;
-    public AbsSkill skill4;
+    private bool isReady = true;
+    private AbsSkill[] skills;
+    [SerializeField, ReadOnly] private AbsSkill skill1;
+    [SerializeField, ReadOnly] private AbsSkill skill2;
+    [SerializeField, ReadOnly] private AbsSkill skill3;
+    [SerializeField, ReadOnly] private AbsSkill skill4;
 
 
 
@@ -30,8 +28,7 @@ public class PlayerController : MonoBehaviour
         playerInputSystem = new PlayerInputSystem();
 
         velocityHash = Animator.StringToHash("Velocity");
-        jumpHash = Animator.StringToHash("Jump");
-        Debug.Log(playerInputSystem);
+        AddSkill();
 
     }
 
@@ -40,7 +37,16 @@ public class PlayerController : MonoBehaviour
         playerInputSystem.Enable();
         playerInputSystem.Player.Move.performed += GetDirectionMove;
         playerInputSystem.Player.Move.canceled += GetDirectionMove;
-        playerInputSystem.Player.Jump.started += HandleJump;
+        playerInputSystem.Player.Skil1.started += ActiveSkill;
+        playerInputSystem.Player.Skil2.started += ActiveSkill;
+        playerInputSystem.Player.Skil3.started += ActiveSkill;
+        playerInputSystem.Player.Skil4.started += ActiveSkill;
+
+        //lắng nghe skill thực hiện xong
+        foreach (AbsSkill skill in skills)
+        {
+            skill.OnDoneExecuting += DoneExecutingSkill;
+        }
     }
 
     // Start is called before the first frame update
@@ -52,9 +58,12 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Move();
-        RotationLook();
-        HandleGravity();
+        if (isReady)
+        {
+            Move();
+            RotationLook();
+        }
+
         HandleAnimation();
     }
 
@@ -80,7 +89,7 @@ public class PlayerController : MonoBehaviour
         if (turnRight)
         {
             Quaternion rot = Quaternion.LookRotation(Vector3.right);
-            transform.rotation = Quaternion.LerpUnclamped(transform.rotation, rot, 25 * Time.deltaTime);
+            transform.rotation = rot;
             if (Vector3.Angle(transform.forward, Vector3.right) <= 0)
             {
                 turnRight = false;
@@ -90,7 +99,7 @@ public class PlayerController : MonoBehaviour
         if (turnLeft)
         {
             Quaternion rot = Quaternion.LookRotation(Vector3.left);
-            transform.rotation = Quaternion.LerpUnclamped(transform.rotation, rot, 25 * Time.deltaTime);
+            transform.rotation = rot;
             if (Vector3.Angle(transform.forward, Vector3.left) <= 0)
             {
                 turnLeft = false;
@@ -100,35 +109,8 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        Vector3 motionMove = direction * speed * Time.deltaTime;
-        Vector3 motionFall = Vector3.up * fallingVelocity * Time.deltaTime;
-        Vector3 motionJump = Vector3.up * jumpVelocity * Time.deltaTime;
-        characterController.Move(motionMove + motionFall + motionJump);
-    }
-
-    private void HandleGravity()
-    {
-        if (characterController.isGrounded)
-        {
-            jumpVelocity = 0;
-            fallingVelocity = gravity / 10;
-            inJump = false;
-        }
-        else
-        {
-            jumpVelocity -= 5;
-            fallingVelocity += gravity / 10;
-        }
-    }
-
-    private void HandleJump(InputAction.CallbackContext ctx)
-    {
-        if (!inJump)
-        {
-            inJump = true;
-            animator.SetTrigger(jumpHash);
-            direction = transform.forward.normalized;
-        }
+        Vector3 motionMove = direction * speed;
+        characterController.SimpleMove(motionMove);
     }
 
     private void HandleAnimation()
@@ -147,11 +129,82 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void ActiveSkill(InputAction.CallbackContext ctx)
+    {
+        if (!isReady) return;
+        switch (ctx.control.displayName)
+        {
+            case "1":
+                isReady = false;
+                skill1.Cast();
+                break;
+            case "2":
+                isReady = false;
+                skill2.Cast();
+                break;
+            case "3":
+                isReady = false;
+                skill3.Cast();
+                break;
+            case "4":
+                isReady = false;
+                skill4.Cast();
+                break;
+            default:
+                throw new InvalidOperationException("key invalid");
+        }
+    }
+
+    private void DoneExecutingSkill()
+    {
+        isReady = true;
+    }
+
+    private void AddSkill()
+    {
+        skills = GetComponents<AbsSkill>();
+
+        if (skills.Length > 4)
+        {
+            throw new InvalidOperationException("skills Length more than 4");
+        }
+
+        foreach (AbsSkill skill in skills)
+        {
+            switch (skill.skillHolder)
+            {
+                case skillHolder.skill1:
+                    skill1 = skill;
+                    break;
+                case skillHolder.skill2:
+                    skill2 = skill;
+                    break;
+                case skillHolder.skill3:
+                    skill3 = skill;
+                    break;
+                case skillHolder.skill4:
+                    skill4 = skill;
+                    break;
+                default:
+                    throw new InvalidOperationException("invalid skill skillHolder");
+            }
+        }
+    }
+
     private void OnDisable()
     {
         playerInputSystem.Player.Move.performed -= GetDirectionMove;
         playerInputSystem.Player.Move.canceled -= GetDirectionMove;
-        playerInputSystem.Player.Jump.canceled -= HandleJump;
+        playerInputSystem.Player.Skil1.started -= ActiveSkill;
+        playerInputSystem.Player.Skil2.started -= ActiveSkill;
+        playerInputSystem.Player.Skil3.started -= ActiveSkill;
+        playerInputSystem.Player.Skil4.started -= ActiveSkill;
+
+        foreach (AbsSkill skill in skills)
+        {
+            skill.OnDoneExecuting -= DoneExecutingSkill;
+        }
+
         playerInputSystem.Disable();
     }
 }

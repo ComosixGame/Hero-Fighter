@@ -29,7 +29,6 @@ public class EnemyBehaviour : MonoBehaviour
     private Animator animator;
     private EnemyDamageable damageable;
 
-
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -146,7 +145,6 @@ public class EnemyBehaviour : MonoBehaviour
             agent.Move(-transform.forward.normalized * speed);
         }
     }
-
     private void HandleAnimationMove()
     {
         Vector3 horizontalVelocity = new Vector3(agent.velocity.x, 0, agent.velocity.z);
@@ -208,13 +206,12 @@ public class EnemyBehaviour : MonoBehaviour
     }
 
 #if UNITY_EDITOR
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position + centerAttackRange, readyRange);
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position + centerAttackRange, attackRange);
-    }
+        private void OnDrawGizmosSelected()
+        {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireSphere(transform.position + centerAttackRange, readyRange);
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position + centerAttackRange, attackRange);
+        }
 #endif
-
 }

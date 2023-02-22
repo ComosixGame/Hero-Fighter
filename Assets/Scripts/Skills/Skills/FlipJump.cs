@@ -47,7 +47,8 @@ public class FlipJump : AbsSkill
         if (inJump)
         {
             timer += Time.deltaTime;
-            currentSpeed = speedCurve.Evaluate(timer) * speedJump;
+            float time = Mathf.Clamp01(timer);
+            currentSpeed = speedCurve.Evaluate(time) * speedJump;
             // controller.height = 1;
             controller.SimpleMove(directionJump * currentSpeed);
         }

@@ -396,8 +396,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_LocalRotation: {x: 0.16599748, y: -0.00000000848383, z: 0.0000000014281075, w: 0.9861262}
-  m_LocalPosition: {x: 0, y: 23.1, z: -58.3}
+  m_LocalRotation: {x: 0.16599748, y: 0.000000008483832, z: -0.000000001428108, w: 0.9861262}
+  m_LocalPosition: {x: 0, y: 20.2, z: -58.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -648,8 +648,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 426879410}
-  m_LocalRotation: {x: 0.16599748, y: -0.00000000848383, z: 0.0000000014281075, w: 0.9861262}
-  m_LocalPosition: {x: 0, y: 23.1, z: -58.3}
+  m_LocalRotation: {x: 0.16599748, y: 0.000000008483832, z: -0.000000001428108, w: 0.9861262}
+  m_LocalPosition: {x: 0, y: 20.2, z: -58.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -826,7 +826,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 5ca210feb8f39ac48854a412631771a4,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.9
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5ca210feb8f39ac48854a412631771a4,
         type: 3}
@@ -1191,29 +1191,38 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0.2433916
       value: 1.0018708
-      inSlope: 0.0163843
-      outSlope: 0.0163843
+      inSlope: 0
+      outSlope: 0
       tangentMode: 136
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.8515687
-      value: 1.0053588
-      inSlope: 0
-      outSlope: 0
+      time: 0.77319956
+      value: 1.0006171
+      inSlope: -0.00800166
+      outSlope: -0.00800166
       tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.870064
+      value: 0.12833057
+      inSlope: -5.021979
+      outSlope: -5.021979
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
       value: 0
-      inSlope: 0
-      outSlope: 0
+      inSlope: -1.372092
+      outSlope: -1.372092
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0
+      inWeight: 0.57993287
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -1284,17 +1293,26 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0.067985535
       value: 0.002319336
-      inSlope: 0.30780315
-      outSlope: 0.30780315
+      inSlope: 1.0318576
+      outSlope: 1.0318576
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.9638382
+      outWeight: 0.62107974
     - serializedVersion: 3
-      time: 0.20488882
-      value: 0.9933883
-      inSlope: 0.063068606
-      outSlope: 0.063068606
+      time: 0.18416922
+      value: 0.02768039
+      inSlope: 1.4426272
+      outSlope: 1.4426272
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.3161112
+    - serializedVersion: 3
+      time: 0.30111074
+      value: 0.9980842
+      inSlope: 0.0028994647
+      outSlope: 0.0028994647
       tangentMode: 136
       weightedMode: 0
       inWeight: 0.33333334

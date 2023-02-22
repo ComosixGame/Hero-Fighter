@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using MyCustomAttribute;
 
-public enum skillHolder{
+public enum skillHolder
+{
     skill1,
     skill2,
     skill3,
@@ -11,12 +13,12 @@ public enum skillHolder{
 
 public abstract class AbsSkill : MonoBehaviour
 {
+    [SerializeField, ReadOnly] private float cooldownTimer;
     public string skillName;
     public string skillDescription;
     public skillHolder skillHolder;
     [SerializeField] private float cooldownTime;
     [SerializeField] private float executionTime;
-    private float cooldownTimer;
     private bool ready = true;
     public event Action<float> OnCoolDown;
     public event Action OnDoneExecuting;

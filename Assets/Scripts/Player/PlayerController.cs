@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using MyCustomAttribute;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
@@ -12,12 +13,12 @@ public class PlayerController : MonoBehaviour
     private bool turnLeft, turnRight;
     [SerializeField] private float speed = 20f;
     private int velocityHash;
-    [SerializeField] private bool isReady = true;
+    private bool isReady = true;
     private AbsSkill[] skills;
-    public AbsSkill skill1;
-    public AbsSkill skill2;
-    public AbsSkill skill3;
-    public AbsSkill skill4;
+    [SerializeField, ReadOnly] private AbsSkill skill1;
+    [SerializeField, ReadOnly] private AbsSkill skill2;
+    [SerializeField, ReadOnly] private AbsSkill skill3;
+    [SerializeField, ReadOnly] private AbsSkill skill4;
 
 
 

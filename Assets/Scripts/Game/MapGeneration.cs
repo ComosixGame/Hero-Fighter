@@ -11,24 +11,22 @@ public class MapGeneration : MonoBehaviour
     public class ObjectSpawn
     {
         public string key;
-        public int level;
-        //Enemy
-        [SerializeField] private GameObjectPool[] enemiesGameObjectPool;
+        public Wave[] wave;
+    }
+
+    [System.Serializable]
+    public class Wave
+    {
+        public GameObjectPool[] enemiesGameObjectPool;
         public Vector3[] enemiesPosition;
-        public GameObjectPool[] GetEnemyGameObjectPool()
+        public GameObjectPool GetEnemyGameObjectPool(int index)
         {
-            return (enemiesGameObjectPool);
-        }
-        // Plane
-        [SerializeField] private GameObjectPool planeGameObjectPool;
-        public Vector3[] planesPosition;
-        public GameObjectPool GetplaneGameObjectPool()
-        {
-            return (planeGameObjectPool);
+            return (enemiesGameObjectPool[index]);
         }
     }
 
     public ObjectSpawn[] levels;
+  
     private ObjectPoolerManager objectPoolerManager;
     private GameManager gameManager;
     public float delaySpawnEnemy;
@@ -40,8 +38,8 @@ public class MapGeneration : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {
-        SetPositionSpawnEnemy(1);
+    {   
+        SetPositionSpawnEnemyInWave(1,1);
     }
 
     // Update is called once per frame
@@ -50,27 +48,26 @@ public class MapGeneration : MonoBehaviour
 
     }
 
-    private void SetPositionSpawnEnemy(int level)
+    private void SetPositionSpawnEnemyInWave(int level, int wave)
     {
         //clear danh sách enemy
-        ClearEnemies();
+        // ClearEnemies();
 
-        for (int i = 0 ; i < levels[level].enemiesPosition.Length; i++)
+        int totalEnemyInWave = levels[level].wave[wave].enemiesGameObjectPool.Length;
+        for (int i = 0; i < totalEnemyInWave; i++)
         {
-            foreach (Vector3 pos in levels[level].enemiesPosition)
-            {
-                //i is type enemy spawn
-                StartCoroutine(SpawnEnemy(pos,level,i));
-            }
+            StartCoroutine(SpawnEnemy(level, wave, i, levels[level].wave[wave].enemiesPosition[i]));
         }
+
+        
     }
 
-    IEnumerator SpawnEnemy(Vector3 position,int level,int enemyType) {
+    IEnumerator SpawnEnemy(int level, int wave, int enemyIndex, Vector3 enemyPosition) {
         yield return new WaitForSeconds(delaySpawnEnemy);
-        // objectPoolerManager.SpawnObject(levels[level].GetEnemyGameObjectPool(), position, Quaternion.identity);
+        objectPoolerManager.SpawnObject(levels[level].wave[wave].GetEnemyGameObjectPool(enemyIndex), enemyPosition, Quaternion.identity);
     }
 
-    private void ClearEnemies() {
-        // gameManager.ClearEnemies();
-    }
+    // private void ClearEnemies() {
+    //     gameManager.ClearEnemies();
+    // }
 }

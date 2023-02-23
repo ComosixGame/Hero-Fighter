@@ -10,7 +10,6 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     private CharacterController characterController;
     private Vector3 direction;
-    private bool turnLeft, turnRight;
     [SerializeField] private float speed = 20f;
     private int velocityHash;
     private bool isReady = true;
@@ -77,33 +76,13 @@ public class PlayerController : MonoBehaviour
     {
         if (direction.x < 0)
         {
-            turnLeft = true;
-            turnRight = false;
+            Quaternion rot = Quaternion.LookRotation(Vector3.left);
+            transform.rotation = rot;
         }
         else if (direction.x > 0)
         {
-            turnRight = true;
-            turnLeft = false;
-        }
-
-        if (turnRight)
-        {
             Quaternion rot = Quaternion.LookRotation(Vector3.right);
             transform.rotation = rot;
-            if (Vector3.Angle(transform.forward, Vector3.right) <= 0)
-            {
-                turnRight = false;
-            }
-        }
-
-        if (turnLeft)
-        {
-            Quaternion rot = Quaternion.LookRotation(Vector3.left);
-            transform.rotation = rot;
-            if (Vector3.Angle(transform.forward, Vector3.left) <= 0)
-            {
-                turnLeft = false;
-            }
         }
     }
 

@@ -185,7 +185,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void HandleLook()
     {
-        if (!attacking)
+        if (!attacking && !stepBack)
         {
             if (agent.velocity.x > 0)
             {

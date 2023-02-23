@@ -29,7 +29,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Blend Tree
+  m_Name: jumbs
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -98,7 +98,7 @@ BlendTree:
   m_Name: Blend Tree
   m_Childs:
   - serializedVersion: 2
-    m_Motion: {fileID: -203655887218126122, guid: 3066138550da6e4459e36850e3eecb4b,
+    m_Motion: {fileID: -203655887218126122, guid: ed20ee71472b15c4b909eeec0d388ed0,
       type: 3}
     m_Threshold: 0
     m_Position: {x: 0, y: 0}
@@ -107,9 +107,9 @@ BlendTree:
     m_DirectBlendParameter: Velocity
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: -203655887218126122, guid: 3ab75dc863a769b4083f7fab87ed881c,
+    m_Motion: {fileID: -203655887218126122, guid: e1f723dd22820964a823f56f984adbd6,
       type: 3}
-    m_Threshold: 0.05
+    m_Threshold: 0.2
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
@@ -223,7 +223,7 @@ AnimatorStateMachine:
     m_Position: {x: 90, y: 380, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -6868989530839865147}
-    m_Position: {x: 390, y: 380, z: 0}
+    m_Position: {x: 370, y: 380, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []

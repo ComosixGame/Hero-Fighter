@@ -35,8 +35,8 @@ TagManager:
   - 
   - 
   - Dodgelayer
-  - Player
-  - test
+  - 
+  - 
   m_SortingLayers:
   - name: Default
     uniqueID: 0

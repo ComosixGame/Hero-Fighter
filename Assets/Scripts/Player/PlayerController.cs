@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using MyCustomAttribute;
+using System.Collections;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
@@ -17,6 +18,7 @@ public class PlayerController : MonoBehaviour
     private bool isMoveState;
     private bool isReady = true;
     private float stateTimeAnim;
+    private Coroutine attackWaitCoroutine;
     [SerializeField, ReadOnly] private bool attacking;
     private AbsSkill[] skills;
     [SerializeField, ReadOnly] private AbsSkill skill1;
@@ -88,6 +90,12 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat(stateTimeHash, Mathf.Repeat(stateTimeAnim, 1f));
     }
 
+    private void OnControllerColliderHit(ControllerColliderHit hit) {
+        // if(hit.gameObject.TryGetComponent(out EnemyBehaviour enemyBehaviour)) {
+        //     enemyBehaviour.Push((hit.transform.position - transform.position).normalized * 5f);
+        // }
+    }
+
     private void GetDirectionMove(InputAction.CallbackContext ctx)
     {
         Vector2 dir = ctx.ReadValue<Vector2>();
@@ -96,15 +104,9 @@ public class PlayerController : MonoBehaviour
 
     private void RotationLook()
     {
-        if (direction.x < 0)
-        {
-            Quaternion rot = Quaternion.LookRotation(Vector3.left);
-            transform.rotation = rot;
-        }
-        else if (direction.x > 0)
-        {
-            Quaternion rot = Quaternion.LookRotation(Vector3.right);
-            transform.rotation = rot;
+        if(direction != Vector3.zero) {
+            Quaternion rot = Quaternion.LookRotation(direction);
+            transform.rotation = Quaternion.LerpUnclamped(transform.rotation, rot, 40 * Time.deltaTime);
         }
     }
 
@@ -158,8 +160,17 @@ public class PlayerController : MonoBehaviour
 
     private void HandleAttack(InputAction.CallbackContext ctx)
     {
-        animator.ResetTrigger(attackHash);
+        if(attackWaitCoroutine != null) {
+            StopCoroutine(attackWaitCoroutine);
+        }
+        attackWaitCoroutine = StartCoroutine(AttackWait());
+    }
+
+    IEnumerator AttackWait()
+    {
         animator.SetTrigger(attackHash);
+        yield return new WaitForSeconds(0.3f);
+        animator.ResetTrigger(attackHash);
     }
 
     private void DoneExecutingSkill()

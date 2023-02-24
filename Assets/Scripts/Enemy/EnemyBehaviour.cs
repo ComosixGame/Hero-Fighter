@@ -44,6 +44,8 @@ public class EnemyBehaviour : MonoBehaviour
         hitIndeHash = Animator.StringToHash("HitIndex");
 
         agent.speed = maxSpeed;
+        agent.updateRotation = false;
+
 
         foreach (EnemyAttack enemyAttack in enemyAttacks)
         {
@@ -85,6 +87,8 @@ public class EnemyBehaviour : MonoBehaviour
             }
         }
         HandleStepBack();
+        HandleLook();
+
         HandleAnimationMove();
 
     }
@@ -182,6 +186,28 @@ public class EnemyBehaviour : MonoBehaviour
         inTakeDamage = false;
         hitIndex = 0;
 
+    }
+
+        private void HandleLook()
+    {
+        if (!attacking && !stepBack)
+        {
+            if (agent.velocity.x > 0)
+            {
+                Quaternion rot = Quaternion.LookRotation(Vector3.right);
+                transform.rotation = Quaternion.LerpUnclamped(transform.rotation, rot, 40 * Time.deltaTime);
+            }
+            else if (agent.velocity.x < 0)
+            {
+                Quaternion rot = Quaternion.LookRotation(Vector3.left);
+                transform.rotation = Quaternion.LerpUnclamped(transform.rotation, rot, 40 * Time.deltaTime);
+            }
+        }
+        else
+        {
+            Quaternion rot = Quaternion.LookRotation(targetChase.position - transform.position);
+            transform.rotation = Quaternion.LerpUnclamped(transform.rotation, rot, 40 * Time.deltaTime);
+        }
     }
 
     public void AddForce(Vector3 force) {

@@ -29,7 +29,7 @@ public class FlipJump : AbsSkill
 
     private void OnEnable()
     {
-        OnDoneExecuting += CanceleJump;
+        OnDone += CanceleJump;
     }
 
     private void Start()
@@ -47,15 +47,15 @@ public class FlipJump : AbsSkill
             timer += Time.deltaTime;
             float time = Mathf.Clamp01(timer);
             currentSpeed = speedCurve.Evaluate(time) * speedJump;
-            // controller.height = 1;
             controller.SimpleMove(directionJump * currentSpeed);
         }
+
 
     }
 
     private void OnDisable()
     {
-        OnDoneExecuting -= CanceleJump;
+        OnDone -= CanceleJump;
         playerInput.Player.Move.performed -= GetDirection;
         playerInput.Player.Move.canceled -= GetDirection;
     }
@@ -68,6 +68,7 @@ public class FlipJump : AbsSkill
         currentSpeed = speedJump;
         int indexAnim;
 
+        Debug.Log(Vector3.Dot(transform.forward.normalized, direction.normalized));
 
         float dotDir = Vector3.Dot(transform.forward.normalized, direction.normalized);
 

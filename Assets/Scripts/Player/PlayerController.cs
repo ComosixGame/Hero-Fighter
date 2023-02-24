@@ -58,7 +58,7 @@ public class PlayerController : MonoBehaviour
         //lắng nghe skill thực hiện xong
         foreach (AbsSkill skill in skills)
         {
-            skill.OnDoneExecuting += DoneExecutingSkill;
+            skill.OnDone += DoneExecutingSkill;
         }
     }
 
@@ -96,21 +96,15 @@ public class PlayerController : MonoBehaviour
 
     private void RotationLook()
     {
-        // if (direction.x < 0)
-        // {
-        //     Quaternion rot = Quaternion.LookRotation(Vector3.left);
-        //     transform.rotation = rot;
-        // }
-        // else if (direction.x > 0)
-        // {
-        //     Quaternion rot = Quaternion.LookRotation(Vector3.right);
-        //     transform.rotation = rot;
-        // }
-
-        if (direction != Vector3.zero)
+        if (direction.x < 0)
         {
-            Quaternion rotLook = Quaternion.LookRotation(direction);
-            transform.rotation = Quaternion.Lerp(transform.rotation, rotLook, 20f * Time.deltaTime);
+            Quaternion rot = Quaternion.LookRotation(Vector3.left);
+            transform.rotation = rot;
+        }
+        else if (direction.x > 0)
+        {
+            Quaternion rot = Quaternion.LookRotation(Vector3.right);
+            transform.rotation = rot;
         }
     }
 
@@ -227,7 +221,7 @@ public class PlayerController : MonoBehaviour
 
         foreach (AbsSkill skill in skills)
         {
-            skill.OnDoneExecuting -= DoneExecutingSkill;
+            skill.OnDone -= DoneExecutingSkill;
         }
 
         playerInputSystem.Disable();

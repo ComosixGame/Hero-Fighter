@@ -11,7 +11,6 @@ public class FlipJump : AbsSkill
     private AnimationCurve speedCurve;
     private float currentSpeed;
     private bool inJump;
-    private int jumpHash;
     private int jumpIndexHash;
     private float timer;
     private int originlayer;
@@ -24,14 +23,13 @@ public class FlipJump : AbsSkill
     {
         controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
-        jumpHash = Animator.StringToHash("Jump");
         jumpIndexHash = Animator.StringToHash("JumpIndex");
         originlayer = gameObject.layer;
     }
 
     private void OnEnable()
     {
-        OnDoneExecuting += CanceleJump;
+        OnDone += CanceleJump;
     }
 
     private void Start()
@@ -49,15 +47,15 @@ public class FlipJump : AbsSkill
             timer += Time.deltaTime;
             float time = Mathf.Clamp01(timer);
             currentSpeed = speedCurve.Evaluate(time) * speedJump;
-            // controller.height = 1;
             controller.SimpleMove(directionJump * currentSpeed);
         }
+
 
     }
 
     private void OnDisable()
     {
-        OnDoneExecuting -= CanceleJump;
+        OnDone -= CanceleJump;
         playerInput.Player.Move.performed -= GetDirection;
         playerInput.Player.Move.canceled -= GetDirection;
     }
@@ -68,9 +66,9 @@ public class FlipJump : AbsSkill
         timer = 0;
         inJump = true;
         currentSpeed = speedJump;
-        animator.SetTrigger(jumpHash);
         int indexAnim;
 
+        Debug.Log(Vector3.Dot(transform.forward.normalized, direction.normalized));
 
         float dotDir = Vector3.Dot(transform.forward.normalized, direction.normalized);
 

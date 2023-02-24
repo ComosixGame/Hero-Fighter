@@ -10,15 +10,20 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     private CharacterController characterController;
     private Vector3 direction;
-    private bool turnLeft, turnRight;
     [SerializeField] private float speed = 20f;
     private int velocityHash;
+    private int attackHash;
+    private int stateTimeHash;
+    private bool isMoveState;
     private bool isReady = true;
+    private float stateTimeAnim;
+    [SerializeField, ReadOnly] private bool attacking;
     private AbsSkill[] skills;
     [SerializeField, ReadOnly] private AbsSkill skill1;
     [SerializeField, ReadOnly] private AbsSkill skill2;
     [SerializeField, ReadOnly] private AbsSkill skill3;
     [SerializeField, ReadOnly] private AbsSkill skill4;
+    [SerializeField] private PlayerAttack[] playerAttacks;
 
 
 
@@ -27,7 +32,14 @@ public class PlayerController : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         playerInputSystem = new PlayerInputSystem();
 
+        foreach (PlayerAttack playerAttack in playerAttacks)
+        {
+            playerAttack.gameObject.SetActive(false);
+        }
+
         velocityHash = Animator.StringToHash("Velocity");
+        attackHash = Animator.StringToHash("Attack");
+        stateTimeHash = Animator.StringToHash("StateTime");
         AddSkill();
 
     }
@@ -37,6 +49,7 @@ public class PlayerController : MonoBehaviour
         playerInputSystem.Enable();
         playerInputSystem.Player.Move.performed += GetDirectionMove;
         playerInputSystem.Player.Move.canceled += GetDirectionMove;
+        playerInputSystem.Player.Attack.started += HandleAttack;
         playerInputSystem.Player.Skil1.started += ActiveSkill;
         playerInputSystem.Player.Skil2.started += ActiveSkill;
         playerInputSystem.Player.Skil3.started += ActiveSkill;
@@ -45,7 +58,7 @@ public class PlayerController : MonoBehaviour
         //lắng nghe skill thực hiện xong
         foreach (AbsSkill skill in skills)
         {
-            skill.OnDoneExecuting += DoneExecutingSkill;
+            skill.OnDone += DoneExecutingSkill;
         }
     }
 
@@ -58,13 +71,21 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isReady)
+        if (isReady && isMoveState)
         {
             Move();
             RotationLook();
         }
 
         HandleAnimation();
+    }
+
+    private void FixedUpdate()
+    {
+        AnimatorStateInfo animationState = animator.GetCurrentAnimatorStateInfo(0);
+        stateTimeAnim = animationState.normalizedTime;
+        isMoveState = animationState.IsName("Move");
+        animator.SetFloat(stateTimeHash, Mathf.Repeat(stateTimeAnim, 1f));
     }
 
     private void GetDirectionMove(InputAction.CallbackContext ctx)
@@ -77,33 +98,13 @@ public class PlayerController : MonoBehaviour
     {
         if (direction.x < 0)
         {
-            turnLeft = true;
-            turnRight = false;
+            Quaternion rot = Quaternion.LookRotation(Vector3.left);
+            transform.rotation = rot;
         }
         else if (direction.x > 0)
         {
-            turnRight = true;
-            turnLeft = false;
-        }
-
-        if (turnRight)
-        {
             Quaternion rot = Quaternion.LookRotation(Vector3.right);
             transform.rotation = rot;
-            if (Vector3.Angle(transform.forward, Vector3.right) <= 0)
-            {
-                turnRight = false;
-            }
-        }
-
-        if (turnLeft)
-        {
-            Quaternion rot = Quaternion.LookRotation(Vector3.left);
-            transform.rotation = rot;
-            if (Vector3.Angle(transform.forward, Vector3.left) <= 0)
-            {
-                turnLeft = false;
-            }
         }
     }
 
@@ -155,6 +156,12 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void HandleAttack(InputAction.CallbackContext ctx)
+    {
+        animator.ResetTrigger(attackHash);
+        animator.SetTrigger(attackHash);
+    }
+
     private void DoneExecutingSkill()
     {
         isReady = true;
@@ -191,10 +198,22 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void AttackStart(int index)
+    {
+        playerAttacks[index].gameObject.SetActive(true);
+    }
+
+    public void AttackEnd(int index)
+    {
+        playerAttacks[index].gameObject.SetActive(false);
+
+    }
+
     private void OnDisable()
     {
         playerInputSystem.Player.Move.performed -= GetDirectionMove;
         playerInputSystem.Player.Move.canceled -= GetDirectionMove;
+        playerInputSystem.Player.Attack.started -= HandleAttack;
         playerInputSystem.Player.Skil1.started -= ActiveSkill;
         playerInputSystem.Player.Skil2.started -= ActiveSkill;
         playerInputSystem.Player.Skil3.started -= ActiveSkill;
@@ -202,7 +221,7 @@ public class PlayerController : MonoBehaviour
 
         foreach (AbsSkill skill in skills)
         {
-            skill.OnDoneExecuting -= DoneExecutingSkill;
+            skill.OnDone -= DoneExecutingSkill;
         }
 
         playerInputSystem.Disable();

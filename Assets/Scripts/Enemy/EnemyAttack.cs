@@ -1,9 +1,10 @@
 using UnityEngine;
+using MyCustomAttribute;
 
 public class EnemyAttack : MonoBehaviour
 {
     public LayerMask targetLayer;
-    public EnemyBehaviour enemyBehaviour;
+    [ReadOnly] public EnemyBehaviour enemyBehaviour;
     private void OnTriggerEnter(Collider other)
     {
         if (enemyBehaviour.attacking && !enemyBehaviour.inTakeDamage)

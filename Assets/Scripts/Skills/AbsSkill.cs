@@ -18,10 +18,9 @@ public abstract class AbsSkill : MonoBehaviour
     public string skillDescription;
     public skillHolder skillHolder;
     [SerializeField] private float cooldownTime;
-    [SerializeField] private float executionTime;
     private bool ready = true;
     public event Action<float> OnCoolDown;
-    public event Action OnDoneExecuting;
+    public event Action OnDone;
 
     protected abstract void Action();
     public void Cast()
@@ -31,7 +30,6 @@ public abstract class AbsSkill : MonoBehaviour
             ready = false;
             Action();
             StartCoroutine(CoolDownCoroutine());
-            Invoke("DoneExecution", executionTime);
         }
     }
 
@@ -48,8 +46,8 @@ public abstract class AbsSkill : MonoBehaviour
         ready = true;
     }
 
-    private void DoneExecution()
+    public void Done()
     {
-        OnDoneExecuting?.Invoke();
+        OnDone?.Invoke();
     }
 }

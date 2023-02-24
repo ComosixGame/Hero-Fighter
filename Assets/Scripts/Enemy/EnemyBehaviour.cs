@@ -24,6 +24,8 @@ public class EnemyBehaviour : MonoBehaviour
     public bool attacking { get; private set; }
     public bool inTakeDamage { get; private set; }
     private bool inAttackRange;
+    private bool addForce;
+    private Vector3 force;
     private int hitIndex;
     private NavMeshAgent agent;
     private Animator animator;
@@ -43,6 +45,7 @@ public class EnemyBehaviour : MonoBehaviour
 
         agent.speed = maxSpeed;
         agent.updateRotation = false;
+
 
         foreach (EnemyAttack enemyAttack in enemyAttacks)
         {
@@ -85,6 +88,7 @@ public class EnemyBehaviour : MonoBehaviour
         }
         HandleStepBack();
         HandleLook();
+
         HandleAnimationMove();
 
     }
@@ -164,6 +168,7 @@ public class EnemyBehaviour : MonoBehaviour
     private void HandleHitReaction(float damage)
     {
         agent.ResetPath();
+        transform.LookAt(targetChase);
         CancelInvoke("HitDone");
         inTakeDamage = true;
         animator.SetFloat(hitIndeHash, hitIndex);
@@ -183,9 +188,9 @@ public class EnemyBehaviour : MonoBehaviour
 
     }
 
-    private void HandleLook()
+        private void HandleLook()
     {
-        if (!attacking)
+        if (!attacking && !stepBack)
         {
             if (agent.velocity.x > 0)
             {
@@ -203,6 +208,10 @@ public class EnemyBehaviour : MonoBehaviour
             Quaternion rot = Quaternion.LookRotation(targetChase.position - transform.position);
             transform.rotation = Quaternion.LerpUnclamped(transform.rotation, rot, 40 * Time.deltaTime);
         }
+    }
+
+    public void AddForce(Vector3 force) {
+        agent.Move(force);
     }
 
 #if UNITY_EDITOR

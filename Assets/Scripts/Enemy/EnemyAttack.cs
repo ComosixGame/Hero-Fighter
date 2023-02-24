@@ -4,6 +4,7 @@ using MyCustomAttribute;
 public class EnemyAttack : MonoBehaviour
 {
     public LayerMask targetLayer;
+    [SerializeField] private AttackType attackType;
     [ReadOnly] public EnemyBehaviour enemyBehaviour;
     private void OnTriggerEnter(Collider other)
     {
@@ -13,7 +14,7 @@ public class EnemyAttack : MonoBehaviour
             {
                 if(other.TryGetComponent(out IDamageable damageable)) {
                     Vector3 hitPoint = other.GetComponent<Collider>().ClosestPoint(transform.position);
-                    damageable.TakeDamgae(hitPoint, enemyBehaviour.damage);
+                    damageable.TakeDamgae(hitPoint, enemyBehaviour.damage, attackType);
                 }
             }
 

@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class CharacterSelection : MonoBehaviour
 {
-    [SerializeField] private EquipmentManager equipmentManager;
     private GameObject player;
     private PlayerData playerData;
+    public EquipmentManager equipmentManager;
+    
     // Start is called before the first frame update
     void Start()
     {

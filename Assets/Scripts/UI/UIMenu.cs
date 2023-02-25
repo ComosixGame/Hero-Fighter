@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using System;
 using UnityEngine;
 using TMPro;
 
@@ -8,11 +6,14 @@ public class UIMenu : MonoBehaviour
 {
     public GameObject hitCount;
     public TMP_Text pointTxt, hitTxt;
+    private PlayerData playerData;
 
     // Start is called before the first frame update
     void Start()
     {
+        //Test
         DisplayHitPoint();
+        playerData = PlayerData.Load();
     }
 
     // Update is called once per frame
@@ -28,15 +29,17 @@ public class UIMenu : MonoBehaviour
         hitCount.SetActive(true);
         // if ()
         // {
+        //Set Size 
             pointTxt.fontSize = 120;
             pointTxt.text = "1";
             hitTxt.text = "Hit";
         // }
         
-            StartCoroutine(DisplayHit());
+            StartCoroutine(DisplayHitReturnSizeInit());
     }
 
-    IEnumerator DisplayHit() {
+    //Return Size Initi
+    IEnumerator DisplayHitReturnSizeInit() {
         yield return new WaitForSeconds(10f);
         pointTxt.fontSize = 40;
     }

@@ -7,7 +7,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     [SerializeField] private LayerMask playerLayer;
     [SerializeField] private Transform targetChase;
-    [SerializeField] private float attackRange;
+    // [SerializeField] private float attackRange;
     [SerializeField] private float readyRange;
     [SerializeField] private Vector3 centerAttackRange;
     [SerializeField] private float attackCooldown;
@@ -22,17 +22,17 @@ public class EnemyBehaviour : MonoBehaviour
     public float damage;
     [SerializeField] private float stepBackTimer, knockTimer;
     private int attackHash, velocityHash, stepBackHash, hitHash, hitIndeHash, knockHash, standUpHash;
-    private bool readyAttack = true, stepBack;
-    private bool knockBack;
+    private bool stepBack;
+    public bool knockBack;
     public bool attacking { get; private set; }
     public bool inTakeDamage { get; private set; }
-    private bool inAttackRange;
+    public bool inAttackRange { get; private set; }
     private int hitIndex;
     private NavMeshAgent agent;
     private Rigidbody rb;
     private Animator animator;
     private EnemyDamageable damageable;
-
+    private AbsEnemyAttack absEnemyAttack;
 
     private void Awake()
     {
@@ -40,6 +40,7 @@ public class EnemyBehaviour : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
         damageable = GetComponent<EnemyDamageable>();
+        absEnemyAttack = GetComponent<AbsEnemyAttack>();
 
         velocityHash = Animator.StringToHash("Velocity");
         attackHash = Animator.StringToHash("Attack");
@@ -59,6 +60,7 @@ public class EnemyBehaviour : MonoBehaviour
     private void OnEnable()
     {
         damageable.OnTakeDamage += HandleHitReaction;
+        absEnemyAttack.OnAttackDone += AttackDone;
     }
 
     private void OnDisable()
@@ -68,7 +70,6 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void Update()
     {
-
         HandleStepBack();
         HandleKnockBack();
 
@@ -79,7 +80,7 @@ public class EnemyBehaviour : MonoBehaviour
             {
                 inAttackRange = false;
                 agent.speed = maxSpeed;
-                if (!attacking && !stepBack && !knockBack)
+                if (!absEnemyAttack.attacking && ! stepBack && !knockBack)
                 {
                     MoveToPosition(targetChase.position);
                 }
@@ -88,7 +89,7 @@ public class EnemyBehaviour : MonoBehaviour
             {
                 inAttackRange = true;
                 agent.speed = walkSpeed;
-                HandleAttack();
+                absEnemyAttack.Attack();
             }
         }
 
@@ -96,55 +97,6 @@ public class EnemyBehaviour : MonoBehaviour
         HandleAnimationMove();
     }
 
-    private void HandleAttack()
-    {
-        if (readyAttack)
-        {
-            Collider[] hitCollidersAttack = Physics.OverlapSphere(transform.position + centerAttackRange, attackRange, playerLayer);
-            if (hitCollidersAttack.Length > 0)
-            {
-                MoveToPosition(transform.position);
-
-                readyAttack = false;
-                attacking = true;
-                animator.SetTrigger(attackHash);
-                Invoke("AttackCoolDown", attackCooldown);
-                Invoke("AttackDone", attackAnimTime);
-            }
-            else
-            {
-                MoveToPosition(targetChase.position);
-            }
-        }
-        else
-        {
-            MoveToPosition(transform.position);
-        }
-    }
-
-    private void MoveToPosition(Vector3 targetPos)
-    {
-        if (agent.enabled && agent.isOnNavMesh)
-        {
-            agent.SetDestination(targetPos);
-        }
-    }
-
-    private void AttackCoolDown()
-    {
-        readyAttack = true;
-    }
-
-    private void AttackDone()
-    {
-        attacking = false;
-        if (inAttackRange && !knockBack)
-        {
-            stepBack = true;
-            animator.SetTrigger(stepBackHash);
-            Invoke("StepBackDone", stepBackTime);
-        }
-    }
 
     private void HandleStepBack()
     {
@@ -153,6 +105,15 @@ public class EnemyBehaviour : MonoBehaviour
             stepBackTimer += Time.deltaTime;
             float speed = speepStepBackCuvre.Evaluate(stepBackTimer / stepBackTime) * 5f;
             agent.Move(-transform.forward.normalized * speed * Time.deltaTime);
+        }
+    }
+    private void AttackDone()
+    {
+        if (inAttackRange && !knockBack)
+        {
+            stepBack = true;
+            animator.SetTrigger(stepBackHash);
+            Invoke("StepBackDone", stepBackTime);
         }
     }
 
@@ -258,13 +219,20 @@ public class EnemyBehaviour : MonoBehaviour
         agent.enabled = true;
     }
 
+    private void MoveToPosition(Vector3 targetPos)
+    {
+        if (agent.enabled && agent.isOnNavMesh)
+        {
+            agent.SetDestination(targetPos);
+        }
+    }
+
+
 #if UNITY_EDITOR
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position + centerAttackRange, readyRange);
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position + centerAttackRange, attackRange);
     }
 #endif
 }

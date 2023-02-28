@@ -21,7 +21,7 @@ public class EnemyBehaviour : MonoBehaviour
     [SerializeField] EnemyAttack[] enemyAttacks;
     public float damage;
     [SerializeField] private float stepBackTimer, knockTimer;
-    private int attackHash, velocityHash, stepBackHash, hitHash, hitIndeHash, knockHash, standUpHash;
+    private int attackHash, velocityHash, stepBackHash, hitHash, hitIndeHash, knockHash, standUpHash, reloadHash;
     private bool stepBack;
     public bool knockBack;
     public bool attacking { get; private set; }
@@ -49,6 +49,7 @@ public class EnemyBehaviour : MonoBehaviour
         hitIndeHash = Animator.StringToHash("HitIndex");
         knockHash = Animator.StringToHash("Knock");
         standUpHash = Animator.StringToHash("StandUp");
+        reloadHash = Animator.StringToHash("Reload");
 
         foreach (EnemyAttack enemyAttack in enemyAttacks)
         {
@@ -107,13 +108,21 @@ public class EnemyBehaviour : MonoBehaviour
             agent.Move(-transform.forward.normalized * speed * Time.deltaTime);
         }
     }
-    private void AttackDone()
+    private void AttackDone(AbsEnemyAttack.Type attackType)
     {
-        if (inAttackRange && !knockBack)
-        {
-            stepBack = true;
-            animator.SetTrigger(stepBackHash);
-            Invoke("StepBackDone", stepBackTime);
+        if(attackType == AbsEnemyAttack.Type.meleeAttack) {
+            if (inAttackRange && !knockBack)
+            {
+                stepBack = true;
+                animator.SetTrigger(stepBackHash);
+                Invoke("StepBackDone", stepBackTime);
+            }
+
+        } else {
+            if (inAttackRange && !knockBack)
+            {
+                animator.SetTrigger(reloadHash);
+            }
         }
     }
 

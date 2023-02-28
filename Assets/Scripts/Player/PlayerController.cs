@@ -26,12 +26,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField, ReadOnly] private AbsSkill skill3;
     [SerializeField, ReadOnly] private AbsSkill skill4;
     [SerializeField] private PlayerAttack[] playerAttacks;
-
-
+    private PlayerDamageable playerDamageable;
 
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
+        playerDamageable = GetComponent<PlayerDamageable>();
         playerInputSystem = new PlayerInputSystem();
 
         foreach (PlayerAttack playerAttack in playerAttacks)
@@ -73,13 +73,15 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isReady && isMoveState)
-        {
-            Move();
-            RotationLook();
-        }
+        if(!playerDamageable.knock) {
+            if (isReady && isMoveState)
+            {
+                Move();
+                RotationLook();
+            }
 
-        HandleAnimation();
+            HandleAnimation();
+        }
     }
 
     private void FixedUpdate()

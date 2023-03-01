@@ -73,15 +73,13 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!playerDamageable.knock) {
-            if (isReady && isMoveState)
-            {
-                Move();
-                RotationLook();
-            }
-
-            HandleAnimation();
+        if (isReady && isMoveState)
+        {
+            Move();
+            RotationLook();
         }
+
+        HandleAnimation();
     }
 
     private void FixedUpdate()

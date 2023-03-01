@@ -1,33 +1,26 @@
+using System;
 using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent), typeof(Rigidbody))]
 public class EnemyBehaviour : MonoBehaviour
 {
-
+    public enum State
+    {
+        chase,
+        attack,
+        notReady,
+    }
     [SerializeField] private LayerMask playerLayer;
     [SerializeField] private Transform targetChase;
     // [SerializeField] private float attackRange;
-    [SerializeField] private float readyRange;
+    [SerializeField] private float viewRange;
     [SerializeField] private Vector3 centerAttackRange;
-    [SerializeField] private float attackCooldown;
-    [SerializeField] private float attackAnimTime;
     [SerializeField] private float stepBackTime;
-    [SerializeField] private float standUpTime;
     [SerializeField] private float maxSpeed;
     [SerializeField] private float walkSpeed;
-    [SerializeField] AnimationCurve speepStepBackCuvre;
-    [SerializeField] AnimationCurve knockBackCuvre;
-    [SerializeField] EnemyAttack[] enemyAttacks;
-    public float damage;
-    [SerializeField] private float stepBackTimer, knockTimer;
-    private int attackHash, velocityHash, stepBackHash, hitHash, hitIndeHash, knockHash, standUpHash, reloadHash;
-    private bool stepBack;
-    public bool knockBack;
-    public bool attacking { get; private set; }
-    public bool inTakeDamage { get; private set; }
-    public bool inAttackRange { get; private set; }
-    private int hitIndex;
+    private int velocityHash, reloadHash;
+    [HideInInspector] public State state = State.chase;
     private NavMeshAgent agent;
     private Rigidbody rb;
     private Animator animator;
@@ -43,116 +36,51 @@ public class EnemyBehaviour : MonoBehaviour
         absEnemyAttack = GetComponent<AbsEnemyAttack>();
 
         velocityHash = Animator.StringToHash("Velocity");
-        attackHash = Animator.StringToHash("Attack");
-        stepBackHash = Animator.StringToHash("StepBack");
-        hitHash = Animator.StringToHash("Hit");
-        hitIndeHash = Animator.StringToHash("HitIndex");
-        knockHash = Animator.StringToHash("Knock");
-        standUpHash = Animator.StringToHash("StandUp");
         reloadHash = Animator.StringToHash("Reload");
-
-        foreach (EnemyAttack enemyAttack in enemyAttacks)
-        {
-            enemyAttack.enemyBehaviour = this;
-        }
-
     }
 
-    private void OnEnable()
-    {
-        damageable.OnTakeDamage += HandleHitReaction;
-        absEnemyAttack.OnAttackDone += AttackDone;
-    }
-
-    private void OnDisable()
-    {
-        damageable.OnTakeDamage -= HandleHitReaction;
-    }
 
     private void Update()
     {
-        HandleStepBack();
-        HandleKnockBack();
-
-        if (!inTakeDamage)
-        {
-            Collider[] hitColliders = Physics.OverlapSphere(transform.position + centerAttackRange, readyRange, playerLayer);
-            if (hitColliders.Length == 0)
-            {
-                inAttackRange = false;
-                agent.speed = maxSpeed;
-                if (!absEnemyAttack.attacking && ! stepBack && !knockBack)
-                {
-                    MoveToPosition(targetChase.position);
-                }
-            }
-            else
-            {
-                inAttackRange = true;
-                agent.speed = walkSpeed;
-                absEnemyAttack.Attack();
-            }
-        }
-
+        CheckPlayerInView();
         HandleLook();
         HandleAnimationMove();
-    }
-
-
-    private void HandleStepBack()
-    {
-        if (stepBack)
+        switch (state)
         {
-            stepBackTimer += Time.deltaTime;
-            float speed = speepStepBackCuvre.Evaluate(stepBackTimer / stepBackTime) * 5f;
-            agent.Move(-transform.forward.normalized * speed * Time.deltaTime);
-        }
-    }
-    private void AttackDone(AbsEnemyAttack.Type attackType)
-    {
-        if(attackType == AbsEnemyAttack.Type.meleeAttack) {
-            if (inAttackRange && !knockBack)
-            {
-                stepBack = true;
-                animator.SetTrigger(stepBackHash);
-                Invoke("StepBackDone", stepBackTime);
-            }
+            case State.chase:
+                HandleChase();
+                break;
+            case State.attack:
+                agent.speed = walkSpeed;
+                absEnemyAttack.HandleAttack();
+                break;
+            case State.notReady:
+                break;
+            default:
+                throw new InvalidCastException("invlid state");
 
-        } else {
-            if (inAttackRange && !knockBack)
-            {
-                animator.SetTrigger(reloadHash);
-            }
         }
     }
 
-    private void StepBackDone()
+    private void CheckPlayerInView()
     {
-        stepBack = false;
-        stepBackTimer = 0;
-    }
-
-    private void HandleKnockBack()
-    {
-        if (knockBack)
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position + centerAttackRange, viewRange, playerLayer);
+        if (hitColliders.Length == 0)
         {
-            knockTimer += Time.deltaTime;
-            float speed = knockBackCuvre.Evaluate(knockTimer) * 10f;
-            agent.Move(-transform.forward.normalized * speed * Time.deltaTime);
+            state = State.chase;
+        }
+        else
+        {
+            state = State.attack;
         }
     }
 
-    public void KnockEnd()
+    private void HandleChase()
     {
-        knockBack = false;
-        knockTimer = 0;
-        Invoke("StandUp", standUpTime);
+        agent.speed = maxSpeed;
+        MoveToPosition(targetChase.position);
     }
 
-    private void StandUp()
-    {
-        animator.SetTrigger(standUpHash);
-    }
 
     private void HandleAnimationMove()
     {
@@ -170,62 +98,12 @@ public class EnemyBehaviour : MonoBehaviour
         }
     }
 
-    private void HandleHitReaction(Vector3 hitPoint, float damage, AttackType attackType)
+    private void HandleLook()
     {
         Quaternion rot = Quaternion.LookRotation(targetChase.position - transform.position);
         rot.x = 0;
         rot.z = 0;
-        transform.rotation = rot;
-        inTakeDamage = true;
-        if (attackType == AttackType.light)
-        {
-            animator.SetFloat(hitIndeHash, hitIndex);
-            animator.SetTrigger(hitHash);
-            hitIndex++;
-            if (hitIndex > 1)
-            {
-                hitIndex = 0;
-            }
-        }
-        else
-        {
-            animator.SetTrigger(knockHash);
-            animator.ResetTrigger(standUpHash);
-            knockBack = true;
-            agent.ResetPath();
-        }
-    }
-
-    public void HitDone()
-    {
-        inTakeDamage = false;
-        hitIndex = 0;
-    }
-
-    private void HandleLook()
-    {
-        if (!inTakeDamage)
-        {
-            Quaternion rot = Quaternion.LookRotation(targetChase.position - transform.position);
-            rot.x = 0;
-            rot.z = 0;
-            transform.rotation = Quaternion.LerpUnclamped(transform.rotation, rot, 40 * Time.deltaTime);
-        }
-    }
-
-    public void Push(Vector3 force)
-    {
-        CancelInvoke("CancelPush");
-        rb.isKinematic = false;
-        agent.enabled = false;
-        rb.AddForce(force, ForceMode.Impulse);
-        Invoke("CancelPush", 0.02f);
-    }
-
-    public void CancelPush()
-    {
-        rb.isKinematic = true;
-        agent.enabled = true;
+        transform.rotation = Quaternion.LerpUnclamped(transform.rotation, rot, 40 * Time.deltaTime);
     }
 
     private void MoveToPosition(Vector3 targetPos)
@@ -241,7 +119,7 @@ public class EnemyBehaviour : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position + centerAttackRange, readyRange);
+        Gizmos.DrawWireSphere(transform.position + centerAttackRange, viewRange);
     }
 #endif
 }

@@ -21,7 +21,7 @@ public class GunEnemyAttack : AbsEnemyAttack
         ObjectPoolerManager = ObjectPoolerManager.Instance;
         gameObjectPool = GetComponent<GameObjectPool>();
     }
-    protected override void HandleAttack()
+    public override void HandleAttack()
     {
         agent.SetDestination(transform.position);
         
@@ -32,7 +32,6 @@ public class GunEnemyAttack : AbsEnemyAttack
             readyAttack = false;
             animator.SetTrigger(shootHash);
             Invoke("AttackCoolDown",0.2f);
-            Invoke("AttackDone", attackAnimTime);
         }
     }
 }

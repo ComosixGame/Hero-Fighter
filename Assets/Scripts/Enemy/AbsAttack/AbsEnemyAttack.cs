@@ -11,24 +11,10 @@ public abstract class AbsEnemyAttack : MonoBehaviour
 
     }
     [SerializeField] private Type type;
-    public bool readyAttack = true;
-    public bool attacking { get; protected set; }
-    public event Action<Type> OnAttackDone;
-
-    public void Attack()
-    {
-        HandleAttack();
-    }
-
-    protected abstract void HandleAttack();
+    protected bool readyAttack = true;
+    public abstract void HandleAttack();
     protected void AttackCoolDown()
     {
         readyAttack = true;
-    }
-
-    protected void AttackDone()
-    {
-        attacking = false;
-        OnAttackDone?.Invoke(type);
     }
 }

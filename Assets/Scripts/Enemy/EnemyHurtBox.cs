@@ -1,15 +1,16 @@
 using UnityEngine;
 
-public class PlayerAttack : MonoBehaviour
+public class EnemyHurtBox : MonoBehaviour
 {
-    [SerializeField] private LayerMask targetLayer;
-    [SerializeField] private AttackType attackType;
+    public LayerMask targetLayer;
     [SerializeField] private float damage;
+    [SerializeField] private AttackType attackType;
     private void OnTriggerEnter(Collider other)
     {
         if ((targetLayer & (1 << other.gameObject.layer)) != 0)
         {
-            if(other.TryGetComponent(out IDamageable damageable)) {
+            IDamageable damageable = other.GetComponentInParent<IDamageable>();
+            if(damageable != null) {
                 Vector3 hitPoint = other.GetComponent<Collider>().ClosestPoint(transform.position);
                 damageable.TakeDamgae(hitPoint, damage, attackType);
             }

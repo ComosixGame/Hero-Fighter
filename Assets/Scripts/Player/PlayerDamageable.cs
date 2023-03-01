@@ -15,6 +15,8 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
 
     private void Awake()
     {
+        GameManager.Instance.SetPlayer(transform);
+
         controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
         hitHash = Animator.StringToHash("hit");
@@ -46,6 +48,7 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
             if (health <= 0)
             {
                 Destroy(attackType);
+                return;
             }
             if (attackType == AttackType.light)
             {

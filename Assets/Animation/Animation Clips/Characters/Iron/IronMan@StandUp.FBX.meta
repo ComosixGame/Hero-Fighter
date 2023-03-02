@@ -60,8 +60,8 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.9961032
-        functionName: StandUpDone
+      - time: 0.9859155
+        functionName: TakeDamagaEnd
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 77cf0e610e8ba024baf93a6f911ace3d,
           type: 3}

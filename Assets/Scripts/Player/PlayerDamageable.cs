@@ -8,10 +8,12 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
     [SerializeField] private float maxHealth;
     private float health, knockTimer;
     private int hitHash, knockHash, standupHash, deathHash;
-    public bool knock { get; private set; }
     private bool knocking, destroyed;
     private Animator animator;
     private CharacterController controller;
+    public event Action<Vector3, float, AttackType> OnTakeDamageStart;
+    public event Action OnTakeDamageEnd;
+
 
     private void Awake()
     {
@@ -56,10 +58,10 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
             }
             else
             {
-                knock = true;
                 knocking = true;
                 animator.SetTrigger(knockHash);
             }
+            OnTakeDamageStart?.Invoke(hitPoint, damage, attackType);
 
         }
     }
@@ -79,9 +81,10 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
         animator.SetTrigger(standupHash);
     }
 
-    public void StandUpDone()
+    public void TakeDamagaEnd()
     {
-        knock = false;
+        Debug.Log("ok");
+        OnTakeDamageEnd?.Invoke();
     }
 
     private void Destroy(AttackType attackType)
@@ -93,7 +96,6 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
         }
         else
         {
-            knock = true;
             knocking = true;
             animator.SetTrigger(knockHash);
         }

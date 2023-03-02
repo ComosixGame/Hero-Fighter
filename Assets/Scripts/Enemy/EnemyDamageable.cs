@@ -22,7 +22,8 @@ public class EnemyDamageable : MonoBehaviour, IDamageable
     private Collider ColliderGameObject;
     private GameManager gameManager;
 
-    public event Action<Vector3, float, AttackType> OnTakeDamage;
+    public event Action<Vector3, float, AttackType> OnTakeDamageStart;
+    public event Action OnTakeDamageEnd;
 
     private void Awake()
     {
@@ -65,7 +66,7 @@ public class EnemyDamageable : MonoBehaviour, IDamageable
                 return;
             }
             HandleHitReaction(hitPoint, attackType);
-            OnTakeDamage?.Invoke(hitPoint, damage, attackType);
+            OnTakeDamageStart?.Invoke(hitPoint, damage, attackType);
 
         }
     }
@@ -88,6 +89,10 @@ public class EnemyDamageable : MonoBehaviour, IDamageable
         }
     }
 
+    public void TakeDamagaEnd() {
+        OnTakeDamageEnd?.Invoke();
+    }
+
     public void KnockEnd()
     {
         knockBack = false;
@@ -99,11 +104,6 @@ public class EnemyDamageable : MonoBehaviour, IDamageable
     {
         animator.SetTrigger(standUpHash);
     }
-
-    public void StandUpDone() {
-
-    }
-
 
     private void Destroy(AttackType attackType)
     {

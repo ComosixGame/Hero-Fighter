@@ -9,7 +9,7 @@ public class EnemyBehaviour : MonoBehaviour
     {
         chase,
         attack,
-        notReady,
+        disable,
     }
     [SerializeField] private LayerMask playerLayer;
     [SerializeField] private Transform targetChase;
@@ -21,6 +21,7 @@ public class EnemyBehaviour : MonoBehaviour
     [SerializeField] private float walkSpeed;
     private int velocityHash, reloadHash;
     [HideInInspector] public State state = State.chase;
+    private bool disable;
     private NavMeshAgent agent;
     private Rigidbody rb;
     private Animator animator;
@@ -39,10 +40,22 @@ public class EnemyBehaviour : MonoBehaviour
         reloadHash = Animator.StringToHash("Reload");
     }
 
+    private void OnEnable()
+    {
+        damageable.OnTakeDamageStart += DisableEnemy;
+        damageable.OnTakeDamageEnd += EnableEnemy;
+    }
+
+    private void OnDisable()
+    {
+        damageable.OnTakeDamageStart -= DisableEnemy;
+        damageable.OnTakeDamageEnd -= EnableEnemy;
+    }
 
     private void Update()
     {
         CheckPlayerInView();
+        CheckEnemyTakeDamage();
         HandleLook();
         HandleAnimationMove();
         switch (state)
@@ -54,7 +67,7 @@ public class EnemyBehaviour : MonoBehaviour
                 agent.speed = walkSpeed;
                 absEnemyAttack.HandleAttack();
                 break;
-            case State.notReady:
+            case State.disable:
                 break;
             default:
                 throw new InvalidCastException("invlid state");
@@ -72,6 +85,14 @@ public class EnemyBehaviour : MonoBehaviour
         else
         {
             state = State.attack;
+        }
+    }
+
+    private void CheckEnemyTakeDamage()
+    {
+        if (disable)
+        {
+            state = State.disable;
         }
     }
 
@@ -100,10 +121,26 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void HandleLook()
     {
-        Quaternion rot = Quaternion.LookRotation(targetChase.position - transform.position);
-        rot.x = 0;
-        rot.z = 0;
-        transform.rotation = Quaternion.LerpUnclamped(transform.rotation, rot, 40 * Time.deltaTime);
+        if (state != State.disable)
+        {
+            Quaternion rot = Quaternion.LookRotation(targetChase.position - transform.position);
+            rot.x = 0;
+            rot.z = 0;
+            transform.rotation = Quaternion.LerpUnclamped(transform.rotation, rot, 40 * Time.deltaTime);
+
+        }
+    }
+
+    private void DisableEnemy(Vector3 hitPoint, float damage, AttackType attackType)
+    {
+        disable = true;
+        agent.ResetPath();
+
+    }
+
+    private void EnableEnemy()
+    {
+        disable = false;
     }
 
     private void MoveToPosition(Vector3 targetPos)

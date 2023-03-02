@@ -348,7 +348,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   damage: 5
-  attackType: 0
+  attackType: 1
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -427,7 +427,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_LocalRotation: {x: 0.30831796, y: -3e-45, z: 1e-45, w: 0.9512834}
+  m_LocalRotation: {x: 0.30831796, y: 1e-45, z: 0, w: 0.9512834}
   m_LocalPosition: {x: -10.46, y: 6.194, z: -12.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -787,7 +787,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 426879410}
-  m_LocalRotation: {x: 0.30831796, y: -3e-45, z: 1e-45, w: 0.9512834}
+  m_LocalRotation: {x: 0.30831796, y: 1e-45, z: 0, w: 0.9512834}
   m_LocalPosition: {x: -10.46, y: 6.194, z: -12.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1208,11 +1208,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1073741888
   targetChase: {fileID: 2131854525}
-  viewRange: 4.3
+  viewRange: 4.5
   centerAttackRange: {x: 0, y: 1.3, z: 0}
   stepBackTime: 1
   maxSpeed: 4
-  walkSpeed: 1.5
+  walkSpeed: 1
   state: 0
 --- !u!195 &1232045862
 NavMeshAgent:
@@ -1263,30 +1263,57 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  centerAttackRange: {x: 0, y: 1.31, z: 0}
+  centerAttackRange: {x: 0, y: 1.3, z: 0}
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
-  attackRange: 1.2
-  attackCooldown: 5
+  attackRange: 1.3
+  attackCooldown: 4
   hurtBoxes:
   - {fileID: 200346499}
-  stepBackTime: 1.5
+  stepBackTime: 0.8
   speepStepBackCuvre:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 2
-      outSlope: 2
+      inSlope: 0.16284306
+      outSlope: 0.16284306
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0
+      outWeight: 0.2509974
     - serializedVersion: 3
-      time: 1
-      value: 1
+      time: 0.15224841
+      value: 0.0061299317
+      inSlope: 0.0967949
+      outSlope: 0.0967949
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.2203869
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.3733985
+      value: 0.97730744
+      inSlope: 1.0444539
+      outSlope: 1.0444539
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.23290433
+    - serializedVersion: 3
+      time: 0.72781986
+      value: 0.014913151
+      inSlope: -0.25011835
+      outSlope: -0.25011835
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.3187088
+    - serializedVersion: 3
+      time: 0.9984741
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -2334,4 +2361,4 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   standupTime: 1
-  maxHealth: 20
+  maxHealth: 1000

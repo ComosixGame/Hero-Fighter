@@ -61,9 +61,9 @@ ModelImporter:
       curves: []
       events:
       - time: 0.98122066
-        functionName: HitDone
+        functionName: TakeDamagaEnd
         data: 
-        objectReferenceParameter: {fileID: 11500000, guid: 69b1e0683aff35243b433ec8c8949683,
+        objectReferenceParameter: {fileID: 11500000, guid: fef91d7f3b34ced49944c22a7ef31a20,
           type: 3}
         floatParameter: 0
         intParameter: 0

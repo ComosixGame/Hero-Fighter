@@ -10,21 +10,22 @@ public class MeleeEnemyAttack : AbsEnemyAttack
     [SerializeField] private EnemyHurtBox[] hurtBoxes;
     private int attackHash;
     private int stepBackHash;
-    private NavMeshAgent agent;
-    private Animator animator;
-    private EnemyBehaviour enemyBehaviour;
-    private GameManager gameManager;
     private bool stepBack;
     private float stepBackTimer;
+    private bool disable;
     [SerializeField] private float stepBackTime;
     [SerializeField] private AnimationCurve speepStepBackCuvre;
+    private NavMeshAgent agent;
+    private Animator animator;
+    private EnemyDamageable damageable;
+    private GameManager gameManager;
 
     private void Awake()
     {
         gameManager = GameManager.Instance;
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
-        enemyBehaviour = GetComponent<EnemyBehaviour>();
+        damageable = GetComponent<EnemyDamageable>();
 
         attackHash = Animator.StringToHash("Attack");
         stepBackHash = Animator.StringToHash("StepBack");
@@ -38,13 +39,26 @@ public class MeleeEnemyAttack : AbsEnemyAttack
         }
     }
 
-    private void Update() {
+    private void OnEnable()
+    {
+        damageable.OnTakeDamageStart += DisableEnemy;
+        damageable.OnTakeDamageEnd += EnableEnemy;
+    }
+
+    private void OnDisable()
+    {
+        damageable.OnTakeDamageStart -= DisableEnemy;
+        damageable.OnTakeDamageEnd -= EnableEnemy;
+    }
+
+    private void Update()
+    {
         HandleStepBack();
     }
 
     public override void HandleAttack()
     {
-        if (readyAttack)
+        if (!disable && readyAttack)
         {
             Collider[] hitCollidersAttack = Physics.OverlapSphere(transform.position + centerAttackRange, attackRange, playerLayer);
             if (hitCollidersAttack.Length > 0)
@@ -67,7 +81,9 @@ public class MeleeEnemyAttack : AbsEnemyAttack
 
     public void StartAttack(int index)
     {
-        hurtBoxes[index].gameObject.SetActive(true);
+        if(!disable) {
+            hurtBoxes[index].gameObject.SetActive(true);
+        }
     }
 
     public void EndAttack(int index)
@@ -100,6 +116,21 @@ public class MeleeEnemyAttack : AbsEnemyAttack
     {
         stepBack = false;
         stepBackTimer = 0;
+    }
+
+    private void DisableEnemy(Vector3 hitPoint, float damage, AttackType attackType)
+    {
+        foreach (EnemyHurtBox hurtBox in hurtBoxes)
+        {
+            hurtBox.gameObject.SetActive(false);
+        }
+        disable = true;
+        agent.ResetPath();
+    }
+
+    private void EnableEnemy()
+    {
+        disable = false;
     }
 
 

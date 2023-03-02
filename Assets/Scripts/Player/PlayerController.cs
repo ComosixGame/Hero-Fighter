@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     private bool isMoveState;
     private bool isReady = true;
     private float stateTimeAnim;
+    private bool disable;
     private Coroutine attackWaitCoroutine;
     [SerializeField, ReadOnly] private bool attacking;
     private AbsSkill[] skills;
@@ -57,6 +58,9 @@ public class PlayerController : MonoBehaviour
         playerInputSystem.Player.Skil3.started += ActiveSkill;
         playerInputSystem.Player.Skil4.started += ActiveSkill;
 
+        playerDamageable.OnTakeDamageStart += DisablePlayerHurtBox;
+        playerDamageable.OnTakeDamageEnd += EnablePlayer;
+
         //lắng nghe skill thực hiện xong
         foreach (AbsSkill skill in skills)
         {
@@ -90,7 +94,8 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat(stateTimeHash, Mathf.Repeat(stateTimeAnim, 1f));
     }
 
-    private void OnControllerColliderHit(ControllerColliderHit hit) {
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
         // if(hit.gameObject.TryGetComponent(out EnemyBehaviour enemyBehaviour)) {
         //     enemyBehaviour.Push((hit.transform.position - transform.position).normalized * 5f);
         // }
@@ -104,7 +109,8 @@ public class PlayerController : MonoBehaviour
 
     private void RotationLook()
     {
-        if(direction != Vector3.zero) {
+        if (direction != Vector3.zero)
+        {
             Quaternion rot = Quaternion.LookRotation(direction);
             transform.rotation = Quaternion.LerpUnclamped(transform.rotation, rot, 40 * Time.deltaTime);
         }
@@ -160,7 +166,8 @@ public class PlayerController : MonoBehaviour
 
     private void HandleAttack(InputAction.CallbackContext ctx)
     {
-        if(attackWaitCoroutine != null) {
+        if (attackWaitCoroutine != null)
+        {
             StopCoroutine(attackWaitCoroutine);
         }
         attackWaitCoroutine = StartCoroutine(AttackWait());
@@ -211,7 +218,11 @@ public class PlayerController : MonoBehaviour
 
     public void AttackStart(int index)
     {
-        playerAttacks[index].gameObject.SetActive(true);
+        if (!disable)
+        {
+            playerAttacks[index].gameObject.SetActive(true);
+
+        }
     }
 
     public void AttackEnd(int index)
@@ -219,6 +230,23 @@ public class PlayerController : MonoBehaviour
         playerAttacks[index].gameObject.SetActive(false);
 
     }
+
+    private void DisablePlayerHurtBox(Vector3 hitPoint, float damage, AttackType attackType)
+    {
+        foreach (PlayerAttack playerAttack in playerAttacks)
+        {
+            playerAttack.gameObject.SetActive(false);
+        }
+        disable = true;
+
+    }
+
+    private void EnablePlayer()
+    {
+        Debug.Log("ok");
+        disable = false;
+    }
+
 
     private void OnDisable()
     {
@@ -229,6 +257,9 @@ public class PlayerController : MonoBehaviour
         playerInputSystem.Player.Skil2.started -= ActiveSkill;
         playerInputSystem.Player.Skil3.started -= ActiveSkill;
         playerInputSystem.Player.Skil4.started -= ActiveSkill;
+
+        playerDamageable.OnTakeDamageStart -= DisablePlayerHurtBox;
+        playerDamageable.OnTakeDamageEnd -= EnablePlayer;
 
         foreach (AbsSkill skill in skills)
         {

@@ -1,23 +1,19 @@
 using UnityEngine;
-using MyCustomAttribute;
 
 public class Bullet : GameObjectPool
 {
     [SerializeField] private AttackType attackType;
     [SerializeField] private LayerMask layerTarget;
     [SerializeField] private float speed;
-    // public GameObjectPool impactEffect;
     [SerializeField] private Rigidbody rb;
     private bool fired, hit;
     private Vector3 direction;
     private float damage;
-    private GameObjectPool gameObjectPool;
     private ObjectPoolerManager ObjectPoolerManager;
 
     private void Awake() 
     {
         ObjectPoolerManager = ObjectPoolerManager.Instance;
-        gameObjectPool = GetComponent<GameObjectPool>();
     }
 
     // Start is called before the first frame update
@@ -45,7 +41,6 @@ public class Bullet : GameObjectPool
             Destroy();
             if(other.gameObject.TryGetComponent(out IDamageable damageable)) {
                 damageable.TakeDamgae(contact.point, 0, attackType);
-                Debug.Log("trung");
             }
         }
     }
@@ -55,6 +50,6 @@ public class Bullet : GameObjectPool
         rb.angularVelocity = Vector3.zero;
         fired = false;
         hit = false;
-        ObjectPoolerManager.DeactiveObject(gameObjectPool);
+        ObjectPoolerManager.DeactiveObject(this);
     }
 }

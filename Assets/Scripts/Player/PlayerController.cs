@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     private bool isMoveState;
     private bool isReady = true;
     private float stateTimeAnim;
+    private bool disable;
     private Coroutine attackWaitCoroutine;
     [SerializeField, ReadOnly] private bool attacking;
     private AbsSkill[] skills;
@@ -25,7 +26,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField, ReadOnly] private AbsSkill skill2;
     [SerializeField, ReadOnly] private AbsSkill skill3;
     [SerializeField, ReadOnly] private AbsSkill skill4;
-    [SerializeField] private PlayerAttack[] playerAttacks;
+    [SerializeField] private PlayerHurtBox[] playerHurtBoxes;
     private PlayerDamageable playerDamageable;
 
     private void Awake()
@@ -34,9 +35,9 @@ public class PlayerController : MonoBehaviour
         playerDamageable = GetComponent<PlayerDamageable>();
         playerInputSystem = new PlayerInputSystem();
 
-        foreach (PlayerAttack playerAttack in playerAttacks)
+        foreach (PlayerHurtBox playerHurtBox in playerHurtBoxes)
         {
-            playerAttack.gameObject.SetActive(false);
+            playerHurtBox.gameObject.SetActive(false);
         }
 
         velocityHash = Animator.StringToHash("Velocity");
@@ -57,6 +58,9 @@ public class PlayerController : MonoBehaviour
         playerInputSystem.Player.Skil3.started += ActiveSkill;
         playerInputSystem.Player.Skil4.started += ActiveSkill;
 
+        playerDamageable.OnTakeDamageStart += DisablePlayerHurtBox;
+        playerDamageable.OnTakeDamageEnd += EnablePlayer;
+
         //lắng nghe skill thực hiện xong
         foreach (AbsSkill skill in skills)
         {
@@ -73,15 +77,13 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!playerDamageable.knock) {
-            if (isReady && isMoveState)
-            {
-                Move();
-                RotationLook();
-            }
-
-            HandleAnimation();
+        if (isReady && isMoveState)
+        {
+            Move();
+            RotationLook();
         }
+
+        HandleAnimation();
     }
 
     private void FixedUpdate()
@@ -92,7 +94,8 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat(stateTimeHash, Mathf.Repeat(stateTimeAnim, 1f));
     }
 
-    private void OnControllerColliderHit(ControllerColliderHit hit) {
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
         // if(hit.gameObject.TryGetComponent(out EnemyBehaviour enemyBehaviour)) {
         //     enemyBehaviour.Push((hit.transform.position - transform.position).normalized * 5f);
         // }
@@ -106,7 +109,8 @@ public class PlayerController : MonoBehaviour
 
     private void RotationLook()
     {
-        if(direction != Vector3.zero) {
+        if (direction != Vector3.zero)
+        {
             Quaternion rot = Quaternion.LookRotation(direction);
             transform.rotation = Quaternion.LerpUnclamped(transform.rotation, rot, 40 * Time.deltaTime);
         }
@@ -162,7 +166,8 @@ public class PlayerController : MonoBehaviour
 
     private void HandleAttack(InputAction.CallbackContext ctx)
     {
-        if(attackWaitCoroutine != null) {
+        if (attackWaitCoroutine != null)
+        {
             StopCoroutine(attackWaitCoroutine);
         }
         attackWaitCoroutine = StartCoroutine(AttackWait());
@@ -213,14 +218,34 @@ public class PlayerController : MonoBehaviour
 
     public void AttackStart(int index)
     {
-        playerAttacks[index].gameObject.SetActive(true);
+        if (!disable)
+        {
+            playerHurtBoxes[index].gameObject.SetActive(true);
+
+        }
     }
 
     public void AttackEnd(int index)
     {
-        playerAttacks[index].gameObject.SetActive(false);
+        playerHurtBoxes[index].gameObject.SetActive(false);
 
     }
+
+    private void DisablePlayerHurtBox(Vector3 hitPoint, float damage, AttackType attackType)
+    {
+        foreach (PlayerHurtBox playerAttack in playerHurtBoxes)
+        {
+            playerAttack.gameObject.SetActive(false);
+        }
+        disable = true;
+
+    }
+
+    private void EnablePlayer()
+    {
+        disable = false;
+    }
+
 
     private void OnDisable()
     {
@@ -231,6 +256,9 @@ public class PlayerController : MonoBehaviour
         playerInputSystem.Player.Skil2.started -= ActiveSkill;
         playerInputSystem.Player.Skil3.started -= ActiveSkill;
         playerInputSystem.Player.Skil4.started -= ActiveSkill;
+
+        playerDamageable.OnTakeDamageStart -= DisablePlayerHurtBox;
+        playerDamageable.OnTakeDamageEnd -= EnablePlayer;
 
         foreach (AbsSkill skill in skills)
         {

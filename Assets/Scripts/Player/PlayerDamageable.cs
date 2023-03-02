@@ -83,7 +83,6 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
 
     public void TakeDamagaEnd()
     {
-        Debug.Log("ok");
         OnTakeDamageEnd?.Invoke();
     }
 

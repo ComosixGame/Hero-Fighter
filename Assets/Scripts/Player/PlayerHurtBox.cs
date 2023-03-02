@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerAttack : MonoBehaviour
+public class PlayerHurtBox : MonoBehaviour
 {
     [SerializeField] private LayerMask targetLayer;
     [SerializeField] private AttackType attackType;

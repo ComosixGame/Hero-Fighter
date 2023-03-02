@@ -45,7 +45,6 @@ public class Bullet : GameObjectPool
             Destroy();
             if(other.gameObject.TryGetComponent(out IDamageable damageable)) {
                 damageable.TakeDamgae(contact.point, 0, attackType);
-                Debug.Log("trung");
             }
         }
     }

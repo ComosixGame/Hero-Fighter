@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField, ReadOnly] private AbsSkill skill2;
     [SerializeField, ReadOnly] private AbsSkill skill3;
     [SerializeField, ReadOnly] private AbsSkill skill4;
-    [SerializeField] private PlayerAttack[] playerAttacks;
+    [SerializeField] private PlayerHurtBox[] playerHurtBoxes;
     private PlayerDamageable playerDamageable;
 
     private void Awake()
@@ -35,9 +35,9 @@ public class PlayerController : MonoBehaviour
         playerDamageable = GetComponent<PlayerDamageable>();
         playerInputSystem = new PlayerInputSystem();
 
-        foreach (PlayerAttack playerAttack in playerAttacks)
+        foreach (PlayerHurtBox playerHurtBox in playerHurtBoxes)
         {
-            playerAttack.gameObject.SetActive(false);
+            playerHurtBox.gameObject.SetActive(false);
         }
 
         velocityHash = Animator.StringToHash("Velocity");
@@ -220,20 +220,20 @@ public class PlayerController : MonoBehaviour
     {
         if (!disable)
         {
-            playerAttacks[index].gameObject.SetActive(true);
+            playerHurtBoxes[index].gameObject.SetActive(true);
 
         }
     }
 
     public void AttackEnd(int index)
     {
-        playerAttacks[index].gameObject.SetActive(false);
+        playerHurtBoxes[index].gameObject.SetActive(false);
 
     }
 
     private void DisablePlayerHurtBox(Vector3 hitPoint, float damage, AttackType attackType)
     {
-        foreach (PlayerAttack playerAttack in playerAttacks)
+        foreach (PlayerHurtBox playerAttack in playerHurtBoxes)
         {
             playerAttack.gameObject.SetActive(false);
         }
@@ -243,7 +243,6 @@ public class PlayerController : MonoBehaviour
 
     private void EnablePlayer()
     {
-        Debug.Log("ok");
         disable = false;
     }
 

@@ -4,9 +4,8 @@ using UnityEngine.AI;
 public class MeleeEnemyAttack : AbsEnemyAttack
 {
     [SerializeField] private Vector3 centerAttackRange;
-    [SerializeField] private LayerMask playerLayer;
     [SerializeField] private float attackRange;
-    [SerializeField] private float attackCooldown;
+    [SerializeField] private LayerMask playerLayer;
     [SerializeField] private EnemyHurtBox[] hurtBoxes;
     private int attackHash;
     private int stepBackHash;

@@ -12,8 +12,8 @@ public class HealthBarPlayer : MonoBehaviour
         slider.value    = maxHealth;
     }
 
-   public void UpdateHealthBarValue(float health)
-   {
+    public void UpdateHealthBarValue(float health)
+    {
         slider.value = health;
-   }
+    }
 }

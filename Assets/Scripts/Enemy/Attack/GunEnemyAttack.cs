@@ -78,11 +78,14 @@ public class GunEnemyAttack : AbsEnemyAttack
             Collider[] hitCollidersAttack = Physics.OverlapSphere(transform.position + centerMeleeRange, meleeRange, layerTarget);
             if (hitCollidersAttack.Length > 0)
             {
+                CancelInvoke("AttackMeleeCoolDown");
                 attackMelee = true;
                 animator.SetTrigger(rifleKickHash);
+                Invoke("AttackMeleeCoolDown", attackCooldown);
             }
         }
     }
+    
 
     public void StartMeleeAttack(int index)
     {

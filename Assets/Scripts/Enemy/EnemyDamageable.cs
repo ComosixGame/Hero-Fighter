@@ -24,6 +24,7 @@ public class EnemyDamageable : MonoBehaviour, IDamageable
 
     public event Action<Vector3, float, AttackType> OnTakeDamageStart;
     public event Action OnTakeDamageEnd;
+    [SerializeField] private HealthBarRennder healthBarRennder = new HealthBarRennder();
 
     private void Awake()
     {
@@ -37,12 +38,19 @@ public class EnemyDamageable : MonoBehaviour, IDamageable
         knockHash = Animator.StringToHash("Knock");
         deathHash = Animator.StringToHash("death");
         standUpHash = Animator.StringToHash("StandUp");
+
     }
 
     private void Start()
     {
+        SetInitHealthBar(maxHealth);
         health = maxHealth;
     }
+
+    private void LateUpdate() {
+        healthBarRennder.UpdateHealthBarRotation();
+    }
+
 
     private void Update()
     {
@@ -59,6 +67,7 @@ public class EnemyDamageable : MonoBehaviour, IDamageable
         if (!destroyed)
         {
             health -= damage;
+            healthBarRennder.UpdateHealthBarValue(health);
             if (health <= 0)
             {
                 destroyed = true;
@@ -89,7 +98,8 @@ public class EnemyDamageable : MonoBehaviour, IDamageable
         }
     }
 
-    public void TakeDamagaEnd() {
+    public void TakeDamagaEnd()
+    {
         OnTakeDamageEnd?.Invoke();
     }
 
@@ -105,11 +115,18 @@ public class EnemyDamageable : MonoBehaviour, IDamageable
         animator.SetTrigger(standUpHash);
     }
 
+    public void SetInitHealthBar(float health)
+    {
+        healthBarRennder.CreateHealthBar(transform, maxHealth);
+    }
+
     private void Destroy(AttackType attackType)
     {
         enemyBehaviour.enabled = false;
         ColliderGameObject.enabled = false;
         animator.SetTrigger(deathHash);
+        healthBarRennder.DestroyHealthBar();
+        gameManager.EnemyDeath();
     }
 
 }

@@ -28,9 +28,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField, ReadOnly] private AbsSkill skill4;
     [SerializeField] private PlayerHurtBox[] playerHurtBoxes;
     private PlayerDamageable playerDamageable;
+    private GameManager gameManager;
+    private bool isStart;
 
     private void Awake()
     {
+        gameManager = GameManager.Instance;
         characterController = GetComponent<CharacterController>();
         playerDamageable = GetComponent<PlayerDamageable>();
         playerInputSystem = new PlayerInputSystem();
@@ -44,7 +47,7 @@ public class PlayerController : MonoBehaviour
         attackHash = Animator.StringToHash("Attack");
         stateTimeHash = Animator.StringToHash("StateTime");
         AddSkill();
-
+        gameManager.OnStartGame += StartGame;
     }
 
     private void OnEnable()
@@ -66,6 +69,7 @@ public class PlayerController : MonoBehaviour
         {
             skill.OnDone += DoneExecutingSkill;
         }
+
     }
 
     // Start is called before the first frame update
@@ -246,6 +250,11 @@ public class PlayerController : MonoBehaviour
         disable = false;
     }
 
+    private void StartGame()
+    {
+        isStart = true;
+    }
+
 
     private void OnDisable()
     {
@@ -256,6 +265,7 @@ public class PlayerController : MonoBehaviour
         playerInputSystem.Player.Skil2.started -= ActiveSkill;
         playerInputSystem.Player.Skil3.started -= ActiveSkill;
         playerInputSystem.Player.Skil4.started -= ActiveSkill;
+        gameManager.OnStartGame -= StartGame;
 
         playerDamageable.OnTakeDamageStart -= DisablePlayerHurtBox;
         playerDamageable.OnTakeDamageEnd -= EnablePlayer;

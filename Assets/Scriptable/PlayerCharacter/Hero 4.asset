@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 745a59cc5707a5a49b0c31e801bdc667, type: 3}
-  m_Name: Hero 3
+  m_Name: Hero 4
   m_EditorClassIdentifier: 
-  nameEquipment: Hero 3
+  nameEquipment: Hero 4
   price: 0
-  character: {fileID: 1963772456342324074, guid: a419865e04effc246952ec968e5d17c4,
+  character: {fileID: 1701021460331676804, guid: 3f49b085976b984488ba0736ecf25ea5,
     type: 3}

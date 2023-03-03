@@ -7,10 +7,15 @@ public class GameManager : Singleton<GameManager>
 {
     public Transform player {get; private set;}
     private int money;
+    public event Action OnStartGame;
     public event Action OnPause;
     public event Action OnResume;
+    public event Action OnNewGame;
+    public event Action OnEnemyDeath;
     public event Action<int> OnUpdateMoney;
+    public event Action<Transform> OnLose;
     public event Action OnEnemiesDestroyed;
+    public GameObject uiMenu;
     [ReadOnly, SerializeField] private List<Transform> enemies = new List<Transform>();
     public int enemiesCount {
         get {
@@ -20,6 +25,11 @@ public class GameManager : Singleton<GameManager>
 
     public void SetPlayer(Transform player) {
         this.player =  player;
+    }
+
+    public void StartGame()
+    {
+        OnStartGame?.Invoke();
     }
     
     public void PauseGame()
@@ -32,6 +42,28 @@ public class GameManager : Singleton<GameManager>
     {
         Time.timeScale = 1;
         OnResume?.Invoke();
+    }
+
+    public void EnemyDeath()
+    {
+        OnEnemyDeath?.Invoke();
+    }
+
+    public void GameWin()
+    {
+        uiMenu.GetComponent<UIMenu>().GameWin();
+    }
+
+    public void GameLose()
+    {
+        uiMenu.GetComponent<UIMenu>().GameLose();
+        OnLose?.Invoke(player);
+    }
+
+    public void NewGame()
+    {
+        OnNewGame?.Invoke();
+        //Add new Level
     }
 
     public void UpdateMoney(int amount) {

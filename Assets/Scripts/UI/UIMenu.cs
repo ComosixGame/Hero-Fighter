@@ -10,6 +10,9 @@ public class UIMenu : MonoBehaviour
     private PlayerData playerData;
     private Animator animator;
     private int previousHash;
+    public GameObject playUI;
+    public GameObject winUI;
+    public GameObject loseUI;
 
     private void Awake() 
     {
@@ -59,4 +62,14 @@ public class UIMenu : MonoBehaviour
         animator.SetBool(previousHash, isActive);
     }
 
+    public void GameWin(){
+        playUI.SetActive(false);
+        winUI.SetActive(true);
+    }
+
+
+    public void GameLose(){
+        playUI.SetActive(false);
+        loseUI.SetActive(true);
+    }
 }

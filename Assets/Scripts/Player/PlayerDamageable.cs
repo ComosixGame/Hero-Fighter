@@ -15,7 +15,6 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
     public event Action<Vector3, float, AttackType> OnTakeDamageStart;
     public event Action OnTakeDamageEnd;
 
-
     private void Awake()
     {
         GameManager.Instance.SetPlayer(transform);
@@ -91,6 +90,7 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
 
     private void Destroy(AttackType attackType)
     {
+        GameManager.Instance.GameLose();
         destroyed = true;
         if (attackType == AttackType.light)
         {

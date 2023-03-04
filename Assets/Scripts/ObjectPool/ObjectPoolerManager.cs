@@ -116,4 +116,11 @@
                 objectPrefab.active = 0;
             }
         }
+
+        public void DeleteObjectPoolerManager()
+        {
+            foreach(GameObject gameObject in gameObjects) {
+                GameObject.Destroy(gameObject);
+            }
+        }
     }

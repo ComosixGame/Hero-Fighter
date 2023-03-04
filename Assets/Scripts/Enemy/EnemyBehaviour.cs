@@ -12,8 +12,6 @@ public class EnemyBehaviour : MonoBehaviour
         disable,
     }
     [SerializeField] private LayerMask playerLayer;
-    [SerializeField] private Transform targetChase;
-    // [SerializeField] private float attackRange;
     [SerializeField] private float viewRange;
     [SerializeField] private Vector3 centerAttackRange;
     [SerializeField] private float stepBackTime;
@@ -27,9 +25,11 @@ public class EnemyBehaviour : MonoBehaviour
     private Animator animator;
     private EnemyDamageable damageable;
     private AbsEnemyAttack absEnemyAttack;
+    private GameManager gameManager;
 
     private void Awake()
     {
+        gameManager = GameManager.Instance;
         agent = GetComponent<NavMeshAgent>();
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
@@ -99,7 +99,7 @@ public class EnemyBehaviour : MonoBehaviour
     private void HandleChase()
     {
         agent.speed = maxSpeed;
-        MoveToPosition(targetChase.position);
+        MoveToPosition(gameManager.player.position);
     }
 
 
@@ -123,7 +123,8 @@ public class EnemyBehaviour : MonoBehaviour
     {
         if (state != State.disable)
         {
-            Quaternion rot = Quaternion.LookRotation(targetChase.position - transform.position);
+            Quaternion rot = Quaternion.LookRotation(gameManager.player.position - transform.position);
+
             rot.x = 0;
             rot.z = 0;
             transform.rotation = Quaternion.LerpUnclamped(transform.rotation, rot, 40 * Time.deltaTime);

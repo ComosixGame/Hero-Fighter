@@ -18,7 +18,7 @@ public class EnemyBehaviour : MonoBehaviour
     [SerializeField] private float maxSpeed;
     [SerializeField] private float walkSpeed;
     private int velocityHash, reloadHash;
-    [HideInInspector] public State state = State.chase;
+    public State state = State.chase;
     private bool disable;
     private NavMeshAgent agent;
     private Rigidbody rb;

@@ -72,6 +72,7 @@ public class MapGeneration : MonoBehaviour
     private void StartGame()
     {
         enemiesList.Clear();
+        wallList.Clear();
         playerData = PlayerData.Load();
         currentLevel = playerData.LatestLevel;
         this.wave = 0;
@@ -123,9 +124,9 @@ public class MapGeneration : MonoBehaviour
         GameObjectPool go = objectPoolerManager.SpawnObject(levels[level].wave[wave].GetEnemyGameObjectPool(enemyIndex), enemyPosition, Quaternion.identity);
         enemiesList.Add(go);
     }
-    private void WallDestroy()
+    private void WallDestroy(int wave)
     {
-        Destroy(wallList[0].gameObject);
+        Destroy(wallList[wave].gameObject);
     }
 
     private void CountEnemyDeath()
@@ -150,7 +151,7 @@ public class MapGeneration : MonoBehaviour
 
     private void NewWave()
     {
-        WallDestroy();
+        WallDestroy(this.wave-1);
         InitWall(currentLevel, this.wave);
         SetPositionSpawnEnemyInWave(currentLevel, this.wave);
     }

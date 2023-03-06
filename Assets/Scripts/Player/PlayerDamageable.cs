@@ -12,19 +12,22 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
     private bool destroyed;
     private Animator animator;
     private CharacterController controller;
+    private HealthBarPlayer healthBarPlayer;
+    private GameManager gameManager;
     public event Action<Vector3, float, AttackType> OnTakeDamageStart;
     public event Action OnTakeDamageEnd;
 
     private void Awake()
     {
-        GameManager.Instance.SetPlayer(transform);
-
+        gameManager = GameManager.Instance;
+        gameManager.SetPlayer(transform);
         controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
         hitHash = Animator.StringToHash("hit");
         knockHash = Animator.StringToHash("knock");
         standupHash = Animator.StringToHash("standup");
         deathHash = Animator.StringToHash("death");
+        healthBarPlayer = FindObjectOfType<HealthBarPlayer>();
     }
 
     private void Update()
@@ -39,6 +42,7 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
 
     private void Start()
     {
+        healthBarPlayer.CreateHealthBar(maxHealth);
         health = maxHealth;
     }
 
@@ -47,6 +51,7 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
         if (!destroyed)
         {
             health -= damage;
+            healthBarPlayer.UpdateHealthBarValue(health);
             if (health <= 0)
             {
                 Destroy(attackType);
@@ -90,7 +95,7 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
 
     private void Destroy(AttackType attackType)
     {
-        GameManager.Instance.GameLose();
+        gameManager.GameLose();
         destroyed = true;
         if (attackType == AttackType.light)
         {

@@ -13,6 +13,12 @@ public class MapGeneration : MonoBehaviour
         public string key;
         public Wave[] wave;
         public float process;
+        public GameObjectPool wallGameObjectPool;
+        public Vector3[] wallPosition; 
+        public GameObjectPool GetWallGameObjectPool()
+        {
+            return (wallGameObjectPool);
+        }
     }
 
     [System.Serializable]
@@ -24,11 +30,14 @@ public class MapGeneration : MonoBehaviour
         {
             return (enemiesGameObjectPool[index]);
         }
+
     }
 
     public ObjectSpawn[] levels;
-  
     private ObjectPoolerManager objectPoolerManager;
+    private List<GameObjectPool> enemiesList = new List<GameObjectPool>();
+    private List<GameObjectPool> wallList = new List<GameObjectPool>();
+
     private GameManager gameManager;
     private PlayerData playerData;
     private int currentLevel;
@@ -44,7 +53,7 @@ public class MapGeneration : MonoBehaviour
         gameManager = GameManager.Instance;
     }
 
-    private void OnEnable() 
+    private void OnEnable()
     {
         gameManager.OnStartGame += StartGame;
         gameManager.OnEnemyDeath += CountEnemyDeath;
@@ -52,7 +61,7 @@ public class MapGeneration : MonoBehaviour
 
     }
 
-    private void OnDisable() 
+    private void OnDisable()
     {
         gameManager.OnStartGame -= StartGame;
         gameManager.OnEnemyDeath -= CountEnemyDeath;
@@ -62,23 +71,26 @@ public class MapGeneration : MonoBehaviour
 
     private void StartGame()
     {
+        enemiesList.Clear();
         playerData = PlayerData.Load();
         currentLevel = playerData.LatestLevel;
         this.wave = 0;
         this.totalWave = levels[currentLevel].wave.Length;
-        SetPositionSpawnEnemyInWave(currentLevel,wave);
+        InitWall(currentLevel, wave);
+        SetPositionSpawnEnemyInWave(currentLevel, wave);
         uIGameProcess = FindObjectOfType<UIGameProcess>();
         uIGameProcess.CreateProcessBar(levels[currentLevel].process);
     }
 
     private void NewGame()
     {
-        ClearEnemies();
+        ClearEnemyList();
+
     }
 
     // Start is called before the first frame update
     void Start()
-    {   
+    {
 
     }
 
@@ -99,14 +111,26 @@ public class MapGeneration : MonoBehaviour
         this.wave++;
     }
 
-    IEnumerator SpawnEnemy(int level, int wave, int enemyIndex, Vector3 enemyPosition) {
+    private void InitWall(int level, int wave)
+    {
+        GameObjectPool go = objectPoolerManager.SpawnObject(levels[level].GetWallGameObjectPool(), levels[level].wallPosition[wave], Quaternion.identity);
+        wallList.Add(go);
+    }
+
+    IEnumerator SpawnEnemy(int level, int wave, int enemyIndex, Vector3 enemyPosition)
+    {
         yield return new WaitForSeconds(delaySpawnEnemy);
-        objectPoolerManager.SpawnObject(levels[level].wave[wave].GetEnemyGameObjectPool(enemyIndex), enemyPosition, Quaternion.identity);
+        GameObjectPool go = objectPoolerManager.SpawnObject(levels[level].wave[wave].GetEnemyGameObjectPool(enemyIndex), enemyPosition, Quaternion.identity);
+        enemiesList.Add(go);
+    }
+    private void WallDestroy()
+    {
+        Destroy(wallList[0].gameObject);
     }
 
     private void CountEnemyDeath()
     {
-        if(wave != totalWave)
+        if (wave != totalWave)
         {
             if (totalEnemyInWave != 0)
             {
@@ -126,11 +150,16 @@ public class MapGeneration : MonoBehaviour
 
     private void NewWave()
     {
-        SetPositionSpawnEnemyInWave(currentLevel,this.wave);
+        WallDestroy();
+        InitWall(currentLevel, this.wave);
+        SetPositionSpawnEnemyInWave(currentLevel, this.wave);
     }
 
-
-    private void ClearEnemies() {
-        objectPoolerManager.DeleteObjectPoolerManager();
+    private void ClearEnemyList()
+    {
+        for (int k = 0; k < enemiesList.Count; k++)
+        {
+            Destroy(enemiesList[k].gameObject);
+        }
     }
 }

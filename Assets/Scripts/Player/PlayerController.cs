@@ -113,10 +113,15 @@ public class PlayerController : MonoBehaviour
 
     private void RotationLook()
     {
-        if (direction != Vector3.zero)
+        if (direction.x < 0)
         {
-            Quaternion rot = Quaternion.LookRotation(direction);
-            transform.rotation = Quaternion.LerpUnclamped(transform.rotation, rot, 40 * Time.deltaTime);
+            Quaternion rot = Quaternion.LookRotation(Vector3.left);
+            transform.rotation = rot;
+        }
+        else if (direction.x > 0)
+        {
+            Quaternion rot = Quaternion.LookRotation(Vector3.right);
+            transform.rotation = rot;
         }
     }
 

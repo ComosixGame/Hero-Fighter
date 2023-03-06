@@ -19,9 +19,11 @@ public class GunEnemyAttack : AbsEnemyAttack
     private ObjectPoolerManager ObjectPoolerManager;
     private Animator animator;
     private EnemyDamageable damageable;
+    private GameManager gameManager;
 
     private void Awake()
     {
+        gameManager = GameManager.Instance;
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         gameObjectPool = GetComponent<GameObjectPool>();
@@ -60,6 +62,7 @@ public class GunEnemyAttack : AbsEnemyAttack
     public override void HandleAttack()
     {
         MoveToPosition(transform.position);
+        transform.LookAt(gameManager.player);
 
         if (!disable && !attackMelee && readyAttack)
         {
@@ -78,10 +81,10 @@ public class GunEnemyAttack : AbsEnemyAttack
             Collider[] hitCollidersAttack = Physics.OverlapSphere(transform.position + centerMeleeRange, meleeRange, layerTarget);
             if (hitCollidersAttack.Length > 0)
             {
-                CancelInvoke("AttackMeleeCoolDown");
+                // CancelInvoke("AttackMeleeCoolDown");
                 attackMelee = true;
                 animator.SetTrigger(rifleKickHash);
-                Invoke("AttackMeleeCoolDown", attackCooldown);
+                // Invoke("AttackMeleeCoolDown", attackCooldown);
             }
         }
     }

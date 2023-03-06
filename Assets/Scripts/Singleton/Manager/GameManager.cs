@@ -16,6 +16,8 @@ public class GameManager : Singleton<GameManager>
     public event Action<Transform> OnLose;
     public event Action OnEnemiesDestroyed;
     public GameObject uiMenu;
+    private PlayerData playerData;
+
     [ReadOnly, SerializeField] private List<Transform> enemies = new List<Transform>();
     public int enemiesCount {
         get {
@@ -60,10 +62,17 @@ public class GameManager : Singleton<GameManager>
         OnLose?.Invoke(player);
     }
 
-    public void NewGame()
+    public void NewGame(bool win)
     {
-        OnNewGame?.Invoke();
         //Add new Level
+        if (win)
+        {
+            playerData = PlayerData.Load();
+            int nextLevel = playerData.LatestLevel+1;
+            playerData.levels.Add(nextLevel);
+            playerData.Save();
+        }
+        OnNewGame?.Invoke();
     }
 
     public void UpdateMoney(int amount) {

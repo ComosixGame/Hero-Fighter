@@ -121,14 +121,15 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void HandleLook()
     {
-        if (state != State.disable)
+        if (agent.velocity.x > 0)
         {
-            Quaternion rot = Quaternion.LookRotation(gameManager.player.position - transform.position);
-
-            rot.x = 0;
-            rot.z = 0;
+            Quaternion rot = Quaternion.LookRotation(Vector3.right);
             transform.rotation = Quaternion.LerpUnclamped(transform.rotation, rot, 40 * Time.deltaTime);
-
+        }
+        else if (agent.velocity.x < 0)
+        {
+            Quaternion rot = Quaternion.LookRotation(Vector3.left);
+            transform.rotation = Quaternion.LerpUnclamped(transform.rotation, rot, 40 * Time.deltaTime);
         }
     }
 

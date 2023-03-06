@@ -25,6 +25,7 @@ public class EnemyDamageable : MonoBehaviour, IDamageable
     public event Action<Vector3, float, AttackType> OnTakeDamageStart;
     public event Action OnTakeDamageEnd;
     [SerializeField] private HealthBarRennder healthBarRennder = new HealthBarRennder();
+    private UIMenu uI;
 
     private void Awake()
     {
@@ -38,6 +39,7 @@ public class EnemyDamageable : MonoBehaviour, IDamageable
         knockHash = Animator.StringToHash("Knock");
         deathHash = Animator.StringToHash("death");
         standUpHash = Animator.StringToHash("StandUp");
+        uI = FindObjectOfType<UIMenu>();
 
     }
 
@@ -66,6 +68,7 @@ public class EnemyDamageable : MonoBehaviour, IDamageable
     {
         if (!destroyed)
         {
+            uI.DisplayHitPoint();
             health -= damage;
             healthBarRennder.UpdateHealthBarValue(health);
             if (health <= 0)

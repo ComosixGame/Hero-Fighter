@@ -9,10 +9,11 @@ public class UIMenu : MonoBehaviour
     public TMP_Text pointTxt, hitTxt;
     private PlayerData playerData;
     private Animator animator;
-    private int previousHash;
     public GameObject playUI;
     public GameObject winUI;
     public GameObject loseUI;
+    private int previousHash;
+    private int hitPoint;
 
     private void Awake() 
     {
@@ -23,8 +24,6 @@ public class UIMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //Test
-        DisplayHitPoint();
         playerData = PlayerData.Load();
     }
 
@@ -36,23 +35,24 @@ public class UIMenu : MonoBehaviour
 
 
     //Display Hit Point in UI
-    private void DisplayHitPoint()
+    public void DisplayHitPoint()
     {
         hitCount.SetActive(true);
         // if ()
         // {
         //Set Size 
             pointTxt.fontSize = 120;
-            pointTxt.text = "1";
+            hitPoint++;
+            pointTxt.text = hitPoint + "";
             hitTxt.text = "Hit";
         // }
         
-            StartCoroutine(DisplayHitReturnSizeInit());
+            StartCoroutine(DisplayHitReturnSizeInit(10));
     }
 
     //Return Size Initi
-    IEnumerator DisplayHitReturnSizeInit() {
-        yield return new WaitForSeconds(10f);
+    IEnumerator DisplayHitReturnSizeInit(float time) {
+        yield return new WaitForSeconds(time);
         pointTxt.fontSize = 40;
     }
 

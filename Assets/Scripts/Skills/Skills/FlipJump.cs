@@ -87,21 +87,21 @@ public class FlipJump : AbsSkill
 
         // lộn trái phải (để lại để sau này có thể dùng)
         
-        // bool faceLeft = Vector3.Dot(transform.forward.normalized, Vector3.left) == 1;
-        // if (Vector3.Dot(direction.normalized, Vector3.forward) > 0)
-        // {
-        //     indexAnim = faceLeft ? 4 : 3;
-        //     speedCurve = sideFlipCurve;
-        //     directionJump = direction.normalized;
+        bool faceLeft = Vector3.Dot(transform.forward.normalized, Vector3.left) == 1;
+        if (Vector3.Dot(direction.normalized, Vector3.forward) > 0)
+        {
+            indexAnim = faceLeft ? 4 : 3;
+            speedCurve = sideFlipCurve;
+            directionJump = direction.normalized;
 
-        // }
-        // else if (Vector3.Dot(direction.normalized, Vector3.forward) < 0)
-        // {
-        //     indexAnim = faceLeft ? 3 : 4;
-        //     speedCurve = sideFlipCurve;
-        //     directionJump = direction.normalized;
+        }
+        else if (Vector3.Dot(direction.normalized, Vector3.forward) < 0)
+        {
+            indexAnim = faceLeft ? 3 : 4;
+            speedCurve = sideFlipCurve;
+            directionJump = direction.normalized;
 
-        // }
+        }
 
         animator.SetFloat(jumpIndexHash, indexAnim);
     }

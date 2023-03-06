@@ -111,6 +111,7 @@ public class GunEnemyAttack : AbsEnemyAttack
         {
             hurtBox.gameObject.SetActive(false);
         }
+        attackMelee = false;
         disable = true;
         agent.ResetPath();
     }

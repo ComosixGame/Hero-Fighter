@@ -385,7 +385,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_LocalRotation: {x: 0.30831787, y: 1e-45, z: 0, w: 0.9512834}
+  m_LocalRotation: {x: 0.3083179, y: -3e-45, z: 1e-45, w: 0.9512834}
   m_LocalPosition: {x: -9.4, y: 6.194, z: -12.76}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -758,7 +758,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 426879410}
-  m_LocalRotation: {x: 0.30831787, y: 1e-45, z: 0, w: 0.9512834}
+  m_LocalRotation: {x: 0.3083179, y: -3e-45, z: 1e-45, w: 0.9512834}
   m_LocalPosition: {x: -9.4, y: 6.194, z: -12.76}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1703,6 +1703,103 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1578054342
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1578054346}
+  - component: {fileID: 1578054345}
+  - component: {fileID: 1578054344}
+  - component: {fileID: 1578054343}
+  m_Layer: 0
+  m_Name: Cube
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &1578054343
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1578054342}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1578054344
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1578054342}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1578054345
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1578054342}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1578054346
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1578054342}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.26, y: 0.3, z: -4.7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 19
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1634352352
 GameObject:
   m_ObjectHideFlags: 0
@@ -2134,17 +2231,19 @@ MonoBehaviour:
   - key: Level1
     wave:
     - enemiesGameObjectPool:
-      - {fileID: 100288967991211852, guid: d26b24f4c4b3fa44caac12c37d492f14, type: 3}
+      - {fileID: 1259295870454960267, guid: f050e09edeaecb042bbc62d4c71b1550, type: 3}
       enemiesPosition:
-      - {x: -9.5, y: -0.006, z: -4.2}
+      - {x: 7.8, y: -0.006, z: -4.2}
     - enemiesGameObjectPool:
       - {fileID: 100288967991211852, guid: d26b24f4c4b3fa44caac12c37d492f14, type: 3}
       enemiesPosition:
-      - {x: 18.8, y: -0.006, z: -4.2}
+      - {x: -16, y: -0.006, z: -4.2}
     - enemiesGameObjectPool:
-      - {fileID: 100288967991211852, guid: d26b24f4c4b3fa44caac12c37d492f14, type: 3}
+      - {fileID: 1259295870454960267, guid: f050e09edeaecb042bbc62d4c71b1550, type: 3}
+      - {fileID: 1259295870454960267, guid: f050e09edeaecb042bbc62d4c71b1550, type: 3}
       enemiesPosition:
-      - {x: 58, y: -0.006, z: -4.2}
+      - {x: 20, y: -0.006, z: -4.2}
+      - {x: 70, y: -0.006, z: -4.2}
     process: 30
     wallGameObjectPool: {fileID: 14393961694530266, guid: 3af67738a14ff1044b06d07dc27ded07,
       type: 3}
@@ -2152,26 +2251,35 @@ MonoBehaviour:
     - {x: 3.1, y: 0.472, z: -5.3}
     - {x: 33.1, y: 0.472, z: -5.3}
     - {x: 75.2, y: 0.472, z: -5.3}
-    checkPointGameObjectPool: {fileID: 0}
-    checkPointPosition: []
+    checkPointGameObjectPool: {fileID: 14393961694530266, guid: ad5b41eadfef2d049b6ffb99ecd6a67f,
+      type: 3}
+    checkPointPosition:
+    - {x: 12, y: -0.006, z: -4.2}
+    - {x: 38, y: -0.006, z: -4.2}
   - key: Level2
     wave:
     - enemiesGameObjectPool:
       - {fileID: 100288967991211852, guid: d26b24f4c4b3fa44caac12c37d492f14, type: 3}
+      - {fileID: 1259295870454960267, guid: f050e09edeaecb042bbc62d4c71b1550, type: 3}
       enemiesPosition:
-      - {x: -20.33, y: -0.006, z: -4.2}
+      - {x: -21, y: -0.006, z: -4.2}
+      - {x: 0.26, y: -0.006, z: -4.2}
     - enemiesGameObjectPool:
       - {fileID: 100288967991211852, guid: d26b24f4c4b3fa44caac12c37d492f14, type: 3}
       - {fileID: 100288967991211852, guid: d26b24f4c4b3fa44caac12c37d492f14, type: 3}
+      - {fileID: 100288967991211852, guid: d26b24f4c4b3fa44caac12c37d492f14, type: 3}
       enemiesPosition:
+      - {x: 16.8, y: -0.006, z: -4.2}
+      - {x: 5.87, y: -0.006, z: -4.2}
       - {x: 18.8, y: -0.006, z: -4.2}
-      - {x: 17.8, y: -0.006, z: -4.2}
     - enemiesGameObjectPool:
       - {fileID: 100288967991211852, guid: d26b24f4c4b3fa44caac12c37d492f14, type: 3}
       - {fileID: 100288967991211852, guid: d26b24f4c4b3fa44caac12c37d492f14, type: 3}
+      - {fileID: 100288967991211852, guid: d26b24f4c4b3fa44caac12c37d492f14, type: 3}
       enemiesPosition:
-      - {x: 58, y: -0.006, z: -4.2}
       - {x: 57, y: -0.006, z: -4.2}
+      - {x: 37.5, y: -0.006, z: -4.2}
+      - {x: 59, y: -0.006, z: -4.2}
     process: 30
     wallGameObjectPool: {fileID: 14393961694530266, guid: 3af67738a14ff1044b06d07dc27ded07,
       type: 3}
@@ -2179,8 +2287,11 @@ MonoBehaviour:
     - {x: 3.1, y: 0.472, z: -5.3}
     - {x: 33.1, y: 0.472, z: -5.3}
     - {x: 75.2, y: 0.472, z: -5.3}
-    checkPointGameObjectPool: {fileID: 0}
-    checkPointPosition: []
+    checkPointGameObjectPool: {fileID: 14393961694530266, guid: ad5b41eadfef2d049b6ffb99ecd6a67f,
+      type: 3}
+    checkPointPosition:
+    - {x: 12, y: -0.006, z: -4.2}
+    - {x: 38, y: -0.006, z: -4.2}
   - key: Level3
     wave:
     - enemiesGameObjectPool:
@@ -2448,6 +2559,196 @@ MonoBehaviour:
     - {x: 12, y: -0.006, z: -4.2}
     - {x: 38, y: -0.006, z: -4.2}
   - key: Level10
+    wave:
+    - enemiesGameObjectPool:
+      - {fileID: 100288967991211852, guid: d26b24f4c4b3fa44caac12c37d492f14, type: 3}
+      - {fileID: 1259295870454960267, guid: f050e09edeaecb042bbc62d4c71b1550, type: 3}
+      - {fileID: 100288967991211852, guid: d26b24f4c4b3fa44caac12c37d492f14, type: 3}
+      enemiesPosition:
+      - {x: -21, y: -0.006, z: -4.2}
+      - {x: 0.26, y: -0.006, z: -4.2}
+      - {x: -19, y: -0.006, z: -6}
+    - enemiesGameObjectPool:
+      - {fileID: 100288967991211852, guid: d26b24f4c4b3fa44caac12c37d492f14, type: 3}
+      - {fileID: 100288967991211852, guid: d26b24f4c4b3fa44caac12c37d492f14, type: 3}
+      - {fileID: 100288967991211852, guid: d26b24f4c4b3fa44caac12c37d492f14, type: 3}
+      enemiesPosition:
+      - {x: 16.8, y: -0.006, z: -4.2}
+      - {x: 5.87, y: -0.006, z: -4.2}
+      - {x: 18.8, y: -0.006, z: -4.2}
+    - enemiesGameObjectPool:
+      - {fileID: 100288967991211852, guid: d26b24f4c4b3fa44caac12c37d492f14, type: 3}
+      - {fileID: 100288967991211852, guid: d26b24f4c4b3fa44caac12c37d492f14, type: 3}
+      - {fileID: 100288967991211852, guid: d26b24f4c4b3fa44caac12c37d492f14, type: 3}
+      enemiesPosition:
+      - {x: 57, y: -0.006, z: -4.2}
+      - {x: 37.5, y: -0.006, z: -4.2}
+      - {x: 59, y: -0.006, z: -4.2}
+    process: 30
+    wallGameObjectPool: {fileID: 14393961694530266, guid: 3af67738a14ff1044b06d07dc27ded07,
+      type: 3}
+    wallPosition:
+    - {x: 3.1, y: 0.472, z: -5.3}
+    - {x: 33.1, y: 0.472, z: -5.3}
+    - {x: 75.2, y: 0.472, z: -5.3}
+    checkPointGameObjectPool: {fileID: 14393961694530266, guid: ad5b41eadfef2d049b6ffb99ecd6a67f,
+      type: 3}
+    checkPointPosition:
+    - {x: 12, y: -0.006, z: -4.2}
+    - {x: 38, y: -0.006, z: -4.2}
+  - key: Level11
+    wave:
+    - enemiesGameObjectPool:
+      - {fileID: 100288967991211852, guid: d26b24f4c4b3fa44caac12c37d492f14, type: 3}
+      - {fileID: 1259295870454960267, guid: f050e09edeaecb042bbc62d4c71b1550, type: 3}
+      - {fileID: 100288967991211852, guid: d26b24f4c4b3fa44caac12c37d492f14, type: 3}
+      enemiesPosition:
+      - {x: -21, y: -0.006, z: -4.2}
+      - {x: 0.26, y: -0.006, z: -4.2}
+      - {x: -19, y: -0.006, z: -6}
+    - enemiesGameObjectPool:
+      - {fileID: 100288967991211852, guid: d26b24f4c4b3fa44caac12c37d492f14, type: 3}
+      - {fileID: 100288967991211852, guid: d26b24f4c4b3fa44caac12c37d492f14, type: 3}
+      - {fileID: 100288967991211852, guid: d26b24f4c4b3fa44caac12c37d492f14, type: 3}
+      enemiesPosition:
+      - {x: 16.8, y: -0.006, z: -4.2}
+      - {x: 5.87, y: -0.006, z: -4.2}
+      - {x: 18.8, y: -0.006, z: -4.2}
+    - enemiesGameObjectPool:
+      - {fileID: 100288967991211852, guid: d26b24f4c4b3fa44caac12c37d492f14, type: 3}
+      - {fileID: 100288967991211852, guid: d26b24f4c4b3fa44caac12c37d492f14, type: 3}
+      - {fileID: 100288967991211852, guid: d26b24f4c4b3fa44caac12c37d492f14, type: 3}
+      enemiesPosition:
+      - {x: 57, y: -0.006, z: -4.2}
+      - {x: 37.5, y: -0.006, z: -4.2}
+      - {x: 59, y: -0.006, z: -4.2}
+    process: 30
+    wallGameObjectPool: {fileID: 14393961694530266, guid: 3af67738a14ff1044b06d07dc27ded07,
+      type: 3}
+    wallPosition:
+    - {x: 3.1, y: 0.472, z: -5.3}
+    - {x: 33.1, y: 0.472, z: -5.3}
+    - {x: 75.2, y: 0.472, z: -5.3}
+    checkPointGameObjectPool: {fileID: 14393961694530266, guid: ad5b41eadfef2d049b6ffb99ecd6a67f,
+      type: 3}
+    checkPointPosition:
+    - {x: 12, y: -0.006, z: -4.2}
+    - {x: 38, y: -0.006, z: -4.2}
+  - key: Level12
+    wave:
+    - enemiesGameObjectPool:
+      - {fileID: 100288967991211852, guid: d26b24f4c4b3fa44caac12c37d492f14, type: 3}
+      - {fileID: 1259295870454960267, guid: f050e09edeaecb042bbc62d4c71b1550, type: 3}
+      - {fileID: 100288967991211852, guid: d26b24f4c4b3fa44caac12c37d492f14, type: 3}
+      enemiesPosition:
+      - {x: -21, y: -0.006, z: -4.2}
+      - {x: 0.26, y: -0.006, z: -4.2}
+      - {x: -19, y: -0.006, z: -6}
+    - enemiesGameObjectPool:
+      - {fileID: 100288967991211852, guid: d26b24f4c4b3fa44caac12c37d492f14, type: 3}
+      - {fileID: 100288967991211852, guid: d26b24f4c4b3fa44caac12c37d492f14, type: 3}
+      - {fileID: 100288967991211852, guid: d26b24f4c4b3fa44caac12c37d492f14, type: 3}
+      enemiesPosition:
+      - {x: 16.8, y: -0.006, z: -4.2}
+      - {x: 5.87, y: -0.006, z: -4.2}
+      - {x: 18.8, y: -0.006, z: -4.2}
+    - enemiesGameObjectPool:
+      - {fileID: 100288967991211852, guid: d26b24f4c4b3fa44caac12c37d492f14, type: 3}
+      - {fileID: 100288967991211852, guid: d26b24f4c4b3fa44caac12c37d492f14, type: 3}
+      - {fileID: 100288967991211852, guid: d26b24f4c4b3fa44caac12c37d492f14, type: 3}
+      enemiesPosition:
+      - {x: 57, y: -0.006, z: -4.2}
+      - {x: 37.5, y: -0.006, z: -4.2}
+      - {x: 59, y: -0.006, z: -4.2}
+    process: 30
+    wallGameObjectPool: {fileID: 14393961694530266, guid: 3af67738a14ff1044b06d07dc27ded07,
+      type: 3}
+    wallPosition:
+    - {x: 3.1, y: 0.472, z: -5.3}
+    - {x: 33.1, y: 0.472, z: -5.3}
+    - {x: 75.2, y: 0.472, z: -5.3}
+    checkPointGameObjectPool: {fileID: 14393961694530266, guid: ad5b41eadfef2d049b6ffb99ecd6a67f,
+      type: 3}
+    checkPointPosition:
+    - {x: 12, y: -0.006, z: -4.2}
+    - {x: 38, y: -0.006, z: -4.2}
+  - key: Level13
+    wave:
+    - enemiesGameObjectPool:
+      - {fileID: 100288967991211852, guid: d26b24f4c4b3fa44caac12c37d492f14, type: 3}
+      - {fileID: 1259295870454960267, guid: f050e09edeaecb042bbc62d4c71b1550, type: 3}
+      - {fileID: 100288967991211852, guid: d26b24f4c4b3fa44caac12c37d492f14, type: 3}
+      enemiesPosition:
+      - {x: -21, y: -0.006, z: -4.2}
+      - {x: 0.26, y: -0.006, z: -4.2}
+      - {x: -19, y: -0.006, z: -6}
+    - enemiesGameObjectPool:
+      - {fileID: 100288967991211852, guid: d26b24f4c4b3fa44caac12c37d492f14, type: 3}
+      - {fileID: 100288967991211852, guid: d26b24f4c4b3fa44caac12c37d492f14, type: 3}
+      - {fileID: 100288967991211852, guid: d26b24f4c4b3fa44caac12c37d492f14, type: 3}
+      enemiesPosition:
+      - {x: 16.8, y: -0.006, z: -4.2}
+      - {x: 5.87, y: -0.006, z: -4.2}
+      - {x: 18.8, y: -0.006, z: -4.2}
+    - enemiesGameObjectPool:
+      - {fileID: 100288967991211852, guid: d26b24f4c4b3fa44caac12c37d492f14, type: 3}
+      - {fileID: 100288967991211852, guid: d26b24f4c4b3fa44caac12c37d492f14, type: 3}
+      - {fileID: 100288967991211852, guid: d26b24f4c4b3fa44caac12c37d492f14, type: 3}
+      enemiesPosition:
+      - {x: 57, y: -0.006, z: -4.2}
+      - {x: 37.5, y: -0.006, z: -4.2}
+      - {x: 59, y: -0.006, z: -4.2}
+    process: 30
+    wallGameObjectPool: {fileID: 14393961694530266, guid: 3af67738a14ff1044b06d07dc27ded07,
+      type: 3}
+    wallPosition:
+    - {x: 3.1, y: 0.472, z: -5.3}
+    - {x: 33.1, y: 0.472, z: -5.3}
+    - {x: 75.2, y: 0.472, z: -5.3}
+    checkPointGameObjectPool: {fileID: 14393961694530266, guid: ad5b41eadfef2d049b6ffb99ecd6a67f,
+      type: 3}
+    checkPointPosition:
+    - {x: 12, y: -0.006, z: -4.2}
+    - {x: 38, y: -0.006, z: -4.2}
+  - key: Level14
+    wave:
+    - enemiesGameObjectPool:
+      - {fileID: 100288967991211852, guid: d26b24f4c4b3fa44caac12c37d492f14, type: 3}
+      - {fileID: 1259295870454960267, guid: f050e09edeaecb042bbc62d4c71b1550, type: 3}
+      - {fileID: 100288967991211852, guid: d26b24f4c4b3fa44caac12c37d492f14, type: 3}
+      enemiesPosition:
+      - {x: -21, y: -0.006, z: -4.2}
+      - {x: 0.26, y: -0.006, z: -4.2}
+      - {x: -19, y: -0.006, z: -6}
+    - enemiesGameObjectPool:
+      - {fileID: 100288967991211852, guid: d26b24f4c4b3fa44caac12c37d492f14, type: 3}
+      - {fileID: 100288967991211852, guid: d26b24f4c4b3fa44caac12c37d492f14, type: 3}
+      - {fileID: 100288967991211852, guid: d26b24f4c4b3fa44caac12c37d492f14, type: 3}
+      enemiesPosition:
+      - {x: 16.8, y: -0.006, z: -4.2}
+      - {x: 5.87, y: -0.006, z: -4.2}
+      - {x: 18.8, y: -0.006, z: -4.2}
+    - enemiesGameObjectPool:
+      - {fileID: 100288967991211852, guid: d26b24f4c4b3fa44caac12c37d492f14, type: 3}
+      - {fileID: 100288967991211852, guid: d26b24f4c4b3fa44caac12c37d492f14, type: 3}
+      - {fileID: 100288967991211852, guid: d26b24f4c4b3fa44caac12c37d492f14, type: 3}
+      enemiesPosition:
+      - {x: 57, y: -0.006, z: -4.2}
+      - {x: 37.5, y: -0.006, z: -4.2}
+      - {x: 59, y: -0.006, z: -4.2}
+    process: 30
+    wallGameObjectPool: {fileID: 14393961694530266, guid: 3af67738a14ff1044b06d07dc27ded07,
+      type: 3}
+    wallPosition:
+    - {x: 3.1, y: 0.472, z: -5.3}
+    - {x: 33.1, y: 0.472, z: -5.3}
+    - {x: 75.2, y: 0.472, z: -5.3}
+    checkPointGameObjectPool: {fileID: 14393961694530266, guid: ad5b41eadfef2d049b6ffb99ecd6a67f,
+      type: 3}
+    checkPointPosition:
+    - {x: 12, y: -0.006, z: -4.2}
+    - {x: 38, y: -0.006, z: -4.2}
+  - key: Level15
     wave:
     - enemiesGameObjectPool:
       - {fileID: 100288967991211852, guid: d26b24f4c4b3fa44caac12c37d492f14, type: 3}
@@ -9034,9 +9335,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 2085827363}
-        m_TargetAssemblyTypeName: MapGeneration, Assembly-CSharp
-        m_MethodName: Testingas
+      - m_Target: {fileID: 3394321519424232699}
+        m_TargetAssemblyTypeName: UIMenu, Assembly-CSharp
+        m_MethodName: SaveMoney
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 3394321519424232699}
+        m_TargetAssemblyTypeName: UIMenu, Assembly-CSharp
+        m_MethodName: LoadMoney
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9718,6 +10031,8 @@ MonoBehaviour:
   perivous: {fileID: 3394321520865838838}
   pointTxt: {fileID: 3394321520481084614}
   hitTxt: {fileID: 3394321519586199657}
+  moneyTxt: {fileID: 3394321519663676116}
+  moneyStartTxt: {fileID: 3394321520057627620}
   playUI: {fileID: 3394321519272943543}
   winUI: {fileID: 3394321519098353723}
   loseUI: {fileID: 3394321520405274794}
@@ -10684,6 +10999,42 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: NewGame
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 3394321519424232699}
+        m_TargetAssemblyTypeName: UIMenu, Assembly-CSharp
+        m_MethodName: BonusX3Money
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 3394321519424232699}
+        m_TargetAssemblyTypeName: UIMenu, Assembly-CSharp
+        m_MethodName: SaveMoney
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 3394321519424232699}
+        m_TargetAssemblyTypeName: UIMenu, Assembly-CSharp
+        m_MethodName: LoadMoney
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -12185,7 +12536,7 @@ GameObject:
   - component: {fileID: 3394321519663676117}
   - component: {fileID: 3394321519663676116}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Money
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

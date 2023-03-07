@@ -123,13 +123,6 @@ public class EnemyDamageable : MonoBehaviour, IDamageable
         healthBarRennder.CreateHealthBar(transform, maxHealth);
     }
 
-    
-    //Call In Animation Event
-    //Sometime Enemy die HurtBox is Active and Take Damage Player
-    public void CancleAttack()
-    {
-        absEnemyAttack.CancleAttack();
-    }
 
     private void Destroy(AttackType attackType)
     {

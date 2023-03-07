@@ -7,7 +7,7 @@ public class UIMenu : MonoBehaviour
 {
     public GameObject hitCount;
     public GameObject perivous;
-    public TMP_Text pointTxt, hitTxt;
+    public TMP_Text pointTxt, hitTxt, moneyTxt, moneyStartTxt;
     private PlayerData playerData;
     private Animator animator;
     public GameObject playUI;
@@ -17,6 +17,8 @@ public class UIMenu : MonoBehaviour
     private int hitPoint;
     [SerializeField] private Slider countHitComboTimer;
     private bool flagCountHit;
+    private int money;
+    private int totalMoney;
 
     //Coefficient Count Hit Combo
     private float CoefficientCombo;
@@ -95,6 +97,7 @@ public class UIMenu : MonoBehaviour
     }
 
     public void GameWin(){
+        BonusMoney();
         playUI.SetActive(false);
         winUI.SetActive(true);
     }
@@ -103,5 +106,33 @@ public class UIMenu : MonoBehaviour
     public void GameLose(){
         playUI.SetActive(false);
         loseUI.SetActive(true);
+    }
+
+    private void BonusMoney()
+    {
+        money = Random.Range(150, 210);
+        moneyTxt.text = money + "";
+    }
+
+    public void BonusX3Money()
+    {
+        money = money*3;
+        SaveMoney();
+    }
+
+    public void SaveMoney()
+    {
+        playerData = PlayerData.Load();
+        totalMoney = playerData.money;
+        totalMoney += money;
+        playerData.money = totalMoney;
+        playerData.Save();
+    }
+
+    public void LoadMoney()
+    {
+        playerData = PlayerData.Load();
+        Debug.Log(playerData.money);
+        moneyStartTxt.text = playerData.money + "";
     }
 }

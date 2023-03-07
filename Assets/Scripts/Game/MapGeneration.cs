@@ -144,6 +144,7 @@ public class MapGeneration : MonoBehaviour
         GameObjectPool go = objectPoolerManager.SpawnObject(levels[level].wave[wave].GetEnemyGameObjectPool(enemyIndex), enemyPosition, Quaternion.identity);
         enemiesList.Add(go);
     }
+
     private void WallDestroy(int wave)
     {
         Destroy(wallList[wave].gameObject);
@@ -165,7 +166,15 @@ public class MapGeneration : MonoBehaviour
         }
         else
         {
-            gameManager.GameWin();
+            if (totalEnemyInWave != 0)
+            {
+                totalEnemyInWave--;
+            }
+
+            if (totalEnemyInWave == 0)
+            {  
+                gameManager.GameWin();
+            }
         }
     }
 

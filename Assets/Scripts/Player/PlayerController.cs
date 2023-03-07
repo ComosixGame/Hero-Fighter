@@ -260,7 +260,6 @@ public class PlayerController : MonoBehaviour
         isStart = true;
     }
 
-
     private void OnDisable()
     {
         playerInputSystem.Player.Move.performed -= GetDirectionMove;

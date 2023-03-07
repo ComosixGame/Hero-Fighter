@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class UIMenu : MonoBehaviour
 {
@@ -14,6 +15,20 @@ public class UIMenu : MonoBehaviour
     public GameObject loseUI;
     private int previousHash;
     private int hitPoint;
+    [SerializeField] private Slider countHitComboTimer;
+    private bool flagCountHit;
+
+    //Coefficient Count Hit Combo
+    private float CoefficientCombo;
+
+    //Font size big display when player attack
+    private float bigSize;
+
+    //Font size small display
+    private float smallSize;
+
+    //Time display big size
+    private float timerBigSize;
 
     private void Awake() 
     {
@@ -25,35 +40,52 @@ public class UIMenu : MonoBehaviour
     void Start()
     {
         playerData = PlayerData.Load();
+        CoefficientCombo = 0.5f;
+        bigSize = 150;
+        smallSize = 100;
+        timerBigSize = 0.2f;
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        
+        if(flagCountHit)
+        {
+            countHitComboTimer.value -= Time.deltaTime*CoefficientCombo;
+        }
+
+        if (countHitComboTimer.value <= 0)
+        {
+            DisplayHitPoint(false);
+        }
+
     }
 
 
     //Display Hit Point in UI
-    public void DisplayHitPoint()
+    public void DisplayHitPoint(bool hit)
     {
-        hitCount.SetActive(true);
-        // if ()
-        // {
-        //Set Size 
-            pointTxt.fontSize = 120;
+        flagCountHit = hit;
+        if (hit)
+        {
+            hitCount.SetActive(true);
             hitPoint++;
             pointTxt.text = hitPoint + "";
-            hitTxt.text = "Hit";
-        // }
-        
-            StartCoroutine(DisplayHitReturnSizeInit(10));
+            pointTxt.fontSize = bigSize;
+            StartCoroutine(SetFontSizeInit(timerBigSize));
+            countHitComboTimer.value = 1;
+        }
+        else
+        {
+            hitCount.SetActive(false);
+            hitPoint = 0;
+        }
     }
 
-    //Return Size Initi
-    IEnumerator DisplayHitReturnSizeInit(float time) {
+    //Set font Size 
+    IEnumerator SetFontSizeInit(float time)
+    {
         yield return new WaitForSeconds(time);
-        pointTxt.fontSize = 40;
+        pointTxt.fontSize = smallSize;
     }
 
     //True if Clear Wave and False if Player Move to new Wave

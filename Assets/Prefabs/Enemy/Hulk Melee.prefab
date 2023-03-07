@@ -2295,6 +2295,7 @@ GameObject:
   - component: {fileID: 8522840541706428694}
   - component: {fileID: 8522840541706428693}
   - component: {fileID: 8522840541706428675}
+  - component: {fileID: 1259295870454960267}
   m_Layer: 7
   m_Name: Hulk Melee
   m_TagString: Untagged
@@ -2382,7 +2383,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fef91d7f3b34ced49944c22a7ef31a20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 30
   knockBackCuvre:
     serializedVersion: 2
     m_Curve:
@@ -2509,3 +2510,16 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1259295870454960267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8828849126682087975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77e633731941a3a4fb2c1dedabd39cc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: MeleeEnemy

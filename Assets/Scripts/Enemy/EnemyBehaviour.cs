@@ -153,7 +153,6 @@ public class EnemyBehaviour : MonoBehaviour
         }
     }
 
-
 #if UNITY_EDITOR
     private void OnDrawGizmosSelected()
     {

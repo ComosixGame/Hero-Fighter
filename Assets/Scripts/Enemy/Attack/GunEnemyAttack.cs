@@ -129,11 +129,21 @@ public class GunEnemyAttack : AbsEnemyAttack
         }
     }
 
+    
+    public override void CancleAttack()
+    {
+        foreach (EnemyHurtBox hurtBox in hurtBoxes)
+        {
+            hurtBox.gameObject.SetActive(false);
+        }
+    }
+
 #if UNITY_EDITOR
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position + centerMeleeRange, meleeRange);
     }
+
 #endif
 }

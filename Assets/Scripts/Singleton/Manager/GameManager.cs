@@ -15,6 +15,7 @@ public class GameManager : Singleton<GameManager>
     public event Action<int> OnUpdateMoney;
     public event Action<Transform> OnLose;
     public event Action OnEnemiesDestroyed;
+    public event Action OnGoneCheckPoint;
     public GameObject uiMenu;
     private PlayerData playerData;
 
@@ -99,6 +100,11 @@ public class GameManager : Singleton<GameManager>
     //clear toàn bộ enemy
     public void ClearEnemies() {
         enemies.Clear();
+    }
+
+    public void GoneCheckPoint()
+    {
+        OnGoneCheckPoint?.Invoke();
     }
 
 }

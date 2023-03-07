@@ -16,6 +16,7 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
     private GameManager gameManager;
     public event Action<Vector3, float, AttackType> OnTakeDamageStart;
     public event Action OnTakeDamageEnd;
+    private UIMenu ui;
 
     private void Awake()
     {
@@ -28,6 +29,7 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
         standupHash = Animator.StringToHash("standup");
         deathHash = Animator.StringToHash("death");
         healthBarPlayer = FindObjectOfType<HealthBarPlayer>();
+        ui = FindObjectOfType<UIMenu>();
     }
 
     private void Update()
@@ -50,6 +52,7 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
     {
         if (!destroyed)
         {
+            ui.DisplayHitPoint(false);
             health -= damage;
             healthBarPlayer.UpdateHealthBarValue(health);
             if (health <= 0)

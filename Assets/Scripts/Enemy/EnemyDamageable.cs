@@ -21,7 +21,7 @@ public class EnemyDamageable : MonoBehaviour, IDamageable
     private EnemyBehaviour enemyBehaviour;
     private Collider ColliderGameObject;
     private GameManager gameManager;
-
+    private AbsEnemyAttack absEnemyAttack;
     public event Action<Vector3, float, AttackType> OnTakeDamageStart;
     public event Action OnTakeDamageEnd;
     [SerializeField] private HealthBarRennder healthBarRennder = new HealthBarRennder();
@@ -40,7 +40,7 @@ public class EnemyDamageable : MonoBehaviour, IDamageable
         deathHash = Animator.StringToHash("death");
         standUpHash = Animator.StringToHash("StandUp");
         uI = FindObjectOfType<UIMenu>();
-
+        absEnemyAttack = GetComponent<AbsEnemyAttack>();
     }
 
     private void Start()
@@ -68,7 +68,7 @@ public class EnemyDamageable : MonoBehaviour, IDamageable
     {
         if (!destroyed)
         {
-            uI.DisplayHitPoint();
+            uI.DisplayHitPoint(true);
             health -= damage;
             healthBarRennder.UpdateHealthBarValue(health);
             if (health <= 0)
@@ -121,6 +121,14 @@ public class EnemyDamageable : MonoBehaviour, IDamageable
     public void SetInitHealthBar(float health)
     {
         healthBarRennder.CreateHealthBar(transform, maxHealth);
+    }
+
+    
+    //Call In Animation Event
+    //Sometime Enemy die HurtBox is Active and Take Damage Player
+    public void CancleAttack()
+    {
+        absEnemyAttack.CancleAttack();
     }
 
     private void Destroy(AttackType attackType)

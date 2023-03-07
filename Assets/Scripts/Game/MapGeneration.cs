@@ -19,6 +19,13 @@ public class MapGeneration : MonoBehaviour
         {
             return (wallGameObjectPool);
         }
+
+        public GameObjectPool checkPointGameObjectPool;
+        public Vector3[] checkPointPosition; 
+        public GameObjectPool GetcheckPointGameObjectPool()
+        {
+            return (checkPointGameObjectPool);
+        }
     }
 
     [System.Serializable]
@@ -34,6 +41,7 @@ public class MapGeneration : MonoBehaviour
     }
 
     public ObjectSpawn[] levels;
+    public bool isCheckoint;
     private ObjectPoolerManager objectPoolerManager;
     private List<GameObjectPool> enemiesList = new List<GameObjectPool>();
     private List<GameObjectPool> wallList = new List<GameObjectPool>();
@@ -46,11 +54,13 @@ public class MapGeneration : MonoBehaviour
     private int wave;
     private int totalWave;
     private UIGameProcess uIGameProcess;
+    private UIMenu ui;
 
     private void Awake()
     {
         objectPoolerManager = ObjectPoolerManager.Instance;
         gameManager = GameManager.Instance;
+        ui = FindObjectOfType<UIMenu>();
     }
 
     private void OnEnable()
@@ -58,6 +68,7 @@ public class MapGeneration : MonoBehaviour
         gameManager.OnStartGame += StartGame;
         gameManager.OnEnemyDeath += CountEnemyDeath;
         gameManager.OnNewGame += NewGame;
+        gameManager.OnGoneCheckPoint += GoneCheckPoint;
 
     }
 
@@ -66,6 +77,7 @@ public class MapGeneration : MonoBehaviour
         gameManager.OnStartGame -= StartGame;
         gameManager.OnEnemyDeath -= CountEnemyDeath;
         gameManager.OnNewGame -= NewGame;
+        gameManager.OnGoneCheckPoint -= GoneCheckPoint;
 
     }
 
@@ -77,6 +89,7 @@ public class MapGeneration : MonoBehaviour
         currentLevel = playerData.LatestLevel;
         this.wave = 0;
         this.totalWave = levels[currentLevel].wave.Length;
+        InitCheckPoint(currentLevel);
         InitWall(currentLevel, wave);
         SetPositionSpawnEnemyInWave(currentLevel, wave);
         uIGameProcess = FindObjectOfType<UIGameProcess>();
@@ -86,7 +99,6 @@ public class MapGeneration : MonoBehaviour
     private void NewGame()
     {
         ClearEnemyList();
-
     }
 
     // Start is called before the first frame update
@@ -116,6 +128,14 @@ public class MapGeneration : MonoBehaviour
     {
         GameObjectPool go = objectPoolerManager.SpawnObject(levels[level].GetWallGameObjectPool(), levels[level].wallPosition[wave], Quaternion.identity);
         wallList.Add(go);
+    }
+
+    private void InitCheckPoint(int level)
+    {
+        foreach (Vector3 pos in levels[level].checkPointPosition)
+        {
+            GameObjectPool go = objectPoolerManager.SpawnObject(levels[level].GetcheckPointGameObjectPool(), pos, Quaternion.identity);
+        }
     }
 
     IEnumerator SpawnEnemy(int level, int wave, int enemyIndex, Vector3 enemyPosition)
@@ -151,9 +171,17 @@ public class MapGeneration : MonoBehaviour
 
     private void NewWave()
     {
+        ui.PreviousAnimation(true);
         WallDestroy(this.wave-1);
+            
+    }
+
+    private void GoneCheckPoint()
+    {
+        ui.PreviousAnimation(false);
         InitWall(currentLevel, this.wave);
         SetPositionSpawnEnemyInWave(currentLevel, this.wave);
+        isCheckoint = false;
     }
 
     private void ClearEnemyList()

@@ -132,6 +132,14 @@ public class MeleeEnemyAttack : AbsEnemyAttack
         disable = false;
     }
 
+    public override void CancleAttack()
+    {
+        foreach (EnemyHurtBox hurtBox in hurtBoxes)
+        {
+            hurtBox.gameObject.SetActive(false);
+        }
+    }
+
 
 #if UNITY_EDITOR
     private void OnDrawGizmosSelected()

@@ -60,8 +60,8 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.000000001843141
-        functionName: CancleAttack
+      - time: 0.0029005543
+        functionName: CancelHurtBox
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: fef91d7f3b34ced49944c22a7ef31a20,
           type: 3}

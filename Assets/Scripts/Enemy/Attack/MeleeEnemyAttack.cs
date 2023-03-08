@@ -18,6 +18,7 @@ public class MeleeEnemyAttack : AbsEnemyAttack
     private Animator animator;
     private EnemyDamageable damageable;
     private GameManager gameManager;
+    private EnemyBehaviour enemyBehaviour;
 
     private void Awake()
     {
@@ -28,6 +29,7 @@ public class MeleeEnemyAttack : AbsEnemyAttack
 
         attackHash = Animator.StringToHash("Attack");
         stepBackHash = Animator.StringToHash("StepBack");
+        enemyBehaviour = GetComponent<EnemyBehaviour>();
     }
 
     private void Start()
@@ -53,6 +55,7 @@ public class MeleeEnemyAttack : AbsEnemyAttack
     private void Update()
     {
         HandleStepBack();
+
     }
 
     public override void HandleAttack()
@@ -139,7 +142,6 @@ public class MeleeEnemyAttack : AbsEnemyAttack
             hurtBox.gameObject.SetActive(false);
         }
     }
-
 
 #if UNITY_EDITOR
     private void OnDrawGizmosSelected()

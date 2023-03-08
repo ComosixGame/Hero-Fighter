@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
@@ -75,7 +73,7 @@ public class CharacterSelection : MonoBehaviour
         int selectedCharacter = playerData.selectedCharacter;
         player = Instantiate(equipmentManager.Characters[selectedCharacter].character, checkPoint,equipmentManager.Characters[selectedCharacter].character.transform.rotation);
         virtualCamera.Follow = player.transform;
-        virtualCamera.LookAt = player.transform;
+        // virtualCamera.LookAt = player.transform;
     }
 
     public void PlayerRevival()

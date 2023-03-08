@@ -153,6 +153,13 @@ public class EnemyBehaviour : MonoBehaviour
         }
     }
 
+    //Animation Event
+    public void CancelHurtBox()
+    {
+        absEnemyAttack.CancleAttack();
+    }
+
+
 #if UNITY_EDITOR
     private void OnDrawGizmosSelected()
     {

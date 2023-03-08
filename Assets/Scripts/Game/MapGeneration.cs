@@ -41,7 +41,7 @@ public class MapGeneration : MonoBehaviour
     }
 
     public ObjectSpawn[] levels;
-    public bool isCheckoint;
+    private bool isCheckoint;
     private ObjectPoolerManager objectPoolerManager;
     private List<GameObjectPool> enemiesList = new List<GameObjectPool>();
     private List<GameObjectPool> wallList = new List<GameObjectPool>();
@@ -55,12 +55,14 @@ public class MapGeneration : MonoBehaviour
     private int totalWave;
     private UIGameProcess uIGameProcess;
     private UIMenu ui;
+    private CinemachineConfinerController cinemachineConfinerController;
 
     private void Awake()
     {
         objectPoolerManager = ObjectPoolerManager.Instance;
         gameManager = GameManager.Instance;
         ui = FindObjectOfType<UIMenu>();
+        cinemachineConfinerController = FindObjectOfType<CinemachineConfinerController>();
     }
 
     private void OnEnable()
@@ -181,6 +183,7 @@ public class MapGeneration : MonoBehaviour
     private void NewWave()
     {
         ui.PreviousAnimation(true);
+        cinemachineConfinerController.ChangeConfiner(this.wave);
         WallDestroy(this.wave-1);
             
     }

@@ -10,6 +10,7 @@ public class GameManager : Singleton<GameManager>
     public event Action OnStartGame;
     public event Action OnPause;
     public event Action OnResume;
+    public event Action<bool> OnEndGame;
     public event Action OnNewGame;
     public event Action OnEnemyDeath;
     public event Action<int> OnUpdateMoney;
@@ -18,12 +19,17 @@ public class GameManager : Singleton<GameManager>
     public event Action OnGoneCheckPoint;
     public GameObject uiMenu;
     private PlayerData playerData;
+    public SettingData settingData;
 
     [ReadOnly, SerializeField] private List<Transform> enemies = new List<Transform>();
     public int enemiesCount {
         get {
             return enemies.Count;
         }
+    }
+
+    private void Start() {
+        Application.targetFrameRate = 60;
     }
 
     public void SetPlayer(Transform player) {
@@ -74,6 +80,8 @@ public class GameManager : Singleton<GameManager>
             playerData.Save();
         }
         OnNewGame?.Invoke();
+        //Invoke for Sound
+        OnEndGame?.Invoke(win);
     }
 
     public void UpdateMoney(int amount) {

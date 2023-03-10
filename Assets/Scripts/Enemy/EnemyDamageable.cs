@@ -71,7 +71,7 @@ public class EnemyDamageable : MonoBehaviour, IDamageable
         if (!destroyed)
         {
             uI.DisplayHitPoint(true);
-            enemyEffect.ShowHitEffect();
+            enemyEffect.ShowHitEffect(hitPoint);
             health -= damage;
             healthBarRennder.UpdateHealthBarValue(health);
             if (health <= 0)

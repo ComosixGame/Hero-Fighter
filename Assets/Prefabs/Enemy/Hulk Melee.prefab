@@ -1748,7 +1748,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 396852bad76c85f4f98500bce537ac45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitEffect: {fileID: 1995403933065894, guid: 18f2d2c85abc00d44afb161c0c18584f, type: 3}
+  hitEffect: {fileID: 1995403933065894, guid: ef4eafbf756cbd740a14d6fd5bd5f034, type: 3}
 --- !u!1 &6752551631399501874
 GameObject:
   m_ObjectHideFlags: 0

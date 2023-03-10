@@ -285,8 +285,8 @@ Shader "Cartoon FX/Remaster/Particle Procedural Glow"
 				
 				#pragma target 2.0
 				
-				#pragma multi_compile_instancing
-				#pragma instancing_options procedural:ParticleInstancingSetup
+				// #pragma multi_compile_instancing
+				// #pragma instancing_options procedural:ParticleInstancingSetup
 				#pragma multi_compile_fog
 
 				#pragma multi_compile CFXR_URP
@@ -315,8 +315,8 @@ Shader "Cartoon FX/Remaster/Particle Procedural Glow"
 				
 				#pragma target 2.0
 				
-				#pragma multi_compile_instancing
-				#pragma instancing_options procedural:ParticleInstancingSetup
+				// #pragma multi_compile_instancing
+				// #pragma instancing_options procedural:ParticleInstancingSetup
 				#pragma multi_compile_fog
 
 				#pragma multi_compile CFXR_URP
@@ -386,12 +386,12 @@ Shader "Cartoon FX/Remaster/Particle Procedural Glow"
 				#pragma fragment fragment_program
 				
 				//vertInstancingSetup writes to global, not allowed with DXC
-				#pragma never_use_dxc
-				#pragma target 2.5
-				
+				// #pragma never_use_dxc
+				// #pragma target 2.5
+				// #pragma multi_compile_instancing
+				// #pragma instancing_options procedural:vertInstancingSetup
+
 				#pragma multi_compile_particles
-				#pragma multi_compile_instancing
-				#pragma instancing_options procedural:vertInstancingSetup
 				#pragma multi_compile_fog
 				
 				#pragma shader_feature_local _ _CFXR_GLOW_POW_P2 _CFXR_GLOW_POW_P4 _CFXR_GLOW_POW_P8
@@ -427,11 +427,10 @@ Shader "Cartoon FX/Remaster/Particle Procedural Glow"
 				#pragma fragment fragment_program
 
 				//vertInstancingSetup writes to global, not allowed with DXC
-				#pragma never_use_dxc
-				#pragma target 2.5
-
-				#pragma multi_compile_instancing
-				#pragma instancing_options procedural:vertInstancingSetup
+				// #pragma never_use_dxc
+				// #pragma target 2.5
+				// #pragma multi_compile_instancing
+				// #pragma instancing_options procedural:vertInstancingSetup
 
 				#pragma shader_feature_local _ _CFXR_GLOW_POW_P2 _CFXR_GLOW_POW_P4 _CFXR_GLOW_POW_P8
 				#pragma shader_feature_local _ _CFXR_DISSOLVE

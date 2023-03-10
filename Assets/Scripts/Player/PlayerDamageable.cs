@@ -54,7 +54,7 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
     {
         if (!destroyed)
         {
-            playerEffect.ShowHitEffect();
+            playerEffect.ShowHitEffect(hitPoint);
             ui.DisplayHitPoint(false);
             health -= damage;
             healthBarPlayer.UpdateHealthBarValue(health);

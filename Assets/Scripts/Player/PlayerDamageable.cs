@@ -17,6 +17,7 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
     public event Action<Vector3, float, AttackType> OnTakeDamageStart;
     public event Action OnTakeDamageEnd;
     private UIMenu ui;
+    private PlayerEffect playerEffect;
 
     private void Awake()
     {
@@ -30,6 +31,7 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
         deathHash = Animator.StringToHash("death");
         healthBarPlayer = FindObjectOfType<HealthBarPlayer>();
         ui = FindObjectOfType<UIMenu>();
+        playerEffect = GetComponentInChildren<PlayerEffect>();
     }
 
     private void Update()
@@ -52,6 +54,7 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
     {
         if (!destroyed)
         {
+            playerEffect.ShowHitEffect(hitPoint);
             ui.DisplayHitPoint(false);
             health -= damage;
             healthBarPlayer.UpdateHealthBarValue(health);

@@ -26,6 +26,7 @@ public class EnemyDamageable : MonoBehaviour, IDamageable
     public event Action OnTakeDamageEnd;
     [SerializeField] private HealthBarRennder healthBarRennder = new HealthBarRennder();
     private UIMenu uI;
+    private EnemyEffect enemyEffect;
 
     private void Awake()
     {
@@ -41,6 +42,7 @@ public class EnemyDamageable : MonoBehaviour, IDamageable
         standUpHash = Animator.StringToHash("StandUp");
         uI = FindObjectOfType<UIMenu>();
         absEnemyAttack = GetComponent<AbsEnemyAttack>();
+        enemyEffect = GetComponentInChildren<EnemyEffect>();
     }
 
     private void Start()
@@ -69,6 +71,7 @@ public class EnemyDamageable : MonoBehaviour, IDamageable
         if (!destroyed)
         {
             uI.DisplayHitPoint(true);
+            enemyEffect.ShowHitEffect(hitPoint);
             health -= damage;
             healthBarRennder.UpdateHealthBarValue(health);
             if (health <= 0)
@@ -121,6 +124,12 @@ public class EnemyDamageable : MonoBehaviour, IDamageable
     public void SetInitHealthBar(float health)
     {
         healthBarRennder.CreateHealthBar(transform, maxHealth);
+    }
+
+    //Atach in Animation Event
+    public void CameraShake()
+    {
+        CinemachineShake.Instance.ShakeCamera(5, .1f);
     }
 
 

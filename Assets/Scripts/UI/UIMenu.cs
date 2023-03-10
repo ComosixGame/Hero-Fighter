@@ -19,6 +19,8 @@ public class UIMenu : MonoBehaviour
     private bool flagCountHit;
     private int money;
     private int totalMoney;
+    private SoundManager soundManager;
+    private SettingData settingData;
 
     //Coefficient Count Hit Combo
     private float CoefficientCombo;
@@ -36,11 +38,14 @@ public class UIMenu : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         previousHash = Animator.StringToHash("isPrevious");
+        soundManager = SoundManager.Instance;
+        settingData = SettingData.Load();
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        soundManager.MuteGame(settingData.mute);
         playerData = PlayerData.Load();
         CoefficientCombo = 0.5f;
         bigSize = 150;

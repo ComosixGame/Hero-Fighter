@@ -17,7 +17,9 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
     public event Action<Vector3, float, AttackType> OnTakeDamageStart;
     public event Action OnTakeDamageEnd;
     private UIMenu ui;
-    private PlayerEffect playerEffect;
+    [Header("VFX")]
+    [SerializeField] private GameObjectPool attackVFX;
+    private ObjectPoolerManager ObjectPoolerManager;
 
     private void Awake()
     {
@@ -31,7 +33,7 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
         deathHash = Animator.StringToHash("death");
         healthBarPlayer = FindObjectOfType<HealthBarPlayer>();
         ui = FindObjectOfType<UIMenu>();
-        playerEffect = GetComponentInChildren<PlayerEffect>();
+        ObjectPoolerManager = ObjectPoolerManager.Instance;
     }
 
     private void Update()
@@ -46,30 +48,44 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
 
     private void Start()
     {
-        healthBarPlayer.CreateHealthBar(maxHealth);
         health = maxHealth;
+        if (healthBarPlayer != null)
+        {
+            healthBarPlayer.CreateHealthBar(maxHealth);
+        }
     }
 
     public void TakeDamgae(Vector3 hitPoint, float damage, AttackType attackType)
     {
         if (!destroyed)
         {
-            playerEffect.ShowHitEffect(hitPoint);
-            ui.DisplayHitPoint(false);
             health -= damage;
-            healthBarPlayer.UpdateHealthBarValue(health);
+
+            ObjectPoolerManager.SpawnObject(attackVFX, hitPoint, Quaternion.identity);
+            if(ui != null) {
+                ui.DisplayHitPoint(false);
+            }
+
+            if (healthBarPlayer != null)
+            {
+                healthBarPlayer.UpdateHealthBarValue(health);
+            }
             if (health <= 0)
             {
                 Destroy(attackType);
                 return;
             }
-            if(!knocking) {
+            if (!knocking)
+            {
                 if (attackType == AttackType.light)
                 {
                     animator.SetTrigger(hitHash);
                 }
                 else
                 {
+                    Vector3 dirAttack = hitPoint - transform.position;
+                    dirAttack.y = 0;
+                    transform.rotation = Quaternion.LookRotation(dirAttack);
                     knocking = true;
                     animator.SetTrigger(knockHash);
                 }
@@ -101,7 +117,6 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
 
     private void Destroy(AttackType attackType)
     {
-        gameManager.GameLose();
         destroyed = true;
         if (attackType == AttackType.light)
         {
@@ -112,5 +127,6 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
             knocking = true;
             animator.SetTrigger(knockHash);
         }
+        // gameManager.GameLose();
     }
 }

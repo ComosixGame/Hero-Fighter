@@ -68,6 +68,14 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+      - time: 0.80567867
+        functionName: FlipJumpVFX
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 8e26f108ee7d8fa4f9d0e476a7355aa4,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}

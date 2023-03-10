@@ -15,7 +15,6 @@ public class GunEnemyAttack : AbsEnemyAttack
     private int rifleKickHash;
     private bool disable, attackMelee;
     private NavMeshAgent agent;
-    private GameObjectPool gameObjectPool;
     private ObjectPoolerManager ObjectPoolerManager;
     private Animator animator;
     private EnemyDamageable damageable;
@@ -26,9 +25,7 @@ public class GunEnemyAttack : AbsEnemyAttack
         gameManager = GameManager.Instance;
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
-        gameObjectPool = GetComponent<GameObjectPool>();
         damageable = GetComponent<EnemyDamageable>();
-
         shootHash = Animator.StringToHash("Shoot");
         rifleKickHash = Animator.StringToHash("RifleKick");
         ObjectPoolerManager = ObjectPoolerManager.Instance;

@@ -8,6 +8,7 @@ public class FlipJump : AbsSkill
     [SerializeField] private AnimationCurve forwardFlipCurve;
     [SerializeField] private AnimationCurve backFlipCurve;
     [SerializeField] private AnimationCurve sideFlipCurve;
+
     private AnimationCurve speedCurve;
     private float currentSpeed;
     private bool inJump;
@@ -18,7 +19,6 @@ public class FlipJump : AbsSkill
     private Animator animator;
     private CharacterController controller;
     private PlayerInputSystem playerInput;
-    private PlayerEffect playerEffect;
 
     private void Awake()
     {
@@ -26,7 +26,6 @@ public class FlipJump : AbsSkill
         animator = GetComponent<Animator>();
         jumpIndexHash = Animator.StringToHash("JumpIndex");
         originlayer = gameObject.layer;
-        playerEffect = GetComponentInChildren<PlayerEffect>();
     }
 
     private void OnEnable()
@@ -110,11 +109,12 @@ public class FlipJump : AbsSkill
 
     private void CanceleJump()
     {
-        playerEffect.ShowDustEffect();
         gameObject.layer = originlayer;
         inJump = false;
         animator.SetFloat(jumpIndexHash, 0);
     }
+
+
 
     private void GetDirection(InputAction.CallbackContext ctx)
     {

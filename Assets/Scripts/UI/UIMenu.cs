@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public class UIMenu : MonoBehaviour
 {
     public GameObject hitCount;
-    public GameObject perivous;
-    public TMP_Text pointTxt, hitTxt, moneyTxt, moneyStartTxt;
+    public GameObject totalHit;
+    public TMP_Text pointTxt, totalHitTxt, textPointTxt,moneyTxt, moneyStartTxt;
     private PlayerData playerData;
     private Animator animator;
     public GameObject playUI;
@@ -15,6 +15,7 @@ public class UIMenu : MonoBehaviour
     public GameObject loseUI;
     private int previousHash;
     private int hitPoint;
+    private int totalHitPoint;
     [SerializeField] private Slider countHitComboTimer;
     private bool flagCountHit;
     private int money;
@@ -49,7 +50,7 @@ public class UIMenu : MonoBehaviour
         playerData = PlayerData.Load();
         CoefficientCombo = 0.5f;
         bigSize = 150;
-        smallSize = 100;
+        smallSize = 80;
         timerBigSize = 0.2f;
     }
 
@@ -63,6 +64,7 @@ public class UIMenu : MonoBehaviour
         if (countHitComboTimer.value <= 0)
         {
             DisplayHitPoint(false);
+            Invoke("DisplayTotalHit", 0.5f);
         }
 
     }
@@ -75,23 +77,62 @@ public class UIMenu : MonoBehaviour
         if (hit)
         {
             hitCount.SetActive(true);
+            if (pointTxt.color.a < 1)
+            {
+                Color hitalpha = pointTxt.color;
+                hitalpha.a +=0.1f;
+            }
             hitPoint++;
-            pointTxt.text = hitPoint + "";
+            pointTxt.text = hitPoint+" HIT";
             pointTxt.fontSize = bigSize;
-            StartCoroutine(SetFontSizeInit(timerBigSize));
+            Invoke("SetFontSizeInit", timerBigSize);
             countHitComboTimer.value = 1;
+            totalHitPoint = hitPoint;
         }
         else
         {
             hitCount.SetActive(false);
             hitPoint = 0;
+            Invoke("DisplayTotalHit", 0.5f);
         }
     }
 
-    //Set font Size 
-    IEnumerator SetFontSizeInit(float time)
+    private void DisplayTotalHit()
     {
-        yield return new WaitForSeconds(time);
+        if (totalHitPoint != 0)
+        {
+            totalHit.SetActive(true);
+            if (totalHitPoint <= 2)
+            {
+                totalHitTxt.text = totalHitPoint + "HIT";
+            }
+            else if (totalHitPoint <= 4)
+            {
+                textPointTxt.text = "Good";
+                totalHitTxt.text = totalHitPoint + "HIT";
+            }else if (totalHitPoint <= 8)
+            {
+                textPointTxt.text = "Excellent";
+                totalHitTxt.text = totalHitPoint + "HIT";
+            }
+            else
+            {
+                textPointTxt.text = "Legendry";
+                totalHitTxt.text = "Legendry" + totalHitPoint + "HIT";
+            }
+            Invoke("DisplayTotalHitDone", 0.5f);
+        }
+    }
+
+    private void DisplayTotalHitDone()
+    {
+        totalHit.SetActive(false);
+        totalHitPoint = 0;
+    }
+
+    //Set font size init
+    private void SetFontSizeInit()
+    {
         pointTxt.fontSize = smallSize;
     }
 

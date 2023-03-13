@@ -13,6 +13,7 @@ public class EnemyDamageable : MonoBehaviour, IDamageable
     private int hitHash;
     private int knockHash;
     private int deathHash;
+    private int dyingHash;
     private int standUpHash;
     public bool knockBack { get; private set; }
     private float knockTimer;
@@ -29,6 +30,8 @@ public class EnemyDamageable : MonoBehaviour, IDamageable
 
     [Header("VFX")]
     [SerializeField] private GameObjectPool attackVFX;
+    [SerializeField] private GameObjectPool knockDownVFX;
+
     private ObjectPoolerManager ObjectPoolerManager;
 
     private void Awake()
@@ -42,6 +45,7 @@ public class EnemyDamageable : MonoBehaviour, IDamageable
         hitHash = Animator.StringToHash("Hit");
         knockHash = Animator.StringToHash("Knock");
         deathHash = Animator.StringToHash("death");
+        dyingHash = Animator.StringToHash("dying");
         standUpHash = Animator.StringToHash("StandUp");
         uI = FindObjectOfType<UIMenu>();
         absEnemyAttack = GetComponent<AbsEnemyAttack>();
@@ -88,21 +92,6 @@ public class EnemyDamageable : MonoBehaviour, IDamageable
             }
             HandleHitReaction(hitPoint, attackType);
             OnTakeDamageStart?.Invoke(hitPoint, damage, attackType);
-
-            //10-03-23
-            if (!knockBack)
-            {
-                if (attackType == AttackType.light)
-                {
-                    animator.SetTrigger(hitHash);
-                }
-                else
-                {
-                    knockBack = true;
-                    animator.SetTrigger(knockHash);
-                }
-            }
-
         }
     }
 
@@ -112,16 +101,16 @@ public class EnemyDamageable : MonoBehaviour, IDamageable
         rot.x = 0;
         rot.z = 0;
         transform.rotation = rot;
-        // if (attackType == AttackType.light)
-        // {
-        //     animator.SetTrigger(hitHash);
-        // }
-        // else
-        // {
-        //     knockBack = true;
-        //     animator.SetTrigger(knockHash);
-        //     animator.ResetTrigger(standUpHash);
-        // }
+        if (attackType == AttackType.light)
+        {
+            animator.SetTrigger(hitHash);
+        }
+        else
+        {
+            knockBack = true;
+            animator.SetTrigger(knockHash);
+            animator.ResetTrigger(standUpHash);
+        }
     }
 
     public void TakeDamagaEnd()
@@ -131,10 +120,10 @@ public class EnemyDamageable : MonoBehaviour, IDamageable
 
     public void KnockEnd()
     {
+        knockBack = false;
+        knockTimer = 0;
         if (!destroyed)
         {
-            knockBack = false;
-            knockTimer = 0;
             Invoke("StandUp", standUpTime);
         }
     }
@@ -149,26 +138,25 @@ public class EnemyDamageable : MonoBehaviour, IDamageable
         healthBarRennder.CreateHealthBar(transform, maxHealth);
     }
 
-    //Atach in Animation Event
+    //Attack in Animation Event
     public void CameraShake()
     {
         CinemachineShake.Instance.ShakeCamera(5, .1f);
     }
 
-    public void AttackVFX(Vector3 pos)
+        //Attack Animation Event
+    public void KnockDownVFX()
+    {
+        ObjectPoolerManager.SpawnObject(knockDownVFX, transform.position, Quaternion.identity);
+    }
+
+    private void AttackVFX(Vector3 pos)
     {
         ObjectPoolerManager.SpawnObject(attackVFX, pos, Quaternion.identity);
     }
 
     private void Destroy(AttackType attackType)
     {
-        enemyBehaviour.enabled = false;
-        ColliderGameObject.enabled = false;
-        healthBarRennder.DestroyHealthBar();
-        gameManager.EnemyDeath();
-        destroyed = true;
-        //10-03-23 
-        agent.isStopped = true;
         if(attackType == AttackType.light)
         {
             animator.SetTrigger(deathHash);
@@ -177,6 +165,14 @@ public class EnemyDamageable : MonoBehaviour, IDamageable
         {
             knockBack = true;
             animator.SetTrigger(knockHash);
+            animator.SetBool(dyingHash, true);
         }
+
+        enemyBehaviour.enabled = false;
+        ColliderGameObject.enabled = false;
+        healthBarRennder.DestroyHealthBar();
+        gameManager.EnemyDeath();
+        destroyed = true;
+        agent.ResetPath();
     }
 }

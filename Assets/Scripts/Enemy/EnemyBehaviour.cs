@@ -17,8 +17,6 @@ public class EnemyBehaviour : MonoBehaviour
     [SerializeField] private float stepBackTime;
     [SerializeField] private float maxSpeed;
     [SerializeField] private float walkSpeed;
-    [Header("VFX")]
-    [SerializeField] private GameObjectPool knockDownVFX;
     private int velocityHash, reloadHash;
     public State state = State.chase;
     private bool disable;
@@ -157,16 +155,10 @@ public class EnemyBehaviour : MonoBehaviour
         }
     }
 
-    //Atach Animation Event
+    //Attack Animation Event
     public void CancelHurtBox()
     {
         absEnemyAttack.CancleAttack();
-    }
-
-    //Atach Animation Event
-    public void KnockDownVFX()
-    {
-        ObjectPoolerManager.SpawnObject(knockDownVFX, transform.position, Quaternion.identity);
     }
 
 

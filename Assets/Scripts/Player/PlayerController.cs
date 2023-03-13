@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField, ReadOnly] private AbsSkill skill4;
     [SerializeField] private PlayerHurtBox[] playerHurtBoxes;
 
-    [Header ("VFX")]
+    [Header("VFX")]
     [SerializeField] private GameObjectPool flipJumpVFX;
     [SerializeField] private GameObjectPool attackVFX;
     [SerializeField] private GameObjectPool knockDownVFX;
@@ -160,20 +160,32 @@ public class PlayerController : MonoBehaviour
         switch (ctx.control.displayName)
         {
             case "1":
-                isReady = false;
-                skill1.Cast();
+                if (skill1 != null)
+                {
+                    isReady = false;
+                    skill1.Cast();
+                }
                 break;
             case "2":
-                isReady = false;
-                skill2.Cast();
+                if (skill2 != null)
+                {
+                    isReady = false;
+                    skill2.Cast();
+                }
                 break;
             case "3":
-                isReady = false;
-                skill3.Cast();
+                if (skill3 != null)
+                {
+                    isReady = false;
+                    skill3.Cast();
+                }
                 break;
             case "4":
-                isReady = false;
-                skill4.Cast();
+                if (skill4 != null)
+                {
+                    isReady = false;
+                    skill4.Cast();
+                }
                 break;
             default:
                 throw new InvalidOperationException("key invalid");

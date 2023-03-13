@@ -265,12 +265,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8522840541706428716, guid: f050e09edeaecb042bbc62d4c71b1550,
         type: 3}
-      propertyPath: hitEffect
-      value: 
-      objectReference: {fileID: 3252317448153570512, guid: d7d9df160e4747a4c8caff757c8d6bbd,
-        type: 3}
-    - target: {fileID: 8522840541706428716, guid: f050e09edeaecb042bbc62d4c71b1550,
-        type: 3}
       propertyPath: maxHealth
       value: 14
       objectReference: {fileID: 0}
@@ -280,27 +274,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3252317448153570512, guid: d7d9df160e4747a4c8caff757c8d6bbd,
         type: 3}
-    - target: {fileID: 8522840541706428716, guid: f050e09edeaecb042bbc62d4c71b1550,
-        type: 3}
-      propertyPath: knockDownVFX
-      value: 
-      objectReference: {fileID: 5854742832336096459, guid: 8a7c5d19d8a94cb41bccf41896137933,
-        type: 3}
-    - target: {fileID: 8522840541706428716, guid: f050e09edeaecb042bbc62d4c71b1550,
-        type: 3}
-      propertyPath: knockBackCuvre.m_Curve.Array.data[2].inSlope
-      value: 0.12813188
-      objectReference: {fileID: 0}
-    - target: {fileID: 8522840541706428716, guid: f050e09edeaecb042bbc62d4c71b1550,
-        type: 3}
-      propertyPath: knockBackCuvre.m_Curve.Array.data[2].inWeight
-      value: 0.119004555
-      objectReference: {fileID: 0}
-    - target: {fileID: 8522840541706428716, guid: f050e09edeaecb042bbc62d4c71b1550,
-        type: 3}
-      propertyPath: knockBackCuvre.m_Curve.Array.data[2].outSlope
-      value: 0.12813188
-      objectReference: {fileID: 0}
     - target: {fileID: 8522840541932494481, guid: f050e09edeaecb042bbc62d4c71b1550,
         type: 3}
       propertyPath: attackType
@@ -1603,29 +1576,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2131854530, guid: 3f49b085976b984488ba0736ecf25ea5, type: 3}
-      propertyPath: flipJumpVFX
-      value: 
-      objectReference: {fileID: 5854742832336096459, guid: 8a7c5d19d8a94cb41bccf41896137933,
-        type: 3}
-    - target: {fileID: 2131854531, guid: 3f49b085976b984488ba0736ecf25ea5, type: 3}
-      propertyPath: skill1
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2131854533, guid: 3f49b085976b984488ba0736ecf25ea5, type: 3}
-      propertyPath: hitEffect
-      value: 
-      objectReference: {fileID: 3252317448153570512, guid: d7d9df160e4747a4c8caff757c8d6bbd,
-        type: 3}
     - target: {fileID: 2131854533, guid: 3f49b085976b984488ba0736ecf25ea5, type: 3}
       propertyPath: maxHealth
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 2131854533, guid: 3f49b085976b984488ba0736ecf25ea5, type: 3}
-      propertyPath: knockDownVFX
-      value: 
-      objectReference: {fileID: 5854742832336096459, guid: 8a7c5d19d8a94cb41bccf41896137933,
-        type: 3}
     - target: {fileID: 1701021460331676804, guid: 3f49b085976b984488ba0736ecf25ea5,
         type: 3}
       propertyPath: m_Name

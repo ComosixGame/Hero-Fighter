@@ -302,7 +302,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 8
   attacking: 0
-  skill1: {fileID: 2131854530}
+  skill1: {fileID: 0}
   skill2: {fileID: 0}
   skill3: {fileID: 0}
   skill4: {fileID: 0}
@@ -498,7 +498,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  flipJumpVFX: {fileID: 0}
+  flipJumpVFX: {fileID: 5854742832336096459, guid: 8a7c5d19d8a94cb41bccf41896137933,
+    type: 3}
 --- !u!114 &2131854533
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -547,9 +548,9 @@ MonoBehaviour:
   standupTime: 1
   maxHealth: 1000
   knocking: 0
-  attackVFX: {fileID: 7160343107844904641, guid: d7d9df160e4747a4c8caff757c8d6bbd,
+  hitEffect: {fileID: 3252317448153570512, guid: d7d9df160e4747a4c8caff757c8d6bbd,
     type: 3}
-  knockDownVFX: {fileID: 2274410273683158685, guid: dabfe62f91ed6c448aba7c628c21f4cb,
+  knockDownVFX: {fileID: 5854742832336096459, guid: 8a7c5d19d8a94cb41bccf41896137933,
     type: 3}
 --- !u!1 &1820991002697448339
 GameObject:

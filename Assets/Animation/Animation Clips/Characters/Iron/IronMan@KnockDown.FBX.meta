@@ -69,17 +69,9 @@ ModelImporter:
         intParameter: 0
         messageOptions: 0
       - time: 0.4275623
-        functionName: KnockDownVFX
+        functionName: KnockDownEffect
         data: 
-        objectReferenceParameter: {fileID: 11500000, guid: 8e26f108ee7d8fa4f9d0e476a7355aa4,
-          type: 3}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
-      - time: 0.50609416
-        functionName: CameraShake
-        data: 
-        objectReferenceParameter: {fileID: 11500000, guid: 8e26f108ee7d8fa4f9d0e476a7355aa4,
+        objectReferenceParameter: {fileID: 11500000, guid: 77cf0e610e8ba024baf93a6f911ace3d,
           type: 3}
         floatParameter: 0
         intParameter: 0

@@ -26,7 +26,6 @@ public class EnemyBehaviour : MonoBehaviour
     private EnemyDamageable damageable;
     private AbsEnemyAttack absEnemyAttack;
     private GameManager gameManager;
-    private ObjectPoolerManager ObjectPoolerManager;
 
     private void Awake()
     {
@@ -39,7 +38,6 @@ public class EnemyBehaviour : MonoBehaviour
 
         velocityHash = Animator.StringToHash("Velocity");
         reloadHash = Animator.StringToHash("Reload");
-        ObjectPoolerManager = ObjectPoolerManager.Instance;
     }
 
     private void OnEnable()
@@ -155,7 +153,7 @@ public class EnemyBehaviour : MonoBehaviour
         }
     }
 
-    //Attack Animation Event
+    //Attach Animation Event
     public void CancelHurtBox()
     {
         absEnemyAttack.CancleAttack();

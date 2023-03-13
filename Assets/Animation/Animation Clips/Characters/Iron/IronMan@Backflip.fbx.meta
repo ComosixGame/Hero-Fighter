@@ -69,9 +69,9 @@ ModelImporter:
         intParameter: 0
         messageOptions: 0
       - time: 0.81149584
-        functionName: FlipJumpVFX
+        functionName: FlipJumpEffect
         data: 
-        objectReferenceParameter: {fileID: 11500000, guid: 8e26f108ee7d8fa4f9d0e476a7355aa4,
+        objectReferenceParameter: {fileID: 11500000, guid: ae918e8cc92dbfe4e8b22393ef959229,
           type: 3}
         floatParameter: 0
         intParameter: 0

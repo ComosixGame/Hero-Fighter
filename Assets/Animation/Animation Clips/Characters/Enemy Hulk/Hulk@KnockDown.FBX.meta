@@ -68,14 +68,6 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.4205801
-        functionName: CameraShake
-        data: 
-        objectReferenceParameter: {fileID: 11500000, guid: fef91d7f3b34ced49944c22a7ef31a20,
-          type: 3}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
       - time: 0.46537393
         functionName: KnockDownVFX
         data: 

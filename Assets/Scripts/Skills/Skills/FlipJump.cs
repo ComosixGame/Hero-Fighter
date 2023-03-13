@@ -8,6 +8,7 @@ public class FlipJump : AbsSkill
     [SerializeField] private AnimationCurve forwardFlipCurve;
     [SerializeField] private AnimationCurve backFlipCurve;
     [SerializeField] private AnimationCurve sideFlipCurve;
+    [SerializeField] private EffectObjectPool flipJumpVFX;
 
     private AnimationCurve speedCurve;
     private float currentSpeed;
@@ -19,9 +20,12 @@ public class FlipJump : AbsSkill
     private Animator animator;
     private CharacterController controller;
     private PlayerInputSystem playerInput;
+    private ObjectPoolerManager objectPoolerManager;
 
     private void Awake()
     {
+        objectPoolerManager = ObjectPoolerManager.Instance;
+
         controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
         jumpIndexHash = Animator.StringToHash("JumpIndex");
@@ -87,7 +91,7 @@ public class FlipJump : AbsSkill
 
 
         // lộn trái phải (để lại để sau này có thể dùng)
-        
+
         bool faceLeft = Vector3.Dot(transform.forward.normalized, Vector3.left) == 1;
         if (Vector3.Dot(direction.normalized, Vector3.forward) > 0)
         {
@@ -120,5 +124,11 @@ public class FlipJump : AbsSkill
     {
         Vector2 dir = ctx.ReadValue<Vector2>();
         direction = new Vector3(dir.x, 0, dir.y);
+    }
+
+    //Attach In Animation Event
+    public void FlipJumpEffect()
+    {
+        objectPoolerManager.SpawnObject(flipJumpVFX, transform.position, Quaternion.identity);
     }
 }

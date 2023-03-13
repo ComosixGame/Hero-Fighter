@@ -20,7 +20,7 @@ public class EnemyDamageable : MonoBehaviour, IDamageable
     private NavMeshAgent agent;
     private Animator animator;
     private EnemyBehaviour enemyBehaviour;
-    private Collider ColliderGameObject;
+    private Collider colliderGameObject;
     private GameManager gameManager;
     private AbsEnemyAttack absEnemyAttack;
     public event Action<Vector3, float, AttackType> OnTakeDamageStart;
@@ -29,10 +29,10 @@ public class EnemyDamageable : MonoBehaviour, IDamageable
     private UIMenu uI;
 
     [Header("VFX")]
-    [SerializeField] private GameObjectPool attackVFX;
-    [SerializeField] private GameObjectPool knockDownVFX;
+    [SerializeField] private EffectObjectPool hitEffect;
+    [SerializeField] private EffectObjectPool knockDownVFX;
 
-    private ObjectPoolerManager ObjectPoolerManager;
+    private ObjectPoolerManager objectPoolerManager;
 
     private void Awake()
     {
@@ -40,7 +40,7 @@ public class EnemyDamageable : MonoBehaviour, IDamageable
         animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
         enemyBehaviour = GetComponent<EnemyBehaviour>();
-        ColliderGameObject = GetComponent<Collider>();
+        colliderGameObject = GetComponent<Collider>();
         stepBackHash = Animator.StringToHash("StepBack");
         hitHash = Animator.StringToHash("Hit");
         knockHash = Animator.StringToHash("Knock");
@@ -49,7 +49,7 @@ public class EnemyDamageable : MonoBehaviour, IDamageable
         standUpHash = Animator.StringToHash("StandUp");
         uI = FindObjectOfType<UIMenu>();
         absEnemyAttack = GetComponent<AbsEnemyAttack>();
-        ObjectPoolerManager = ObjectPoolerManager.Instance;
+        objectPoolerManager = ObjectPoolerManager.Instance;
     }
 
     private void Start()
@@ -138,21 +138,16 @@ public class EnemyDamageable : MonoBehaviour, IDamageable
         healthBarRennder.CreateHealthBar(transform, maxHealth);
     }
 
-    //Attack in Animation Event
-    public void CameraShake()
-    {
-        CinemachineShake.Instance.ShakeCamera(5, .1f);
-    }
-
-        //Attack Animation Event
+    //Attach Animation Event
     public void KnockDownVFX()
     {
-        ObjectPoolerManager.SpawnObject(knockDownVFX, transform.position, Quaternion.identity);
+        objectPoolerManager.SpawnObject(knockDownVFX, transform.position, Quaternion.identity);
+        CinemachineShake.Instance.ShakeCamera(5, .1f);
     }
 
     private void AttackVFX(Vector3 pos)
     {
-        ObjectPoolerManager.SpawnObject(attackVFX, pos, Quaternion.identity);
+        objectPoolerManager.SpawnObject(hitEffect, pos, Quaternion.identity);
     }
 
     private void Destroy(AttackType attackType)
@@ -169,7 +164,7 @@ public class EnemyDamageable : MonoBehaviour, IDamageable
         }
 
         enemyBehaviour.enabled = false;
-        ColliderGameObject.enabled = false;
+        colliderGameObject.enabled = false;
         healthBarRennder.DestroyHealthBar();
         gameManager.EnemyDeath();
         destroyed = true;

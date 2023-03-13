@@ -309,12 +309,6 @@ MonoBehaviour:
   playerHurtBoxes:
   - {fileID: 2365304843506742656}
   - {fileID: 2365304844446138290}
-  flipJumpVFX: {fileID: -6933230120567633478, guid: eec0a7410801a7f4e92b82f3d13bb8b7,
-    type: 3}
-  attackVFX: {fileID: 7160343107844904641, guid: d7d9df160e4747a4c8caff757c8d6bbd,
-    type: 3}
-  knockDownVFX: {fileID: 2140417040015788172, guid: 8a7c5d19d8a94cb41bccf41896137933,
-    type: 3}
 --- !u!114 &2131854530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -504,6 +498,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  flipJumpVFX: {fileID: 0}
 --- !u!114 &2131854533
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -553,6 +548,8 @@ MonoBehaviour:
   maxHealth: 1000
   knocking: 0
   attackVFX: {fileID: 7160343107844904641, guid: d7d9df160e4747a4c8caff757c8d6bbd,
+    type: 3}
+  knockDownVFX: {fileID: 2274410273683158685, guid: dabfe62f91ed6c448aba7c628c21f4cb,
     type: 3}
 --- !u!1 &1820991002697448339
 GameObject:

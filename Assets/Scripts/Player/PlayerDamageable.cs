@@ -18,8 +18,10 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
     public event Action OnTakeDamageEnd;
     private UIMenu ui;
     [Header("VFX")]
-    [SerializeField] private GameObjectPool attackVFX;
-    private ObjectPoolerManager ObjectPoolerManager;
+    [SerializeField] private EffectObjectPool hitEffect;
+    [SerializeField] private EffectObjectPool knockDownVFX;
+
+    private ObjectPoolerManager objectPoolerManager;
 
     private void Awake()
     {
@@ -34,7 +36,7 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
         dyingHash = Animator.StringToHash("dying");
         healthBarPlayer = FindObjectOfType<HealthBarPlayer>();
         ui = FindObjectOfType<UIMenu>();
-        ObjectPoolerManager = ObjectPoolerManager.Instance;
+        objectPoolerManager = ObjectPoolerManager.Instance;
     }
 
     private void Update()
@@ -62,7 +64,7 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
         {
             health -= damage;
 
-            ObjectPoolerManager.SpawnObject(attackVFX, hitPoint, Quaternion.identity);
+            objectPoolerManager.SpawnObject(hitEffect, hitPoint, Quaternion.identity);
             if (ui != null)
             {
                 ui.DisplayHitPoint(false);
@@ -131,5 +133,12 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
             animator.SetBool(dyingHash, true);
         }
         // gameManager.GameLose();
+    }
+
+    //Attach Animation Event
+    public void KnockDownEffect()
+    {
+        CinemachineShake.Instance.ShakeCamera(5, .2f);
+        objectPoolerManager.SpawnObject(knockDownVFX, transform.position, Quaternion.identity);
     }
 }

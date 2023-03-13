@@ -7,7 +7,7 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
     [SerializeField] private float standupTime;
     [SerializeField] private float maxHealth;
     private float health, knockTimer;
-    private int hitHash, knockHash, standupHash, deathHash;
+    private int hitHash, knockHash, standupHash, deathHash, dyingHash;
     [SerializeField] private bool knocking;
     private bool destroyed;
     private Animator animator;
@@ -18,8 +18,10 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
     public event Action OnTakeDamageEnd;
     private UIMenu ui;
     [Header("VFX")]
-    [SerializeField] private GameObjectPool attackVFX;
-    private ObjectPoolerManager ObjectPoolerManager;
+    [SerializeField] private EffectObjectPool hitEffect;
+    [SerializeField] private EffectObjectPool knockDownVFX;
+
+    private ObjectPoolerManager objectPoolerManager;
 
     private void Awake()
     {
@@ -31,9 +33,10 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
         knockHash = Animator.StringToHash("knock");
         standupHash = Animator.StringToHash("standup");
         deathHash = Animator.StringToHash("death");
+        dyingHash = Animator.StringToHash("dying");
         healthBarPlayer = FindObjectOfType<HealthBarPlayer>();
         ui = FindObjectOfType<UIMenu>();
-        ObjectPoolerManager = ObjectPoolerManager.Instance;
+        objectPoolerManager = ObjectPoolerManager.Instance;
     }
 
     private void Update()
@@ -61,8 +64,9 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
         {
             health -= damage;
 
-            ObjectPoolerManager.SpawnObject(attackVFX, hitPoint, Quaternion.identity);
-            if(ui != null) {
+            objectPoolerManager.SpawnObject(hitEffect, hitPoint, Quaternion.identity);
+            if (ui != null)
+            {
                 ui.DisplayHitPoint(false);
             }
 
@@ -97,10 +101,10 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
 
     public void KnockDone()
     {
+        knocking = false;
+        knockTimer = 0;
         if (!destroyed)
         {
-            knocking = false;
-            knockTimer = 0;
             Invoke("StandUp", standupTime);
         }
     }
@@ -126,7 +130,15 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
         {
             knocking = true;
             animator.SetTrigger(knockHash);
+            animator.SetBool(dyingHash, true);
         }
         // gameManager.GameLose();
+    }
+
+    //Attach Animation Event
+    public void KnockDownEffect()
+    {
+        CinemachineShake.Instance.ShakeCamera(5, .2f);
+        objectPoolerManager.SpawnObject(knockDownVFX, transform.position, Quaternion.identity);
     }
 }

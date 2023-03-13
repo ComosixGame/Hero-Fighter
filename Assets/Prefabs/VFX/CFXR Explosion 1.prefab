@@ -126,8 +126,7 @@ GameObject:
   - component: {fileID: 2433282508538045228}
   - component: {fileID: 2433282508523890284}
   - component: {fileID: 2433282508523921356}
-  - component: {fileID: -6933230120567633478}
-  - component: {fileID: 905275333639592297}
+  - component: {fileID: 720858025022455311}
   m_Layer: 0
   m_Name: CFXR Explosion 1
   m_TagString: Untagged
@@ -4870,7 +4869,7 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &-6933230120567633478
+--- !u!114 &720858025022455311
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4879,23 +4878,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2433282508537954060}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77e633731941a3a4fb2c1dedabd39cc8, type: 3}
+  m_Script: {fileID: 11500000, guid: 3b9e3f052638dec488701dc39c92bcf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: Skill1Player
---- !u!114 &905275333639592297
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2433282508537954060}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b91210075a0bc4941b59d91e7a0e6bca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LifeTime: 3
+  key: explosion
 --- !u!1 &2433282508753476420
 GameObject:
   m_ObjectHideFlags: 0

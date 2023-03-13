@@ -27,14 +27,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField, ReadOnly] private AbsSkill skill3;
     [SerializeField, ReadOnly] private AbsSkill skill4;
     [SerializeField] private PlayerHurtBox[] playerHurtBoxes;
-
-    [Header ("VFX")]
-    [SerializeField] private GameObjectPool flipJumpVFX;
-    [SerializeField] private GameObjectPool attackVFX;
-    [SerializeField] private GameObjectPool knockDownVFX;
     private PlayerDamageable playerDamageable;
     private GameManager gameManager;
-    private ObjectPoolerManager ObjectPoolerManager;
     private bool isStart;
 
     private void Awake()
@@ -54,7 +48,6 @@ public class PlayerController : MonoBehaviour
         stateTimeHash = Animator.StringToHash("StateTime");
         AddSkill();
         gameManager.OnStartGame += StartGame;
-        ObjectPoolerManager = ObjectPoolerManager.Instance;
     }
 
     private void OnEnable()
@@ -160,20 +153,32 @@ public class PlayerController : MonoBehaviour
         switch (ctx.control.displayName)
         {
             case "1":
-                isReady = false;
-                skill1.Cast();
+                if (skill1 != null)
+                {
+                    isReady = false;
+                    skill1.Cast();
+                }
                 break;
             case "2":
-                isReady = false;
-                skill2.Cast();
+                if (skill2 != null)
+                {
+                    isReady = false;
+                    skill2.Cast();
+                }
                 break;
             case "3":
-                isReady = false;
-                skill3.Cast();
+                if (skill3 != null)
+                {
+                    isReady = false;
+                    skill3.Cast();
+                }
                 break;
             case "4":
-                isReady = false;
-                skill4.Cast();
+                if (skill4 != null)
+                {
+                    isReady = false;
+                    skill4.Cast();
+                }
                 break;
             default:
                 throw new InvalidOperationException("key invalid");
@@ -255,30 +260,6 @@ public class PlayerController : MonoBehaviour
         }
         disable = true;
 
-    }
-
-    //Atach In Animation Event
-    public void FlipJumpVFX()
-    {
-        ObjectPoolerManager.SpawnObject(flipJumpVFX, transform.position, Quaternion.identity);
-    }
-
-    //Atach In Animation Event
-    public void AttackVFX()
-    {
-        ObjectPoolerManager.SpawnObject(attackVFX, transform.position, Quaternion.identity);
-    }
-
-    //Atach In Animation Event
-    public void KnockDownVFX()
-    {
-        ObjectPoolerManager.SpawnObject(knockDownVFX, transform.position, Quaternion.identity);
-    }
-
-    //Atach in Animation Event
-    public void CameraShake()
-    {
-        CinemachineShake.Instance.ShakeCamera(10, .2f);
     }
 
     private void EnablePlayer()

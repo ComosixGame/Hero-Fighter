@@ -4893,8 +4893,7 @@ GameObject:
   - component: {fileID: 1429954232896169630}
   - component: {fileID: 1429954232896169631}
   - component: {fileID: 1429954232896169632}
-  - component: {fileID: 7160343107844904641}
-  - component: {fileID: 8033195876052025727}
+  - component: {fileID: 3252317448153570512}
   m_Layer: 0
   m_Name: CFXR3 Hit Misc A
   m_TagString: Untagged
@@ -9768,7 +9767,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
---- !u!114 &7160343107844904641
+--- !u!114 &3252317448153570512
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9777,23 +9776,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1429954232896169633}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77e633731941a3a4fb2c1dedabd39cc8, type: 3}
+  m_Script: {fileID: 11500000, guid: 3b9e3f052638dec488701dc39c92bcf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   key: AttackVFX
---- !u!114 &8033195876052025727
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1429954232896169633}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b91210075a0bc4941b59d91e7a0e6bca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LifeTime: 1
 --- !u!1 &1429954232937552486
 GameObject:
   m_ObjectHideFlags: 0

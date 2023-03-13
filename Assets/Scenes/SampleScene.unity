@@ -268,6 +268,12 @@ PrefabInstance:
       propertyPath: maxHealth
       value: 14
       objectReference: {fileID: 0}
+    - target: {fileID: 8522840541706428716, guid: f050e09edeaecb042bbc62d4c71b1550,
+        type: 3}
+      propertyPath: impactEffect
+      value: 
+      objectReference: {fileID: 3252317448153570512, guid: d7d9df160e4747a4c8caff757c8d6bbd,
+        type: 3}
     - target: {fileID: 8522840541932494481, guid: f050e09edeaecb042bbc62d4c71b1550,
         type: 3}
       propertyPath: attackType
@@ -1171,7 +1177,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 975931856}
-  m_LocalRotation: {x: -0.04350455, y: 0.26277316, z: -0.07971764, w: 0.9605742}
+  m_LocalRotation: {x: -0.04350456, y: 0.2627732, z: -0.07971765, w: 0.9605742}
   m_LocalPosition: {x: -5.1858063, y: -0.42239144, z: 1.3045194}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

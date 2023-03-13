@@ -18,7 +18,7 @@ public abstract class AbsSkill : MonoBehaviour
     public string skillDescription;
     public skillHolder skillHolder;
     [SerializeField] private float cooldownTime;
-    private bool ready = true;
+    public bool ready {get; private set;} = true;
     public event Action<float> OnCoolDown;
     public event Action OnDone;
 

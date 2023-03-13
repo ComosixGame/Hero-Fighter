@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     private int attackHash;
     private int stateTimeHash;
     private bool isMoveState;
-    private bool isReady = true;
+    [SerializeField] private bool isReady = true;
     private float stateTimeAnim;
     private bool disable;
     private Coroutine attackWaitCoroutine;
@@ -29,7 +29,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private PlayerHurtBox[] playerHurtBoxes;
     private PlayerDamageable playerDamageable;
     private GameManager gameManager;
-    private bool isStart;
 
     private void Awake()
     {
@@ -47,7 +46,6 @@ public class PlayerController : MonoBehaviour
         attackHash = Animator.StringToHash("Attack");
         stateTimeHash = Animator.StringToHash("StateTime");
         AddSkill();
-        gameManager.OnStartGame += StartGame;
     }
 
     private void OnEnable()
@@ -155,29 +153,42 @@ public class PlayerController : MonoBehaviour
             case "1":
                 if (skill1 != null)
                 {
-                    isReady = false;
-                    skill1.Cast();
+                    if (skill1.ready)
+                    {
+                        isReady = false;
+                        skill1.Cast();
+
+                    }
                 }
                 break;
             case "2":
                 if (skill2 != null)
                 {
-                    isReady = false;
-                    skill2.Cast();
+                    if (skill2.ready)
+                    {
+                        isReady = false;
+                        skill2.Cast();
+                    }
                 }
                 break;
             case "3":
                 if (skill3 != null)
                 {
-                    isReady = false;
-                    skill3.Cast();
+                    if (skill3.ready)
+                    {
+                        isReady = false;
+                        skill3.Cast();
+                    }
                 }
                 break;
             case "4":
                 if (skill4 != null)
                 {
-                    isReady = false;
-                    skill4.Cast();
+                    if (skill4.ready)
+                    {
+                        isReady = false;
+                        skill4.Cast();
+                    }
                 }
                 break;
             default:
@@ -267,11 +278,6 @@ public class PlayerController : MonoBehaviour
         disable = false;
     }
 
-    private void StartGame()
-    {
-        isStart = true;
-    }
-
     private void OnDisable()
     {
         playerInputSystem.Player.Move.performed -= GetDirectionMove;
@@ -281,7 +287,6 @@ public class PlayerController : MonoBehaviour
         playerInputSystem.Player.Skil2.started -= ActiveSkill;
         playerInputSystem.Player.Skil3.started -= ActiveSkill;
         playerInputSystem.Player.Skil4.started -= ActiveSkill;
-        gameManager.OnStartGame -= StartGame;
 
         playerDamageable.OnTakeDamageStart -= DisablePlayerHurtBox;
         playerDamageable.OnTakeDamageEnd -= EnablePlayer;

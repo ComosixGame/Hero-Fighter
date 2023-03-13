@@ -42,6 +42,18 @@ public class CinemachineConfinerController : MonoBehaviour
 
     public void ChangeConfiner(int wave)
     {
-        cinemachineConfiner.m_BoundingVolume = confiner[wave];
+
+        for (int i = 0; i< confiner.Count; i++)
+        {
+            if (i != wave)
+            {
+                confiner[i].gameObject.SetActive(false);
+            }
+            else
+            {
+                confiner[i].gameObject.SetActive(true);
+                cinemachineConfiner.m_BoundingVolume = confiner[wave];
+            }
+        }
     }
 }

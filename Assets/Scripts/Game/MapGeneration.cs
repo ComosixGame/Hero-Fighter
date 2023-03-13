@@ -1,206 +1,92 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using MyCustomAttribute;
-using Random = UnityEngine.Random;
+using System.Linq;
 
 public class MapGeneration : MonoBehaviour
 {
-    [System.Serializable]
-    public class ObjectSpawn
-    {
-        public string key;
-        public Wave[] wave;
-        public float process;
-        public GameObjectPool wallGameObjectPool;
-        public Vector3[] wallPosition; 
-        public GameObjectPool GetWallGameObjectPool()
-        {
-            return (wallGameObjectPool);
-        }
 
-        public GameObjectPool checkPointGameObjectPool;
-        public Vector3[] checkPointPosition; 
-        public GameObjectPool GetcheckPointGameObjectPool()
-        {
-            return (checkPointGameObjectPool);
-        }
-    }
-
-    [System.Serializable]
-    public class Wave
-    {
-        public GameObjectPool[] enemiesGameObjectPool;
-        public Vector3[] enemiesPosition;
-        public GameObjectPool GetEnemyGameObjectPool(int index)
-        {
-            return (enemiesGameObjectPool[index]);
-        }
-
-    }
-
-    public ObjectSpawn[] levels;
-    private bool isCheckoint;
-    private ObjectPoolerManager objectPoolerManager;
-    private List<GameObjectPool> enemiesList = new List<GameObjectPool>();
-    private List<GameObjectPool> wallList = new List<GameObjectPool>();
-
+    [Header("List of enemy wave")]
+    public EnemyWave[] enemyWaves;
+    private int currentWave = 0;
+    private int countEnemyDeath = 0;
     private GameManager gameManager;
-    private PlayerData playerData;
-    private int currentLevel;
-    public float delaySpawnEnemy;
-    private int totalEnemyInWave;
-    private int wave;
-    private int totalWave;
-    private UIGameProcess uIGameProcess;
-    private UIMenu ui;
-    private CinemachineConfinerController cinemachineConfinerController;
+    public CinemachineConfinerController cinemachineConfinerController;
 
     private void Awake()
     {
-        objectPoolerManager = ObjectPoolerManager.Instance;
         gameManager = GameManager.Instance;
-        ui = FindObjectOfType<UIMenu>();
-        cinemachineConfinerController = FindObjectOfType<CinemachineConfinerController>();
     }
 
     private void OnEnable()
     {
         gameManager.OnStartGame += StartGame;
-        gameManager.OnEnemyDeath += CountEnemyDeath;
-        gameManager.OnNewGame += NewGame;
-        gameManager.OnGoneCheckPoint += GoneCheckPoint;
-
+        gameManager.OnEnemyDeath += EnemyDeath;
     }
 
     private void OnDisable()
     {
         gameManager.OnStartGame -= StartGame;
-        gameManager.OnEnemyDeath -= CountEnemyDeath;
-        gameManager.OnNewGame -= NewGame;
-        gameManager.OnGoneCheckPoint -= GoneCheckPoint;
+        gameManager.OnEnemyDeath -= EnemyDeath;
+    }
 
+    private void Start()
+    {
     }
 
     private void StartGame()
     {
-        enemiesList.Clear();
-        wallList.Clear();
-        playerData = PlayerData.Load();
-        currentLevel = playerData.LatestLevel;
-        this.wave = 0;
-        this.totalWave = levels[currentLevel].wave.Length;
-        InitCheckPoint(currentLevel);
-        InitWall(currentLevel, wave);
-        SetPositionSpawnEnemyInWave(currentLevel, wave);
-        uIGameProcess = FindObjectOfType<UIGameProcess>();
-        uIGameProcess.CreateProcessBar(levels[currentLevel].process);
+        countEnemyDeath= enemyWaves[currentWave].EnemyList.Count;
+        StartNewWave();
     }
 
-    private void NewGame()
+    //Able all the enemies in wave
+    private void StartNewWave()
     {
-        ClearEnemyList();
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-    private void SetPositionSpawnEnemyInWave(int level, int wave)
-    {
-        int totalEnemyInWave = levels[level].wave[wave].enemiesGameObjectPool.Length;
-        this.totalEnemyInWave = totalEnemyInWave;
-        for (int i = 0; i < totalEnemyInWave; i++)
+        for (int i = 0; i < enemyWaves.Length; i++)
         {
-            StartCoroutine(SpawnEnemy(level, wave, i, levels[level].wave[wave].enemiesPosition[i]));
-        }
-        this.wave++;
-    }
-
-    private void InitWall(int level, int wave)
-    {
-        GameObjectPool go = objectPoolerManager.SpawnObject(levels[level].GetWallGameObjectPool(), levels[level].wallPosition[wave], Quaternion.identity);
-        wallList.Add(go);
-    }
-
-    private void InitCheckPoint(int level)
-    {
-        foreach (Vector3 pos in levels[level].checkPointPosition)
-        {
-            GameObjectPool go = objectPoolerManager.SpawnObject(levels[level].GetcheckPointGameObjectPool(), pos, Quaternion.identity);
-        }
-    }
-
-    IEnumerator SpawnEnemy(int level, int wave, int enemyIndex, Vector3 enemyPosition)
-    {
-        yield return new WaitForSeconds(delaySpawnEnemy);
-        GameObjectPool go = objectPoolerManager.SpawnObject(levels[level].wave[wave].GetEnemyGameObjectPool(enemyIndex), enemyPosition, Quaternion.identity);
-        enemiesList.Add(go);
-    }
-
-    private void WallDestroy(int wave)
-    {
-        Destroy(wallList[wave].gameObject);
-    }
-
-    private void CountEnemyDeath()
-    {
-        if (wave != totalWave)
-        {
-            if (totalEnemyInWave != 0)
+            EnemyWave wave = enemyWaves[i];
+            bool isCurrentWave = i == currentWave;
+            foreach (GameObject enemy in wave.EnemyList)
             {
-                totalEnemyInWave--;
-            }
-
-            if (totalEnemyInWave == 0)
-            {
-                NewWave();
+                enemy.SetActive(isCurrentWave);
             }
         }
-        else
+    }
+
+    public void NextWave()
+    {
+        currentWave++;
+        StartNewWave();
+        countEnemyDeath= enemyWaves[currentWave].EnemyList.Count;
+        cinemachineConfinerController.ChangeConfiner(currentWave);
+    }
+
+    private void EnemyDeath()
+    {
+        
+        if (countEnemyDeath != 0)
         {
-            if (totalEnemyInWave != 0)
+            countEnemyDeath--;
+            if(countEnemyDeath == 0)
             {
-                totalEnemyInWave--;
-            }
-
-            if (totalEnemyInWave == 0)
-            {  
-                gameManager.GameWin();
+                BoxCollider areaCollider = enemyWaves[currentWave].AreaCollider;
+                if (areaCollider != null)
+                areaCollider.isTrigger = true;
             }
         }
     }
 
-    private void NewWave()
-    {
-        ui.PreviousAnimation(true);
-        cinemachineConfinerController.ChangeConfiner(this.wave);
-        WallDestroy(this.wave-1);
-            
-    }
+   
+}
 
-    private void GoneCheckPoint()
-    {
-        ui.PreviousAnimation(false);
-        InitWall(currentLevel, this.wave);
-        SetPositionSpawnEnemyInWave(currentLevel, this.wave);
-        isCheckoint = false;
-    }
 
-    private void ClearEnemyList()
-    {
-        for (int k = 0; k < enemiesList.Count; k++)
-        {
-            Destroy(enemiesList[k].gameObject);
-        }
-    }
+
+//EnemyWave class
+[System.Serializable]
+public class EnemyWave
+{
+    public string WaveName = "Wave";
+    public BoxCollider AreaCollider; //a collider that keeps the player from leaving an area
+    public List<GameObject> EnemyList = new List<GameObject>();
+
 }

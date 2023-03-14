@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New ObjectPoolerManager Manager", menuName = "Scriptable Manager/ObjectPoolerManager Manager")]
+[CreateAssetMenu(fileName = "New ObjectPoolerManager", menuName = "Scriptable Manager/ObjectPoolerManager")]
 public class ObjectPoolerScriptable : ScriptableObject
 {
     [System.Serializable]

@@ -34,7 +34,7 @@ MonoBehaviour:
     GameObjectPool: {fileID: 14393961694530266, guid: 3af67738a14ff1044b06d07dc27ded07,
       type: 3}
   - name: 
-    size: 1
+    size: 10
     GameObjectPool: {fileID: 1259295870454960267, guid: f050e09edeaecb042bbc62d4c71b1550,
       type: 3}
   - name: checkpoint

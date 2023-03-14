@@ -2,8 +2,13 @@ using UnityEngine;
 
 public class AreaColliderTrigger : MonoBehaviour
 {
-    public MapGeneration mapGeneration;
-    public LayerMask playerLayer;
+    [SerializeField] private MapGeneration mapGeneration;
+    [SerializeField] private LayerMask playerLayer;
+
+    private void Awake() {
+        
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if ((playerLayer & 1 << other.gameObject.layer) != 0)
@@ -11,7 +16,7 @@ public class AreaColliderTrigger : MonoBehaviour
             if(mapGeneration != null)
             {
                 mapGeneration.NextWave();
-                Destroy(gameObject);
+                gameObject.SetActive(false);
             }
             
         }

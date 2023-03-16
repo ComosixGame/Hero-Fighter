@@ -23,14 +23,17 @@ public abstract class AbsSkill : MonoBehaviour
     public event Action OnDone;
 
     protected abstract void Action();
-    public void Cast()
+    public bool Cast()
     {
         if (ready)
         {
             ready = false;
             Action();
             StartCoroutine(CoolDownCoroutine());
+            return true;
         }
+
+        return false;
     }
 
     private IEnumerator CoolDownCoroutine()

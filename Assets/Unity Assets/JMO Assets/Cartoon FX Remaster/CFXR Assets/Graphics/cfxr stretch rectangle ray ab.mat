@@ -11,9 +11,11 @@ Material:
   m_Shader: {fileID: 4800000, guid: e198026df304af84a85675be636192ea, type: 3}
   m_ValidKeywords:
   - _ALPHABLEND_ON
+  - _CFXR_HDR_BOOST
   - _CFXR_SINGLE_CHANNEL
   - _FADING_ON
   m_InvalidKeywords:
+  - _
   - _CFXR_DITHERED_SHADOWS_OFF
   - _CFXR_OVERLAYBLEND_RGBA
   - _CFXR_OVERLAYTEX_OFF
@@ -77,8 +79,8 @@ Material:
     - _DstBlend: 10
     - _EdgeFadePow: 1
     - _FadeAlongU: 0
-    - _HdrBoost: 0
-    - _HdrMultiply: 2
+    - _HdrBoost: 1
+    - _HdrMultiply: 3
     - _IndirectLightingMix: 0.5
     - _InvertDissolveTex: 0
     - _LightingWorldPosStrength: 0.2

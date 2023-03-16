@@ -47,9 +47,13 @@ MonoBehaviour:
       type: 3}
   - name: hit effect
     size: 10
-    GameObjectPool: {fileID: 3252317448153570512, guid: d7d9df160e4747a4c8caff757c8d6bbd,
+    GameObjectPool: {fileID: 9046699384457569311, guid: 00e2210b13fc873458ba8b2017fba62e,
       type: 3}
   - name: smoke effect
     size: 10
     GameObjectPool: {fileID: 5854742832336096459, guid: 8a7c5d19d8a94cb41bccf41896137933,
+      type: 3}
+  - name: fire ball
+    size: 10
+    GameObjectPool: {fileID: -3004082893452583331, guid: 4613332ca99c1f64fb83d4c462534964,
       type: 3}

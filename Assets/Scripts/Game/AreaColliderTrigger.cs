@@ -1,7 +1,8 @@
 using UnityEngine;
 
 public class AreaColliderTrigger : MonoBehaviour
-{
+{   
+    [SerializeField] private UIMenu uIMenu;
     [SerializeField] private MapGeneration mapGeneration;
     [SerializeField] private LayerMask playerLayer;
 
@@ -13,6 +14,7 @@ public class AreaColliderTrigger : MonoBehaviour
     {
         if ((playerLayer & 1 << other.gameObject.layer) != 0)
         {
+            uIMenu.PreviousAnimation(false);
             if(mapGeneration != null)
             {
                 mapGeneration.NextWave();

@@ -19,14 +19,14 @@ public class BackgroundMusic : MonoBehaviour
 
     private void OnEnable() {
         soundManager.OnMute += OnMuteGame;
-        gameManager.OnEndGame += OnEndGame;
+        gameManager.OnEndGame += EndGame;
     }
 
     private void OnMuteGame(bool mute) {
         audioSource.mute = mute;
     }
 
-    private void OnEndGame(bool isWin) {
+    private void EndGame(bool isWin) {
         if(isWin) {
             audioSource.clip = audioWin;
         } else {
@@ -37,7 +37,7 @@ public class BackgroundMusic : MonoBehaviour
 
     private void OnDisable() {
         soundManager.OnMute -= OnMuteGame;
-        gameManager.OnEndGame -= OnEndGame;
+        gameManager.OnEndGame -= EndGame;
     }
 
     private void PlayAudioEndGame() {

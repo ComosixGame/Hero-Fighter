@@ -4,10 +4,12 @@ using UnityEngine;
 public class MapGeneration : MonoBehaviour
 {
     public LevelState levelState;
+    [SerializeField] private UIMenu uIMenu;
     [SerializeField] private Collider[] areaColliders;
     [SerializeField] private CinemachineConfinerController cinemachineConfinerController;
     private int currentWave = 0;
     private int countEnemyDeath = 0;
+    private int totalWaves;
     private GameManager gameManager;
     private ObjectPoolerManager objectPooler;
 
@@ -37,6 +39,7 @@ public class MapGeneration : MonoBehaviour
     private void StartGame()
     {
         countEnemyDeath= levelState.waves[currentWave].enemies.Count;
+        totalWaves= levelState.waves.Count;
         StartNewWave();
     }
 
@@ -68,13 +71,26 @@ public class MapGeneration : MonoBehaviour
 
     private void EnemyDeath()
     {
-        
-        if (countEnemyDeath != 0)
+        if (currentWave < totalWaves-1)
         {
-            countEnemyDeath--;
-            if(countEnemyDeath == 0)
+            if (countEnemyDeath != 0)
             {
-                areaColliders[currentWave].isTrigger = true;
+                countEnemyDeath--;
+                if(countEnemyDeath == 0)
+                {
+                    uIMenu.PreviousAnimation(true);
+                    areaColliders[currentWave].isTrigger = true;
+                }
+            }
+        }else
+        {
+            if (countEnemyDeath != 0)
+            {
+                countEnemyDeath--;
+                if(countEnemyDeath == 0)
+                {
+                    gameManager.GameWin();
+                }
             }
         }
     }

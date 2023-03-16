@@ -53,7 +53,13 @@ public class PlayerData
             return levels.Count > 0 ? levels[levels.Count - 1] : 0;
         }
     }
-    public List<int> levels, characters, skills;
+
+    public int LatestChapter {
+        get {
+            return chapters.Count > 0 ? chapters[chapters.Count - 1] : 0;
+        }
+    }
+    public List<int> levels, characters, skills, chapters;
 
 
     public PlayerData() {

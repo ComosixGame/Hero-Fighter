@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField, ReadOnly] private AbsSkill skill2;
     [SerializeField, ReadOnly] private AbsSkill skill3;
     [SerializeField, ReadOnly] private AbsSkill skill4;
+    [SerializeField, ReadOnly] private AbsSpecialSkill specialskill;
     [SerializeField] private PlayerHurtBox[] playerHurtBoxes;
     private PlayerDamageable playerDamageable;
     private GameManager gameManager;
@@ -36,6 +37,7 @@ public class PlayerController : MonoBehaviour
         gameManager = GameManager.Instance;
         characterController = GetComponent<CharacterController>();
         playerDamageable = GetComponent<PlayerDamageable>();
+        specialskill = GetComponent<AbsSpecialSkill>();
         playerInputSystem = new PlayerInputSystem();
 
         foreach (PlayerHurtBox playerHurtBox in playerHurtBoxes)
@@ -60,6 +62,7 @@ public class PlayerController : MonoBehaviour
         playerInputSystem.Player.Skil2.started += ActiveSkill;
         playerInputSystem.Player.Skil3.started += ActiveSkill;
         playerInputSystem.Player.Skil4.started += ActiveSkill;
+        playerInputSystem.Player.SpecialSkil.started += ActiveSpecialSkill;
 
         playerDamageable.OnTakeDamageStart += DisablePlayerHurtBox;
         playerDamageable.OnTakeDamageEnd += EnablePlayer;
@@ -69,6 +72,8 @@ public class PlayerController : MonoBehaviour
         {
             skill.OnDone += DoneExecutingSkill;
         }
+
+        specialskill.OnDone += DoneExecutingSkill;
 
     }
 
@@ -155,33 +160,42 @@ public class PlayerController : MonoBehaviour
             case "1":
                 if (skill1 != null)
                 {
-                    isReady = false;
-                    skill1.Cast();
+                    if (skill1.Cast())
+                        isReady = false;
                 }
                 break;
             case "2":
                 if (skill2 != null)
                 {
-                    isReady = false;
-                    skill2.Cast();
+                    if (skill2.Cast())
+                        isReady = false;
                 }
                 break;
             case "3":
                 if (skill3 != null)
                 {
-                    isReady = false;
-                    skill3.Cast();
+                    if (skill3.Cast())
+                        isReady = false;
                 }
                 break;
             case "4":
                 if (skill4 != null)
                 {
-                    isReady = false;
-                    skill4.Cast();
+                    if (skill4.Cast())
+                        isReady = false;
                 }
                 break;
             default:
                 throw new InvalidOperationException("key invalid");
+        }
+    }
+
+    private void ActiveSpecialSkill(InputAction.CallbackContext ctx)
+    {
+        if (specialskill != null && isReady)
+        {
+            if (specialskill.Cast())
+                isReady = false;
         }
     }
 
@@ -281,6 +295,8 @@ public class PlayerController : MonoBehaviour
         playerInputSystem.Player.Skil2.started -= ActiveSkill;
         playerInputSystem.Player.Skil3.started -= ActiveSkill;
         playerInputSystem.Player.Skil4.started -= ActiveSkill;
+        playerInputSystem.Player.SpecialSkil.started -= ActiveSpecialSkill;
+
         gameManager.OnStartGame -= StartGame;
 
         playerDamageable.OnTakeDamageStart -= DisablePlayerHurtBox;
@@ -290,6 +306,8 @@ public class PlayerController : MonoBehaviour
         {
             skill.OnDone -= DoneExecutingSkill;
         }
+
+        specialskill.OnDone -= DoneExecutingSkill;
 
         playerInputSystem.Disable();
     }

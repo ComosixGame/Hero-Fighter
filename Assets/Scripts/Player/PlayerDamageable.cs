@@ -20,7 +20,8 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
     [Header("VFX")]
     [SerializeField] private EffectObjectPool hitEffect;
     [SerializeField] private EffectObjectPool knockDownVFX;
-
+    private AbsSpecialSkill specialSkill;
+    private bool skillCasting;
     private ObjectPoolerManager objectPoolerManager;
 
     private void Awake()
@@ -37,6 +38,21 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
         healthBarPlayer = FindObjectOfType<HealthBarPlayer>();
         ui = FindObjectOfType<UIMenu>();
         objectPoolerManager = ObjectPoolerManager.Instance;
+        specialSkill = GetComponent<AbsSpecialSkill>();
+    }
+
+    private void OnEnable() {
+        if(specialSkill != null) {
+            specialSkill.OnStart += CastSkillStart; 
+            specialSkill.OnDone += CastSkillEnd; 
+        }
+    }
+
+    private void OnDisable() {
+        if(specialSkill != null) {
+            specialSkill.OnStart -= CastSkillStart; 
+            specialSkill.OnDone -= CastSkillEnd; 
+        }
     }
 
     private void Update()
@@ -79,7 +95,8 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
                 Destroy(attackType);
                 return;
             }
-            if (!knocking)
+            
+            if (!knocking && !skillCasting)
             {
                 if (attackType == AttackType.light)
                 {
@@ -95,6 +112,10 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
                 }
             }
             OnTakeDamageStart?.Invoke(hitPoint, damage, attackType);
+            
+            if(skillCasting) {
+                TakeDamagaEnd();
+            }
 
         }
     }
@@ -140,5 +161,13 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
     {
         CinemachineShake.Instance.ShakeCamera(5, .2f);
         objectPoolerManager.SpawnObject(knockDownVFX, transform.position, Quaternion.identity);
+    }
+
+    private void CastSkillStart() {
+        skillCasting = true;
+    }
+
+    private void CastSkillEnd() {
+        skillCasting = false;
     }
 }

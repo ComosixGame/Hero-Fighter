@@ -54,8 +54,6 @@ public class MapGeneration : MonoBehaviour
             {
                 if(isCurrentWave) {
                     objectPooler.SpawnObject(enemy.enemyObjectPool, enemy.position, enemy.rotation);
-                } else {
-                    objectPooler.DeactiveObject(enemy.enemyObjectPool);
                 }
             }
         }

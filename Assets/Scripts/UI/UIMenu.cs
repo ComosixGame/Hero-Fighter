@@ -14,6 +14,7 @@ public class UIMenu : MonoBehaviour
     public GameObject winUI;
     public GameObject loseUI;
     private int previousHash;
+    private int startHash;
     private int hitPoint;
     private int totalHitPoint;
     [SerializeField] private Slider countHitComboTimer;
@@ -39,6 +40,7 @@ public class UIMenu : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         previousHash = Animator.StringToHash("isPrevious");
+        startHash = Animator.StringToHash("Start");
         soundManager = SoundManager.Instance;
         settingData = SettingData.Load();
     }
@@ -46,6 +48,7 @@ public class UIMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        animator.SetTrigger(startHash);
         soundManager.MuteGame(settingData.mute);
         playerData = PlayerData.Load();
         CoefficientCombo = 0.5f;

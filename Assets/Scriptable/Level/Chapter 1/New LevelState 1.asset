@@ -22,7 +22,7 @@ MonoBehaviour:
       eulerRotation: {x: 0, y: 286.70227, z: 0}
     - enemyObjectPool: {fileID: 1259295870454960267, guid: f050e09edeaecb042bbc62d4c71b1550,
         type: 3}
-      position: {x: -1.6050797, y: 0, z: -6.608312}
+      position: {x: -2.2008934, y: 0, z: -3.3042207}
       eulerRotation: {x: -0, y: 286.70227, z: 0}
   - name: 
     enemies:

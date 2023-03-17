@@ -41,17 +41,21 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
         specialSkill = GetComponent<AbsSpecialSkill>();
     }
 
-    private void OnEnable() {
-        if(specialSkill != null) {
-            specialSkill.OnStart += CastSkillStart; 
-            specialSkill.OnDone += CastSkillEnd; 
+    private void OnEnable()
+    {
+        if (specialSkill != null)
+        {
+            specialSkill.OnStart += CastSkillStart;
+            specialSkill.OnDone += CastSkillEnd;
         }
     }
 
-    private void OnDisable() {
-        if(specialSkill != null) {
-            specialSkill.OnStart -= CastSkillStart; 
-            specialSkill.OnDone -= CastSkillEnd; 
+    private void OnDisable()
+    {
+        if (specialSkill != null)
+        {
+            specialSkill.OnStart -= CastSkillStart;
+            specialSkill.OnDone -= CastSkillEnd;
         }
     }
 
@@ -68,10 +72,7 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
     private void Start()
     {
         health = maxHealth;
-        if (healthBarPlayer != null)
-        {
-            healthBarPlayer.CreateHealthBar(maxHealth);
-        }
+        healthBarPlayer?.CreateHealthBar(maxHealth);
     }
 
     public void TakeDamgae(Vector3 hitPoint, float damage, AttackType attackType)
@@ -81,21 +82,15 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
             health -= damage;
 
             objectPoolerManager.SpawnObject(hitEffect, hitPoint, Quaternion.identity);
-            if (ui != null)
-            {
-                ui.DisplayHitPoint(false);
-            }
+            ui?.DisplayHitPoint(false);
+            healthBarPlayer?.UpdateHealthBarValue(health);
 
-            if (healthBarPlayer != null)
-            {
-                healthBarPlayer.UpdateHealthBarValue(health);
-            }
             if (health <= 0)
             {
                 Destroy(attackType);
                 return;
             }
-            
+
             if (!knocking && !skillCasting)
             {
                 if (attackType == AttackType.light)
@@ -112,8 +107,9 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
                 }
             }
             OnTakeDamageStart?.Invoke(hitPoint, damage, attackType);
-            
-            if(skillCasting) {
+
+            if (skillCasting)
+            {
                 TakeDamagaEnd();
             }
 
@@ -163,11 +159,13 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
         objectPoolerManager.SpawnObject(knockDownVFX, transform.position, Quaternion.identity);
     }
 
-    private void CastSkillStart() {
+    private void CastSkillStart()
+    {
         skillCasting = true;
     }
 
-    private void CastSkillEnd() {
+    private void CastSkillEnd()
+    {
         skillCasting = false;
     }
 }

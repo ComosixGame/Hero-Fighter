@@ -300,7 +300,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   m_LocalRotation: {x: 0.16908646, y: 0, z: 0, w: 0.98560125}
-  m_LocalPosition: {x: -7.5299997, y: 3.3330364, z: -9.428195}
+  m_LocalPosition: {x: -7.53, y: 3.3330364, z: -9.428195}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -495,18 +495,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 6014754444013527294}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &466872902 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6014754445442542458, guid: bb3bdfc7b06897a4ea7c8ba8733a5f82,
-    type: 3}
-  m_PrefabInstance: {fileID: 6014754444013527294}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 466872901}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb9d0d43a11eb224083e26a72e71bc86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &466872903 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6014754445442542461, guid: bb3bdfc7b06897a4ea7c8ba8733a5f82,
@@ -519,26 +507,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b272f0822ea52d5449e8c756a415134b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &466872910
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 466872901}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb9d0d43a11eb224083e26a72e71bc86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  coolDownTime: 10
-  speed: 5
-  distance: 8
-  numberOfPushes: 2
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  hurtBox: {fileID: 508873828}
 --- !u!114 &466872911
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -553,18 +521,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 20
   health: 0
---- !u!114 &508873828 stripped
+--- !u!114 &466872918
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6014754444466763719, guid: bb3bdfc7b06897a4ea7c8ba8733a5f82,
-    type: 3}
-  m_PrefabInstance: {fileID: 6014754444013527294}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 466872901}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b60b18bdacb0da4483c051f0bc26f6b, type: 3}
+  m_Script: {fileID: 11500000, guid: 899ff00e52e81bc47a49de3cbd7795c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coolDownTime: 10
+  rocket: {fileID: -3004082893452583331, guid: 66f90b8ef000cd344b055e2a336f1160, type: 3}
+  damage: 5
+  speed: 10
+  numberOfRocket: 3
 --- !u!1 &718538166
 GameObject:
   m_ObjectHideFlags: 3
@@ -782,7 +755,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 782383734}
   m_LocalRotation: {x: 0.16908646, y: -0, z: -0, w: 0.98560125}
-  m_LocalPosition: {x: -7.5299997, y: 3.3330364, z: -9.428195}
+  m_LocalPosition: {x: -7.53, y: 3.3330364, z: -9.428195}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -981,7 +954,7 @@ PrefabInstance:
     - target: {fileID: 6014754445442542458, guid: bb3bdfc7b06897a4ea7c8ba8733a5f82,
         type: 3}
       propertyPath: distance
-      value: 30
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6014754445442542458, guid: bb3bdfc7b06897a4ea7c8ba8733a5f82,
         type: 3}
@@ -1023,12 +996,12 @@ PrefabInstance:
     - target: {fileID: 6014754445442542467, guid: bb3bdfc7b06897a4ea7c8ba8733a5f82,
         type: 3}
       propertyPath: phases.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6014754445442542467, guid: bb3bdfc7b06897a4ea7c8ba8733a5f82,
         type: 3}
       propertyPath: rangedAttackRange
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6014754445442542467, guid: bb3bdfc7b06897a4ea7c8ba8733a5f82,
         type: 3}
@@ -1043,7 +1016,7 @@ PrefabInstance:
     - target: {fileID: 6014754445442542467, guid: bb3bdfc7b06897a4ea7c8ba8733a5f82,
         type: 3}
       propertyPath: phases.Array.data[1].name
-      value: Phase 2
+      value: Phase 1
       objectReference: {fileID: 0}
     - target: {fileID: 6014754445442542467, guid: bb3bdfc7b06897a4ea7c8ba8733a5f82,
         type: 3}
@@ -1084,17 +1057,17 @@ PrefabInstance:
         type: 3}
       propertyPath: phases.Array.data[0].rangedAttack
       value: 
-      objectReference: {fileID: 466872902}
+      objectReference: {fileID: 466872918}
     - target: {fileID: 6014754445442542467, guid: bb3bdfc7b06897a4ea7c8ba8733a5f82,
         type: 3}
       propertyPath: phases.Array.data[1].rangedAttack
       value: 
-      objectReference: {fileID: 466872910}
+      objectReference: {fileID: 466872918}
     - target: {fileID: 6014754445442542467, guid: bb3bdfc7b06897a4ea7c8ba8733a5f82,
         type: 3}
       propertyPath: phases.Array.data[2].rangedAttack
       value: 
-      objectReference: {fileID: 466872910}
+      objectReference: {fileID: 0}
     - target: {fileID: 6014754445442542467, guid: bb3bdfc7b06897a4ea7c8ba8733a5f82,
         type: 3}
       propertyPath: bossPhases.Array.data[0].closeAttack
@@ -1118,7 +1091,7 @@ PrefabInstance:
     - target: {fileID: 6014754445442542467, guid: bb3bdfc7b06897a4ea7c8ba8733a5f82,
         type: 3}
       propertyPath: phases.Array.data[1].healthThreshold
-      value: 30
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 6014754445442542467, guid: bb3bdfc7b06897a4ea7c8ba8733a5f82,
         type: 3}
@@ -1129,17 +1102,17 @@ PrefabInstance:
         type: 3}
       propertyPath: bossPhases.Array.data[0].rangedAttack
       value: 
-      objectReference: {fileID: 466872902}
+      objectReference: {fileID: 0}
     - target: {fileID: 6014754445442542467, guid: bb3bdfc7b06897a4ea7c8ba8733a5f82,
         type: 3}
       propertyPath: bossPhases.Array.data[1].rangedAttack
       value: 
-      objectReference: {fileID: 466872910}
+      objectReference: {fileID: 0}
     - target: {fileID: 6014754445442542467, guid: bb3bdfc7b06897a4ea7c8ba8733a5f82,
         type: 3}
       propertyPath: bossPhases.Array.data[2].rangedAttack
       value: 
-      objectReference: {fileID: 466872910}
+      objectReference: {fileID: 0}
     - target: {fileID: 6014754445442542467, guid: bb3bdfc7b06897a4ea7c8ba8733a5f82,
         type: 3}
       propertyPath: bossPhases.Array.data[0].healthThreshold
@@ -1215,5 +1188,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hulk
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6014754445442542458, guid: bb3bdfc7b06897a4ea7c8ba8733a5f82, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: bb3bdfc7b06897a4ea7c8ba8733a5f82, type: 3}

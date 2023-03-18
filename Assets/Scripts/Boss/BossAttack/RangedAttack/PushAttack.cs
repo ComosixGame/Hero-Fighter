@@ -47,28 +47,24 @@ public class PushAttack : AbsBossRangedAttack
         animator.SetBool(rangedAttackHash, true);
         dir = (gameManager.player.position - transform.position).normalized;
         startPos = transform.position;
-        HandleLook();
         Invoke("CancelPush", 3);
     }
 
     private void CancelPush()
     {
-        startPush = false;
+        hurtBox?.gameObject.SetActive(false);
+        animator.SetBool(rangedAttackHash, false);
+        agent.acceleration = accelerationOrigin;
         pushCount++;
         if (pushCount < numberOfPushes)
         {
-            hurtBox?.gameObject.SetActive(false);
-            animator.SetBool(rangedAttackHash, false);
-            agent.acceleration = accelerationOrigin;
             Invoke("StartPush", 0.5f);
         }
         else
         {
-            hurtBox?.gameObject.SetActive(false);
-            animator.SetBool(rangedAttackHash, false);
-            agent.acceleration = accelerationOrigin;
             pushCount = 0;
             attacking = false;
+            startPush = false;
         }
     }
 
@@ -76,7 +72,10 @@ public class PushAttack : AbsBossRangedAttack
     {
         if (startPush)
         {
-            agent.ResetPath();
+            if (agent.hasPath)
+            {
+                agent.ResetPath();
+            }
             agent.Move(dir * speed * Time.deltaTime);
 
             if (Vector3.Distance(startPos, transform.position) >= distance)
@@ -84,17 +83,21 @@ public class PushAttack : AbsBossRangedAttack
                 CancelInvoke("CancelPush");
                 CancelPush();
             }
-        }
-        else
-        {
-            agent.SetDestination(gameManager.player.position);
-        }
 
+            Quaternion rot = Ultils.GetRotationLook(dir, transform.forward);
+            transform.rotation = rot;
+        }
     }
 
-    private void HandleLook()
+    protected override void SideActionAttack()
     {
-        Quaternion rot = Ultils.GetRotationLook(dir, transform.forward);
-        transform.rotation = rot;
+        base.SideActionAttack();
+
+        if (!startPush)
+        {
+            agent.SetDestination(gameManager.player.position);
+            Quaternion rot = Ultils.GetRotationLook((gameManager.player.position - transform.position), transform.forward);
+            transform.rotation = rot;
+        }
     }
 }

@@ -12,6 +12,12 @@ public abstract class AbsBossRangedAttack : MonoBehaviour
             Action();
             Invoke("AttackReady", coolDownTime);
         }
+
+        SideActionAttack();
+    }
+
+    protected virtual void SideActionAttack() {
+
     }
 
     protected abstract void Action();

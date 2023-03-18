@@ -40,11 +40,13 @@ public class BossBehaviour : MonoBehaviour
 
     }
 
-    private void OnEnable() {
+    private void OnEnable()
+    {
         damageable.OnTakeDamage += CheckPhase;
     }
 
-    private void OnDisable() {
+    private void OnDisable()
+    {
         damageable.OnTakeDamage -= CheckPhase;
     }
 
@@ -96,9 +98,12 @@ public class BossBehaviour : MonoBehaviour
         }
     }
 
-    private void CheckPhase(float health) {
-        for(int i = 0; i < phases.Length ; i++) {
-            if(health <= damageable.maxHealth * phases[i].healthThreshold / 100) {
+    private void CheckPhase(float health)
+    {
+        for (int i = 0; i < phases.Length; i++)
+        {
+            if (health <= damageable.maxHealth * phases[i].healthThreshold / 100)
+            {
                 indexPhase = i;
             }
         }
@@ -168,7 +173,6 @@ public class BossBehaviour : MonoBehaviour
 
     private void HandleLook()
     {
-        // Quaternion rot = Utils.HandleLook;
         Quaternion rot = Ultils.GetRotationLook(agent.velocity, transform.forward);
         transform.rotation = Quaternion.LerpUnclamped(transform.rotation, rot, 40 * Time.deltaTime);
     }

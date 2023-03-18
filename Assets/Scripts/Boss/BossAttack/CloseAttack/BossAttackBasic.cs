@@ -1,10 +1,12 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class BossAttackPunch : AbsBossCloseAttack
+public class BossAttackBasic : AbsBossCloseAttack
 {
-    private int punchHash;
     [SerializeField] private EnemyHurtBox hurtBox;
+    [SerializeField] private AnimatorOverrideController animatorOverride;
+    [SerializeField] private AnimationClip animationClip;
+    private int attackHash;
     private Animator animator;
     private NavMeshAgent agent;
 
@@ -12,21 +14,24 @@ public class BossAttackPunch : AbsBossCloseAttack
     {
         animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
-        punchHash = Animator.StringToHash("Punch");
+        attackHash = Animator.StringToHash("BasicAttack");
+
+        animatorOverride["BasicAttack"] = animationClip;
+        animator.runtimeAnimatorController = animatorOverride;
     }
 
     public override void Action()
     {
         agent.SetDestination(transform.position);
-        animator.SetTrigger(punchHash);
+        animator.SetTrigger(attackHash);
     }
 
-    public void PuchStart()
+    public void AttackStart()
     {
         hurtBox?.gameObject.SetActive(true);
     }
 
-    public void PuchEnd()
+    public void AttackEnd()
     {
         hurtBox?.gameObject.SetActive(false);
         attacking = false;

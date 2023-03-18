@@ -958,6 +958,16 @@ PrefabInstance:
       propertyPath: attackType
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6014754445217291594, guid: bb3bdfc7b06897a4ea7c8ba8733a5f82,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 6014754445217291594, guid: bb3bdfc7b06897a4ea7c8ba8733a5f82,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.26
+      objectReference: {fileID: 0}
     - target: {fileID: 6014754445217291597, guid: bb3bdfc7b06897a4ea7c8ba8733a5f82,
         type: 3}
       propertyPath: m_Layer
@@ -971,7 +981,7 @@ PrefabInstance:
     - target: {fileID: 6014754445442542458, guid: bb3bdfc7b06897a4ea7c8ba8733a5f82,
         type: 3}
       propertyPath: distance
-      value: 8
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 6014754445442542458, guid: bb3bdfc7b06897a4ea7c8ba8733a5f82,
         type: 3}
@@ -986,17 +996,29 @@ PrefabInstance:
     - target: {fileID: 6014754445442542460, guid: bb3bdfc7b06897a4ea7c8ba8733a5f82,
         type: 3}
       propertyPath: m_StoppingDistance
-      value: 1.3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6014754445442542461, guid: bb3bdfc7b06897a4ea7c8ba8733a5f82,
         type: 3}
       propertyPath: coolDownTime
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 6014754445442542461, guid: bb3bdfc7b06897a4ea7c8ba8733a5f82,
+        type: 3}
+      propertyPath: animationClip
+      value: 
+      objectReference: {fileID: -203655887218126122, guid: 8a19392eaf1e1bc41b99da9c18b971c8,
+        type: 3}
+    - target: {fileID: 6014754445442542461, guid: bb3bdfc7b06897a4ea7c8ba8733a5f82,
+        type: 3}
+      propertyPath: animatorOverride
+      value: 
+      objectReference: {fileID: 22100000, guid: 79206205d1bffef4e9c90de1bbd93bc6,
+        type: 2}
     - target: {fileID: 6014754445442542467, guid: bb3bdfc7b06897a4ea7c8ba8733a5f82,
         type: 3}
       propertyPath: closeAttackRange
-      value: 1.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6014754445442542467, guid: bb3bdfc7b06897a4ea7c8ba8733a5f82,
         type: 3}
@@ -1006,7 +1028,7 @@ PrefabInstance:
     - target: {fileID: 6014754445442542467, guid: bb3bdfc7b06897a4ea7c8ba8733a5f82,
         type: 3}
       propertyPath: rangedAttackRange
-      value: 7
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6014754445442542467, guid: bb3bdfc7b06897a4ea7c8ba8733a5f82,
         type: 3}

@@ -12,11 +12,13 @@ public class MapGeneration : MonoBehaviour
     private int totalWaves;
     private GameManager gameManager;
     private ObjectPoolerManager objectPooler;
+    private List<GameObjectPool> enemyList = new List<GameObjectPool>();
 
     private void Awake()
     {
         gameManager = GameManager.Instance;
         objectPooler = ObjectPoolerManager.Instance;
+        enemyList.Clear();
     }
 
     private void OnEnable()
@@ -33,13 +35,27 @@ public class MapGeneration : MonoBehaviour
 
     private void Start()
     {
-        
+
+    }
+
+    private void Update()
+    {
+        if (enemyList != null)
+        {
+            for (int i = 0; i < enemyList.Count; i++)
+            {
+                if (enemyList[i].gameObject.GetComponent<EnemyDamageable>().destroyed)
+                {
+                    Debug.Log(enemyList.Count);
+                }
+            }
+        }
     }
 
     private void StartGame()
     {
-        countEnemyDeath= levelState.waves[currentWave].enemies.Count;
-        totalWaves= levelState.waves.Count;
+        countEnemyDeath = levelState.waves[currentWave].enemies.Count;
+        totalWaves = levelState.waves.Count;
         StartNewWave();
     }
 
@@ -52,8 +68,10 @@ public class MapGeneration : MonoBehaviour
             bool isCurrentWave = i == currentWave;
             foreach (LevelState.Enemy enemy in wave.enemies)
             {
-                if(isCurrentWave) {
-                    objectPooler.SpawnObject(enemy.enemyObjectPool, enemy.position, enemy.rotation);
+                if (isCurrentWave)
+                {
+                    GameObjectPool gop = objectPooler.SpawnObject(enemy.enemyObjectPool, enemy.position, enemy.rotation);
+                    enemyList.Add(gop);
                 }
             }
         }
@@ -63,29 +81,30 @@ public class MapGeneration : MonoBehaviour
     {
         currentWave++;
         StartNewWave();
-        countEnemyDeath= levelState.waves[currentWave].enemies.Count;
+        countEnemyDeath = levelState.waves[currentWave].enemies.Count;
         cinemachineConfinerController.ChangeConfiner(currentWave);
     }
 
     private void EnemyDeath()
     {
-        if (currentWave < totalWaves-1)
+        if (currentWave < totalWaves - 1)
         {
             if (countEnemyDeath != 0)
             {
                 countEnemyDeath--;
-                if(countEnemyDeath == 0)
+                if (countEnemyDeath == 0)
                 {
                     uIMenu.PreviousAnimation(true);
                     areaColliders[currentWave].isTrigger = true;
                 }
             }
-        }else
+        }
+        else
         {
             if (countEnemyDeath != 0)
             {
                 countEnemyDeath--;
-                if(countEnemyDeath == 0)
+                if (countEnemyDeath == 0)
                 {
                     gameManager.GameWin();
                 }
@@ -94,7 +113,8 @@ public class MapGeneration : MonoBehaviour
     }
 
 #if UNITY_EDITOR
-    private void OnDrawGizmosSelected() {
+    private void OnDrawGizmosSelected()
+    {
         foreach (LevelState.Wave wave in levelState.waves)
         {
             foreach (LevelState.Enemy enemy in wave.enemies)

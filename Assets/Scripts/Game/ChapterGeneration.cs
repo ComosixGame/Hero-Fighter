@@ -45,8 +45,6 @@ public class ChapterGeneration : MonoBehaviour
         playerData = PlayerData.Load();
         currentChapter = playerData.LatestChapter;
         currentLevel = playerData.LatestLevel;
-        Debug.Log(currentChapter);
-        Debug.Log(currentLevel);
         totalLevelInChapter = chapterManager.chapterStates[currentChapter].levelStates.Length;
         mapGeneration.levelState = chapterManager.chapterStates[currentChapter].levelStates[currentLevel];
     }

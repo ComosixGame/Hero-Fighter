@@ -8,7 +8,7 @@ public class EnemyDamageable : MonoBehaviour, IDamageable
     [SerializeField] private AnimationCurve knockBackCuvre;
     [SerializeField] private float standUpTime;
     private float health;
-    private bool destroyed;
+    public bool destroyed;
     private int stepBackHash;
     private int hitHash;
     private int knockHash;

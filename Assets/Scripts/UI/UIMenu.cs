@@ -7,7 +7,7 @@ public class UIMenu : MonoBehaviour
 {
     public GameObject hitCount;
     public GameObject totalHit;
-    public TMP_Text pointTxt, totalHitTxt, textPointTxt,moneyTxt, moneyStartTxt;
+    public TMP_Text pointTxt, totalHitTxt, totalComboTxt, textPointTxt, moneyTxt, moneyStartTxt;
     private PlayerData playerData;
     private Animator animator;
     public GameObject playUI;
@@ -36,7 +36,10 @@ public class UIMenu : MonoBehaviour
     //Time display big size
     private float timerBigSize;
 
-    private void Awake() 
+    //Color 
+    [SerializeField] private Color color, color1, color2, color3, color4;
+
+    private void Awake()
     {
         animator = GetComponent<Animator>();
         previousHash = Animator.StringToHash("isPrevious");
@@ -53,18 +56,18 @@ public class UIMenu : MonoBehaviour
         playerData = PlayerData.Load();
         CoefficientCombo = 0.5f;
         bigSize = 150;
-        smallSize = 80;
+        smallSize = 120;
         timerBigSize = 0.2f;
     }
 
     void FixedUpdate()
     {
-        if(flagCountHit)
+        if (flagCountHit)
         {
-            countHitComboTimer.value -= Time.deltaTime*CoefficientCombo;
+            countHitComboTimer.value -= Time.deltaTime * CoefficientCombo;
         }
 
-        if (countHitComboTimer.value <= 0)
+        if (countHitComboTimer.value <= 0 && !totalHit.activeInHierarchy)
         {
             DisplayHitPoint(false);
             Invoke("DisplayTotalHit", 0.5f);
@@ -80,17 +83,14 @@ public class UIMenu : MonoBehaviour
         if (hit)
         {
             hitCount.SetActive(true);
-            if (pointTxt.color.a < 1)
-            {
-                Color hitalpha = pointTxt.color;
-                hitalpha.a +=0.1f;
-            }
+            totalHit.SetActive(false);
             hitPoint++;
-            pointTxt.text = hitPoint+" HIT";
+            pointTxt.text = hitPoint + "";
             pointTxt.fontSize = bigSize;
             Invoke("SetFontSizeInit", timerBigSize);
             countHitComboTimer.value = 1;
             totalHitPoint = hitPoint;
+            
         }
         else
         {
@@ -98,31 +98,47 @@ public class UIMenu : MonoBehaviour
             hitPoint = 0;
             Invoke("DisplayTotalHit", 0.5f);
         }
+
     }
 
     private void DisplayTotalHit()
     {
-        if (totalHitPoint != 0)
+        if (totalHitPoint != 0 && !totalHit.activeInHierarchy)
         {
             totalHit.SetActive(true);
+            hitCount.SetActive(false);
+            Color currentColor;
+            string textPointText;
             if (totalHitPoint <= 2)
             {
-                totalHitTxt.text = totalHitPoint + "HIT";
+                currentColor = color;
+                textPointText = "GOOD";
             }
             else if (totalHitPoint <= 4)
             {
-                textPointTxt.text = "Good";
-                totalHitTxt.text = totalHitPoint + "HIT";
-            }else if (totalHitPoint <= 8)
+                currentColor = color1;
+                textPointText = "NICE";
+            }
+            else if (totalHitPoint <= 8)
             {
-                textPointTxt.text = "Excellent";
-                totalHitTxt.text = totalHitPoint + "HIT";
+                currentColor = color2;
+                textPointText = "EXCELLENT";
+            }
+            else if (totalHitPoint <= 20)
+            {
+                currentColor = color3;
+                textPointText = "LEGENDRY";
             }
             else
             {
-                textPointTxt.text = "Legendry";
-                totalHitTxt.text = "Legendry" + totalHitPoint + "HIT";
+                currentColor = color4;
+                textPointText = "GODLIKE";
             }
+            textPointTxt.color = currentColor;
+            totalHitTxt.color = currentColor;
+            totalComboTxt.color = currentColor;
+            textPointTxt.text = textPointText;
+            totalHitTxt.text = totalHitPoint + "";
             Invoke("DisplayTotalHitDone", 0.5f);
         }
     }
@@ -130,6 +146,7 @@ public class UIMenu : MonoBehaviour
     private void DisplayTotalHitDone()
     {
         totalHit.SetActive(false);
+        hitCount.SetActive(false);
         totalHitPoint = 0;
     }
 
@@ -145,14 +162,16 @@ public class UIMenu : MonoBehaviour
         animator.SetBool(previousHash, isActive);
     }
 
-    public void GameWin(){
+    public void GameWin()
+    {
         BonusMoney();
         playUI.SetActive(false);
         winUI.SetActive(true);
     }
 
 
-    public void GameLose(){
+    public void GameLose()
+    {
         playUI.SetActive(false);
         loseUI.SetActive(true);
     }
@@ -165,7 +184,7 @@ public class UIMenu : MonoBehaviour
 
     public void BonusX3Money()
     {
-        money = money*3;
+        money = money * 3;
         SaveMoney();
     }
 

@@ -4,7 +4,7 @@ public class Bullet : GameObjectPool
 {
     [SerializeField] private AttackType attackType;
     [SerializeField] private LayerMask layerTarget;
-    [SerializeField] private float speed;
+    private float speed;
     [SerializeField] private Rigidbody rb;
     private bool fired, hit;
     private float damage;

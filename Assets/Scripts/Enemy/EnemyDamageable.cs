@@ -78,9 +78,7 @@ public class EnemyDamageable : MonoBehaviour, IDamageable
     {
         if (!destroyed)
         {
-            if(uI != null) {
-                uI.DisplayHitPoint(true);
-            }
+            uI?.DisplayHitPoint(true);
             AttackVFX(hitPoint);
             health -= damage;
             healthBarRennder.UpdateHealthBarValue(health);
@@ -152,7 +150,7 @@ public class EnemyDamageable : MonoBehaviour, IDamageable
 
     private void Destroy(AttackType attackType)
     {
-        if(attackType == AttackType.light)
+        if (attackType == AttackType.light)
         {
             animator.SetTrigger(deathHash);
         }
@@ -167,7 +165,7 @@ public class EnemyDamageable : MonoBehaviour, IDamageable
         colliderGameObject.enabled = false;
         healthBarRennder.DestroyHealthBar();
         gameManager.EnemyDeath();
-        destroyed = true;
         agent.ResetPath();
+        destroyed = true;
     }
 }

@@ -37,4 +37,20 @@ public class Ultils
         }
         return finalPosition;
     }
+
+    public static Quaternion GetRotationLook(Vector3 directionMove, Vector3 forward)
+    {
+        if (directionMove.x > 0)
+        {
+            return Quaternion.LookRotation(Vector3.right);
+        }
+        else if (directionMove.x < 0)
+        {
+            return Quaternion.LookRotation(Vector3.left);
+        }
+        else
+        {
+            return Quaternion.LookRotation(forward);
+        }
+    }
 }

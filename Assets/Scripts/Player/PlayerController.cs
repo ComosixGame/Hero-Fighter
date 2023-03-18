@@ -158,32 +158,20 @@ public class PlayerController : MonoBehaviour
         switch (ctx.control.displayName)
         {
             case "1":
-                if (skill1 != null)
-                {
-                    if (skill1.Cast())
-                        isReady = false;
-                }
+                if (skill1?.Cast() == true)
+                    isReady = false;
                 break;
             case "2":
-                if (skill2 != null)
-                {
-                    if (skill2.Cast())
-                        isReady = false;
-                }
+                if (skill2?.Cast() == true)
+                    isReady = false;
                 break;
             case "3":
-                if (skill3 != null)
-                {
-                    if (skill3.Cast())
-                        isReady = false;
-                }
+                if (skill3?.Cast() == true)
+                    isReady = false;
                 break;
             case "4":
-                if (skill4 != null)
-                {
-                    if (skill4.Cast())
-                        isReady = false;
-                }
+                if (skill4?.Cast() == true)
+                    isReady = false;
                 break;
             default:
                 throw new InvalidOperationException("key invalid");
@@ -192,9 +180,9 @@ public class PlayerController : MonoBehaviour
 
     private void ActiveSpecialSkill(InputAction.CallbackContext ctx)
     {
-        if (specialskill != null && isReady)
+        if (isReady)
         {
-            if (specialskill.Cast())
+            if (specialskill?.Cast() == true)
                 isReady = false;
         }
     }

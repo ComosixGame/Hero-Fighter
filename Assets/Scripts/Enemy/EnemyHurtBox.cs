@@ -10,10 +10,8 @@ public class EnemyHurtBox : MonoBehaviour
         if ((targetLayer & (1 << other.gameObject.layer)) != 0)
         {
             IDamageable damageable = other.GetComponentInParent<IDamageable>();
-            if(damageable != null) {
-                Vector3 hitPoint = other.GetComponent<Collider>().ClosestPoint(transform.position);
-                damageable.TakeDamgae(hitPoint, damage, attackType);
-            }
+            Vector3 hitPoint = other.GetComponent<Collider>().ClosestPoint(transform.position);
+            damageable?.TakeDamgae(hitPoint, damage, attackType);
         }
     }
 

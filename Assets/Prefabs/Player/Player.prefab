@@ -653,7 +653,7 @@ GameObject:
   - component: {fileID: 2365304843506742659}
   - component: {fileID: 2365304843506742657}
   - component: {fileID: 2365304843506742656}
-  m_Layer: 6
+  m_Layer: 10
   m_Name: HurtBoxLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -717,7 +717,7 @@ GameObject:
   - component: {fileID: 2365304844446138285}
   - component: {fileID: 2365304844446138291}
   - component: {fileID: 2365304844446138290}
-  m_Layer: 6
+  m_Layer: 10
   m_Name: HurtBoxHeavy
   m_TagString: Untagged
   m_Icon: {fileID: 0}

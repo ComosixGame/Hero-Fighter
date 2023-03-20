@@ -15611,9 +15611,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitCount: {fileID: 3394321520565103765}
-  perivous: {fileID: 3394321519029713694}
+  totalHit: {fileID: 0}
   pointTxt: {fileID: 3394321519146162478}
-  hitTxt: {fileID: 3394321520450909569}
+  totalHitTxt: {fileID: 0}
+  totalComboTxt: {fileID: 0}
+  textPointTxt: {fileID: 0}
+  moneyTxt: {fileID: 0}
+  moneyStartTxt: {fileID: 0}
+  playUI: {fileID: 0}
+  winUI: {fileID: 0}
+  loseUI: {fileID: 0}
+  countHitComboTimer: {fileID: 0}
+  color: {r: 0, g: 0, b: 0, a: 0}
+  color1: {r: 0, g: 0, b: 0, a: 0}
+  color2: {r: 0, g: 0, b: 0, a: 0}
+  color3: {r: 0, g: 0, b: 0, a: 0}
+  color4: {r: 0, g: 0, b: 0, a: 0}
 --- !u!95 &3394321520202883344
 Animator:
   serializedVersion: 4

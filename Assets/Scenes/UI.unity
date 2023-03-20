@@ -585,7 +585,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiMenu: {fileID: 0}
-  enemies: []
 --- !u!4 &1067391135
 Transform:
   m_ObjectHideFlags: 0

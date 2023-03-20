@@ -794,7 +794,8 @@ MonoBehaviour:
   m_fontAsset: {fileID: 11400000, guid: 6d5fe958590ad4b4486a9df6d12fd0d0, type: 2}
   m_sharedMaterial: {fileID: 6061390438863078663, guid: 6d5fe958590ad4b4486a9df6d12fd0d0,
     type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 6061390438863078663, guid: 6d5fe958590ad4b4486a9df6d12fd0d0, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -9934,7 +9935,8 @@ MonoBehaviour:
   m_fontAsset: {fileID: 11400000, guid: 6d5fe958590ad4b4486a9df6d12fd0d0, type: 2}
   m_sharedMaterial: {fileID: 6061390438863078663, guid: 6d5fe958590ad4b4486a9df6d12fd0d0,
     type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 6061390438863078663, guid: 6d5fe958590ad4b4486a9df6d12fd0d0, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -12928,6 +12930,7 @@ MonoBehaviour:
   totalHit: {fileID: 1719710458}
   pointTxt: {fileID: 2050983118}
   totalHitTxt: {fileID: 428227100}
+  totalComboTxt: {fileID: 0}
   textPointTxt: {fileID: 11168266}
   moneyTxt: {fileID: 1576693173}
   moneyStartTxt: {fileID: 772162509}
@@ -12935,6 +12938,11 @@ MonoBehaviour:
   winUI: {fileID: 1147910529}
   loseUI: {fileID: 641292816}
   countHitComboTimer: {fileID: 232175110}
+  color: {r: 0, g: 0, b: 0, a: 0}
+  color1: {r: 0, g: 0, b: 0, a: 0}
+  color2: {r: 0, g: 0, b: 0, a: 0}
+  color3: {r: 0, g: 0, b: 0, a: 0}
+  color4: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &1036427988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18650,7 +18658,8 @@ MonoBehaviour:
   m_fontAsset: {fileID: 11400000, guid: 6d5fe958590ad4b4486a9df6d12fd0d0, type: 2}
   m_sharedMaterial: {fileID: 6061390438863078663, guid: 6d5fe958590ad4b4486a9df6d12fd0d0,
     type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 6061390438863078663, guid: 6d5fe958590ad4b4486a9df6d12fd0d0, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -24752,7 +24761,8 @@ MonoBehaviour:
   m_fontAsset: {fileID: 11400000, guid: 6d5fe958590ad4b4486a9df6d12fd0d0, type: 2}
   m_sharedMaterial: {fileID: 6061390438863078663, guid: 6d5fe958590ad4b4486a9df6d12fd0d0,
     type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 6061390438863078663, guid: 6d5fe958590ad4b4486a9df6d12fd0d0, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:

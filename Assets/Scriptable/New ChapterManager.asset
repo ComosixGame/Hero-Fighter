@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3779a5eefc0e6514dae31da66f05fdb0, type: 3}
+  m_Name: New ChapterManager
+  m_EditorClassIdentifier: 
+  chapterStates:
+  - name: Chapter1
+    levelStates:
+    - {fileID: 11400000, guid: 3d8af71f731c67f4fb0f1f30b310e9e6, type: 2}
+  - name: Chapter2
+    levelStates:
+    - {fileID: 11400000, guid: b3500fad415f1f24f9f374f7bdd17b24, type: 2}
+    - {fileID: 11400000, guid: b3500fad415f1f24f9f374f7bdd17b24, type: 2}
+    - {fileID: 11400000, guid: b3500fad415f1f24f9f374f7bdd17b24, type: 2}
+    - {fileID: 11400000, guid: b3500fad415f1f24f9f374f7bdd17b24, type: 2}
+    - {fileID: 11400000, guid: b3500fad415f1f24f9f374f7bdd17b24, type: 2}
+    - {fileID: 11400000, guid: b3500fad415f1f24f9f374f7bdd17b24, type: 2}
+    - {fileID: 11400000, guid: b3500fad415f1f24f9f374f7bdd17b24, type: 2}
+    - {fileID: 11400000, guid: b3500fad415f1f24f9f374f7bdd17b24, type: 2}
+    - {fileID: 11400000, guid: b3500fad415f1f24f9f374f7bdd17b24, type: 2}
+    - {fileID: 11400000, guid: b3500fad415f1f24f9f374f7bdd17b24, type: 2}

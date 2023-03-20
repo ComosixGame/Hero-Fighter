@@ -21,13 +21,6 @@ public class GameManager : Singleton<GameManager>
     private PlayerData playerData;
     public SettingData settingData;
 
-    [ReadOnly, SerializeField] private List<Transform> enemies = new List<Transform>();
-    public int enemiesCount {
-        get {
-            return enemies.Count;
-        }
-    }
-
     private void Start() {
         Application.targetFrameRate = 60;
     }
@@ -60,6 +53,7 @@ public class GameManager : Singleton<GameManager>
 
     public void GameWin()
     {
+        Time.timeScale = 0.3f;
         uiMenu.GetComponent<UIMenu>().GameWin();
     }
 
@@ -87,27 +81,6 @@ public class GameManager : Singleton<GameManager>
     public void UpdateMoney(int amount) {
         money += amount;
         OnUpdateMoney?.Invoke(money);
-    }
-
-    public List<Transform> GetEnemies() {
-        return enemies;
-    }
-
-    public void AddEnemy(Transform enemy) {
-        enemies.Add(enemy);
-    }
-
-    //remove enemy khỏi danh sách enemies
-    public void RemoveEnemy(Transform enemy) {
-        enemies.Remove(enemy);
-        if(enemiesCount == 0) {
-            OnEnemiesDestroyed?.Invoke();
-        }
-    }
-
-    //clear toàn bộ enemy
-    public void ClearEnemies() {
-        enemies.Clear();
     }
 
     public void GoneCheckPoint()

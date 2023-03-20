@@ -73,6 +73,15 @@ public partial class @PlayerInputSystem : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""SpecialSkil"",
+                    ""type"": ""Button"",
+                    ""id"": ""ee8e5ca5-fcab-43ea-b945-9bf6141d1a25"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Attack"",
                     ""type"": ""Button"",
                     ""id"": ""72df9e36-c13a-4796-b047-abaefe18a58c"",
@@ -247,6 +256,17 @@ public partial class @PlayerInputSystem : IInputActionCollection2, IDisposable
                     ""action"": ""Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6b6eb331-39ff-45f9-962c-0ed4c883a929"",
+                    ""path"": ""<Keyboard>/5"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SpecialSkil"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -321,6 +341,7 @@ public partial class @PlayerInputSystem : IInputActionCollection2, IDisposable
         m_Player_Skil2 = m_Player.FindAction("Skil2", throwIfNotFound: true);
         m_Player_Skil3 = m_Player.FindAction("Skil3", throwIfNotFound: true);
         m_Player_Skil4 = m_Player.FindAction("Skil4", throwIfNotFound: true);
+        m_Player_SpecialSkil = m_Player.FindAction("SpecialSkil", throwIfNotFound: true);
         m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
     }
 
@@ -386,6 +407,7 @@ public partial class @PlayerInputSystem : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Skil2;
     private readonly InputAction m_Player_Skil3;
     private readonly InputAction m_Player_Skil4;
+    private readonly InputAction m_Player_SpecialSkil;
     private readonly InputAction m_Player_Attack;
     public struct PlayerActions
     {
@@ -396,6 +418,7 @@ public partial class @PlayerInputSystem : IInputActionCollection2, IDisposable
         public InputAction @Skil2 => m_Wrapper.m_Player_Skil2;
         public InputAction @Skil3 => m_Wrapper.m_Player_Skil3;
         public InputAction @Skil4 => m_Wrapper.m_Player_Skil4;
+        public InputAction @SpecialSkil => m_Wrapper.m_Player_SpecialSkil;
         public InputAction @Attack => m_Wrapper.m_Player_Attack;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
@@ -421,6 +444,9 @@ public partial class @PlayerInputSystem : IInputActionCollection2, IDisposable
                 @Skil4.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSkil4;
                 @Skil4.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSkil4;
                 @Skil4.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSkil4;
+                @SpecialSkil.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpecialSkil;
+                @SpecialSkil.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpecialSkil;
+                @SpecialSkil.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpecialSkil;
                 @Attack.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAttack;
                 @Attack.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAttack;
                 @Attack.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAttack;
@@ -443,6 +469,9 @@ public partial class @PlayerInputSystem : IInputActionCollection2, IDisposable
                 @Skil4.started += instance.OnSkil4;
                 @Skil4.performed += instance.OnSkil4;
                 @Skil4.canceled += instance.OnSkil4;
+                @SpecialSkil.started += instance.OnSpecialSkil;
+                @SpecialSkil.performed += instance.OnSpecialSkil;
+                @SpecialSkil.canceled += instance.OnSpecialSkil;
                 @Attack.started += instance.OnAttack;
                 @Attack.performed += instance.OnAttack;
                 @Attack.canceled += instance.OnAttack;
@@ -502,6 +531,7 @@ public partial class @PlayerInputSystem : IInputActionCollection2, IDisposable
         void OnSkil2(InputAction.CallbackContext context);
         void OnSkil3(InputAction.CallbackContext context);
         void OnSkil4(InputAction.CallbackContext context);
+        void OnSpecialSkil(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
     }
 }

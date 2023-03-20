@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerHurtBox : MonoBehaviour
@@ -5,6 +6,8 @@ public class PlayerHurtBox : MonoBehaviour
     [SerializeField] private LayerMask targetLayer;
     [SerializeField] private AttackType attackType;
     [SerializeField] private float damage;
+    [SerializeField] private int bonusEnergy;
+    public static event Action<int> OnHit;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -14,6 +17,7 @@ public class PlayerHurtBox : MonoBehaviour
             {
                 Vector3 hitPoint = other.GetComponent<Collider>().ClosestPoint(transform.position);
                 damageable.TakeDamgae(hitPoint, damage, attackType);
+                OnHit?.Invoke(bonusEnergy);
             }
         }
     }

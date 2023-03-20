@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.AI;
 
-[RequireComponent(typeof(NavMeshAgent), typeof(Rigidbody))]
+[RequireComponent(typeof(NavMeshAgent))]
 public class EnemyBehaviour : MonoBehaviour
 {
     public enum State
@@ -17,11 +17,10 @@ public class EnemyBehaviour : MonoBehaviour
     [SerializeField] private float stepBackTime;
     [SerializeField] private float maxSpeed;
     [SerializeField] private float walkSpeed;
-    private int velocityHash, reloadHash;
-    public State state = State.chase;
+    private int velocityHash;
+    private State state = State.chase;
     private bool disable;
     private NavMeshAgent agent;
-    private Rigidbody rb;
     private Animator animator;
     private EnemyDamageable damageable;
     private AbsEnemyAttack absEnemyAttack;
@@ -31,13 +30,11 @@ public class EnemyBehaviour : MonoBehaviour
     {
         gameManager = GameManager.Instance;
         agent = GetComponent<NavMeshAgent>();
-        rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
         damageable = GetComponent<EnemyDamageable>();
         absEnemyAttack = GetComponent<AbsEnemyAttack>();
 
         velocityHash = Animator.StringToHash("Velocity");
-        reloadHash = Animator.StringToHash("Reload");
     }
 
     private void OnEnable()

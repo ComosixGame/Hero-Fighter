@@ -64,7 +64,7 @@ public class GunEnemyAttack : AbsEnemyAttack
         if (!disable && !attackMelee && readyAttack)
         {
             Bullet newBullet = ObjectPoolerManager.SpawnObject(bullet, shotPos.position, shotPos.rotation) as Bullet;
-            newBullet.Fire(damage, speedBullet, transform.forward.normalized);
+            newBullet.Fire(damage, speedBullet);
             readyAttack = false;
             animator.SetTrigger(shootHash);
             Invoke("AttackCoolDown", attackCooldown);

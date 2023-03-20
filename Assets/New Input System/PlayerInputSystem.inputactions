@@ -51,6 +51,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "SpecialSkil",
+                    "type": "Button",
+                    "id": "ee8e5ca5-fcab-43ea-b945-9bf6141d1a25",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Attack",
                     "type": "Button",
                     "id": "72df9e36-c13a-4796-b047-abaefe18a58c",
@@ -223,6 +232,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6b6eb331-39ff-45f9-962c-0ed4c883a929",
+                    "path": "<Keyboard>/5",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SpecialSkil",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

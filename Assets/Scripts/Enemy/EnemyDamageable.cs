@@ -95,10 +95,8 @@ public class EnemyDamageable : MonoBehaviour, IDamageable
 
     private void HandleHitReaction(Vector3 hitPoint, AttackType attackType)
     {
-        Quaternion rot = Quaternion.LookRotation(hitPoint - transform.position);
-        rot.x = 0;
-        rot.z = 0;
-        transform.rotation = rot;
+        Vector3 dir = hitPoint - transform.position;
+        transform.rotation = Ultils.GetRotationLook(dir, transform.forward);
         if (attackType == AttackType.light)
         {
             animator.SetTrigger(hitHash);

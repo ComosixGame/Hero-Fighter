@@ -100,8 +100,7 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
                 else
                 {
                     Vector3 dirAttack = hitPoint - transform.position;
-                    dirAttack.y = 0;
-                    transform.rotation = Quaternion.LookRotation(dirAttack);
+                    transform.rotation = Ultils.GetRotationLook(dirAttack, transform.forward);
                     knocking = true;
                     animator.SetTrigger(knockHash);
                 }

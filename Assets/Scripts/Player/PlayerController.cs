@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     private bool isReady = true;
     private float stateTimeAnim;
     private bool disable;
+    private Vector3 motionMove;
     private Coroutine attackWaitCoroutine;
     [SerializeField, ReadOnly] private bool attacking;
     private AbsSkill[] skills;
@@ -132,13 +133,13 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        Vector3 motionMove = direction * speed;
+        motionMove = direction * speed;
         characterController.SimpleMove(motionMove);
     }
 
     private void HandleAnimation()
     {
-        Vector3 horizontalVelocity = new Vector3(characterController.velocity.x, 0, characterController.velocity.z);
+        Vector3 horizontalVelocity = new Vector3(motionMove.x, 0, motionMove.z);
         float Velocity = horizontalVelocity.magnitude / speed;
         if (Velocity > 0)
         {

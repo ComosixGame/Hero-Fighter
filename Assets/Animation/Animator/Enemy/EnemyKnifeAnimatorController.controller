@@ -368,7 +368,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Punching
+  m_Name: Attack
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -382,7 +382,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: ceac292a460dc6e4099348daae825b11,
+  m_Motion: {fileID: -203655887218126122, guid: e7a7bc948052a704ea372afa0d645158,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -420,7 +420,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: EnemyAnimatorController
+  m_Name: EnemyKnifeAnimatorController
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: Velocity
@@ -791,7 +791,7 @@ BlendTree:
   m_Name: Blend Tree
   m_Childs:
   - serializedVersion: 2
-    m_Motion: {fileID: -203655887218126122, guid: 7e01542dc0eec54428ea20b0716fd7af,
+    m_Motion: {fileID: -203655887218126122, guid: 54cafde6f8c84bf46839047893cea13f,
       type: 3}
     m_Threshold: 0
     m_Position: {x: 0, y: 0}
@@ -800,7 +800,7 @@ BlendTree:
     m_DirectBlendParameter: Velocity
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: -203655887218126122, guid: f5345548a732d7949a2e9f075b291a9b,
+    m_Motion: {fileID: -203655887218126122, guid: d7a25a17bdd37724eb6c26fce55c95ab,
       type: 3}
     m_Threshold: 0.2
     m_Position: {x: 0, y: 0}
@@ -809,7 +809,7 @@ BlendTree:
     m_DirectBlendParameter: Velocity
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: -203655887218126122, guid: e4506d261765a4848b01524c659abf97,
+    m_Motion: {fileID: -203655887218126122, guid: 5a05a4e9960631243b85c26b17889a94,
       type: 3}
     m_Threshold: 1
     m_Position: {x: 0, y: 0}

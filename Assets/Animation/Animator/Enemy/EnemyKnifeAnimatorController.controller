@@ -21,7 +21,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: 5b3242ca136cfc54eb5b5dbdbcbb8fe9,
+  m_Motion: {fileID: -203655887218126122, guid: 1a6c51d5fa32d9f4eb5efea636dde9af,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -141,7 +141,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Big Hit To Head
+  m_Name: Sword And Shield Impact
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -155,7 +155,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: 35a7758873f50d040a5cf43a41eaf03d,
+  m_Motion: {fileID: -203655887218126122, guid: c9de568ad40e6124495b36e6d4587593,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -232,7 +232,7 @@ AnimatorStateMachine:
     m_Position: {x: 180, y: 500, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 3087957252747188851}
-    m_Position: {x: 187.73785, y: 291.29626, z: 0}
+    m_Position: {x: 190, y: 290, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -8037049180424715466}
     m_Position: {x: 210, y: 380, z: 0}
@@ -368,7 +368,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Punching
+  m_Name: Stabbing
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -382,7 +382,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: 9d34304d8f323f04e9d77e9e6dbca45d,
+  m_Motion: {fileID: -203655887218126122, guid: bd30038363ebe3f4fbfb16693b699ae5,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -420,7 +420,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: EnemyAnimatorController
+  m_Name: EnemyKnifeAnimatorController
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: Velocity
@@ -791,7 +791,7 @@ BlendTree:
   m_Name: Blend Tree
   m_Childs:
   - serializedVersion: 2
-    m_Motion: {fileID: -203655887218126122, guid: 7e01542dc0eec54428ea20b0716fd7af,
+    m_Motion: {fileID: -203655887218126122, guid: c392dfa600a5c5a4eab047958540d6f2,
       type: 3}
     m_Threshold: 0
     m_Position: {x: 0, y: 0}
@@ -800,7 +800,7 @@ BlendTree:
     m_DirectBlendParameter: Velocity
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: -1610863427237328480, guid: aa379d6654f394e488e638241529cd57,
+    m_Motion: {fileID: -203655887218126122, guid: bfc9a11c46e000e438fa69c018c52c1d,
       type: 3}
     m_Threshold: 0.2
     m_Position: {x: 0, y: 0}
@@ -881,7 +881,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Falling Forward Death
+  m_Name: Sword And Shield Death
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -894,7 +894,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: d97dd973ea5d0d4489424e75c8b40b1d,
+  m_Motion: {fileID: -203655887218126122, guid: 11c08837c7904b14e983d56d0673fa07,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 

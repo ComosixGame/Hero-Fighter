@@ -242,6 +242,10 @@ PrefabInstance:
       value: SM_Bld_Section_Wall_05 (4)
       objectReference: {fileID: 0}
     - target: {fileID: 1167530832554912, guid: 14be2c847c5873f40af6081f07f0bc27, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167530832554912, guid: 14be2c847c5873f40af6081f07f0bc27, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -457,6 +461,10 @@ PrefabInstance:
       value: SM_Bld_Section_Door_06
       objectReference: {fileID: 0}
     - target: {fileID: 1716819399323800, guid: e6af98424eec7ef459a66398b4332b72, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1716819399323800, guid: e6af98424eec7ef459a66398b4332b72, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -659,6 +667,10 @@ PrefabInstance:
     - target: {fileID: 1776786320129414, guid: 553d5ab60b93b904896a8af286bdbe32, type: 3}
       propertyPath: m_Name
       value: SM_Env_Sidewalk_Straight_01_SF (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1776786320129414, guid: 553d5ab60b93b904896a8af286bdbe32, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1776786320129414, guid: 553d5ab60b93b904896a8af286bdbe32, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -1009,12 +1021,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 1048252257}
     m_Modifications:
     - target: {fileID: 1189428730408128, guid: 713cc0a3dfe2279499ed8b72f056607e, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1189428730408128, guid: 713cc0a3dfe2279499ed8b72f056607e, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 1709967386187892, guid: 713cc0a3dfe2279499ed8b72f056607e, type: 3}
       propertyPath: m_Name
       value: SM_Bld_Section_Door_05
+      objectReference: {fileID: 0}
+    - target: {fileID: 1709967386187892, guid: 713cc0a3dfe2279499ed8b72f056607e, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1709967386187892, guid: 713cc0a3dfe2279499ed8b72f056607e, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -1167,6 +1187,10 @@ PrefabInstance:
     - target: {fileID: 1990082954663360, guid: 800458afd8edd8347948cf025aeebfa6, type: 3}
       propertyPath: m_Name
       value: SM_Prop_Barrier_line_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1990082954663360, guid: 800458afd8edd8347948cf025aeebfa6, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1990082954663360, guid: 800458afd8edd8347948cf025aeebfa6, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -1469,24 +1493,48 @@ PrefabInstance:
     m_TransformParent: {fileID: 189588152}
     m_Modifications:
     - target: {fileID: 1076745720160406, guid: e6f8143dfeec448449607c2dab33122b, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1076745720160406, guid: e6f8143dfeec448449607c2dab33122b, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 1078551620178436, guid: e6f8143dfeec448449607c2dab33122b, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1078551620178436, guid: e6f8143dfeec448449607c2dab33122b, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 1080040264215116, guid: e6f8143dfeec448449607c2dab33122b, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1080040264215116, guid: e6f8143dfeec448449607c2dab33122b, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 1226769809753218, guid: e6f8143dfeec448449607c2dab33122b, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1226769809753218, guid: e6f8143dfeec448449607c2dab33122b, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 1591194057235850, guid: e6f8143dfeec448449607c2dab33122b, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1591194057235850, guid: e6f8143dfeec448449607c2dab33122b, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 1770404113173274, guid: e6f8143dfeec448449607c2dab33122b, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1770404113173274, guid: e6f8143dfeec448449607c2dab33122b, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -1497,12 +1545,24 @@ PrefabInstance:
       value: SM_Veh_Garbage_01_Hover
       objectReference: {fileID: 0}
     - target: {fileID: 1918399013857846, guid: e6f8143dfeec448449607c2dab33122b, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1918399013857846, guid: e6f8143dfeec448449607c2dab33122b, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 1940624667456988, guid: e6f8143dfeec448449607c2dab33122b, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1940624667456988, guid: e6f8143dfeec448449607c2dab33122b, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 1970653402855426, guid: e6f8143dfeec448449607c2dab33122b, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1970653402855426, guid: e6f8143dfeec448449607c2dab33122b, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -1564,6 +1624,10 @@ PrefabInstance:
     - target: {fileID: 1803395385396878, guid: 609f07731dd2d944b8eed37e471d9c26, type: 3}
       propertyPath: m_Name
       value: SM_Prop_BenchSeat_01 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1803395385396878, guid: 609f07731dd2d944b8eed37e471d9c26, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1803395385396878, guid: 609f07731dd2d944b8eed37e471d9c26, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -1637,6 +1701,10 @@ PrefabInstance:
     - target: {fileID: 1776786320129414, guid: 553d5ab60b93b904896a8af286bdbe32, type: 3}
       propertyPath: m_Name
       value: SM_Env_Sidewalk_Straight_01_SF (20)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1776786320129414, guid: 553d5ab60b93b904896a8af286bdbe32, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1776786320129414, guid: 553d5ab60b93b904896a8af286bdbe32, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -1805,6 +1873,10 @@ PrefabInstance:
     - target: {fileID: 1803395385396878, guid: 609f07731dd2d944b8eed37e471d9c26, type: 3}
       propertyPath: m_Name
       value: SM_Prop_BenchSeat_01 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1803395385396878, guid: 609f07731dd2d944b8eed37e471d9c26, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1803395385396878, guid: 609f07731dd2d944b8eed37e471d9c26, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -2367,6 +2439,10 @@ PrefabInstance:
       value: SM_Env_Sidewalk_03_SF (7)
       objectReference: {fileID: 0}
     - target: {fileID: 1165202726996246, guid: 572123d0f82b6a5479ac596709fb6d08, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1165202726996246, guid: 572123d0f82b6a5479ac596709fb6d08, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -2426,6 +2502,10 @@ PrefabInstance:
     - target: {fileID: 1165202726996246, guid: 572123d0f82b6a5479ac596709fb6d08, type: 3}
       propertyPath: m_Name
       value: SM_Env_Sidewalk_03_SF (14)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1165202726996246, guid: 572123d0f82b6a5479ac596709fb6d08, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1165202726996246, guid: 572123d0f82b6a5479ac596709fb6d08, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -2876,6 +2956,10 @@ PrefabInstance:
       value: SM_Env_Road_YellowLines_02_SF (34)
       objectReference: {fileID: 0}
     - target: {fileID: 1397911021057090, guid: 7a4bd320239b74e4b80eabf57b61349b, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1397911021057090, guid: 7a4bd320239b74e4b80eabf57b61349b, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -3037,6 +3121,10 @@ PrefabInstance:
       value: SM_Env_Sidewalk_Straight_01_SF (5)
       objectReference: {fileID: 0}
     - target: {fileID: 1776786320129414, guid: 553d5ab60b93b904896a8af286bdbe32, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1776786320129414, guid: 553d5ab60b93b904896a8af286bdbe32, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -3188,8 +3276,16 @@ PrefabInstance:
       value: SM_Prop_Dumpster_01
       objectReference: {fileID: 0}
     - target: {fileID: 1457141607719450, guid: 7212648f69551c847a203228e2c30f7f, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1457141607719450, guid: 7212648f69551c847a203228e2c30f7f, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 1989488336396434, guid: 7212648f69551c847a203228e2c30f7f, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1989488336396434, guid: 7212648f69551c847a203228e2c30f7f, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -3251,6 +3347,10 @@ PrefabInstance:
     - target: {fileID: 1776786320129414, guid: 553d5ab60b93b904896a8af286bdbe32, type: 3}
       propertyPath: m_Name
       value: SM_Env_Sidewalk_Straight_01_SF (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1776786320129414, guid: 553d5ab60b93b904896a8af286bdbe32, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1776786320129414, guid: 553d5ab60b93b904896a8af286bdbe32, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -3551,6 +3651,10 @@ PrefabInstance:
       value: SM_Bld_Section_Wall_01
       objectReference: {fileID: 0}
     - target: {fileID: 1117716727441396, guid: 4caa1debd226fcd4884eca0c619ce93f, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1117716727441396, guid: 4caa1debd226fcd4884eca0c619ce93f, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -3616,6 +3720,10 @@ PrefabInstance:
     - target: {fileID: 1776786320129414, guid: 553d5ab60b93b904896a8af286bdbe32, type: 3}
       propertyPath: m_Name
       value: SM_Env_Sidewalk_Straight_01_SF (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1776786320129414, guid: 553d5ab60b93b904896a8af286bdbe32, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1776786320129414, guid: 553d5ab60b93b904896a8af286bdbe32, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -3701,6 +3809,10 @@ PrefabInstance:
     - target: {fileID: 1083415637120010, guid: 966ddfe1e3c2ff749b52901ca588e467, type: 3}
       propertyPath: m_Name
       value: SM_Env_Small_Rocks_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1083415637120010, guid: 966ddfe1e3c2ff749b52901ca588e467, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1083415637120010, guid: 966ddfe1e3c2ff749b52901ca588e467, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -4623,6 +4735,10 @@ PrefabInstance:
       value: SM_Env_Sidewalk_03_SF (19)
       objectReference: {fileID: 0}
     - target: {fileID: 1165202726996246, guid: 572123d0f82b6a5479ac596709fb6d08, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1165202726996246, guid: 572123d0f82b6a5479ac596709fb6d08, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -4749,6 +4865,10 @@ PrefabInstance:
     - target: {fileID: 1776786320129414, guid: 553d5ab60b93b904896a8af286bdbe32, type: 3}
       propertyPath: m_Name
       value: SM_Env_Sidewalk_Straight_01_SF (14)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1776786320129414, guid: 553d5ab60b93b904896a8af286bdbe32, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1776786320129414, guid: 553d5ab60b93b904896a8af286bdbe32, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -4879,6 +4999,10 @@ PrefabInstance:
     - target: {fileID: 1776786320129414, guid: 553d5ab60b93b904896a8af286bdbe32, type: 3}
       propertyPath: m_Name
       value: SM_Env_Sidewalk_Straight_01_SF
+      objectReference: {fileID: 0}
+    - target: {fileID: 1776786320129414, guid: 553d5ab60b93b904896a8af286bdbe32, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1776786320129414, guid: 553d5ab60b93b904896a8af286bdbe32, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -5139,6 +5263,10 @@ PrefabInstance:
       value: SM_Prop_Atm_01 (1)
       objectReference: {fileID: 0}
     - target: {fileID: 1776388541684078, guid: a56da3c44063ebe4e8fdac7b93bf1969, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1776388541684078, guid: a56da3c44063ebe4e8fdac7b93bf1969, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -5200,6 +5328,10 @@ PrefabInstance:
       value: SM_Env_Sidewalk_Corner_01_SF (1)
       objectReference: {fileID: 0}
     - target: {fileID: 1035388532786480, guid: bb14082ea26e24140b490f3bf8a64d11, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1035388532786480, guid: bb14082ea26e24140b490f3bf8a64d11, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -5259,6 +5391,10 @@ PrefabInstance:
     - target: {fileID: 1095600368890880, guid: 21e1771c27a671147b188378c5b1da6e, type: 3}
       propertyPath: m_Name
       value: SM_Prop_Bottle_01 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1095600368890880, guid: 21e1771c27a671147b188378c5b1da6e, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1095600368890880, guid: 21e1771c27a671147b188378c5b1da6e, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -5522,6 +5658,10 @@ PrefabInstance:
       value: SM_Bld_Section_Wall_05
       objectReference: {fileID: 0}
     - target: {fileID: 1167530832554912, guid: 14be2c847c5873f40af6081f07f0bc27, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167530832554912, guid: 14be2c847c5873f40af6081f07f0bc27, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -5597,6 +5737,10 @@ PrefabInstance:
     - target: {fileID: 1776786320129414, guid: 553d5ab60b93b904896a8af286bdbe32, type: 3}
       propertyPath: m_Name
       value: SM_Env_Sidewalk_Straight_01_SF (22)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1776786320129414, guid: 553d5ab60b93b904896a8af286bdbe32, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1776786320129414, guid: 553d5ab60b93b904896a8af286bdbe32, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -5794,6 +5938,10 @@ PrefabInstance:
       value: SM_Env_Sidewalk_03_SF (2)
       objectReference: {fileID: 0}
     - target: {fileID: 1165202726996246, guid: 572123d0f82b6a5479ac596709fb6d08, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1165202726996246, guid: 572123d0f82b6a5479ac596709fb6d08, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -5859,6 +6007,10 @@ PrefabInstance:
     - target: {fileID: 1271783961787342, guid: 181f6d5bc4a81994d84a0d68b7a2205d, type: 3}
       propertyPath: m_Name
       value: SM_Prop_Barrier_03
+      objectReference: {fileID: 0}
+    - target: {fileID: 1271783961787342, guid: 181f6d5bc4a81994d84a0d68b7a2205d, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1271783961787342, guid: 181f6d5bc4a81994d84a0d68b7a2205d, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -6326,12 +6478,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 189588152}
     m_Modifications:
     - target: {fileID: 1063838620185624, guid: 99e09e7755daf7346a907df1e8ca4d33, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1063838620185624, guid: 99e09e7755daf7346a907df1e8ca4d33, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 1285125316066528, guid: 99e09e7755daf7346a907df1e8ca4d33, type: 3}
       propertyPath: m_Name
       value: SM_Prop_Hologram_Noodles_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1285125316066528, guid: 99e09e7755daf7346a907df1e8ca4d33, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1285125316066528, guid: 99e09e7755daf7346a907df1e8ca4d33, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -6581,6 +6741,10 @@ PrefabInstance:
       value: SM_Prop_TrashBag_01 (1)
       objectReference: {fileID: 0}
     - target: {fileID: 1149949497240620, guid: 6327f3b529212ab4692c4ce3714ab082, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1149949497240620, guid: 6327f3b529212ab4692c4ce3714ab082, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -6640,6 +6804,10 @@ PrefabInstance:
     - target: {fileID: 1500522491994108, guid: 6d6091aea9e88a74d9d033aecac4842e, type: 3}
       propertyPath: m_Name
       value: SM_Prop_Door_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1500522491994108, guid: 6d6091aea9e88a74d9d033aecac4842e, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1500522491994108, guid: 6d6091aea9e88a74d9d033aecac4842e, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -6843,6 +7011,10 @@ PrefabInstance:
     - target: {fileID: 1954084764598762, guid: 4bda712f3633c1848a137f9f5f310588, type: 3}
       propertyPath: m_Name
       value: SM_Prop_Barrier_02 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1954084764598762, guid: 4bda712f3633c1848a137f9f5f310588, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1954084764598762, guid: 4bda712f3633c1848a137f9f5f310588, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -7114,6 +7286,10 @@ PrefabInstance:
       value: SM_Prop_Streetlight_01 (1)
       objectReference: {fileID: 0}
     - target: {fileID: 1654047550262966, guid: 72743bd38a7349d4fa26ac056b454810, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1654047550262966, guid: 72743bd38a7349d4fa26ac056b454810, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -7173,6 +7349,10 @@ PrefabInstance:
     - target: {fileID: 1402046779039146, guid: a1d953a27b5df6b49a82f3aef4d575c5, type: 3}
       propertyPath: m_Name
       value: SM_Bld_Chopshop_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1402046779039146, guid: a1d953a27b5df6b49a82f3aef4d575c5, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1402046779039146, guid: a1d953a27b5df6b49a82f3aef4d575c5, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -7457,6 +7637,10 @@ PrefabInstance:
       value: SM_Sign_Ad_07
       objectReference: {fileID: 0}
     - target: {fileID: 1837589203362980, guid: 2e791cf836bfbb948bf4868ff0b115d0, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1837589203362980, guid: 2e791cf836bfbb948bf4868ff0b115d0, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -7516,6 +7700,10 @@ PrefabInstance:
     - target: {fileID: 1940365897384440, guid: f26a6a01921a0cc44a493b8424859c38, type: 3}
       propertyPath: m_Name
       value: SM_Bld_Raised_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1940365897384440, guid: f26a6a01921a0cc44a493b8424859c38, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1940365897384440, guid: f26a6a01921a0cc44a493b8424859c38, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -7805,6 +7993,10 @@ PrefabInstance:
       value: SM_Env_Wall_Generic_01 (2)
       objectReference: {fileID: 0}
     - target: {fileID: 1751281816457148, guid: 331578b4bf483ae4986eda8b44619e86, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1751281816457148, guid: 331578b4bf483ae4986eda8b44619e86, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -7868,6 +8060,10 @@ PrefabInstance:
     - target: {fileID: 1095600368890880, guid: 21e1771c27a671147b188378c5b1da6e, type: 3}
       propertyPath: m_Name
       value: SM_Prop_Bottle_01 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1095600368890880, guid: 21e1771c27a671147b188378c5b1da6e, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1095600368890880, guid: 21e1771c27a671147b188378c5b1da6e, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -8124,6 +8320,10 @@ PrefabInstance:
       value: SM_Prop_Barrier_02 (3)
       objectReference: {fileID: 0}
     - target: {fileID: 1954084764598762, guid: 4bda712f3633c1848a137f9f5f310588, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1954084764598762, guid: 4bda712f3633c1848a137f9f5f310588, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -8325,6 +8525,10 @@ PrefabInstance:
     - target: {fileID: 1167530832554912, guid: 14be2c847c5873f40af6081f07f0bc27, type: 3}
       propertyPath: m_Name
       value: SM_Bld_Section_Wall_05 (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167530832554912, guid: 14be2c847c5873f40af6081f07f0bc27, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1167530832554912, guid: 14be2c847c5873f40af6081f07f0bc27, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -8723,6 +8927,10 @@ PrefabInstance:
       value: SM_Prop_Atm_01
       objectReference: {fileID: 0}
     - target: {fileID: 1776388541684078, guid: a56da3c44063ebe4e8fdac7b93bf1969, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1776388541684078, guid: a56da3c44063ebe4e8fdac7b93bf1969, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -8782,6 +8990,10 @@ PrefabInstance:
     - target: {fileID: 1039678699867256, guid: 8eb4c19836b1e69448dccd70be19f9d0, type: 3}
       propertyPath: m_Name
       value: SM_Env_Sidewalk_Straight_04_SF
+      objectReference: {fileID: 0}
+    - target: {fileID: 1039678699867256, guid: 8eb4c19836b1e69448dccd70be19f9d0, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1039678699867256, guid: 8eb4c19836b1e69448dccd70be19f9d0, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -9135,6 +9347,10 @@ PrefabInstance:
       value: SM_Env_Sidewalk_03_SF
       objectReference: {fileID: 0}
     - target: {fileID: 1165202726996246, guid: 572123d0f82b6a5479ac596709fb6d08, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1165202726996246, guid: 572123d0f82b6a5479ac596709fb6d08, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -9336,6 +9552,10 @@ PrefabInstance:
     - target: {fileID: 1095600368890880, guid: 21e1771c27a671147b188378c5b1da6e, type: 3}
       propertyPath: m_Name
       value: SM_Prop_Bottle_01 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1095600368890880, guid: 21e1771c27a671147b188378c5b1da6e, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1095600368890880, guid: 21e1771c27a671147b188378c5b1da6e, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -9575,8 +9795,16 @@ PrefabInstance:
       value: SM_Bld_Section_Corner_01
       objectReference: {fileID: 0}
     - target: {fileID: 1591809947782508, guid: c7042f447aa89b54ea46409ec08692f8, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1591809947782508, guid: c7042f447aa89b54ea46409ec08692f8, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 1747157381130078, guid: c7042f447aa89b54ea46409ec08692f8, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1747157381130078, guid: c7042f447aa89b54ea46409ec08692f8, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -9644,6 +9872,10 @@ PrefabInstance:
     - target: {fileID: 1035388532786480, guid: bb14082ea26e24140b490f3bf8a64d11, type: 3}
       propertyPath: m_Name
       value: SM_Env_Sidewalk_Corner_01_SF
+      objectReference: {fileID: 0}
+    - target: {fileID: 1035388532786480, guid: bb14082ea26e24140b490f3bf8a64d11, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1035388532786480, guid: bb14082ea26e24140b490f3bf8a64d11, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -9931,6 +10163,10 @@ PrefabInstance:
       value: SM_Bld_Section_Door_01
       objectReference: {fileID: 0}
     - target: {fileID: 1261991240442092, guid: 1dd39e2a8df331343a963c91a1e0974c, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1261991240442092, guid: 1dd39e2a8df331343a963c91a1e0974c, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -10073,12 +10309,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 189588152}
     m_Modifications:
     - target: {fileID: 1063838620185624, guid: 99e09e7755daf7346a907df1e8ca4d33, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1063838620185624, guid: 99e09e7755daf7346a907df1e8ca4d33, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 1285125316066528, guid: 99e09e7755daf7346a907df1e8ca4d33, type: 3}
       propertyPath: m_Name
       value: SM_Prop_Hologram_Noodles_01 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1285125316066528, guid: 99e09e7755daf7346a907df1e8ca4d33, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1285125316066528, guid: 99e09e7755daf7346a907df1e8ca4d33, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -10372,6 +10616,10 @@ PrefabInstance:
       value: SM_Env_Sidewalk_Straight_01_SF (11)
       objectReference: {fileID: 0}
     - target: {fileID: 1776786320129414, guid: 553d5ab60b93b904896a8af286bdbe32, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1776786320129414, guid: 553d5ab60b93b904896a8af286bdbe32, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -10500,6 +10748,10 @@ PrefabInstance:
       value: SM_Env_Sidewalk_Straight_01_SF (6)
       objectReference: {fileID: 0}
     - target: {fileID: 1776786320129414, guid: 553d5ab60b93b904896a8af286bdbe32, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1776786320129414, guid: 553d5ab60b93b904896a8af286bdbe32, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -10557,12 +10809,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 1048252257}
     m_Modifications:
     - target: {fileID: 1820751437825238, guid: f8a5c3bb2b6733743937b8674612ce52, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1820751437825238, guid: f8a5c3bb2b6733743937b8674612ce52, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 1905158911971768, guid: f8a5c3bb2b6733743937b8674612ce52, type: 3}
       propertyPath: m_Name
       value: SM_Bld_Security_WatchStation_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1905158911971768, guid: f8a5c3bb2b6733743937b8674612ce52, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1905158911971768, guid: f8a5c3bb2b6733743937b8674612ce52, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -10794,6 +11054,10 @@ PrefabInstance:
     - target: {fileID: 1035388532786480, guid: bb14082ea26e24140b490f3bf8a64d11, type: 3}
       propertyPath: m_Name
       value: SM_Env_Sidewalk_Corner_01_SF (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1035388532786480, guid: bb14082ea26e24140b490f3bf8a64d11, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1035388532786480, guid: bb14082ea26e24140b490f3bf8a64d11, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -11074,6 +11338,10 @@ PrefabInstance:
     - target: {fileID: 1751281816457148, guid: 331578b4bf483ae4986eda8b44619e86, type: 3}
       propertyPath: m_Name
       value: SM_Env_Wall_Generic_01 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1751281816457148, guid: 331578b4bf483ae4986eda8b44619e86, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1751281816457148, guid: 331578b4bf483ae4986eda8b44619e86, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -11563,6 +11831,10 @@ PrefabInstance:
       value: SM_Sign_Billboard_Border_03
       objectReference: {fileID: 0}
     - target: {fileID: 1442265381282558, guid: 59449a6f6b42ab64cb4421e2f322f822, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442265381282558, guid: 59449a6f6b42ab64cb4421e2f322f822, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -11630,6 +11902,10 @@ PrefabInstance:
       value: SM_Bld_Section_Window_01
       objectReference: {fileID: 0}
     - target: {fileID: 1034957934740444, guid: f685963809caafb42bf2ef0c3d5fec4e, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1034957934740444, guid: f685963809caafb42bf2ef0c3d5fec4e, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -11689,6 +11965,10 @@ PrefabInstance:
     - target: {fileID: 1165202726996246, guid: 572123d0f82b6a5479ac596709fb6d08, type: 3}
       propertyPath: m_Name
       value: SM_Env_Sidewalk_03_SF (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1165202726996246, guid: 572123d0f82b6a5479ac596709fb6d08, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1165202726996246, guid: 572123d0f82b6a5479ac596709fb6d08, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -11922,6 +12202,10 @@ PrefabInstance:
       value: SM_Env_Sidewalk_03_SF (6)
       objectReference: {fileID: 0}
     - target: {fileID: 1165202726996246, guid: 572123d0f82b6a5479ac596709fb6d08, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1165202726996246, guid: 572123d0f82b6a5479ac596709fb6d08, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -11981,6 +12265,10 @@ PrefabInstance:
     - target: {fileID: 1803395385396878, guid: 609f07731dd2d944b8eed37e471d9c26, type: 3}
       propertyPath: m_Name
       value: SM_Prop_BenchSeat_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1803395385396878, guid: 609f07731dd2d944b8eed37e471d9c26, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1803395385396878, guid: 609f07731dd2d944b8eed37e471d9c26, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -12118,6 +12406,10 @@ PrefabInstance:
     - target: {fileID: 1654047550262966, guid: 72743bd38a7349d4fa26ac056b454810, type: 3}
       propertyPath: m_Name
       value: SM_Prop_Streetlight_01 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1654047550262966, guid: 72743bd38a7349d4fa26ac056b454810, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1654047550262966, guid: 72743bd38a7349d4fa26ac056b454810, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -12323,8 +12615,16 @@ PrefabInstance:
       value: SM_Prop_TrashCan_01 (1)
       objectReference: {fileID: 0}
     - target: {fileID: 1284679517027656, guid: 49403e0fe06c5a94caf8def848fd9941, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1284679517027656, guid: 49403e0fe06c5a94caf8def848fd9941, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 1928799507968028, guid: 49403e0fe06c5a94caf8def848fd9941, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1928799507968028, guid: 49403e0fe06c5a94caf8def848fd9941, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -12392,6 +12692,10 @@ PrefabInstance:
     - target: {fileID: 1654047550262966, guid: 72743bd38a7349d4fa26ac056b454810, type: 3}
       propertyPath: m_Name
       value: SM_Prop_Streetlight_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1654047550262966, guid: 72743bd38a7349d4fa26ac056b454810, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1654047550262966, guid: 72743bd38a7349d4fa26ac056b454810, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -12473,6 +12777,10 @@ PrefabInstance:
       value: SM_Bld_Section_Wall_05 (9)
       objectReference: {fileID: 0}
     - target: {fileID: 1167530832554912, guid: 14be2c847c5873f40af6081f07f0bc27, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167530832554912, guid: 14be2c847c5873f40af6081f07f0bc27, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -12532,6 +12840,10 @@ PrefabInstance:
     - target: {fileID: 1366907923350860, guid: a9089a8996de8574c8a12b63cba7a0b5, type: 3}
       propertyPath: m_Name
       value: SM_Prop_Sidewalk_Rubble_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1366907923350860, guid: a9089a8996de8574c8a12b63cba7a0b5, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1366907923350860, guid: a9089a8996de8574c8a12b63cba7a0b5, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -12874,6 +13186,10 @@ PrefabInstance:
       value: SM_Env_Sidewalk_03_SF (10)
       objectReference: {fileID: 0}
     - target: {fileID: 1165202726996246, guid: 572123d0f82b6a5479ac596709fb6d08, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1165202726996246, guid: 572123d0f82b6a5479ac596709fb6d08, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -12939,6 +13255,10 @@ PrefabInstance:
     - target: {fileID: 1776786320129414, guid: 553d5ab60b93b904896a8af286bdbe32, type: 3}
       propertyPath: m_Name
       value: SM_Env_Sidewalk_Straight_01_SF (21)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1776786320129414, guid: 553d5ab60b93b904896a8af286bdbe32, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1776786320129414, guid: 553d5ab60b93b904896a8af286bdbe32, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -13144,6 +13464,10 @@ PrefabInstance:
       value: SM_Prop_Streetlight_01 (3)
       objectReference: {fileID: 0}
     - target: {fileID: 1654047550262966, guid: 72743bd38a7349d4fa26ac056b454810, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1654047550262966, guid: 72743bd38a7349d4fa26ac056b454810, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -13161,7 +13485,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4013905553807786, guid: 72743bd38a7349d4fa26ac056b454810, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -7
+      value: -7.5
       objectReference: {fileID: 0}
     - target: {fileID: 4013905553807786, guid: 72743bd38a7349d4fa26ac056b454810, type: 3}
       propertyPath: m_LocalRotation.w
@@ -13385,6 +13709,10 @@ PrefabInstance:
     - target: {fileID: 1776786320129414, guid: 553d5ab60b93b904896a8af286bdbe32, type: 3}
       propertyPath: m_Name
       value: SM_Env_Sidewalk_Straight_01_SF (24)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1776786320129414, guid: 553d5ab60b93b904896a8af286bdbe32, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1776786320129414, guid: 553d5ab60b93b904896a8af286bdbe32, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -13683,6 +14011,10 @@ PrefabInstance:
       value: SM_Prop_Box_Empty_01
       objectReference: {fileID: 0}
     - target: {fileID: 1092547817694420, guid: b377a79f6a3b3ac44ba919ed12be6ce4, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1092547817694420, guid: b377a79f6a3b3ac44ba919ed12be6ce4, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -13742,6 +14074,10 @@ PrefabInstance:
     - target: {fileID: 1346552099340838, guid: 44f7531c4a7c3d64cbe98cf88d70bd68, type: 3}
       propertyPath: m_Name
       value: SM_Bld_FoodHole_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1346552099340838, guid: 44f7531c4a7c3d64cbe98cf88d70bd68, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1346552099340838, guid: 44f7531c4a7c3d64cbe98cf88d70bd68, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -13872,6 +14208,10 @@ PrefabInstance:
     - target: {fileID: 1465401426750296, guid: ca5448f7c73d3a349856be1bf2fe18d8, type: 3}
       propertyPath: m_Name
       value: SM_Sign_Billboard_Large_04 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1465401426750296, guid: ca5448f7c73d3a349856be1bf2fe18d8, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1465401426750296, guid: ca5448f7c73d3a349856be1bf2fe18d8, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -14134,6 +14474,10 @@ PrefabInstance:
       value: SM_Bld_Section_Wall_05 (6)
       objectReference: {fileID: 0}
     - target: {fileID: 1167530832554912, guid: 14be2c847c5873f40af6081f07f0bc27, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167530832554912, guid: 14be2c847c5873f40af6081f07f0bc27, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -14213,6 +14557,10 @@ PrefabInstance:
       value: SM_Env_Sidewalk_Straight_01_SF (18)
       objectReference: {fileID: 0}
     - target: {fileID: 1776786320129414, guid: 553d5ab60b93b904896a8af286bdbe32, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1776786320129414, guid: 553d5ab60b93b904896a8af286bdbe32, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -14278,6 +14626,10 @@ PrefabInstance:
     - target: {fileID: 1699078657835170, guid: 1e51f228553b06b41930d7d0d016193e, type: 3}
       propertyPath: m_Name
       value: SM_Env_Road_Patch_01_SF
+      objectReference: {fileID: 0}
+    - target: {fileID: 1699078657835170, guid: 1e51f228553b06b41930d7d0d016193e, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1699078657835170, guid: 1e51f228553b06b41930d7d0d016193e, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -14499,6 +14851,10 @@ PrefabInstance:
       value: SM_Env_Sidewalk_03_SF (13)
       objectReference: {fileID: 0}
     - target: {fileID: 1165202726996246, guid: 572123d0f82b6a5479ac596709fb6d08, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1165202726996246, guid: 572123d0f82b6a5479ac596709fb6d08, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -14560,6 +14916,10 @@ PrefabInstance:
       value: SM_Env_Sidewalk_Straight_01_SF (3)
       objectReference: {fileID: 0}
     - target: {fileID: 1776786320129414, guid: 553d5ab60b93b904896a8af286bdbe32, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1776786320129414, guid: 553d5ab60b93b904896a8af286bdbe32, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -14619,6 +14979,10 @@ PrefabInstance:
     - target: {fileID: 1167530832554912, guid: 14be2c847c5873f40af6081f07f0bc27, type: 3}
       propertyPath: m_Name
       value: SM_Bld_Section_Wall_05 (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167530832554912, guid: 14be2c847c5873f40af6081f07f0bc27, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1167530832554912, guid: 14be2c847c5873f40af6081f07f0bc27, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -14686,6 +15050,10 @@ PrefabInstance:
       value: SM_Prop_Bottle_01 (3)
       objectReference: {fileID: 0}
     - target: {fileID: 1095600368890880, guid: 21e1771c27a671147b188378c5b1da6e, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1095600368890880, guid: 21e1771c27a671147b188378c5b1da6e, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -14751,6 +15119,10 @@ PrefabInstance:
     - target: {fileID: 1654047550262966, guid: 72743bd38a7349d4fa26ac056b454810, type: 3}
       propertyPath: m_Name
       value: SM_Prop_Streetlight_01 (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1654047550262966, guid: 72743bd38a7349d4fa26ac056b454810, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1654047550262966, guid: 72743bd38a7349d4fa26ac056b454810, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -14826,6 +15198,10 @@ PrefabInstance:
       value: SM_Prop_Bottle_02 (2)
       objectReference: {fileID: 0}
     - target: {fileID: 1168353465961796, guid: 315f2acd02ded7a458e8ae77a8d7db44, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1168353465961796, guid: 315f2acd02ded7a458e8ae77a8d7db44, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -14891,6 +15267,10 @@ PrefabInstance:
     - target: {fileID: 1661159153272266, guid: f9a80be48a6254344b5f885cfff4bbb0, type: 3}
       propertyPath: m_Name
       value: SM_Prop_Advertisement_Pillar_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1661159153272266, guid: f9a80be48a6254344b5f885cfff4bbb0, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1661159153272266, guid: f9a80be48a6254344b5f885cfff4bbb0, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -14972,6 +15352,10 @@ PrefabInstance:
     - target: {fileID: 1397911021057090, guid: 7a4bd320239b74e4b80eabf57b61349b, type: 3}
       propertyPath: m_Name
       value: SM_Env_Road_YellowLines_02_SF (32)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1397911021057090, guid: 7a4bd320239b74e4b80eabf57b61349b, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1397911021057090, guid: 7a4bd320239b74e4b80eabf57b61349b, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -15096,6 +15480,10 @@ PrefabInstance:
       value: SM_Env_Sidewalk_Straight_01_SF (19)
       objectReference: {fileID: 0}
     - target: {fileID: 1776786320129414, guid: 553d5ab60b93b904896a8af286bdbe32, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1776786320129414, guid: 553d5ab60b93b904896a8af286bdbe32, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -15155,6 +15543,10 @@ PrefabInstance:
     - target: {fileID: 1954084764598762, guid: 4bda712f3633c1848a137f9f5f310588, type: 3}
       propertyPath: m_Name
       value: SM_Prop_Barrier_02 (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1954084764598762, guid: 4bda712f3633c1848a137f9f5f310588, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1954084764598762, guid: 4bda712f3633c1848a137f9f5f310588, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -15312,8 +15704,16 @@ PrefabInstance:
       value: SM_Prop_TrashCan_01
       objectReference: {fileID: 0}
     - target: {fileID: 1284679517027656, guid: 49403e0fe06c5a94caf8def848fd9941, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1284679517027656, guid: 49403e0fe06c5a94caf8def848fd9941, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 1928799507968028, guid: 49403e0fe06c5a94caf8def848fd9941, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1928799507968028, guid: 49403e0fe06c5a94caf8def848fd9941, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -15519,12 +15919,24 @@ PrefabInstance:
       value: SM_Veh_Future_Taxi_01
       objectReference: {fileID: 0}
     - target: {fileID: 1169192800073340, guid: 3453465b381fd294e8e0b2c3a9cb1950, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1169192800073340, guid: 3453465b381fd294e8e0b2c3a9cb1950, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 1705454072342758, guid: 3453465b381fd294e8e0b2c3a9cb1950, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1705454072342758, guid: 3453465b381fd294e8e0b2c3a9cb1950, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 1757880702405472, guid: 3453465b381fd294e8e0b2c3a9cb1950, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1757880702405472, guid: 3453465b381fd294e8e0b2c3a9cb1950, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -15806,6 +16218,10 @@ PrefabInstance:
       value: SM_Env_Sidewalk_Straight_01_SF (10)
       objectReference: {fileID: 0}
     - target: {fileID: 1776786320129414, guid: 553d5ab60b93b904896a8af286bdbe32, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1776786320129414, guid: 553d5ab60b93b904896a8af286bdbe32, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -15865,6 +16281,10 @@ PrefabInstance:
     - target: {fileID: 1224664707774196, guid: 1706df18b40e3b54398964cb03a14f7f, type: 3}
       propertyPath: m_Name
       value: SM_Env_Road_Crossing_01_SF (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1224664707774196, guid: 1706df18b40e3b54398964cb03a14f7f, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1224664707774196, guid: 1706df18b40e3b54398964cb03a14f7f, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -15928,6 +16348,10 @@ PrefabInstance:
       value: SM_Prop_Streetlight_01 (9)
       objectReference: {fileID: 0}
     - target: {fileID: 1654047550262966, guid: 72743bd38a7349d4fa26ac056b454810, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1654047550262966, guid: 72743bd38a7349d4fa26ac056b454810, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -15945,7 +16369,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4013905553807786, guid: 72743bd38a7349d4fa26ac056b454810, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -7
+      value: -7.5
       objectReference: {fileID: 0}
     - target: {fileID: 4013905553807786, guid: 72743bd38a7349d4fa26ac056b454810, type: 3}
       propertyPath: m_LocalRotation.w
@@ -16512,6 +16936,10 @@ PrefabInstance:
       value: SM_Prop_TrashBag_03
       objectReference: {fileID: 0}
     - target: {fileID: 1188363182601576, guid: 5de9807b57f4b6b458c52fa853b6e16b, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1188363182601576, guid: 5de9807b57f4b6b458c52fa853b6e16b, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -16573,6 +17001,10 @@ PrefabInstance:
       value: SM_Env_Road_YellowLines_02_SF (40)
       objectReference: {fileID: 0}
     - target: {fileID: 1397911021057090, guid: 7a4bd320239b74e4b80eabf57b61349b, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1397911021057090, guid: 7a4bd320239b74e4b80eabf57b61349b, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -16632,6 +17064,10 @@ PrefabInstance:
     - target: {fileID: 1402046779039146, guid: a1d953a27b5df6b49a82f3aef4d575c5, type: 3}
       propertyPath: m_Name
       value: SM_Bld_Chopshop_01 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1402046779039146, guid: a1d953a27b5df6b49a82f3aef4d575c5, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1402046779039146, guid: a1d953a27b5df6b49a82f3aef4d575c5, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -16851,7 +17287,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1216107806}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.960001, y: 2.25, z: -8.399997}
+  m_LocalPosition: {x: 7.960001, y: 2.25, z: -9.149997}
   m_LocalScale: {x: 74.99958, y: 5.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -17227,6 +17663,10 @@ PrefabInstance:
       value: SM_Prop_Barrier_02 (4)
       objectReference: {fileID: 0}
     - target: {fileID: 1954084764598762, guid: 4bda712f3633c1848a137f9f5f310588, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1954084764598762, guid: 4bda712f3633c1848a137f9f5f310588, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -17288,6 +17728,10 @@ PrefabInstance:
       value: SM_Bld_Section_Window_03
       objectReference: {fileID: 0}
     - target: {fileID: 1244538689631032, guid: afe5d108fdbdaea4fa35d9e3c923fafa, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1244538689631032, guid: afe5d108fdbdaea4fa35d9e3c923fafa, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -17347,6 +17791,10 @@ PrefabInstance:
     - target: {fileID: 1261991240442092, guid: 1dd39e2a8df331343a963c91a1e0974c, type: 3}
       propertyPath: m_Name
       value: SM_Bld_Section_Door_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1261991240442092, guid: 1dd39e2a8df331343a963c91a1e0974c, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1261991240442092, guid: 1dd39e2a8df331343a963c91a1e0974c, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -17604,6 +18052,10 @@ PrefabInstance:
     - target: {fileID: 1165202726996246, guid: 572123d0f82b6a5479ac596709fb6d08, type: 3}
       propertyPath: m_Name
       value: SM_Env_Sidewalk_03_SF (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1165202726996246, guid: 572123d0f82b6a5479ac596709fb6d08, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1165202726996246, guid: 572123d0f82b6a5479ac596709fb6d08, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -18176,6 +18628,10 @@ PrefabInstance:
       value: SM_Env_Graffiti_Ground_01
       objectReference: {fileID: 0}
     - target: {fileID: 1006123973995300, guid: 6112f7245b49efb418df4cff8a1829d4, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1006123973995300, guid: 6112f7245b49efb418df4cff8a1829d4, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -18436,6 +18892,10 @@ PrefabInstance:
       value: SM_Bld_Section_Wall_05 (3)
       objectReference: {fileID: 0}
     - target: {fileID: 1167530832554912, guid: 14be2c847c5873f40af6081f07f0bc27, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167530832554912, guid: 14be2c847c5873f40af6081f07f0bc27, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -18499,6 +18959,10 @@ PrefabInstance:
     - target: {fileID: 1716819399323800, guid: e6af98424eec7ef459a66398b4332b72, type: 3}
       propertyPath: m_Name
       value: SM_Bld_Section_Door_06
+      objectReference: {fileID: 0}
+    - target: {fileID: 1716819399323800, guid: e6af98424eec7ef459a66398b4332b72, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1716819399323800, guid: e6af98424eec7ef459a66398b4332b72, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -19120,6 +19584,10 @@ PrefabInstance:
       value: SM_Env_Sidewalk_Straight_01_SF (8)
       objectReference: {fileID: 0}
     - target: {fileID: 1776786320129414, guid: 553d5ab60b93b904896a8af286bdbe32, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1776786320129414, guid: 553d5ab60b93b904896a8af286bdbe32, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -19177,12 +19645,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 1048252257}
     m_Modifications:
     - target: {fileID: 1189428730408128, guid: 713cc0a3dfe2279499ed8b72f056607e, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1189428730408128, guid: 713cc0a3dfe2279499ed8b72f056607e, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 1709967386187892, guid: 713cc0a3dfe2279499ed8b72f056607e, type: 3}
       propertyPath: m_Name
       value: SM_Bld_Section_Door_05 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1709967386187892, guid: 713cc0a3dfe2279499ed8b72f056607e, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1709967386187892, guid: 713cc0a3dfe2279499ed8b72f056607e, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -19244,6 +19720,10 @@ PrefabInstance:
     - target: {fileID: 1776786320129414, guid: 553d5ab60b93b904896a8af286bdbe32, type: 3}
       propertyPath: m_Name
       value: SM_Env_Sidewalk_Straight_01_SF (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1776786320129414, guid: 553d5ab60b93b904896a8af286bdbe32, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1776786320129414, guid: 553d5ab60b93b904896a8af286bdbe32, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -19529,6 +20009,10 @@ PrefabInstance:
       value: SM_Env_Sidewalk_03_SF (4)
       objectReference: {fileID: 0}
     - target: {fileID: 1165202726996246, guid: 572123d0f82b6a5479ac596709fb6d08, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1165202726996246, guid: 572123d0f82b6a5479ac596709fb6d08, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -19588,6 +20072,10 @@ PrefabInstance:
     - target: {fileID: 1776786320129414, guid: 553d5ab60b93b904896a8af286bdbe32, type: 3}
       propertyPath: m_Name
       value: SM_Env_Sidewalk_Straight_01_SF (16)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1776786320129414, guid: 553d5ab60b93b904896a8af286bdbe32, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1776786320129414, guid: 553d5ab60b93b904896a8af286bdbe32, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -20099,6 +20587,10 @@ PrefabInstance:
       value: SM_Sign_Billboard_Large_04
       objectReference: {fileID: 0}
     - target: {fileID: 1465401426750296, guid: ca5448f7c73d3a349856be1bf2fe18d8, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1465401426750296, guid: ca5448f7c73d3a349856be1bf2fe18d8, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -20166,60 +20658,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 972962278}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1491329535
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1491329536}
-  - component: {fileID: 1491329538}
-  - component: {fileID: 1491329537}
-  m_Layer: 0
-  m_Name: Wall
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
---- !u!4 &1491329536
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1491329535}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 43.71, y: 2.25, z: -3.8999991}
-  m_LocalScale: {x: 1, y: 5.5, z: 9.499875}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1837346293}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1491329537
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1491329535}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!33 &1491329538
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1491329535}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!4 &1492566701 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4848603413141620, guid: 331578b4bf483ae4986eda8b44619e86,
@@ -20242,6 +20680,10 @@ PrefabInstance:
     - target: {fileID: 1397911021057090, guid: 7a4bd320239b74e4b80eabf57b61349b, type: 3}
       propertyPath: m_Name
       value: SM_Env_Road_YellowLines_02_SF (37)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1397911021057090, guid: 7a4bd320239b74e4b80eabf57b61349b, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1397911021057090, guid: 7a4bd320239b74e4b80eabf57b61349b, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -20443,6 +20885,10 @@ PrefabInstance:
       value: SM_Bld_Section_Corner_03
       objectReference: {fileID: 0}
     - target: {fileID: 1920934073497976, guid: 9c18cb03dd4ec8847b92dbe4f33c2ff9, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1920934073497976, guid: 9c18cb03dd4ec8847b92dbe4f33c2ff9, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -20508,6 +20954,10 @@ PrefabInstance:
     - target: {fileID: 1776388541684078, guid: a56da3c44063ebe4e8fdac7b93bf1969, type: 3}
       propertyPath: m_Name
       value: SM_Prop_Atm_01 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1776388541684078, guid: a56da3c44063ebe4e8fdac7b93bf1969, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1776388541684078, guid: a56da3c44063ebe4e8fdac7b93bf1969, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -20630,6 +21080,10 @@ PrefabInstance:
     - target: {fileID: 1761206186323928, guid: 0ec46fb236c42504698f8f412026aac1, type: 3}
       propertyPath: m_Name
       value: SM_Env_Road_Bare_Half_01_SF (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1761206186323928, guid: 0ec46fb236c42504698f8f412026aac1, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1761206186323928, guid: 0ec46fb236c42504698f8f412026aac1, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -20841,6 +21295,10 @@ PrefabInstance:
     - target: {fileID: 1168353465961796, guid: 315f2acd02ded7a458e8ae77a8d7db44, type: 3}
       propertyPath: m_Name
       value: SM_Prop_Bottle_02 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1168353465961796, guid: 315f2acd02ded7a458e8ae77a8d7db44, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1168353465961796, guid: 315f2acd02ded7a458e8ae77a8d7db44, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -21140,6 +21598,10 @@ PrefabInstance:
       value: SM_Bld_Section_Door_02
       objectReference: {fileID: 0}
     - target: {fileID: 1193711496273366, guid: 692039e2420b31443a1e49fe9a1ba389, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1193711496273366, guid: 692039e2420b31443a1e49fe9a1ba389, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -21338,6 +21800,10 @@ PrefabInstance:
       value: SM_Env_Sidewalk_Straight_01_SF (1)
       objectReference: {fileID: 0}
     - target: {fileID: 1776786320129414, guid: 553d5ab60b93b904896a8af286bdbe32, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1776786320129414, guid: 553d5ab60b93b904896a8af286bdbe32, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -21397,6 +21863,10 @@ PrefabInstance:
     - target: {fileID: 1751281816457148, guid: 331578b4bf483ae4986eda8b44619e86, type: 3}
       propertyPath: m_Name
       value: SM_Env_Wall_Generic_01 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1751281816457148, guid: 331578b4bf483ae4986eda8b44619e86, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1751281816457148, guid: 331578b4bf483ae4986eda8b44619e86, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -21464,6 +21934,10 @@ PrefabInstance:
       value: SM_Bld_Section_Wall_05 (1)
       objectReference: {fileID: 0}
     - target: {fileID: 1167530832554912, guid: 14be2c847c5873f40af6081f07f0bc27, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167530832554912, guid: 14be2c847c5873f40af6081f07f0bc27, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -21523,6 +21997,10 @@ PrefabInstance:
     - target: {fileID: 1165202726996246, guid: 572123d0f82b6a5479ac596709fb6d08, type: 3}
       propertyPath: m_Name
       value: SM_Env_Sidewalk_03_SF (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1165202726996246, guid: 572123d0f82b6a5479ac596709fb6d08, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1165202726996246, guid: 572123d0f82b6a5479ac596709fb6d08, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -21808,8 +22286,16 @@ PrefabInstance:
       value: SM_Prop_TrashCan_01
       objectReference: {fileID: 0}
     - target: {fileID: 1284679517027656, guid: 49403e0fe06c5a94caf8def848fd9941, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1284679517027656, guid: 49403e0fe06c5a94caf8def848fd9941, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 1928799507968028, guid: 49403e0fe06c5a94caf8def848fd9941, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1928799507968028, guid: 49403e0fe06c5a94caf8def848fd9941, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -22219,6 +22705,10 @@ PrefabInstance:
       value: SM_Bld_Section_Wall_01
       objectReference: {fileID: 0}
     - target: {fileID: 1117716727441396, guid: 4caa1debd226fcd4884eca0c619ce93f, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1117716727441396, guid: 4caa1debd226fcd4884eca0c619ce93f, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -22278,6 +22768,10 @@ PrefabInstance:
     - target: {fileID: 1761206186323928, guid: 0ec46fb236c42504698f8f412026aac1, type: 3}
       propertyPath: m_Name
       value: SM_Env_Road_Bare_Half_01_SF (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1761206186323928, guid: 0ec46fb236c42504698f8f412026aac1, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1761206186323928, guid: 0ec46fb236c42504698f8f412026aac1, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -22522,6 +23016,10 @@ PrefabInstance:
       value: SM_Env_Sidewalk_Corner_01_SF (2)
       objectReference: {fileID: 0}
     - target: {fileID: 1035388532786480, guid: bb14082ea26e24140b490f3bf8a64d11, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1035388532786480, guid: bb14082ea26e24140b490f3bf8a64d11, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -22581,6 +23079,10 @@ PrefabInstance:
     - target: {fileID: 1954084764598762, guid: 4bda712f3633c1848a137f9f5f310588, type: 3}
       propertyPath: m_Name
       value: SM_Prop_Barrier_02
+      objectReference: {fileID: 0}
+    - target: {fileID: 1954084764598762, guid: 4bda712f3633c1848a137f9f5f310588, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1954084764598762, guid: 4bda712f3633c1848a137f9f5f310588, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -22738,6 +23240,10 @@ PrefabInstance:
     - target: {fileID: 1165202726996246, guid: 572123d0f82b6a5479ac596709fb6d08, type: 3}
       propertyPath: m_Name
       value: SM_Env_Sidewalk_03_SF (18)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1165202726996246, guid: 572123d0f82b6a5479ac596709fb6d08, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1165202726996246, guid: 572123d0f82b6a5479ac596709fb6d08, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -23269,6 +23775,10 @@ PrefabInstance:
       value: SM_Env_Sidewalk_03_SF (11)
       objectReference: {fileID: 0}
     - target: {fileID: 1165202726996246, guid: 572123d0f82b6a5479ac596709fb6d08, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1165202726996246, guid: 572123d0f82b6a5479ac596709fb6d08, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -23478,6 +23988,10 @@ PrefabInstance:
       value: SM_Env_Sidewalk_Straight_01_SF (9)
       objectReference: {fileID: 0}
     - target: {fileID: 1776786320129414, guid: 553d5ab60b93b904896a8af286bdbe32, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1776786320129414, guid: 553d5ab60b93b904896a8af286bdbe32, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -23543,6 +24057,10 @@ PrefabInstance:
     - target: {fileID: 1776786320129414, guid: 553d5ab60b93b904896a8af286bdbe32, type: 3}
       propertyPath: m_Name
       value: SM_Env_Sidewalk_Straight_01_SF (23)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1776786320129414, guid: 553d5ab60b93b904896a8af286bdbe32, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1776786320129414, guid: 553d5ab60b93b904896a8af286bdbe32, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -24182,6 +24700,10 @@ PrefabInstance:
       value: SM_Bld_Section_Window_02
       objectReference: {fileID: 0}
     - target: {fileID: 1906233416710434, guid: f4c7ff12cc628584b9ad227f43d6129c, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1906233416710434, guid: f4c7ff12cc628584b9ad227f43d6129c, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -24273,7 +24795,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1754170640}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.960001, y: 2.25, z: 0.59999657}
+  m_LocalPosition: {x: 7.960001, y: 2.25, z: 1.3499966}
   m_LocalScale: {x: 74.99958, y: 5.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -24579,6 +25101,10 @@ PrefabInstance:
       value: SM_Prop_Barrier_line_01 (1)
       objectReference: {fileID: 0}
     - target: {fileID: 1990082954663360, guid: 800458afd8edd8347948cf025aeebfa6, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1990082954663360, guid: 800458afd8edd8347948cf025aeebfa6, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -24644,6 +25170,10 @@ PrefabInstance:
     - target: {fileID: 1776786320129414, guid: 553d5ab60b93b904896a8af286bdbe32, type: 3}
       propertyPath: m_Name
       value: SM_Env_Sidewalk_Straight_01_SF (25)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1776786320129414, guid: 553d5ab60b93b904896a8af286bdbe32, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1776786320129414, guid: 553d5ab60b93b904896a8af286bdbe32, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -24717,6 +25247,10 @@ PrefabInstance:
     - target: {fileID: 1906233416710434, guid: f4c7ff12cc628584b9ad227f43d6129c, type: 3}
       propertyPath: m_Name
       value: SM_Bld_Section_Window_02
+      objectReference: {fileID: 0}
+    - target: {fileID: 1906233416710434, guid: f4c7ff12cc628584b9ad227f43d6129c, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1906233416710434, guid: f4c7ff12cc628584b9ad227f43d6129c, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -24920,6 +25454,10 @@ PrefabInstance:
       value: SM_Env_Wall_Generic_01 (4)
       objectReference: {fileID: 0}
     - target: {fileID: 1751281816457148, guid: 331578b4bf483ae4986eda8b44619e86, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1751281816457148, guid: 331578b4bf483ae4986eda8b44619e86, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -25061,6 +25599,10 @@ PrefabInstance:
       value: SM_Env_Sidewalk_03_SF (12)
       objectReference: {fileID: 0}
     - target: {fileID: 1165202726996246, guid: 572123d0f82b6a5479ac596709fb6d08, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1165202726996246, guid: 572123d0f82b6a5479ac596709fb6d08, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -25122,6 +25664,10 @@ PrefabInstance:
       value: SM_Bld_Section_Wall_05
       objectReference: {fileID: 0}
     - target: {fileID: 1167530832554912, guid: 14be2c847c5873f40af6081f07f0bc27, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167530832554912, guid: 14be2c847c5873f40af6081f07f0bc27, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -25181,6 +25727,10 @@ PrefabInstance:
     - target: {fileID: 1751281816457148, guid: 331578b4bf483ae4986eda8b44619e86, type: 3}
       propertyPath: m_Name
       value: SM_Env_Wall_Generic_01 (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1751281816457148, guid: 331578b4bf483ae4986eda8b44619e86, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1751281816457148, guid: 331578b4bf483ae4986eda8b44619e86, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -25248,6 +25798,10 @@ PrefabInstance:
       value: SM_Prop_Streetlight_01 (4)
       objectReference: {fileID: 0}
     - target: {fileID: 1654047550262966, guid: 72743bd38a7349d4fa26ac056b454810, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1654047550262966, guid: 72743bd38a7349d4fa26ac056b454810, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -25307,6 +25861,10 @@ PrefabInstance:
     - target: {fileID: 1839877879696270, guid: 84c3b5bbf4f75624792d3b03f1c2b546, type: 3}
       propertyPath: m_Name
       value: SM_Bld_StripClub_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1839877879696270, guid: 84c3b5bbf4f75624792d3b03f1c2b546, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1839877879696270, guid: 84c3b5bbf4f75624792d3b03f1c2b546, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -25400,7 +25958,6 @@ Transform:
   m_Children:
   - {fileID: 1754170641}
   - {fileID: 1216107807}
-  - {fileID: 1491329536}
   m_Father: {fileID: 0}
   m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -25414,6 +25971,10 @@ PrefabInstance:
     - target: {fileID: 1167530832554912, guid: 14be2c847c5873f40af6081f07f0bc27, type: 3}
       propertyPath: m_Name
       value: SM_Bld_Section_Wall_05 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167530832554912, guid: 14be2c847c5873f40af6081f07f0bc27, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1167530832554912, guid: 14be2c847c5873f40af6081f07f0bc27, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -25475,6 +26036,10 @@ PrefabInstance:
     - target: {fileID: 1271783961787342, guid: 181f6d5bc4a81994d84a0d68b7a2205d, type: 3}
       propertyPath: m_Name
       value: SM_Prop_Barrier_03 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1271783961787342, guid: 181f6d5bc4a81994d84a0d68b7a2205d, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1271783961787342, guid: 181f6d5bc4a81994d84a0d68b7a2205d, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -26118,6 +26683,10 @@ PrefabInstance:
       value: SM_Bld_Raised_02
       objectReference: {fileID: 0}
     - target: {fileID: 1499422271495080, guid: 0935701b68167c54a9e2ee7fe6f1d473, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1499422271495080, guid: 0935701b68167c54a9e2ee7fe6f1d473, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -26519,6 +27088,10 @@ PrefabInstance:
       value: SM_Bld_Section_Door_06 (1)
       objectReference: {fileID: 0}
     - target: {fileID: 1716819399323800, guid: e6af98424eec7ef459a66398b4332b72, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1716819399323800, guid: e6af98424eec7ef459a66398b4332b72, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -26641,6 +27214,10 @@ PrefabInstance:
       value: SM_Env_Road_Crossing_01_SF (6)
       objectReference: {fileID: 0}
     - target: {fileID: 1224664707774196, guid: 1706df18b40e3b54398964cb03a14f7f, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1224664707774196, guid: 1706df18b40e3b54398964cb03a14f7f, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -26700,6 +27277,10 @@ PrefabInstance:
     - target: {fileID: 1167530832554912, guid: 14be2c847c5873f40af6081f07f0bc27, type: 3}
       propertyPath: m_Name
       value: SM_Bld_Section_Wall_05 (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167530832554912, guid: 14be2c847c5873f40af6081f07f0bc27, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1167530832554912, guid: 14be2c847c5873f40af6081f07f0bc27, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -26960,6 +27541,10 @@ PrefabInstance:
       value: SM_Env_Sidewalk_03_SF (9)
       objectReference: {fileID: 0}
     - target: {fileID: 1165202726996246, guid: 572123d0f82b6a5479ac596709fb6d08, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1165202726996246, guid: 572123d0f82b6a5479ac596709fb6d08, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -27019,6 +27604,10 @@ PrefabInstance:
     - target: {fileID: 1751281816457148, guid: 331578b4bf483ae4986eda8b44619e86, type: 3}
       propertyPath: m_Name
       value: SM_Env_Wall_Generic_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1751281816457148, guid: 331578b4bf483ae4986eda8b44619e86, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1751281816457148, guid: 331578b4bf483ae4986eda8b44619e86, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -27202,6 +27791,10 @@ PrefabInstance:
       value: SM_Env_Sidewalk_Straight_01_SF (13)
       objectReference: {fileID: 0}
     - target: {fileID: 1776786320129414, guid: 553d5ab60b93b904896a8af286bdbe32, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1776786320129414, guid: 553d5ab60b93b904896a8af286bdbe32, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -27261,6 +27854,10 @@ PrefabInstance:
     - target: {fileID: 1954084764598762, guid: 4bda712f3633c1848a137f9f5f310588, type: 3}
       propertyPath: m_Name
       value: SM_Prop_Barrier_02 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1954084764598762, guid: 4bda712f3633c1848a137f9f5f310588, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1954084764598762, guid: 4bda712f3633c1848a137f9f5f310588, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -27383,6 +27980,10 @@ PrefabInstance:
     - target: {fileID: 1803395385396878, guid: 609f07731dd2d944b8eed37e471d9c26, type: 3}
       propertyPath: m_Name
       value: SM_Prop_BenchSeat_01 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1803395385396878, guid: 609f07731dd2d944b8eed37e471d9c26, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1803395385396878, guid: 609f07731dd2d944b8eed37e471d9c26, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -27664,6 +28265,10 @@ PrefabInstance:
       value: SM_Prop_TrashBag_01
       objectReference: {fileID: 0}
     - target: {fileID: 1149949497240620, guid: 6327f3b529212ab4692c4ce3714ab082, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1149949497240620, guid: 6327f3b529212ab4692c4ce3714ab082, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -27887,12 +28492,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 189588152}
     m_Modifications:
     - target: {fileID: 1313169644953270, guid: b9aa404ea67c0ae41b1fc669a5b71369, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1313169644953270, guid: b9aa404ea67c0ae41b1fc669a5b71369, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 1790194864708156, guid: b9aa404ea67c0ae41b1fc669a5b71369, type: 3}
       propertyPath: m_Name
       value: SM_Prop_VendingMachine_Soda_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1790194864708156, guid: b9aa404ea67c0ae41b1fc669a5b71369, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1790194864708156, guid: b9aa404ea67c0ae41b1fc669a5b71369, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -28087,6 +28700,10 @@ PrefabInstance:
       value: SM_Env_Sidewalk_Straight_01_SF (17)
       objectReference: {fileID: 0}
     - target: {fileID: 1776786320129414, guid: 553d5ab60b93b904896a8af286bdbe32, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1776786320129414, guid: 553d5ab60b93b904896a8af286bdbe32, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -28148,6 +28765,10 @@ PrefabInstance:
       value: SM_Env_Sidewalk_03_SF (5)
       objectReference: {fileID: 0}
     - target: {fileID: 1165202726996246, guid: 572123d0f82b6a5479ac596709fb6d08, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1165202726996246, guid: 572123d0f82b6a5479ac596709fb6d08, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -28207,6 +28828,10 @@ PrefabInstance:
     - target: {fileID: 1034957934740444, guid: f685963809caafb42bf2ef0c3d5fec4e, type: 3}
       propertyPath: m_Name
       value: SM_Bld_Section_Window_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1034957934740444, guid: f685963809caafb42bf2ef0c3d5fec4e, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1034957934740444, guid: f685963809caafb42bf2ef0c3d5fec4e, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -28519,6 +29144,10 @@ PrefabInstance:
     - target: {fileID: 1397911021057090, guid: 7a4bd320239b74e4b80eabf57b61349b, type: 3}
       propertyPath: m_Name
       value: SM_Env_Road_YellowLines_02_SF (39)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1397911021057090, guid: 7a4bd320239b74e4b80eabf57b61349b, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1397911021057090, guid: 7a4bd320239b74e4b80eabf57b61349b, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -28879,6 +29508,10 @@ PrefabInstance:
       value: SM_Env_Sidewalk_Straight_01_SF (7)
       objectReference: {fileID: 0}
     - target: {fileID: 1776786320129414, guid: 553d5ab60b93b904896a8af286bdbe32, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1776786320129414, guid: 553d5ab60b93b904896a8af286bdbe32, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -28936,12 +29569,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 1048252257}
     m_Modifications:
     - target: {fileID: 1189428730408128, guid: 713cc0a3dfe2279499ed8b72f056607e, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1189428730408128, guid: 713cc0a3dfe2279499ed8b72f056607e, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 1709967386187892, guid: 713cc0a3dfe2279499ed8b72f056607e, type: 3}
       propertyPath: m_Name
       value: SM_Bld_Section_Door_05 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1709967386187892, guid: 713cc0a3dfe2279499ed8b72f056607e, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1709967386187892, guid: 713cc0a3dfe2279499ed8b72f056607e, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -29087,6 +29728,10 @@ PrefabInstance:
     - target: {fileID: 1261991240442092, guid: 1dd39e2a8df331343a963c91a1e0974c, type: 3}
       propertyPath: m_Name
       value: SM_Bld_Section_Door_01 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1261991240442092, guid: 1dd39e2a8df331343a963c91a1e0974c, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1261991240442092, guid: 1dd39e2a8df331343a963c91a1e0974c, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -29370,6 +30015,10 @@ PrefabInstance:
       value: SM_Env_Sidewalk_Straight_04_SF
       objectReference: {fileID: 0}
     - target: {fileID: 1039678699867256, guid: 8eb4c19836b1e69448dccd70be19f9d0, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1039678699867256, guid: 8eb4c19836b1e69448dccd70be19f9d0, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -29509,6 +30158,10 @@ PrefabInstance:
       value: SM_Env_Road_YellowLines_02_SF (38)
       objectReference: {fileID: 0}
     - target: {fileID: 1397911021057090, guid: 7a4bd320239b74e4b80eabf57b61349b, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1397911021057090, guid: 7a4bd320239b74e4b80eabf57b61349b, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -29624,6 +30277,10 @@ PrefabInstance:
       value: SM_Bld_Section_Door_02 (1)
       objectReference: {fileID: 0}
     - target: {fileID: 1193711496273366, guid: 692039e2420b31443a1e49fe9a1ba389, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1193711496273366, guid: 692039e2420b31443a1e49fe9a1ba389, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -29691,6 +30348,10 @@ PrefabInstance:
       value: SM_Prop_Streetlight_01 (6)
       objectReference: {fileID: 0}
     - target: {fileID: 1654047550262966, guid: 72743bd38a7349d4fa26ac056b454810, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1654047550262966, guid: 72743bd38a7349d4fa26ac056b454810, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -29756,6 +30417,10 @@ PrefabInstance:
     - target: {fileID: 1167530832554912, guid: 14be2c847c5873f40af6081f07f0bc27, type: 3}
       propertyPath: m_Name
       value: SM_Bld_Section_Wall_05 (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167530832554912, guid: 14be2c847c5873f40af6081f07f0bc27, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1167530832554912, guid: 14be2c847c5873f40af6081f07f0bc27, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -30118,6 +30783,10 @@ PrefabInstance:
       value: SM_Env_Wall_Generic_01 (6)
       objectReference: {fileID: 0}
     - target: {fileID: 1751281816457148, guid: 331578b4bf483ae4986eda8b44619e86, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1751281816457148, guid: 331578b4bf483ae4986eda8b44619e86, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -30181,6 +30850,10 @@ PrefabInstance:
     - target: {fileID: 1397911021057090, guid: 7a4bd320239b74e4b80eabf57b61349b, type: 3}
       propertyPath: m_Name
       value: SM_Env_Road_YellowLines_02_SF (31)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1397911021057090, guid: 7a4bd320239b74e4b80eabf57b61349b, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1397911021057090, guid: 7a4bd320239b74e4b80eabf57b61349b, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -30841,6 +31514,10 @@ PrefabInstance:
     - target: {fileID: 1165202726996246, guid: 572123d0f82b6a5479ac596709fb6d08, type: 3}
       propertyPath: m_Name
       value: SM_Env_Sidewalk_03_SF (17)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1165202726996246, guid: 572123d0f82b6a5479ac596709fb6d08, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1165202726996246, guid: 572123d0f82b6a5479ac596709fb6d08, type: 3}
       propertyPath: m_StaticEditorFlags

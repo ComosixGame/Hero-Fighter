@@ -25,6 +25,7 @@ public class MapGeneration : MonoBehaviour
     {
         gameManager.OnStartGame += StartGame;
         gameManager.OnEnemyDeath += EnemyDeath;
+        uIMenu = FindObjectOfType<UIMenu>();
     }
 
     private void OnDisable()
@@ -44,10 +45,25 @@ public class MapGeneration : MonoBehaviour
         {
             for (int i = 0; i < enemyList.Count; i++)
             {
-                if (enemyList[i].gameObject.GetComponent<EnemyDamageable>().destroyed)
+                if (enemyList[i].gameObject.GetComponent<EnemyDamageable>().destroyed )
                 {
-                    Debug.Log(enemyList.Count);
+                    enemyList.RemoveAt(i);
                 }
+            }
+
+        } 
+        if (currentWave < totalWaves - 1)
+        {
+            if (enemyList.Count == 0)
+            {
+                uIMenu.PreviousAnimation(true);
+                areaColliders[currentWave].isTrigger = true;
+            }
+        } else
+        {
+            if (enemyList.Count == 0)
+            {
+                gameManager.GameWin();
             }
         }
     }
@@ -81,8 +97,8 @@ public class MapGeneration : MonoBehaviour
     {
         currentWave++;
         StartNewWave();
-        countEnemyDeath = levelState.waves[currentWave].enemies.Count;
-        cinemachineConfinerController.ChangeConfiner(currentWave);
+        // countEnemyDeath = levelState.waves[currentWave].enemies.Count;
+        // cinemachineConfinerController.ChangeConfiner(currentWave);
     }
 
     private void EnemyDeath()

@@ -48,6 +48,14 @@ public class UIMenu : MonoBehaviour
         settingData = SettingData.Load();
     }
 
+    private void OnEnable() {
+        animator = GetComponent<Animator>();
+        previousHash = Animator.StringToHash("isPrevious");
+        startHash = Animator.StringToHash("Start");
+        soundManager = SoundManager.Instance;
+        settingData = SettingData.Load();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -82,8 +90,8 @@ public class UIMenu : MonoBehaviour
         flagCountHit = hit;
         if (hit)
         {
-            hitCount.SetActive(true);
-            totalHit.SetActive(false);
+            hitCount?.SetActive(true);
+            totalHit?.SetActive(false);
             hitPoint++;
             pointTxt.text = hitPoint + "";
             pointTxt.fontSize = bigSize;
@@ -94,7 +102,7 @@ public class UIMenu : MonoBehaviour
         }
         else
         {
-            hitCount.SetActive(false);
+            hitCount?.SetActive(false);
             hitPoint = 0;
             Invoke("DisplayTotalHit", 0.5f);
         }
@@ -105,8 +113,8 @@ public class UIMenu : MonoBehaviour
     {
         if (totalHitPoint != 0 && !totalHit.activeInHierarchy)
         {
-            totalHit.SetActive(true);
-            hitCount.SetActive(false);
+            totalHit?.SetActive(true);
+            hitCount?.SetActive(false);
             Color currentColor;
             string textPointText;
             if (totalHitPoint <= 2)
@@ -145,8 +153,8 @@ public class UIMenu : MonoBehaviour
 
     private void DisplayTotalHitDone()
     {
-        totalHit.SetActive(false);
-        hitCount.SetActive(false);
+        totalHit?.SetActive(false);
+        hitCount?.SetActive(false);
         totalHitPoint = 0;
     }
 

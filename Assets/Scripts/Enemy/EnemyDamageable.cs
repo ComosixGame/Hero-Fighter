@@ -47,9 +47,12 @@ public class EnemyDamageable : MonoBehaviour, IDamageable
         deathHash = Animator.StringToHash("death");
         dyingHash = Animator.StringToHash("dying");
         standUpHash = Animator.StringToHash("StandUp");
-        uI = FindObjectOfType<UIMenu>();
         absEnemyAttack = GetComponent<AbsEnemyAttack>();
         objectPoolerManager = ObjectPoolerManager.Instance;
+    }
+
+    private void OnEnable() {
+        uI = FindObjectOfType<UIMenu>();
     }
 
     private void Start()

@@ -80,5 +80,11 @@ public class CharacterSelection : MonoBehaviour
         SpawnSelectedCharacter(playerPos);
     }
 
+    private void OnDrawGizmos() 
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawSphere(playerPos, 0.5f);
+    }
+
 
 }

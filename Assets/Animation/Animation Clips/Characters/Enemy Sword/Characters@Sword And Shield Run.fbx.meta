@@ -1,14 +1,11 @@
 fileFormatVersion: 2
-guid: aa379d6654f394e488e638241529cd57
+guid: 7d298ae27f8259f439dc0ba5019ed5fc
 ModelImporter:
   serializedVersion: 21202
   internalIDToNameTable:
   - first:
       74: -203655887218126122
-    second: Walking (2)
-  - first:
-      74: -1610863427237328480
-    second: Walking
+    second: Sword And Shield Run
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -39,11 +36,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Walking
+      name: Sword And Shield Run
       takeName: mixamo.com
       internalID: 0
       firstFrame: 0
-      lastFrame: 30
+      lastFrame: 21
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

@@ -21,7 +21,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: 0eb5bbf1fc7f6e242813aa892016c205,
+  m_Motion: {fileID: -203655887218126122, guid: 1a6c51d5fa32d9f4eb5efea636dde9af,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -141,7 +141,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Big Hit To Head
+  m_Name: Sword And Shield Impact
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -155,7 +155,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: 663d4f229f4ae80439c4e88c95897a2a,
+  m_Motion: {fileID: -203655887218126122, guid: c9de568ad40e6124495b36e6d4587593,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -232,7 +232,7 @@ AnimatorStateMachine:
     m_Position: {x: 180, y: 500, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 3087957252747188851}
-    m_Position: {x: 187.73785, y: 291.29626, z: 0}
+    m_Position: {x: 190, y: 290, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -8037049180424715466}
     m_Position: {x: 210, y: 380, z: 0}
@@ -329,7 +329,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: 0081ab5f51508504092642a8628ca8ca,
+  m_Motion: {fileID: -203655887218126122, guid: ec0ff58779b71ef40af7e30de5a7a159,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -368,7 +368,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Attack
+  m_Name: Sword And Shield Slash
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -382,7 +382,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: 35bdf0e8b87bfed45ab60379c9aea196,
+  m_Motion: {fileID: 3759777152582214702, guid: 75408110dbd69164086f35ce338cd81d,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -791,7 +791,7 @@ BlendTree:
   m_Name: Blend Tree
   m_Childs:
   - serializedVersion: 2
-    m_Motion: {fileID: -203655887218126122, guid: 54cafde6f8c84bf46839047893cea13f,
+    m_Motion: {fileID: -203655887218126122, guid: fe03f4aca7a18ac48a8e3152f5b82638,
       type: 3}
     m_Threshold: 0
     m_Position: {x: 0, y: 0}
@@ -800,7 +800,7 @@ BlendTree:
     m_DirectBlendParameter: Velocity
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: -203655887218126122, guid: d7a25a17bdd37724eb6c26fce55c95ab,
+    m_Motion: {fileID: -203655887218126122, guid: da24413ac4e632a4c87bef124d5290f0,
       type: 3}
     m_Threshold: 0.2
     m_Position: {x: 0, y: 0}
@@ -809,7 +809,7 @@ BlendTree:
     m_DirectBlendParameter: Velocity
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: -203655887218126122, guid: 5a05a4e9960631243b85c26b17889a94,
+    m_Motion: {fileID: -203655887218126122, guid: 7d298ae27f8259f439dc0ba5019ed5fc,
       type: 3}
     m_Threshold: 1
     m_Position: {x: 0, y: 0}
@@ -881,7 +881,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Falling Forward Death
+  m_Name: Sword And Shield Death
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -894,7 +894,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: edbb4b4b54e72804fae9f6d03af16cad,
+  m_Motion: {fileID: -203655887218126122, guid: 8b0c01c4924aa9a41b2bcd1def900069,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -922,7 +922,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: 1e48eb8b8dffcc4488c62ab4d67f8aae,
+  m_Motion: {fileID: -203655887218126122, guid: be47fe030f7c2054cb7ffb4e7fa03f24,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 

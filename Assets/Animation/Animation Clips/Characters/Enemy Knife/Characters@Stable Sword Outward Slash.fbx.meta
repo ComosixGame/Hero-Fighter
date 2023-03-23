@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: ec0ff58779b71ef40af7e30de5a7a159
+guid: 55aaafad7cb8cf04ca9d15127c28826c
 ModelImporter:
   serializedVersion: 21202
   internalIDToNameTable:
   - first:
       74: -203655887218126122
-    second: Dying
+    second: Stable Sword Outward Slash
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -36,19 +36,19 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Dying
+      name: Stable Sword Outward Slash
       takeName: mixamo.com
       internalID: 0
       firstFrame: 0
-      lastFrame: 205
+      lastFrame: 61
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 1
+      loopTime: 0
+      loopBlend: 0
       loopBlendOrientation: 1
       loopBlendPositionY: 1
       loopBlendPositionXZ: 1
@@ -59,15 +59,7 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events:
-      - time: 0.002692307
-        functionName: CancelHurtBox
-        data: 
-        objectReferenceParameter: {fileID: 11500000, guid: 69b1e0683aff35243b433ec8c8949683,
-          type: 3}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
+      events: []
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}

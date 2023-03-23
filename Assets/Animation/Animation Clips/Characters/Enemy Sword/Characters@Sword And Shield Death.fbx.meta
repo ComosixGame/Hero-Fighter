@@ -63,7 +63,7 @@ ModelImporter:
       - time: 0.0053846147
         functionName: CancelHurtBox
         data: 
-        objectReferenceParameter: {fileID: 11500000, guid: fef91d7f3b34ced49944c22a7ef31a20,
+        objectReferenceParameter: {fileID: 11500000, guid: 69b1e0683aff35243b433ec8c8949683,
           type: 3}
         floatParameter: 0
         intParameter: 0

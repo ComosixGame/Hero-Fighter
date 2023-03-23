@@ -61,27 +61,27 @@ MonoBehaviour:
     size: 10
     GameObjectPool: {fileID: -3004082893452583331, guid: 66f90b8ef000cd344b055e2a336f1160,
       type: 3}
-  - name: Element10
+  - name: EnemyMelee1
     size: 1
     GameObjectPool: {fileID: -1348277006179719198, guid: 0aba806c22f8e81469efeb3e22ae215c,
       type: 3}
-  - name: Element11
+  - name: EnemyMelee2
     size: 1
     GameObjectPool: {fileID: 7982874686349890351, guid: ff8ca2fbe4136f04bb56f102a8d8ec4d,
       type: 3}
-  - name: Element12
+  - name: EnemySword1
     size: 1
     GameObjectPool: {fileID: 2550504968027839815, guid: 0f0b5892e5ac1d7459cbf90560cd91a7,
       type: 3}
-  - name: Element13
+  - name: EnemySword2
     size: 1
     GameObjectPool: {fileID: 3179910275667844987, guid: 3eba54074a53bc044bb941ecbb6d7713,
       type: 3}
-  - name: Element14
+  - name: EnemyKnife1
     size: 1
-    GameObjectPool: {fileID: 2431834206517614951, guid: 2d55c3939f20f374ab1650e91ebf786c,
+    GameObjectPool: {fileID: 3492585246985200005, guid: 2d55c3939f20f374ab1650e91ebf786c,
       type: 3}
-  - name: Element14
+  - name: EnemyKnife2
     size: 1
-    GameObjectPool: {fileID: 8504180070265017838, guid: e2a0bdeab65f7854cbd160e4507f3873,
+    GameObjectPool: {fileID: 6720937183497095089, guid: e2a0bdeab65f7854cbd160e4507f3873,
       type: 3}

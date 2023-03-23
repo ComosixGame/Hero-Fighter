@@ -8,30 +8,31 @@ public class MapGeneration : MonoBehaviour
     [SerializeField] private Collider[] areaColliders;
     [SerializeField] private CinemachineConfinerController cinemachineConfinerController;
     private int currentWave = 0;
-    private int countEnemyDeath = 0;
     private int totalWaves;
     private GameManager gameManager;
     private ObjectPoolerManager objectPooler;
     private List<GameObjectPool> enemyList = new List<GameObjectPool>();
+    private bool isStart, isReset;
 
     private void Awake()
     {
         gameManager = GameManager.Instance;
         objectPooler = ObjectPoolerManager.Instance;
-        enemyList.Clear();
     }
 
     private void OnEnable()
     {
+        isStart = false;
+        isReset = false;
         gameManager.OnStartGame += StartGame;
-        gameManager.OnEnemyDeath += EnemyDeath;
+        gameManager.OnNewGame += ResetGame;
         uIMenu = FindObjectOfType<UIMenu>();
     }
 
     private void OnDisable()
     {
         gameManager.OnStartGame -= StartGame;
-        gameManager.OnEnemyDeath -= EnemyDeath;
+        gameManager.OnNewGame -= ResetGame;
     }
 
     private void Start()
@@ -41,43 +42,56 @@ public class MapGeneration : MonoBehaviour
 
     private void Update()
     {
-        if (enemyList != null)
+        if (!isReset)
         {
-            for (int i = 0; i < enemyList.Count; i++)
+            if (enemyList != null)
             {
-                if (enemyList[i].gameObject.GetComponent<EnemyDamageable>().destroyed )
+                for (int i = 0; i < enemyList.Count; i++)
                 {
-                    enemyList.RemoveAt(i);
+                    if (enemyList[i].gameObject.GetComponent<EnemyDamageable>().destroyed)
+                    {
+                        enemyList.RemoveAt(i);
+                    }
                 }
             }
+        }
 
-        } 
-        if (currentWave < totalWaves - 1)
+
+        if(isStart)
         {
-            if (enemyList.Count == 0)
+            if (currentWave < totalWaves - 1)
             {
-                uIMenu.PreviousAnimation(true);
-                areaColliders[currentWave].isTrigger = true;
-            }
-        } else
-        {
-            if (enemyList.Count == 0)
+                if (enemyList.Count == 0)
+                {
+                    uIMenu.PreviousAnimation(true);
+                    areaColliders[currentWave].isTrigger = true;
+                }
+            } else
             {
-                gameManager.GameWin();
+                if (enemyList.Count == 0)
+                {
+                    gameManager.GameWin();
+                    isStart = false;
+                }
             }
         }
     }
 
     private void StartGame()
     {
-        countEnemyDeath = levelState.waves[currentWave].enemies.Count;
         totalWaves = levelState.waves.Count;
         StartNewWave();
+    }
+
+    private void ResetGame()
+    {
+        isReset = true;
     }
 
     //Able all the enemies in wave
     private void StartNewWave()
     {
+        isStart = true;
         for (int i = 0; i < levelState.waves.Count; i++)
         {
             LevelState.Wave wave = levelState.waves[i];
@@ -97,36 +111,8 @@ public class MapGeneration : MonoBehaviour
     {
         currentWave++;
         StartNewWave();
-        // countEnemyDeath = levelState.waves[currentWave].enemies.Count;
-        // cinemachineConfinerController.ChangeConfiner(currentWave);
     }
 
-    private void EnemyDeath()
-    {
-        if (currentWave < totalWaves - 1)
-        {
-            if (countEnemyDeath != 0)
-            {
-                countEnemyDeath--;
-                if (countEnemyDeath == 0)
-                {
-                    uIMenu.PreviousAnimation(true);
-                    areaColliders[currentWave].isTrigger = true;
-                }
-            }
-        }
-        else
-        {
-            if (countEnemyDeath != 0)
-            {
-                countEnemyDeath--;
-                if (countEnemyDeath == 0)
-                {
-                    gameManager.GameWin();
-                }
-            }
-        }
-    }
 
 #if UNITY_EDITOR
     private void OnDrawGizmosSelected()

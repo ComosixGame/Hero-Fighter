@@ -12,14 +12,19 @@ public class GameManager : Singleton<GameManager>
     public event Action OnResume;
     public event Action<bool> OnEndGame;
     public event Action OnNewGame;
-    public event Action OnEnemyDeath;
     public event Action<int> OnUpdateMoney;
     public event Action<Transform> OnLose;
     public event Action OnEnemiesDestroyed;
     public event Action OnGoneCheckPoint;
-    public GameObject uiMenu;
+    public UIMenu uiMenu;
     private PlayerData playerData;
     public SettingData settingData;
+
+    private ObjectPoolerManager objectPoolerManager;
+
+    private void OnEnable() {
+        
+    }
 
     private void Start() {
         Application.targetFrameRate = 60;
@@ -31,7 +36,13 @@ public class GameManager : Singleton<GameManager>
 
     public void StartGame()
     {
+        Time.timeScale = 1;
+        objectPoolerManager = ObjectPoolerManager.Instance;
+        playerData = PlayerData.Load();
+        Debug.Log("LV" + playerData.LatestLevel);
         OnStartGame?.Invoke();
+        uiMenu = FindObjectOfType<UIMenu>();
+        uiMenu.SetStartGameAnimation();
     }
     
     public void PauseGame()
@@ -46,20 +57,15 @@ public class GameManager : Singleton<GameManager>
         OnResume?.Invoke();
     }
 
-    public void EnemyDeath()
-    {
-        OnEnemyDeath?.Invoke();
-    }
-
     public void GameWin()
     {
         Time.timeScale = 0.3f;
-        uiMenu.GetComponent<UIMenu>().GameWin();
+        uiMenu.GameWin();
     }
 
     public void GameLose()
     {
-        uiMenu.GetComponent<UIMenu>().GameLose();
+        uiMenu.GameLose();
         OnLose?.Invoke(player);
     }
 
@@ -73,6 +79,7 @@ public class GameManager : Singleton<GameManager>
             playerData.levels.Add(nextLevel);
             playerData.Save();
         }
+        DestroyGameObjectPooler();
         OnNewGame?.Invoke();
         //Invoke for Sound
         OnEndGame?.Invoke(win);
@@ -86,6 +93,11 @@ public class GameManager : Singleton<GameManager>
     public void GoneCheckPoint()
     {
         OnGoneCheckPoint?.Invoke();
+    }
+
+    public void DestroyGameObjectPooler()
+    {
+        objectPoolerManager.DeleteObjectPoolerManager();
     }
 
 }

@@ -167,7 +167,6 @@ public class EnemyDamageable : MonoBehaviour, IDamageable
         enemyBehaviour.enabled = false;
         colliderGameObject.enabled = false;
         healthBarRennder.DestroyHealthBar();
-        gameManager.EnemyDeath();
         agent.ResetPath();
         destroyed = true;
     }

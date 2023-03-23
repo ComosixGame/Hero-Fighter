@@ -25,6 +25,7 @@ public class EnemyBehaviour : MonoBehaviour
     private EnemyDamageable damageable;
     private AbsEnemyAttack absEnemyAttack;
     private GameManager gameManager;
+    private bool isStart;
 
     private void Awake()
     {
@@ -39,37 +40,47 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void OnEnable()
     {
+        gameManager.OnStartGame += StartGame;
         damageable.OnTakeDamageStart += DisableEnemy;
         damageable.OnTakeDamageEnd += EnableEnemy;
     }
 
     private void OnDisable()
     {
+        // gameManager.OnStartGame -= StartGame;
         damageable.OnTakeDamageStart -= DisableEnemy;
         damageable.OnTakeDamageEnd -= EnableEnemy;
+    }
+        
+    private void StartGame()
+    {
+        isStart = true;
     }
 
     private void Update()
     {
-        CheckPlayerInView();
-        CheckEnemyTakeDamage();
-        HandleLook();
-        HandleAnimationMove();
-        switch (state)
-        {
-            case State.chase:
-                HandleChase();
-                break;
-            case State.attack:
-                agent.speed = walkSpeed;
-                absEnemyAttack.HandleAttack();
-                break;
-            case State.disable:
-                break;
-            default:
-                throw new InvalidCastException("invlid state");
+        // if (isStart)
+        // {
+            CheckPlayerInView();
+            CheckEnemyTakeDamage();
+            HandleLook();
+            HandleAnimationMove();
+            switch (state)
+            {
+                case State.chase:
+                    HandleChase();
+                    break;
+                case State.attack:
+                    agent.speed = walkSpeed;
+                    absEnemyAttack.HandleAttack();
+                    break;
+                case State.disable:
+                    break;
+                default:
+                    throw new InvalidCastException("invlid state");
 
-        }
+            }
+        // }
     }
 
     private void CheckPlayerInView()

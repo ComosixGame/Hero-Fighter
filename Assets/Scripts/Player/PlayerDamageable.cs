@@ -149,7 +149,7 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
             animator.SetTrigger(knockHash);
             animator.SetBool(dyingHash, true);
         }
-        // gameManager.GameLose();
+        gameManager.GameLose();
     }
 
     //Attach Animation Event

@@ -88,14 +88,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4784430906347930734}
-  m_LocalRotation: {x: 0.57541186, y: -0.6067978, z: -0.3630374, w: 0.4109763}
-  m_LocalPosition: {x: -0.0346, y: -0.0018, z: 0.0046}
-  m_LocalScale: {x: 0.1, y: 0.10000002, z: 0.09999998}
+  m_LocalRotation: {x: -0.6037787, y: 0.33009782, z: -0.57709515, w: 0.4398271}
+  m_LocalPosition: {x: 0.0086, y: 0.0058, z: -0.0017}
+  m_LocalScale: {x: 0.10000001, y: 0.10000005, z: 0.10000003}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5108943859327014984}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 178.144, y: 66.496, z: 94.258}
+  m_Father: {fileID: 5114102993711697832}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: -8.634, y: 86.929, z: -113.56}
 --- !u!33 &4784430906347930733
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1206,6 +1206,7 @@ Transform:
   - {fileID: 5114226727261876976}
   - {fileID: 5108822499378763168}
   - {fileID: 5109236482096507298}
+  - {fileID: 4784430906347930735}
   m_Father: {fileID: 5109192337473367728}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1238,7 +1239,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5114026627845526966}
-  - {fileID: 4784430906347930735}
   m_Father: {fileID: 5113924408335757430}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1736,7 +1736,7 @@ GameObject:
   - component: {fileID: 5162902775104199285}
   - component: {fileID: 5162902775104199284}
   - component: {fileID: 5162902775104199287}
-  - component: {fileID: 2431834206517614951}
+  - component: {fileID: 3492585246985200005}
   m_Layer: 7
   m_Name: Enemy_Knife_Augmented_Male_01
   m_TagString: Untagged
@@ -1955,7 +1955,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &2431834206517614951
+--- !u!114 &3492585246985200005
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -39,6 +39,11 @@ public class LoadScene : MonoBehaviour
         LoadNewScene(1);
     }
 
+    public void BackToMenu()
+    {
+        LoadNewScene(0);
+    }
+
     public void LoadNewScene(int index) {
         StartCoroutine(LoadAsync(index));
         operation.completed += InitGame;

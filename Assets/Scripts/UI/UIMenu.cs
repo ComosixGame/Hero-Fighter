@@ -15,6 +15,7 @@ public class UIMenu : MonoBehaviour
     public GameObject loseUI;
     private int previousHash;
     private int startHash;
+    private int startGameHash;
     private int hitPoint;
     private int totalHitPoint;
     [SerializeField] private Slider countHitComboTimer;
@@ -38,28 +39,21 @@ public class UIMenu : MonoBehaviour
 
     //Color 
     [SerializeField] private Color color, color1, color2, color3, color4;
-
-    private void Awake()
-    {
-        animator = GetComponent<Animator>();
-        previousHash = Animator.StringToHash("isPrevious");
-        startHash = Animator.StringToHash("Start");
-        soundManager = SoundManager.Instance;
-        settingData = SettingData.Load();
-    }
+    private GameManager gameManager;
 
     private void OnEnable() {
         animator = GetComponent<Animator>();
         previousHash = Animator.StringToHash("isPrevious");
+        startGameHash = Animator.StringToHash("StartGame");
         startHash = Animator.StringToHash("Start");
         soundManager = SoundManager.Instance;
         settingData = SettingData.Load();
+        gameManager = GameManager.Instance;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        animator.SetTrigger(startHash);
         soundManager.MuteGame(settingData.mute);
         playerData = PlayerData.Load();
         CoefficientCombo = 0.5f;
@@ -173,10 +167,18 @@ public class UIMenu : MonoBehaviour
     public void GameWin()
     {
         BonusMoney();
-        playUI.SetActive(false);
         winUI.SetActive(true);
     }
 
+    public void PauseGame()
+    {
+        gameManager.PauseGame();
+    }
+
+    public void ResumeGame()
+    {
+        gameManager.ResumeGame();
+    }
 
     public void GameLose()
     {
@@ -186,8 +188,9 @@ public class UIMenu : MonoBehaviour
 
     private void BonusMoney()
     {
-        money = Random.Range(150, 210);
-        moneyTxt.text = money + "";
+        // money = Random.Range(150, 210);
+        Debug.Log("ABCCCCC");
+        moneyTxt.text = money + "80";
     }
 
     public void BonusX3Money()
@@ -210,5 +213,16 @@ public class UIMenu : MonoBehaviour
         playerData = PlayerData.Load();
         Debug.Log(playerData.money);
         moneyStartTxt.text = playerData.money + "";
+    }
+
+    //Used
+    public void SaveLevel(bool isSave)
+    {
+        gameManager.NewGame(isSave);
+    }
+
+    public void SetStartGameAnimation()
+    {
+        animator.SetTrigger(startGameHash);
     }
 }

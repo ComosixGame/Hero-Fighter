@@ -27,7 +27,6 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
     private void Awake()
     {
         gameManager = GameManager.Instance;
-        gameManager.SetPlayer(transform);
         controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
         hitHash = Animator.StringToHash("hit");
@@ -150,6 +149,12 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
             animator.SetBool(dyingHash, true);
         }
         gameManager.GameLose();
+    }
+
+    public void Revival() {
+        Destroy(gameObject);
+        GameObject newPlayer = Instantiate(gameObject, transform.position, transform.rotation);
+        gameManager.virtualCamera.Follow = newPlayer.transform;
     }
 
     //Attach Animation Event

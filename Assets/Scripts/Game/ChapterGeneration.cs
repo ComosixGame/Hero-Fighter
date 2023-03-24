@@ -4,8 +4,9 @@ public class ChapterGeneration : MonoBehaviour
 {
     public ChapterManager chapterManager;
     public MapGeneration mapGeneration;
+    public int chapterIndex;
+    public int levelIndex;
     private int currentChapter;
-    private int currentLevel;
     private int totalLevelInChapter;
     private PlayerData playerData;
     private GameManager gameManager;
@@ -42,11 +43,7 @@ public class ChapterGeneration : MonoBehaviour
 
     public void StartGame()
     {
-        playerData = PlayerData.Load();
-        currentChapter = playerData.LatestChapter;
-        currentLevel = playerData.LatestLevel;
-        totalLevelInChapter = chapterManager.chapterStates[currentChapter].levelStates.Length;
-        mapGeneration.levelState = chapterManager.chapterStates[currentChapter].levelStates[currentLevel];
+        mapGeneration.levelState = chapterManager.chapterStates[chapterIndex].levelStates[levelIndex];
     }
 
     public void EndGame(bool isWin)

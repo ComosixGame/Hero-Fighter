@@ -40,16 +40,16 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void OnEnable()
     {
-        gameManager.OnStartGame += StartGame;
         damageable.OnTakeDamageStart += DisableEnemy;
         damageable.OnTakeDamageEnd += EnableEnemy;
+        gameManager.OnInitUiDone += StartGame;
     }
 
     private void OnDisable()
     {
-        // gameManager.OnStartGame -= StartGame;
         damageable.OnTakeDamageStart -= DisableEnemy;
         damageable.OnTakeDamageEnd -= EnableEnemy;
+        gameManager.OnInitUiDone -= StartGame;
     }
         
     private void StartGame()
@@ -59,8 +59,8 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void Update()
     {
-        // if (isStart)
-        // {
+        if (isStart)
+        {
             CheckPlayerInView();
             CheckEnemyTakeDamage();
             HandleLook();
@@ -80,7 +80,7 @@ public class EnemyBehaviour : MonoBehaviour
                     throw new InvalidCastException("invlid state");
 
             }
-        // }
+        }
     }
 
     private void CheckPlayerInView()

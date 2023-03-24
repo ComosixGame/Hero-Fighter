@@ -53,6 +53,13 @@ public class EnemyDamageable : MonoBehaviour, IDamageable
 
     private void OnEnable() {
         uI = FindObjectOfType<UIMenu>();
+        gameManager.OnStartGame += StartGame;
+    }
+
+    private void OnDisable() {
+        gameManager.OnStartGame -= StartGame;
+        gameManager.OnNewGame -= NewGame;
+
     }
 
     private void Start()
@@ -61,9 +68,15 @@ public class EnemyDamageable : MonoBehaviour, IDamageable
         health = maxHealth;
     }
 
+    private void StartGame()
+    {
+        healthBarRennder.SetHealthBar();
+    }
+
     private void LateUpdate()
     {
         healthBarRennder.UpdateHealthBarRotation();
+        gameManager.OnNewGame += NewGame;
     }
 
 
@@ -169,5 +182,10 @@ public class EnemyDamageable : MonoBehaviour, IDamageable
         healthBarRennder.DestroyHealthBar();
         agent.ResetPath();
         destroyed = true;
+    }
+
+    private void NewGame()
+    {
+        healthBarRennder.DestroyHealthBar();
     }
 }

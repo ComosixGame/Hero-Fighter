@@ -2,7 +2,6 @@
     using System.Collections.Generic;
     using UnityEngine;
     using MyCustomAttribute;
-    using Random = UnityEngine.Random;
 
     public class ObjectPoolerManager : Singleton<ObjectPoolerManager>
     {
@@ -27,7 +26,7 @@
         private List<int> listIndexRandomItem;
         private Dictionary<string, ObjectPrefab> dictionary;
         private List<GameObject> gameObjects;
-        public event Action OnCreatedObject;
+        public event Action OnCreatedObjects;
 
         protected override void Awake()
         {
@@ -61,7 +60,7 @@
                 }
             }
 
-            OnCreatedObject?.Invoke();
+            OnCreatedObjects?.Invoke();
             
         }
 
@@ -114,13 +113,6 @@
                 ObjectPrefab objectPrefab = dictionary[scripblePrefab.GameObjectPool.key];
                 objectPrefab.inactive = objectPrefab.size;
                 objectPrefab.active = 0;
-            }
-        }
-
-        public void DeleteObjectPoolerManager()
-        {
-            foreach(GameObject gameObject in gameObjects) {
-                GameObject.Destroy(gameObject);
             }
         }
     }

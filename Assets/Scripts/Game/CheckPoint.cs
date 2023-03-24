@@ -13,8 +13,8 @@ public class CheckPoint : MonoBehaviour
     {
         if ((layer & (1 << other.gameObject.layer)) != 0)
         {
-            gameManager.GoneCheckPoint();   
-            Destroy(this);
+            gameManager.CheckedPoint();   
+            gameObject.SetActive(false);
         }
     }
 }

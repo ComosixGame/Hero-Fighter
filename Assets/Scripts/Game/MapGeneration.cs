@@ -6,14 +6,13 @@ public class MapGeneration : MonoBehaviour
     public LevelState levelState;
     [SerializeField] private UIMenu uIMenu;
     [SerializeField] private Collider[] areaColliders;
-    [SerializeField] private CinemachineConfinerController cinemachineConfinerController;
     private int currentWave = 0;
     private int totalWaves;
     private GameManager gameManager;
     private ObjectPoolerManager objectPooler;
     private List<GameObjectPool> enemyList = new List<GameObjectPool>();
     private bool isStart, isReset;
-
+    private PlayerData playerData;
     private void Awake()
     {
         gameManager = GameManager.Instance;
@@ -33,11 +32,6 @@ public class MapGeneration : MonoBehaviour
     {
         gameManager.OnStartGame -= StartGame;
         gameManager.OnNewGame -= ResetGame;
-    }
-
-    private void Start()
-    {
-
     }
 
     private void Update()
@@ -75,6 +69,8 @@ public class MapGeneration : MonoBehaviour
                 }
             }
         }
+        playerData = PlayerData.Load();
+        Debug.Log(playerData.LatestLevel);
     }
 
     private void StartGame()
@@ -100,8 +96,8 @@ public class MapGeneration : MonoBehaviour
             {
                 if (isCurrentWave)
                 {
-                    GameObjectPool gop = objectPooler.SpawnObject(enemy.enemyObjectPool, enemy.position, enemy.rotation);
-                    enemyList.Add(gop);
+                    GameObjectPool gameObjectPool = objectPooler.SpawnObject(enemy.enemyObjectPool, enemy.position, enemy.rotation);
+                    enemyList.Add(gameObjectPool);
                 }
             }
         }

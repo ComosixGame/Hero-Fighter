@@ -49,7 +49,6 @@ public class PlayerController : MonoBehaviour
         attackHash = Animator.StringToHash("Attack");
         stateTimeHash = Animator.StringToHash("StateTime");
         AddSkill();
-        gameManager.OnStartGame += StartGame;
     }
 
     private void OnEnable()
@@ -75,6 +74,8 @@ public class PlayerController : MonoBehaviour
 
         specialskill.OnDone += DoneExecutingSkill;
 
+        gameManager.OnInitUiDone += StartGame;
+
     }
 
     // Start is called before the first frame update
@@ -86,13 +87,16 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isReady && isMoveState)
+        if (isStart)
         {
-            Move();
-            RotationLook();
-        }
+            if (isReady && isMoveState)
+            {
+                Move();
+                RotationLook();
+            }
 
-        HandleAnimation();
+            HandleAnimation();
+        }
     }
 
     private void FixedUpdate()
@@ -285,8 +289,6 @@ public class PlayerController : MonoBehaviour
         playerInputSystem.Player.Skil4.started -= ActiveSkill;
         playerInputSystem.Player.SpecialSkil.started -= ActiveSpecialSkill;
 
-        gameManager.OnStartGame -= StartGame;
-
         playerDamageable.OnTakeDamageStart -= DisablePlayerHurtBox;
         playerDamageable.OnTakeDamageEnd -= EnablePlayer;
 
@@ -298,5 +300,7 @@ public class PlayerController : MonoBehaviour
         specialskill.OnDone -= DoneExecutingSkill;
 
         playerInputSystem.Disable();
+
+        gameManager.OnInitUiDone -= StartGame;
     }
 }

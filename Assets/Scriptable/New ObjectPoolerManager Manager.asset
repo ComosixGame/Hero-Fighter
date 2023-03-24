@@ -21,19 +21,19 @@ MonoBehaviour:
     size: 1
     GameObjectPool: {fileID: 8153994252192647432, guid: 7afedb56c98d6b54595cac8a37c64d0c,
       type: 3}
-  - name: 
+  - name: Bullet
     size: 1
     GameObjectPool: {fileID: -3004082893452583331, guid: 735f00c7848260b41bfb70132b93e223,
       type: 3}
-  - name: 
+  - name: Hulk Gun
     size: 1
     GameObjectPool: {fileID: 100288967991211852, guid: d26b24f4c4b3fa44caac12c37d492f14,
       type: 3}
-  - name: 
+  - name: Wall
     size: 1
     GameObjectPool: {fileID: 14393961694530266, guid: 3af67738a14ff1044b06d07dc27ded07,
       type: 3}
-  - name: 
+  - name: Hulk Melee
     size: 10
     GameObjectPool: {fileID: 1259295870454960267, guid: f050e09edeaecb042bbc62d4c71b1550,
       type: 3}

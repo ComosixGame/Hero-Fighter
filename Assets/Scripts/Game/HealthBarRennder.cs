@@ -41,4 +41,9 @@ public class HealthBarRennder
         _healthBar.SetActive(false);
     }
 
+    public void SetHealthBar()
+    {
+        _healthBar.SetActive(true);
+    }
+
 }

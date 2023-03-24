@@ -1,11 +1,14 @@
 using System;
 using UnityEngine;
-using System.Collections.Generic;
+using Cinemachine;
 using MyCustomAttribute;
+
 
 public class GameManager : Singleton<GameManager>
 {
-    public Transform player {get; private set;}
+    [SerializeField] private bool debugMode;
+    [ReadOnly] public Transform player;
+    [ReadOnly] public CinemachineVirtualCamera virtualCamera;
     private int money;
     public event Action OnStartGame;
     public event Action OnPause;
@@ -13,36 +16,36 @@ public class GameManager : Singleton<GameManager>
     public event Action<bool> OnEndGame;
     public event Action OnNewGame;
     public event Action<int> OnUpdateMoney;
-    public event Action<Transform> OnLose;
-    public event Action OnEnemiesDestroyed;
-    public event Action OnGoneCheckPoint;
-    public UIMenu uiMenu;
+    public event Action OnCheckedPoint;
+    public event Action OnInitUiDone;
+    public int chapterIndex;
+    public int levelIndex;
     private PlayerData playerData;
     public SettingData settingData;
+    private ObjectPoolerManager objectPooler;
 
-    private ObjectPoolerManager objectPoolerManager;
-
-    private void OnEnable() {
-        
+    protected override void Awake()
+    {
+        base.Awake();
+        objectPooler = ObjectPoolerManager.Instance;
     }
 
     private void Start() {
         Application.targetFrameRate = 60;
     }
 
-    public void SetPlayer(Transform player) {
-        this.player =  player;
+    private void OnEnable() {
+        objectPooler.OnCreatedObjects += () => {
+            if(debugMode) {
+                StartGame();
+            }
+        };
     }
 
     public void StartGame()
     {
         Time.timeScale = 1;
-        objectPoolerManager = ObjectPoolerManager.Instance;
-        playerData = PlayerData.Load();
-        Debug.Log("LV" + playerData.LatestLevel);
         OnStartGame?.Invoke();
-        uiMenu = FindObjectOfType<UIMenu>();
-        uiMenu.SetStartGameAnimation();
     }
     
     public void PauseGame()
@@ -59,14 +62,17 @@ public class GameManager : Singleton<GameManager>
 
     public void GameWin()
     {
-        Time.timeScale = 0.3f;
-        uiMenu.GameWin();
+        OnEndGame.Invoke(true);
     }
 
     public void GameLose()
     {
-        uiMenu.GameLose();
-        OnLose?.Invoke(player);
+        OnEndGame.Invoke(false);
+    }
+
+    public void InitUiDone()
+    {
+        OnInitUiDone?.Invoke();
     }
 
     public void NewGame(bool win)
@@ -81,8 +87,6 @@ public class GameManager : Singleton<GameManager>
         }
         DestroyGameObjectPooler();
         OnNewGame?.Invoke();
-        //Invoke for Sound
-        OnEndGame?.Invoke(win);
     }
 
     public void UpdateMoney(int amount) {
@@ -90,14 +94,14 @@ public class GameManager : Singleton<GameManager>
         OnUpdateMoney?.Invoke(money);
     }
 
-    public void GoneCheckPoint()
+    public void CheckedPoint()
     {
-        OnGoneCheckPoint?.Invoke();
+        OnCheckedPoint?.Invoke();
     }
 
     public void DestroyGameObjectPooler()
     {
-        objectPoolerManager.DeleteObjectPoolerManager();
+        objectPooler.ResetObjectPoolerManager();
     }
 
 }

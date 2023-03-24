@@ -41,17 +41,26 @@ public class UIMenu : MonoBehaviour
     [SerializeField] private Color color, color1, color2, color3, color4;
     private GameManager gameManager;
 
-    private void OnEnable() {
+    private void Awake() {
         animator = GetComponent<Animator>();
         previousHash = Animator.StringToHash("isPrevious");
         startGameHash = Animator.StringToHash("StartGame");
         startHash = Animator.StringToHash("Start");
         soundManager = SoundManager.Instance;
-        settingData = SettingData.Load();
         gameManager = GameManager.Instance;
+        settingData = SettingData.Load();
     }
 
-    // Start is called before the first frame update
+    private void OnEnable() {
+        gameManager.OnStartGame += StartGame;
+        gameManager.OnEndGame += HandleEndGameUI;
+    }
+
+    private void OnDisable() {
+        gameManager.OnStartGame -= StartGame;
+        gameManager.OnEndGame -= HandleEndGameUI;
+    }
+
     void Start()
     {
         soundManager.MuteGame(settingData.mute);
@@ -74,9 +83,12 @@ public class UIMenu : MonoBehaviour
             DisplayHitPoint(false);
             Invoke("DisplayTotalHit", 0.5f);
         }
-
     }
 
+    private void StartGame()
+    {
+        animator.SetTrigger(startGameHash);
+    }
 
     //Display Hit Point in UI
     public void DisplayHitPoint(bool hit)
@@ -164,12 +176,6 @@ public class UIMenu : MonoBehaviour
         animator.SetBool(previousHash, isActive);
     }
 
-    public void GameWin()
-    {
-        BonusMoney();
-        winUI.SetActive(true);
-    }
-
     public void PauseGame()
     {
         gameManager.PauseGame();
@@ -180,17 +186,20 @@ public class UIMenu : MonoBehaviour
         gameManager.ResumeGame();
     }
 
-    public void GameLose()
+    private void HandleEndGameUI(bool win)
     {
-        playUI.SetActive(false);
-        loseUI.SetActive(true);
+        if(win) {
+            BonusMoney();
+            winUI.SetActive(true);
+        } else {
+            loseUI.SetActive(true);
+        }
     }
 
     private void BonusMoney()
     {
-        // money = Random.Range(150, 210);
-        Debug.Log("ABCCCCC");
-        moneyTxt.text = money + "80";
+        money = Random.Range(150, 210);
+        moneyTxt.text = money + "";
     }
 
     public void BonusX3Money()
@@ -221,8 +230,9 @@ public class UIMenu : MonoBehaviour
         gameManager.NewGame(isSave);
     }
 
-    public void SetStartGameAnimation()
+    public void ReadyFight()
     {
-        animator.SetTrigger(startGameHash);
+        gameManager.InitUiDone();
     }
+
 }

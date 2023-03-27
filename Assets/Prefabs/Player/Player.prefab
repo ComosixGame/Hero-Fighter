@@ -282,7 +282,7 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 2
+  m_Height: 1.85
   m_Radius: 0.5
   m_SlopeLimit: 45
   m_StepOffset: 0.3
@@ -311,6 +311,7 @@ MonoBehaviour:
   playerHurtBoxes:
   - {fileID: 2365304843506742656}
   - {fileID: 2365304844446138290}
+  isStart: 0
 --- !u!114 &2131854530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -548,7 +549,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   standupTime: 1
-  maxHealth: 5
+  maxHealth: 100
   knocking: 0
   hitEffect: {fileID: 9046699384457569311, guid: 00e2210b13fc873458ba8b2017fba62e,
     type: 3}
@@ -653,7 +654,7 @@ GameObject:
   - component: {fileID: 2365304843506742659}
   - component: {fileID: 2365304843506742657}
   - component: {fileID: 2365304843506742656}
-  m_Layer: 6
+  m_Layer: 10
   m_Name: HurtBoxLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -717,7 +718,7 @@ GameObject:
   - component: {fileID: 2365304844446138285}
   - component: {fileID: 2365304844446138291}
   - component: {fileID: 2365304844446138290}
-  m_Layer: 6
+  m_Layer: 10
   m_Name: HurtBoxHeavy
   m_TagString: Untagged
   m_Icon: {fileID: 0}

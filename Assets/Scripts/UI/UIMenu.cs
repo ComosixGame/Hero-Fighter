@@ -15,6 +15,7 @@ public class UIMenu : MonoBehaviour
     public GameObject loseUI;
     private int previousHash;
     private int startHash;
+    private int startGameHash;
     private int hitPoint;
     private int totalHitPoint;
     [SerializeField] private Slider countHitComboTimer;
@@ -38,20 +39,30 @@ public class UIMenu : MonoBehaviour
 
     //Color 
     [SerializeField] private Color color, color1, color2, color3, color4;
+    private GameManager gameManager;
 
-    private void Awake()
-    {
+    private void Awake() {
         animator = GetComponent<Animator>();
         previousHash = Animator.StringToHash("isPrevious");
+        startGameHash = Animator.StringToHash("StartGame");
         startHash = Animator.StringToHash("Start");
         soundManager = SoundManager.Instance;
+        gameManager = GameManager.Instance;
         settingData = SettingData.Load();
     }
 
-    // Start is called before the first frame update
+    private void OnEnable() {
+        gameManager.OnStartGame += StartGame;
+        gameManager.OnEndGame += HandleEndGameUI;
+    }
+
+    private void OnDisable() {
+        gameManager.OnStartGame -= StartGame;
+        gameManager.OnEndGame -= HandleEndGameUI;
+    }
+
     void Start()
     {
-        animator.SetTrigger(startHash);
         soundManager.MuteGame(settingData.mute);
         playerData = PlayerData.Load();
         CoefficientCombo = 0.5f;
@@ -72,29 +83,31 @@ public class UIMenu : MonoBehaviour
             DisplayHitPoint(false);
             Invoke("DisplayTotalHit", 0.5f);
         }
-
     }
 
+    private void StartGame()
+    {
+        animator.SetTrigger(startGameHash);
+    }
 
     //Display Hit Point in UI
     public void DisplayHitPoint(bool hit)
     {
         flagCountHit = hit;
-        if (hit)
+        if (hit && !totalHit.activeInHierarchy)
         {
-            hitCount.SetActive(true);
-            totalHit.SetActive(false);
+            hitCount?.SetActive(true);
+            totalHit?.SetActive(false);
             hitPoint++;
             pointTxt.text = hitPoint + "";
             pointTxt.fontSize = bigSize;
             Invoke("SetFontSizeInit", timerBigSize);
             countHitComboTimer.value = 1;
             totalHitPoint = hitPoint;
-            
         }
         else
         {
-            hitCount.SetActive(false);
+            hitCount?.SetActive(false);
             hitPoint = 0;
             Invoke("DisplayTotalHit", 0.5f);
         }
@@ -105,8 +118,8 @@ public class UIMenu : MonoBehaviour
     {
         if (totalHitPoint != 0 && !totalHit.activeInHierarchy)
         {
-            totalHit.SetActive(true);
-            hitCount.SetActive(false);
+            totalHit?.SetActive(true);
+            hitCount?.SetActive(false);
             Color currentColor;
             string textPointText;
             if (totalHitPoint <= 2)
@@ -145,8 +158,8 @@ public class UIMenu : MonoBehaviour
 
     private void DisplayTotalHitDone()
     {
-        totalHit.SetActive(false);
-        hitCount.SetActive(false);
+        totalHit?.SetActive(false);
+        hitCount?.SetActive(false);
         totalHitPoint = 0;
     }
 
@@ -162,18 +175,24 @@ public class UIMenu : MonoBehaviour
         animator.SetBool(previousHash, isActive);
     }
 
-    public void GameWin()
+    public void PauseGame()
     {
-        BonusMoney();
-        playUI.SetActive(false);
-        winUI.SetActive(true);
+        gameManager.PauseGame();
     }
 
-
-    public void GameLose()
+    public void ResumeGame()
     {
-        playUI.SetActive(false);
-        loseUI.SetActive(true);
+        gameManager.ResumeGame();
+    }
+
+    private void HandleEndGameUI(bool win)
+    {
+        if(win) {
+            BonusMoney();
+            winUI.SetActive(true);
+        } else {
+            loseUI.SetActive(true);
+        }
     }
 
     private void BonusMoney()
@@ -203,4 +222,16 @@ public class UIMenu : MonoBehaviour
         Debug.Log(playerData.money);
         moneyStartTxt.text = playerData.money + "";
     }
+
+    //Used
+    public void SaveLevel(bool isSave)
+    {
+        gameManager.NewGame(isSave);
+    }
+
+    public void ReadyFight()
+    {
+        gameManager.InitUiDone();
+    }
+
 }

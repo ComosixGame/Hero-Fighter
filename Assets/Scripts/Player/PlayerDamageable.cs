@@ -7,7 +7,7 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
     [SerializeField] private float standupTime;
     [SerializeField] private float maxHealth;
     private float health, knockTimer;
-    private int hitHash, knockHash, standupHash, deathHash, dyingHash;
+    private int hitHash, knockHash, standupHash, deathHash, dyingHash, revivalHash;
     [SerializeField] private bool knocking;
     private bool destroyed;
     private Animator animator;
@@ -23,11 +23,11 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
     private AbsSpecialSkill specialSkill;
     private bool skillCasting;
     private ObjectPoolerManager objectPoolerManager;
+    private PlayerController playerController;
 
     private void Awake()
     {
         gameManager = GameManager.Instance;
-        gameManager.SetPlayer(transform);
         controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
         hitHash = Animator.StringToHash("hit");
@@ -35,10 +35,12 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
         standupHash = Animator.StringToHash("standup");
         deathHash = Animator.StringToHash("death");
         dyingHash = Animator.StringToHash("dying");
+        revivalHash = Animator.StringToHash("revival");
         healthBarPlayer = FindObjectOfType<HealthBarPlayer>();
         ui = FindObjectOfType<UIMenu>();
         objectPoolerManager = ObjectPoolerManager.Instance;
         specialSkill = GetComponent<AbsSpecialSkill>();
+        playerController = GetComponent<PlayerController>();
     }
 
     private void OnEnable()
@@ -148,7 +150,17 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
             animator.SetTrigger(knockHash);
             animator.SetBool(dyingHash, true);
         }
-        // gameManager.GameLose();
+        gameManager.GameLose();
+    }
+
+    public void Revival() {
+        gameObject.SetActive(false);
+        animator.SetTrigger(revivalHash);
+        playerController.isStart = true;
+        GameObject newPlayer = Instantiate(gameObject, transform.position, transform.rotation);
+        newPlayer.SetActive(true);
+        destroyed = false;
+        gameManager.virtualCamera.Follow = newPlayer.transform;
     }
 
     //Attach Animation Event

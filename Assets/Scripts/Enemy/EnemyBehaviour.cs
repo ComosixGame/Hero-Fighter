@@ -25,6 +25,7 @@ public class EnemyBehaviour : MonoBehaviour
     private EnemyDamageable damageable;
     private AbsEnemyAttack absEnemyAttack;
     private GameManager gameManager;
+    private bool isStart;
 
     private void Awake()
     {
@@ -41,34 +42,46 @@ public class EnemyBehaviour : MonoBehaviour
     {
         damageable.OnTakeDamageStart += DisableEnemy;
         damageable.OnTakeDamageEnd += EnableEnemy;
+        gameManager.OnInitUiDone += StartGame;
     }
 
     private void OnDisable()
     {
+        isStart = false;
         damageable.OnTakeDamageStart -= DisableEnemy;
         damageable.OnTakeDamageEnd -= EnableEnemy;
+        gameManager.OnInitUiDone -= StartGame;
+    }
+        
+    private void StartGame()
+    {
+        isStart = true;
+        disable = !isStart;
     }
 
     private void Update()
     {
-        CheckPlayerInView();
-        CheckEnemyTakeDamage();
-        HandleLook();
-        HandleAnimationMove();
-        switch (state)
+        if (isStart)
         {
-            case State.chase:
-                HandleChase();
-                break;
-            case State.attack:
-                agent.speed = walkSpeed;
-                absEnemyAttack.HandleAttack();
-                break;
-            case State.disable:
-                break;
-            default:
-                throw new InvalidCastException("invlid state");
+            CheckPlayerInView();
+            CheckEnemyTakeDamage();
+            HandleLook();
+            HandleAnimationMove();
+            switch (state)
+            {
+                case State.chase:
+                    HandleChase();
+                    break;
+                case State.attack:
+                    agent.speed = walkSpeed;
+                    absEnemyAttack.HandleAttack();
+                    break;
+                case State.disable:
+                    break;
+                default:
+                    throw new InvalidCastException("invlid state");
 
+            }
         }
     }
 

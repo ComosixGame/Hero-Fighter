@@ -18,7 +18,7 @@ MonoBehaviour:
     enemies:
     - enemyObjectPool: {fileID: 1259295870454960267, guid: f050e09edeaecb042bbc62d4c71b1550,
         type: 3}
-      position: {x: -1.6050797, y: 0, z: -3.7904043}
+      position: {x: -15.211353, y: 0, z: -3.7904043}
       eulerRotation: {x: -0, y: 286.70227, z: 0}
   - name: 
     enemies:
@@ -30,14 +30,6 @@ MonoBehaviour:
         type: 3}
       position: {x: 20.88429, y: 0, z: -6.909565}
       eulerRotation: {x: -0, y: 262.68842, z: 0}
-    - enemyObjectPool: {fileID: 1259295870454960267, guid: f050e09edeaecb042bbc62d4c71b1550,
-        type: 3}
-      position: {x: -11.865737, y: 0, z: -6.6745067}
-      eulerRotation: {x: -0, y: 91.447334, z: 0}
-    - enemyObjectPool: {fileID: 1259295870454960267, guid: f050e09edeaecb042bbc62d4c71b1550,
-        type: 3}
-      position: {x: -12.233506, y: 0, z: -4.477765}
-      eulerRotation: {x: -0, y: 90.83328, z: 0}
   - name: 
     enemies:
     - enemyObjectPool: {fileID: 1259295870454960267, guid: f050e09edeaecb042bbc62d4c71b1550,

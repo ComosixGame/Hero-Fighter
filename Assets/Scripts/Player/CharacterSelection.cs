@@ -18,14 +18,12 @@ public class CharacterSelection : MonoBehaviour
     private void OnEnable() 
     {
         gameManager.OnStartGame += StartGame;
-        gameManager.OnLose += GetPlayerPos;
         gameManager.OnNewGame += NewGame;
     }
 
     private void OnDisable() 
     {
         gameManager.OnStartGame -= StartGame;
-        gameManager.OnLose += GetPlayerPos;
         gameManager.OnNewGame -= NewGame;
     }
 
@@ -73,11 +71,20 @@ public class CharacterSelection : MonoBehaviour
         int selectedCharacter = playerData.selectedCharacter;
         player = Instantiate(equipmentManager.Characters[selectedCharacter].character, checkPoint,equipmentManager.Characters[selectedCharacter].character.transform.rotation);
         virtualCamera.Follow = player.transform;
+        gameManager.player = player.transform;
+        gameManager.virtualCamera = virtualCamera;
     }
 
     public void PlayerRevival()
     {
-        SpawnSelectedCharacter(playerPos);
+        // SpawnSelectedCharacter(playerPos);
+        player.GetComponent<PlayerDamageable>().Revival();
+    }
+
+    private void OnDrawGizmos() 
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawSphere(playerPos, 0.5f);
     }
 
 

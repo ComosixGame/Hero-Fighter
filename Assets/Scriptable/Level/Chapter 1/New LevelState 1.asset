@@ -16,35 +16,27 @@ MonoBehaviour:
   waves:
   - name: 
     enemies:
-    - enemyObjectPool: {fileID: 1259295870454960267, guid: f050e09edeaecb042bbc62d4c71b1550,
+    - enemyObjectPool: {fileID: -1348277006179719198, guid: 0aba806c22f8e81469efeb3e22ae215c,
         type: 3}
-      position: {x: -1.6050797, y: 0, z: -6.608312}
-      eulerRotation: {x: 0, y: 286.70227, z: 0}
-    - enemyObjectPool: {fileID: 1259295870454960267, guid: f050e09edeaecb042bbc62d4c71b1550,
+      position: {x: -17.579004, y: 0, z: -5.2071066}
+      eulerRotation: {x: -0, y: 286.70227, z: 0}
+    - enemyObjectPool: {fileID: 7982874686349890351, guid: ff8ca2fbe4136f04bb56f102a8d8ec4d,
         type: 3}
-      position: {x: -2.2008934, y: 0, z: -3.3042207}
+      position: {x: -17.59469, y: 0, z: -1.2912359}
       eulerRotation: {x: -0, y: 286.70227, z: 0}
   - name: 
     enemies:
-    - enemyObjectPool: {fileID: 1259295870454960267, guid: f050e09edeaecb042bbc62d4c71b1550,
+    - enemyObjectPool: {fileID: -1348277006179719198, guid: 0aba806c22f8e81469efeb3e22ae215c,
         type: 3}
-      position: {x: 21.997074, y: 0, z: -2.5207906}
+      position: {x: 8.493949, y: 0, z: -2.5207906}
       eulerRotation: {x: -0, y: 276.2635, z: 0}
-    - enemyObjectPool: {fileID: 1259295870454960267, guid: f050e09edeaecb042bbc62d4c71b1550,
+    - enemyObjectPool: {fileID: 2550504968027839815, guid: 0f0b5892e5ac1d7459cbf90560cd91a7,
         type: 3}
-      position: {x: 20.88429, y: 0, z: -6.909565}
+      position: {x: 10.277121, y: 0, z: -6.909565}
       eulerRotation: {x: -0, y: 262.68842, z: 0}
-    - enemyObjectPool: {fileID: 1259295870454960267, guid: f050e09edeaecb042bbc62d4c71b1550,
-        type: 3}
-      position: {x: -11.865737, y: 0, z: -6.6745067}
-      eulerRotation: {x: -0, y: 91.447334, z: 0}
-    - enemyObjectPool: {fileID: 1259295870454960267, guid: f050e09edeaecb042bbc62d4c71b1550,
-        type: 3}
-      position: {x: -12.233506, y: 0, z: -4.477765}
-      eulerRotation: {x: -0, y: 90.83328, z: 0}
   - name: 
     enemies:
-    - enemyObjectPool: {fileID: 1259295870454960267, guid: f050e09edeaecb042bbc62d4c71b1550,
+    - enemyObjectPool: {fileID: 3492585246985200005, guid: 2d55c3939f20f374ab1650e91ebf786c,
         type: 3}
-      position: {x: 50.04248, y: 0, z: -4.221925}
-      eulerRotation: {x: 0, y: 268.9217, z: 0}
+      position: {x: 31.909035, y: 0, z: -4.221925}
+      eulerRotation: {x: -0, y: 268.9217, z: 0}

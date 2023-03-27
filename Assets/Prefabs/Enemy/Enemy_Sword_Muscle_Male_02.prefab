@@ -25,14 +25,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1830199916272892331}
-  m_LocalRotation: {x: -0.5130988, y: 0.036023825, z: -0.67973685, w: 0.52286696}
+  m_LocalRotation: {x: -0.5143582, y: -0.0019237609, z: -0.71645474, w: 0.47130078}
   m_LocalPosition: {x: 0.0047060614, y: 0.0018999565, z: -0.0012784367}
   m_LocalScale: {x: 0.100000046, y: 0.1, z: 0.09999999}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7084657265142798974}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: -150.818, y: -122.63699, z: 58.926003}
+  m_LocalEulerAnglesHint: {x: -150.818, y: -122.63699, z: 50.466003}
 --- !u!33 &1830199916272892326
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1956,10 +1956,13 @@ MonoBehaviour:
     m_RotationOrder: 4
   standUpTime: 1.5
   destroyed: 0
+  DestroyedBody: {fileID: 7081605666563054514, guid: a6548942437f9f94fbab1b548a6d878c,
+    type: 3}
   healthBarRennder:
     healthBar: {fileID: 2278732330621463760, guid: 89c69c051ed5e2e46938d9c3f33174c4,
       type: 3}
     offset: 2.5
+    _healthBar: {fileID: 0}
   hitEffect: {fileID: 9046699384457569311, guid: 00e2210b13fc873458ba8b2017fba62e,
     type: 3}
   knockDownVFX: {fileID: 5854742832336096459, guid: 8a7c5d19d8a94cb41bccf41896137933,

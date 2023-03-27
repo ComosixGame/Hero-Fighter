@@ -42,7 +42,7 @@ BoxCollider:
   m_GameObject: {fileID: 4784430905182074902}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 2, y: 0.5, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -60,92 +60,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   damage: 3
   attackType: 0
---- !u!1 &4784430906347930734
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4784430906347930735}
-  - component: {fileID: 4784430906347930733}
-  - component: {fileID: 4784430906347930732}
-  m_Layer: 7
-  m_Name: SM_Wep_Knife_01
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4784430906347930735
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4784430906347930734}
-  m_LocalRotation: {x: -0.6037787, y: 0.33009782, z: -0.57709515, w: 0.4398271}
-  m_LocalPosition: {x: 0.0086, y: 0.0058, z: -0.0017}
-  m_LocalScale: {x: 0.10000001, y: 0.10000005, z: 0.10000003}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 5114102993711697832}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: -8.634, y: 86.929, z: -113.56}
---- !u!33 &4784430906347930733
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4784430906347930734}
-  m_Mesh: {fileID: 4300000, guid: 3372798116b9be24f8761b7833229aba, type: 3}
---- !u!23 &4784430906347930732
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4784430906347930734}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 06d40dc2e1401784eb420a0d2d5d7235, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &5111762607914328178
 GameObject:
   m_ObjectHideFlags: 0
@@ -1206,7 +1123,6 @@ Transform:
   - {fileID: 5114226727261876976}
   - {fileID: 5108822499378763168}
   - {fileID: 5109236482096507298}
-  - {fileID: 4784430906347930735}
   m_Father: {fileID: 5109192337473367728}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1738,7 +1654,7 @@ GameObject:
   - component: {fileID: 5162902775104199287}
   - component: {fileID: 3492585246985200005}
   m_Layer: 7
-  m_Name: Enemy_Knife_Augmented_Male_01
+  m_Name: Enemy_Knife_Augmented_Male_01_Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1860,8 +1776,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   standUpTime: 1.5
   destroyed: 0
-  DestroyedBody: {fileID: 5112772469444292526, guid: f9219daa3b224a54a98895d589067a9a,
-    type: 3}
+  DestroyedBody: {fileID: 0}
   healthBarRennder:
     healthBar: {fileID: 2278732330621463760, guid: 89c69c051ed5e2e46938d9c3f33174c4,
       type: 3}

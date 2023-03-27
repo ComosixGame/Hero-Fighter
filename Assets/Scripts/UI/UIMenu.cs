@@ -94,7 +94,7 @@ public class UIMenu : MonoBehaviour
     public void DisplayHitPoint(bool hit)
     {
         flagCountHit = hit;
-        if (hit)
+        if (hit && !totalHit.activeInHierarchy)
         {
             hitCount?.SetActive(true);
             totalHit?.SetActive(false);
@@ -104,7 +104,6 @@ public class UIMenu : MonoBehaviour
             Invoke("SetFontSizeInit", timerBigSize);
             countHitComboTimer.value = 1;
             totalHitPoint = hitPoint;
-            
         }
         else
         {

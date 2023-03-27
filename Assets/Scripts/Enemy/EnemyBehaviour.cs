@@ -47,6 +47,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void OnDisable()
     {
+        isStart = false;
         damageable.OnTakeDamageStart -= DisableEnemy;
         damageable.OnTakeDamageEnd -= EnableEnemy;
         gameManager.OnInitUiDone -= StartGame;
@@ -55,6 +56,7 @@ public class EnemyBehaviour : MonoBehaviour
     private void StartGame()
     {
         isStart = true;
+        disable = !isStart;
     }
 
     private void Update()

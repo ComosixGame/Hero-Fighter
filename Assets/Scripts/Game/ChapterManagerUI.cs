@@ -23,15 +23,9 @@ public class ChapterManagerUI : MonoBehaviour
 
     private void OnEnable() 
     {
-
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
         DisplayChapterUI();
-        
     }
+
 
     public void SelectChapter(int chapter)
     {

@@ -311,6 +311,7 @@ MonoBehaviour:
   playerHurtBoxes:
   - {fileID: 2365304843506742656}
   - {fileID: 2365304844446138290}
+  isStart: 0
 --- !u!114 &2131854530
 MonoBehaviour:
   m_ObjectHideFlags: 0

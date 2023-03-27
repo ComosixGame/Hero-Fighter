@@ -46,6 +46,7 @@ public class GameManager : Singleton<GameManager>
     {
         Time.timeScale = 1;
         OnStartGame?.Invoke();
+        playerData = PlayerData.Load();
     }
     
     public void PauseGame()
@@ -78,7 +79,7 @@ public class GameManager : Singleton<GameManager>
     public void NewGame(bool win)
     {
         //Add new Level
-        if (win)
+        if (win && playerData.LatestLevel == levelIndex+1)
         {
             playerData = PlayerData.Load();
             int nextLevel = playerData.LatestLevel+1;

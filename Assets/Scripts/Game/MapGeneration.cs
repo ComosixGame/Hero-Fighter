@@ -69,8 +69,6 @@ public class MapGeneration : MonoBehaviour
                 }
             }
         }
-        playerData = PlayerData.Load();
-        Debug.Log(playerData.LatestLevel);
     }
 
     private void StartGame()

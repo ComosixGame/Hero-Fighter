@@ -648,10 +648,13 @@ MonoBehaviour:
     m_RotationOrder: 4
   standUpTime: 1.5
   destroyed: 0
+  DestroyedBody: {fileID: 6244902220698897489, guid: e9dd548937c88bb47820897e6e594000,
+    type: 3}
   healthBarRennder:
     healthBar: {fileID: 2278732330621463760, guid: 89c69c051ed5e2e46938d9c3f33174c4,
       type: 3}
     offset: 2.5
+    _healthBar: {fileID: 0}
   hitEffect: {fileID: 9046699384457569311, guid: 00e2210b13fc873458ba8b2017fba62e,
     type: 3}
   knockDownVFX: {fileID: 5854742832336096459, guid: 8a7c5d19d8a94cb41bccf41896137933,

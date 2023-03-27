@@ -24,6 +24,7 @@ public class EnemyDamageable : MonoBehaviour, IDamageable
     private GameManager gameManager;
     private AbsEnemyAttack absEnemyAttack;
     public event Action<Vector3, float, AttackType> OnTakeDamageStart;
+    public GameObject DestroyedBody;
     public event Action OnTakeDamageEnd;
     [SerializeField] private HealthBarRennder healthBarRennder = new HealthBarRennder();
     private UIMenu uI;
@@ -54,31 +55,37 @@ public class EnemyDamageable : MonoBehaviour, IDamageable
     private void OnEnable() {
         uI = FindObjectOfType<UIMenu>();
         gameManager.OnStartGame += StartGame;
+        gameManager.OnEndGame += EndGame;
+        enemyBehaviour.enabled = true;
+        colliderGameObject.enabled = true;
     }
 
     private void OnDisable() {
-        gameManager.OnStartGame -= StartGame;
         gameManager.OnNewGame -= NewGame;
-
-    }
-
-    private void Start()
-    {
-        SetInitHealthBar(maxHealth);
-        health = maxHealth;
+        gameManager.OnEndGame -= EndGame;
     }
 
     private void StartGame()
     {
-        healthBarRennder.SetHealthBar();
+        destroyed = false;
+        SetInitHealthBar(maxHealth);
+        health = maxHealth;
+        gameManager.OnStartGame -= StartGame;
     }
 
     private void LateUpdate()
     {
-        healthBarRennder.UpdateHealthBarRotation();
         gameManager.OnNewGame += NewGame;
+        if (healthBarRennder._healthBar == null)
+        {
+            SetInitHealthBar(maxHealth);
+            healthBarRennder.UpdateHealthBarRotation();
+            health = maxHealth;
+        }else
+        {
+            healthBarRennder.UpdateHealthBarRotation();
+        }
     }
-
 
     private void Update()
     {
@@ -166,6 +173,7 @@ public class EnemyDamageable : MonoBehaviour, IDamageable
 
     private void Destroy(AttackType attackType)
     {
+        // GameObject deadBody = Instantiate(DestroyedBody, transform.position, transform.rotation);
         if (attackType == AttackType.light)
         {
             animator.SetTrigger(deathHash);
@@ -179,13 +187,19 @@ public class EnemyDamageable : MonoBehaviour, IDamageable
 
         enemyBehaviour.enabled = false;
         colliderGameObject.enabled = false;
-        healthBarRennder.DestroyHealthBar();
+        healthBarRennder.DestroyHeathBar();
         agent.ResetPath();
         destroyed = true;
     }
 
     private void NewGame()
     {
-        healthBarRennder.DestroyHealthBar();
+        healthBarRennder.DestroyHeathBar();
     }
+
+    private void EndGame(bool win)
+    {
+
+    }
+
 }

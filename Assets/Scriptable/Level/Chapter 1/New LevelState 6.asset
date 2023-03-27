@@ -16,7 +16,7 @@ MonoBehaviour:
   waves:
   - name: 
     enemies:
-    - enemyObjectPool: {fileID: -1348277006179719198, guid: 0aba806c22f8e81469efeb3e22ae215c,
+    - enemyObjectPool: {fileID: 3179910275667844987, guid: 3eba54074a53bc044bb941ecbb6d7713,
         type: 3}
       position: {x: -17.579004, y: 0, z: -5.2071066}
       eulerRotation: {x: -0, y: 286.70227, z: 0}

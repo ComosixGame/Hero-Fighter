@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private PlayerHurtBox[] playerHurtBoxes;
     private PlayerDamageable playerDamageable;
     private GameManager gameManager;
-    private bool isStart;
+    public bool isStart;
 
     private void Awake()
     {

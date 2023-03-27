@@ -19,6 +19,8 @@ public class ChapterGeneration : MonoBehaviour
 
     private void OnEnable()
     {
+        chapterIndex = gameManager.chapterIndex;
+        levelIndex = gameManager.levelIndex;
         gameManager.OnStartGame += StartGame;
         gameManager.OnEndGame += EndGame;
     }

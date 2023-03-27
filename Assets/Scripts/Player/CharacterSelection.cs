@@ -77,7 +77,8 @@ public class CharacterSelection : MonoBehaviour
 
     public void PlayerRevival()
     {
-        SpawnSelectedCharacter(playerPos);
+        // SpawnSelectedCharacter(playerPos);
+        player.GetComponent<PlayerDamageable>().Revival();
     }
 
     private void OnDrawGizmos() 

@@ -145,7 +145,7 @@ GameObject:
   - component: {fileID: 6874568740123171649}
   - component: {fileID: 7982874686349890351}
   m_Layer: 7
-  m_Name: Enemy_Melee_Alien_Male_02
+  m_Name: Enemy_Melee_Alien_Male_02_Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -354,8 +354,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   standUpTime: 1.5
   destroyed: 0
-  DestroyedBody: {fileID: 6787113751920025648, guid: acdf24dffbda4164cb3f566c1e4c3093,
-    type: 3}
+  DestroyedBody: {fileID: 0}
   healthBarRennder:
     healthBar: {fileID: 2278732330621463760, guid: 89c69c051ed5e2e46938d9c3f33174c4,
       type: 3}
@@ -1994,7 +1993,7 @@ BoxCollider:
   m_GameObject: {fileID: 8374536709369693071}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 2, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -2012,6 +2011,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   damage: 3
   attackType: 0

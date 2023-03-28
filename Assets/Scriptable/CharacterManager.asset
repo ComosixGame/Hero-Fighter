@@ -12,8 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a7055a9bd632a44cacfad7493d7da91, type: 3}
   m_Name: CharacterManager
   m_EditorClassIdentifier: 
+  defaultCharacter: iron_man
   Characters:
-  - {fileID: 11400000, guid: c910c3059b8701e41a1a4c32dca314f5, type: 2}
-  - {fileID: 11400000, guid: ee4cab6843f4d5f4ca3d019edaf43882, type: 2}
-  - {fileID: 11400000, guid: c9d8953d7b49ffc458edd5a73cbceb9e, type: 2}
-  - {fileID: 11400000, guid: c48310d00ff160c4a8a92b3bc03c3873, type: 2}
+  - key: iron_man
+    name: Iron Man
+    price: 0
+    character: {fileID: 1701021460331676804, guid: 3f49b085976b984488ba0736ecf25ea5,
+      type: 3}
+  - key: hero1
+    name: Hero 1
+    price: 0
+    character: {fileID: 1963772456342324074, guid: bf6f302059923914daf917d3f04736ee,
+      type: 3}
+  - key: hero2
+    name: Hero 2
+    price: 0
+    character: {fileID: 1963772456342324074, guid: e173501746e8b634c8e89f5b465eb8f1,
+      type: 3}

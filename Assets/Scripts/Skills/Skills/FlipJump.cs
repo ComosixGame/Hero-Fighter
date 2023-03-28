@@ -26,8 +26,8 @@ public class FlipJump : AbsSkill
     {
         objectPoolerManager = ObjectPoolerManager.Instance;
 
-        controller = GetComponent<CharacterController>();
-        animator = GetComponent<Animator>();
+        controller = GetComponentInParent<CharacterController>();
+        animator = GetComponentInParent<Animator>();
         jumpIndexHash = Animator.StringToHash("JumpIndex");
         originlayer = gameObject.layer;
     }
@@ -39,7 +39,7 @@ public class FlipJump : AbsSkill
 
     private void Start()
     {
-        playerInput = GetComponent<PlayerController>().playerInputSystem;
+        playerInput = GetComponentInParent<PlayerController>().playerInputSystem;
 
         playerInput.Player.Move.performed += GetDirection;
         playerInput.Player.Move.canceled += GetDirection;

@@ -18,7 +18,7 @@ public abstract class AbsSpecialSkill : MonoBehaviour
     public event Action<int> OnAccumulationEnergy;
 
     protected virtual void Awake() {
-        animator = GetComponent<Animator>();
+        animator = GetComponentInParent<Animator>();
         SpecialSkilHash = Animator.StringToHash("SpecialSkill");
         animatorOverride["SpecialSkill"] = animationClip;
         animator.runtimeAnimatorController = animatorOverride;

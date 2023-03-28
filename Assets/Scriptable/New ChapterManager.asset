@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: New ChapterManager
   m_EditorClassIdentifier: 
   chapterStates:
-  - name: Chapter1
+  - name: Area 51
+    sprite: {fileID: 21300000, guid: 1c2ab4f76147d4d37b4c494fb962fc82, type: 3}
     levelStates:
     - {fileID: 11400000, guid: b3500fad415f1f24f9f374f7bdd17b24, type: 2}
     - {fileID: 11400000, guid: 4cb02864843fa4248a9be856aec4f000, type: 2}
@@ -30,7 +31,8 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 5be654bebb4694f45b298131806dab43, type: 2}
     - {fileID: 11400000, guid: 3cc14c73986e38e48bb3a3218dc2a431, type: 2}
     - {fileID: 11400000, guid: a950b1f11d5b49144809acad712be12e, type: 2}
-  - name: Chapter2
+  - name: Hometown
+    sprite: {fileID: 21300000, guid: 75763eea3b06e427e81c6f71e66af2e5, type: 3}
     levelStates:
     - {fileID: 11400000, guid: b3500fad415f1f24f9f374f7bdd17b24, type: 2}
     - {fileID: 11400000, guid: b3500fad415f1f24f9f374f7bdd17b24, type: 2}

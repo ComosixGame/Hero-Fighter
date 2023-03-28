@@ -10,6 +10,7 @@ public class GameManager : Singleton<GameManager>
     [ReadOnly] public Transform player;
     [ReadOnly] public CinemachineVirtualCamera virtualCamera;
     private int money;
+    public ChapterManager chapterManager;
     public event Action OnStartGame;
     public event Action OnPause;
     public event Action OnResume;
@@ -21,17 +22,26 @@ public class GameManager : Singleton<GameManager>
     public int chapterIndex;
     public int levelIndex;
     private PlayerData playerData;
-    public SettingData settingData;
     private ObjectPoolerManager objectPooler;
+    private LoadSceneManager loadSceneManager;
+    public LoadingScreen loadingScreen;
+    public LevelState levelState {
+        get {
+            return chapterManager.chapterStates[chapterIndex].levelStates[levelIndex];
+        }
+    }
+ 
 
     protected override void Awake()
     {
         base.Awake();
         objectPooler = ObjectPoolerManager.Instance;
+        loadSceneManager = LoadSceneManager.Instance;
     }
 
     private void Start() {
         Application.targetFrameRate = 60;
+        loadSceneManager.OnDone += InitGame;
     }
 
     private void OnEnable() {
@@ -40,13 +50,22 @@ public class GameManager : Singleton<GameManager>
                 StartGame();
             }
         };
+
+    }
+
+    private void OnDestroy() {
+        loadSceneManager.OnDone -= InitGame;
+    }
+
+    private void InitGame()
+    {
+        StartGame();
     }
 
     public void StartGame()
     {
         Time.timeScale = 1;
         OnStartGame?.Invoke();
-        playerData = PlayerData.Load();
     }
     
     public void PauseGame()
@@ -68,6 +87,7 @@ public class GameManager : Singleton<GameManager>
 
     public void GameLose()
     {
+
         OnEndGame.Invoke(false);
     }
 
@@ -98,6 +118,16 @@ public class GameManager : Singleton<GameManager>
     public void CheckedPoint()
     {
         OnCheckedPoint?.Invoke();
+    }
+
+    public void SetChapter(int id)
+    {
+        chapterIndex = id;
+    }
+
+    public void SetLevel(int id)
+    {
+        levelIndex = id;
     }
 
     public void DestroyGameObjectPooler()

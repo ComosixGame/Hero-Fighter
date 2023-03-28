@@ -26,6 +26,7 @@ public class MapGeneration : MonoBehaviour
         gameManager.OnStartGame += StartGame;
         gameManager.OnNewGame += ResetGame;
         uIMenu = FindObjectOfType<UIMenu>();
+        levelState = gameManager.levelState;
     }
 
     private void OnDisable()
@@ -70,6 +71,7 @@ public class MapGeneration : MonoBehaviour
             }
         }
     }
+
 
     private void StartGame()
     {

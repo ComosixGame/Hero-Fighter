@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class ChapterManagerUI : MonoBehaviour
 {
@@ -9,12 +10,14 @@ public class ChapterManagerUI : MonoBehaviour
     public GameObject currentLevelImage;
     public GameObject doneLevelImage;
     public GameObject levelExample;
-    [SerializeField] private ChapterManager chapterManager;
     private ChapterGeneration chapterGeneration;
     private PlayerData playerData;
     private int levelIndex;
     private int chapterIndex;
     private GameManager gameManager;
+    public GameObject contentChapter;
+    public GameObject cardChapter;
+    public GameObject windowSelectLevel;
 
     private void Awake() 
     {
@@ -23,6 +26,10 @@ public class ChapterManagerUI : MonoBehaviour
 
     private void OnEnable() 
     {
+        DisplayLevelUI();
+    }
+
+    private void Start() {
         DisplayChapterUI();
     }
 
@@ -40,10 +47,10 @@ public class ChapterManagerUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-    public void DisplayChapterUI()
+    public void DisplayLevelUI()
     {
         playerData = PlayerData.Load();
         levelIndex = playerData.LatestLevel;
@@ -71,7 +78,6 @@ public class ChapterManagerUI : MonoBehaviour
         }
         else
         {
-            Debug.Log(123);
             for (int k = 1; k < chapter[chapterIndex].levelBtns.Count; k++)
             {
                 chapter[chapterIndex].GetButton(k).GetComponent<Button>().targetGraphic= levelExample.GetComponent<Image>();
@@ -83,6 +89,23 @@ public class ChapterManagerUI : MonoBehaviour
             chapter[chapterIndex].GetButton(0).GetComponent<Image>().sprite = currentLevelImage.GetComponent<Image>().sprite;
         }
     }
+
+    public void DisplayChapterUI()
+    {
+        for (int l = 0; l < gameManager.chapterManager.chapterStates.Length; l++)
+        {
+            GameObject chapterInit = Instantiate(cardChapter);
+            ChapterCard chapterCard = chapterInit.GetComponent<ChapterCard>();
+            chapterCard.id = l;
+            chapterCard.windowSelectLevel = windowSelectLevel;
+            //Change name Chapter
+            chapterInit.GetComponentInChildren<TMP_Text>().text = gameManager.chapterManager.chapterStates[l].name;
+            //Change sprite map
+            chapterInit.GetComponent<Image>().sprite = gameManager.chapterManager.chapterStates[l].sprite;
+            chapterInit.transform.SetParent(contentChapter.transform, false);
+        }
+    }
+
 }
 
 [Serializable]

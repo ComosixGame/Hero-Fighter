@@ -549,7 +549,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   standupTime: 1
-  maxHealth: 100
+  maxHealth: 5
   knocking: 0
   hitEffect: {fileID: 9046699384457569311, guid: 00e2210b13fc873458ba8b2017fba62e,
     type: 3}

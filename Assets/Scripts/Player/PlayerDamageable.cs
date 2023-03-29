@@ -158,6 +158,7 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
         animator.SetTrigger(revivalHash);
         playerController.isStart = true;
         GameObject newPlayer = Instantiate(gameObject, transform.position, transform.rotation);
+        gameManager.player = newPlayer.transform;
         newPlayer.SetActive(true);
         destroyed = false;
         gameManager.virtualCamera.Follow = newPlayer.transform;

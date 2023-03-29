@@ -10,12 +10,11 @@ public class UIMenu : MonoBehaviour
     public TMP_Text pointTxt, totalHitTxt, totalComboTxt, textPointTxt, moneyTxt, moneyStartTxt;
     private PlayerData playerData;
     private Animator animator;
-    public GameObject playUI;
-    public GameObject winUI;
-    public GameObject loseUI;
     private int previousHash;
     private int startHash;
     private int startGameHash;
+    private int winGameHash;
+    private int loseGameHash;
     private int hitPoint;
     private int totalHitPoint;
     [SerializeField] private Slider countHitComboTimer;
@@ -46,6 +45,8 @@ public class UIMenu : MonoBehaviour
         previousHash = Animator.StringToHash("isPrevious");
         startGameHash = Animator.StringToHash("StartGame");
         startHash = Animator.StringToHash("Start");
+        winGameHash = Animator.StringToHash("WinGame");
+        loseGameHash = Animator.StringToHash("LoseGame");
         soundManager = SoundManager.Instance;
         gameManager = GameManager.Instance;
         settingData = SettingData.Load();
@@ -189,9 +190,10 @@ public class UIMenu : MonoBehaviour
     {
         if(win) {
             BonusMoney();
-            winUI.SetActive(true);
+            animator.SetTrigger(winGameHash);
         } else {
-            loseUI.SetActive(true);
+            animator.SetTrigger(loseGameHash);
+
         }
     }
 

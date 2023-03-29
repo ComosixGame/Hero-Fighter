@@ -11,6 +11,7 @@ public class ChapterManager : ScriptableObject
 public class ChapterState
 {
     public string name;
+    public Sprite sprite;
     public LevelState[] levelStates;
 
 }

@@ -15,6 +15,7 @@ public class GameManager : Singleton<GameManager>
     [ReadOnly] public Transform player;
     [ReadOnly] public CinemachineVirtualCamera virtualCamera;
     private int money;
+    public ChapterManager chapterManager;
     public event Action OnStartGame;
     public event Action OnPause;
     public event Action OnResume;
@@ -23,20 +24,31 @@ public class GameManager : Singleton<GameManager>
     public event Action<int> OnUpdateMoney;
     public event Action OnCheckedPoint;
     public event Action OnInitUiDone;
+    public event Action<int> OnSelectChapter;
     [ReadOnly] public int chapterIndex;
     [ReadOnly] public int levelIndex;
     private PlayerData playerData;
-    public SettingData settingData;
     private ObjectPoolerManager objectPooler;
+    private LoadSceneManager loadSceneManager;
+    private LoadingScreen loadingScreen;
+    public LevelState levelState {
+        get {
+            return chapterManager.chapterStates[chapterIndex].levelStates[levelIndex];
+        }
+    }
+ 
 
     protected override void Awake()
     {
         base.Awake();
         objectPooler = ObjectPoolerManager.Instance;
+        loadSceneManager = LoadSceneManager.Instance;
     }
 
     private void Start() {
         Application.targetFrameRate = 60;
+        loadSceneManager.OnDone += InitGame;
+        chapterIndex = -1;
     }
 
     private void OnEnable() {
@@ -54,11 +66,19 @@ public class GameManager : Singleton<GameManager>
 #endif
     }
 
+    private void OnDestroy() {
+        loadSceneManager.OnDone -= InitGame;
+    }
+
+    private void InitGame()
+    {
+        StartGame();
+    }
+
     public void StartGame()
     {
         Time.timeScale = 1;
         OnStartGame?.Invoke();
-        playerData = PlayerData.Load();
     }
     
     public void PauseGame()
@@ -80,6 +100,7 @@ public class GameManager : Singleton<GameManager>
 
     public void GameLose()
     {
+
         OnEndGame.Invoke(false);
     }
 
@@ -90,10 +111,10 @@ public class GameManager : Singleton<GameManager>
 
     public void NewGame(bool win)
     {
+        playerData = PlayerData.Load();
         //Add new Level
-        if (win && playerData.LatestLevel == levelIndex+1)
+        if (win && playerData.LatestLevel == levelIndex)
         {
-            playerData = PlayerData.Load();
             int nextLevel = playerData.LatestLevel+1;
             playerData.levels.Add(nextLevel);
             playerData.Save();
@@ -110,6 +131,17 @@ public class GameManager : Singleton<GameManager>
     public void CheckedPoint()
     {
         OnCheckedPoint?.Invoke();
+    }
+
+    public void SetChapter(int id)
+    {
+        chapterIndex = id;
+        OnSelectChapter?.Invoke(id);
+    }
+
+    public void SetLevel(int id)
+    {
+        levelIndex = id;
     }
 
     public void DestroyGameObjectPooler()

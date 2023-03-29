@@ -2,10 +2,16 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum LevelType {
+    normal,
+    boss
+}
+
 [CreateAssetMenu(fileName = "New LevelState", menuName = "Scriptable/LevelState")]
 public class LevelState : ScriptableObject
 {
     public string nameLevel;
+    public LevelType type;
     public List<Wave> waves = new List<Wave>();
 
 
@@ -33,5 +39,4 @@ public class LevelState : ScriptableObject
             enemyObjectPool = enemy;
         }
     }
-
 }

@@ -2,34 +2,36 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class ChapterManagerUI : MonoBehaviour
 {
-    public Chapter[] chapter;
-    public GameObject currentLevelImage;
-    public GameObject doneLevelImage;
-    public GameObject levelExample;
-    [SerializeField] private ChapterManager chapterManager;
-    private ChapterGeneration chapterGeneration;
-    private PlayerData playerData;
-    private int levelIndex;
-    private int chapterIndex;
     private GameManager gameManager;
+    public GameObject contentChapter;
+    public GameObject cardChapter;
+    public GameObject windowSelectLevel;
+    private PlayerData playerData;
+    private List<ChapterCard> chapterCards = new List<ChapterCard>();
 
-    private void Awake() 
+    private void Awake()
     {
         gameManager = GameManager.Instance;
     }
 
-    private void OnEnable() 
+    private void OnEnable()
+    {
+
+
+    }
+
+    private void Start()
     {
         DisplayChapterUI();
     }
 
-
     public void SelectChapter(int chapter)
     {
-       gameManager.chapterIndex = chapter;
+        gameManager.chapterIndex = chapter;
     }
 
     public void SelectLevel(int level)
@@ -37,67 +39,29 @@ public class ChapterManagerUI : MonoBehaviour
         gameManager.levelIndex = level;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void DisplayChapterUI()
     {
+        ChapterState[] chapterStates =  gameManager.chapterManager.chapterStates;
+
+        for (int l = 0; l < chapterStates.Length; l++)
+        {
+            GameObject chapterInit = Instantiate(cardChapter);
+            ChapterCard newCardChapter = chapterInit.GetComponent<ChapterCard>();
+            newCardChapter.id = l;
+            newCardChapter.windowSelectLevel = windowSelectLevel;
+            //Change name Chapter
+            newCardChapter.SetDataCard(chapterStates[l].sprite, chapterStates[l].name);
+            newCardChapter.transform.SetParent(contentChapter.transform, false);
+            chapterCards.Add(newCardChapter);
+        }
+
         playerData = PlayerData.Load();
-        levelIndex = playerData.LatestLevel;
-        chapterIndex = playerData.LatestChapter;
-        if (levelIndex != 0)
-        {
-            //Level Did play
-            for (int j= 0; j < levelIndex; j++)
-            {
-                chapter[chapterIndex].GetButton(j).GetComponent<Button>().targetGraphic.GetComponent<Image>().gameObject.SetActive(false);
-                chapter[chapterIndex].GetButton(j).GetComponent<Image>().sprite = doneLevelImage.GetComponent<Image>().sprite;
-                chapter[chapterIndex].GetButton(j).GetComponent<Button>().targetGraphic= chapter[chapterIndex].GetButton(j).GetComponent<Image>();
-            }
-            
-            //Level new
-            for (int i = levelIndex; i < chapter[chapterIndex].levelBtns.Count; i++)
-            {
-                chapter[chapterIndex].GetButton(i).GetComponent<Button>().targetGraphic= levelExample.GetComponent<Image>();
-                chapter[chapterIndex].GetButton(i).GetComponent<Button>().interactable = false;
-                chapter[chapterIndex].GetText(i).gameObject.SetActive(false);
-            }
+        int chapter = playerData.LatestChapter;
 
-            //Level current
-            chapter[chapterIndex].GetButton(levelIndex-1).GetComponent<Image>().sprite = currentLevelImage.GetComponent<Image>().sprite;
-        }
-        else
+        for (int i = 0; i < chapterCards.Count; i++)
         {
-            Debug.Log(123);
-            for (int k = 1; k < chapter[chapterIndex].levelBtns.Count; k++)
-            {
-                chapter[chapterIndex].GetButton(k).GetComponent<Button>().targetGraphic= levelExample.GetComponent<Image>();
-                chapter[chapterIndex].GetButton(k).GetComponent<Button>().interactable = false;
-                chapter[chapterIndex].GetText(k).gameObject.SetActive(false);
-            }
-
-            chapter[chapterIndex].GetButton(0).GetComponent<Button>().targetGraphic.GetComponent<Image>().gameObject.SetActive(false);
-            chapter[chapterIndex].GetButton(0).GetComponent<Image>().sprite = currentLevelImage.GetComponent<Image>().sprite;
+            chapterCards[i].Unlock(i <= chapter);
         }
     }
 }
 
-[Serializable]
-public class Chapter
-{
-    public string name;
-    public List<Button> levelBtns;
-    public List<GameObject> levelTxt;
-    public Button GetButton(int id)
-    {
-        return levelBtns[id];
-    }
-
-    public GameObject GetText(int id)
-    {
-        return levelTxt[id];
-    }
-}

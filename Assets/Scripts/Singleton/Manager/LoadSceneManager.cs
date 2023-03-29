@@ -54,7 +54,7 @@ public class LoadSceneManager : Singleton<LoadSceneManager>
     }
 
     private void SceneLoaded(AsyncOperation operation) {
-        gameManager.StartGame();
+        // gameManager.StartGame();
         OnDone?.Invoke();
     }
 }

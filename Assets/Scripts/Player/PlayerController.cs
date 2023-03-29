@@ -29,7 +29,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField, ReadOnly] private AbsSkill skill4;
     [SerializeField, ReadOnly] private AbsSpecialSkill specialskill;
     [SerializeField] private PlayerHurtBox[] playerHurtBoxes;
-    private SkillSystem skillSystem;
     private PlayerDamageable playerDamageable;
     private GameManager gameManager;
     public bool isStart;
@@ -39,7 +38,6 @@ public class PlayerController : MonoBehaviour
         gameManager = GameManager.Instance;
         characterController = GetComponent<CharacterController>();
         playerDamageable = GetComponent<PlayerDamageable>();
-        skillSystem = GetComponent<SkillSystem>();
         playerInputSystem = new PlayerInputSystem();
 
         foreach (PlayerHurtBox playerHurtBox in playerHurtBoxes)
@@ -50,7 +48,6 @@ public class PlayerController : MonoBehaviour
         velocityHash = Animator.StringToHash("Velocity");
         attackHash = Animator.StringToHash("Attack");
         stateTimeHash = Animator.StringToHash("StateTime");
-        AddSkill();
     }
 
     private void OnEnable()
@@ -67,17 +64,6 @@ public class PlayerController : MonoBehaviour
 
         playerDamageable.OnTakeDamageStart += DisablePlayerHurtBox;
         playerDamageable.OnTakeDamageEnd += EnablePlayer;
-
-        //lắng nghe skill thực hiện xong
-        foreach (AbsSkill skill in skills)
-        {
-            skill.OnDone += DoneExecutingSkill;
-        }
-
-        if(specialskill != null) {
-            specialskill.OnDone += DoneExecutingSkill;
-        }
-
 
         gameManager.OnInitUiDone += StartGame;
 
@@ -217,10 +203,10 @@ public class PlayerController : MonoBehaviour
         isReady = true;
     }
 
-    private void AddSkill()
+    public void AddSkill(AbsSkill[] skillsAvailable, AbsSpecialSkill specialSkillAvailable)
     {
-        specialskill = skillSystem.specialSkillAvailable;
-        skills = skillSystem.skillsAvailable.ToArray();
+        specialskill = specialSkillAvailable;
+        skills = skillsAvailable;
 
         if (skills.Length > 4)
         {
@@ -246,6 +232,17 @@ public class PlayerController : MonoBehaviour
                 default:
                     throw new InvalidOperationException("invalid skill skillHolder");
             }
+        }
+
+        //lắng nghe skill thực hiện xong
+        foreach (AbsSkill skill in skills)
+        {
+            skill.OnDone += DoneExecutingSkill;
+        }
+
+        if (specialskill != null)
+        {
+            specialskill.OnDone += DoneExecutingSkill;
         }
     }
 
@@ -303,7 +300,8 @@ public class PlayerController : MonoBehaviour
             skill.OnDone -= DoneExecutingSkill;
         }
 
-        if(specialskill != null) {
+        if (specialskill != null)
+        {
             specialskill.OnDone -= DoneExecutingSkill;
         }
 

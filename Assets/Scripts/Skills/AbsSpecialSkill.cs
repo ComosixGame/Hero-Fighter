@@ -18,15 +18,15 @@ public abstract class AbsSpecialSkill : MonoBehaviour
     public event Action<int> OnAccumulationEnergy;
 
     protected virtual void Awake() {
-        animator = GetComponentInParent<Animator>();
+        animator = GetComponent<Animator>();
         SpecialSkilHash = Animator.StringToHash("SpecialSkill");
         animatorOverride["SpecialSkill"] = animationClip;
         animator.runtimeAnimatorController = animatorOverride;
-        energy = 10;
     }
 
     private void Update() {
-        if(energy == MaxEnergy) {
+        if(energy >= MaxEnergy) {
+            energy = MaxEnergy;
             ready = true;
         } else {
             ready = false;

@@ -36,6 +36,8 @@ public class SkillSystem : MonoBehaviour
         }
 
         SetAvailableSkills();
+
+        GetComponent<PlayerController>().AddSkill(skillsAvailable.ToArray(), specialSkillAvailable);
     }
 
     private void SetAvailableSkills(){

@@ -19,12 +19,13 @@ public class GameManager : Singleton<GameManager>
     public event Action<int> OnUpdateMoney;
     public event Action OnCheckedPoint;
     public event Action OnInitUiDone;
+    public event Action<int> OnSelectChapter;
     public int chapterIndex;
     public int levelIndex;
     private PlayerData playerData;
     private ObjectPoolerManager objectPooler;
     private LoadSceneManager loadSceneManager;
-    public LoadingScreen loadingScreen;
+    private LoadingScreen loadingScreen;
     public LevelState levelState {
         get {
             return chapterManager.chapterStates[chapterIndex].levelStates[levelIndex];
@@ -42,6 +43,7 @@ public class GameManager : Singleton<GameManager>
     private void Start() {
         Application.targetFrameRate = 60;
         loadSceneManager.OnDone += InitGame;
+        chapterIndex = -1;
     }
 
     private void OnEnable() {
@@ -50,7 +52,6 @@ public class GameManager : Singleton<GameManager>
                 StartGame();
             }
         };
-
     }
 
     private void OnDestroy() {
@@ -98,10 +99,10 @@ public class GameManager : Singleton<GameManager>
 
     public void NewGame(bool win)
     {
+        playerData = PlayerData.Load();
         //Add new Level
-        if (win && playerData.LatestLevel == levelIndex+1)
+        if (win && playerData.LatestLevel == levelIndex)
         {
-            playerData = PlayerData.Load();
             int nextLevel = playerData.LatestLevel+1;
             playerData.levels.Add(nextLevel);
             playerData.Save();
@@ -123,6 +124,7 @@ public class GameManager : Singleton<GameManager>
     public void SetChapter(int id)
     {
         chapterIndex = id;
+        OnSelectChapter?.Invoke(id);
     }
 
     public void SetLevel(int id)

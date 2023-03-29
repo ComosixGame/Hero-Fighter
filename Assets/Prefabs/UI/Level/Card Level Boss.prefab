@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2008663289228522025}
   - component: {fileID: 909841076241096082}
   m_Layer: 5
-  m_Name: Card Level
+  m_Name: Card Level Boss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,7 +29,7 @@ RectTransform:
   m_GameObject: {fileID: 2008663289228522027}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2008663291253810508}
@@ -70,7 +70,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0bb3fab63769a40e5bbbc33ff43c5d34, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 12229fbc1d2b9473fb061f85678f2800, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

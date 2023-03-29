@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: New LevelState
   m_EditorClassIdentifier: 
   nameLevel: Level1
+  type: 0
   waves:
   - name: 
     enemies:

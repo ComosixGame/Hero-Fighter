@@ -13,7 +13,7 @@ public class SkillUI : MonoBehaviour
     {
         playerData = PlayerData.Load();
         characterSelection = FindObjectOfType<CharacterSelection>();
-        heroTxt.text = characterSelection.equipmentManager.Characters[playerData.selectedCharacter].name;
+        heroTxt.text = characterSelection.equipmentManager.GetCharacter(playerData.selectedCharacter).name;
     }
 
     //Change video (Asign Event OnClick In Editor)

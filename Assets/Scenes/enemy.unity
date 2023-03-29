@@ -354,23 +354,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1083301591, guid: 3f49b085976b984488ba0736ecf25ea5, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2131854533, guid: 3f49b085976b984488ba0736ecf25ea5, type: 3}
-      propertyPath: maxHealth
-      value: 100
+    - target: {fileID: 1614445377, guid: 3f49b085976b984488ba0736ecf25ea5, type: 3}
+      propertyPath: skillHolder
+      value: 
+      objectReference: {fileID: 960490375}
+    - target: {fileID: 1614445377, guid: 3f49b085976b984488ba0736ecf25ea5, type: 3}
+      propertyPath: specialSkillHolder
+      value: 
+      objectReference: {fileID: 2011315934}
+    - target: {fileID: 1614445377, guid: 3f49b085976b984488ba0736ecf25ea5, type: 3}
+      propertyPath: skillTypes.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1701021460331676804, guid: 3f49b085976b984488ba0736ecf25ea5,
         type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 1701021460331676804, guid: 3f49b085976b984488ba0736ecf25ea5,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2076421858786451006, guid: 3f49b085976b984488ba0736ecf25ea5,
         type: 3}
@@ -908,7 +907,6 @@ GameObject:
   - component: {fileID: 782383739}
   - component: {fileID: 782383738}
   - component: {fileID: 782383737}
-  - component: {fileID: 782383736}
   - component: {fileID: 782383735}
   m_Layer: 0
   m_Name: CM vcam1 (1)
@@ -929,22 +927,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 716e798bab953db4d8a97ba4b6ea4fe4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &782383736
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 782383734}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0c46d8c55863044fac0ee25a1b805f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  confiner:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!114 &782383737
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1096,6 +1078,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &960490375 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 960490375, guid: 3f49b085976b984488ba0736ecf25ea5,
+    type: 3}
+  m_PrefabInstance: {fileID: 324052772}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &960988357
 GameObject:
   m_ObjectHideFlags: 0
@@ -1651,6 +1639,62 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &2011315934 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2011315934, guid: 3f49b085976b984488ba0736ecf25ea5,
+    type: 3}
+  m_PrefabInstance: {fileID: 324052772}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2137343307
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2137343309}
+  - component: {fileID: 2137343308}
+  m_Layer: 0
+  m_Name: GameManger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2137343308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2137343307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9c216461b20fde4dae4262fa9c20160, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  debugMode: 1
+  withoutUI: 1
+  player: {fileID: 0}
+  virtualCamera: {fileID: 0}
+  chapterIndex: 0
+  levelIndex: 0
+--- !u!4 &2137343309
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2137343307}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.37, y: 0, z: 4.9}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 34
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &586050271793730294
 GameObject:
   m_ObjectHideFlags: 0
@@ -5103,10 +5147,12 @@ MonoBehaviour:
     m_RotationOrder: 4
   standUpTime: 1.5
   destroyed: 0
+  DestroyedBody: {fileID: 0}
   healthBarRennder:
     healthBar: {fileID: 2278732330621463760, guid: 89c69c051ed5e2e46938d9c3f33174c4,
       type: 3}
     offset: 3
+    _healthBar: {fileID: 0}
   hitEffect: {fileID: 9046699384457569311, guid: 00e2210b13fc873458ba8b2017fba62e,
     type: 3}
   knockDownVFX: {fileID: 5854742832336096459, guid: 8a7c5d19d8a94cb41bccf41896137933,
@@ -5255,10 +5301,12 @@ MonoBehaviour:
     m_RotationOrder: 4
   standUpTime: 1.5
   destroyed: 0
+  DestroyedBody: {fileID: 0}
   healthBarRennder:
     healthBar: {fileID: 2278732330621463760, guid: 89c69c051ed5e2e46938d9c3f33174c4,
       type: 3}
     offset: 2.5
+    _healthBar: {fileID: 0}
   hitEffect: {fileID: 9046699384457569311, guid: 00e2210b13fc873458ba8b2017fba62e,
     type: 3}
   knockDownVFX: {fileID: 5854742832336096459, guid: 8a7c5d19d8a94cb41bccf41896137933,
@@ -12723,10 +12771,12 @@ MonoBehaviour:
     m_RotationOrder: 4
   standUpTime: 1.5
   destroyed: 0
+  DestroyedBody: {fileID: 0}
   healthBarRennder:
     healthBar: {fileID: 2278732330621463760, guid: 89c69c051ed5e2e46938d9c3f33174c4,
       type: 3}
     offset: 2.5
+    _healthBar: {fileID: 0}
   hitEffect: {fileID: 9046699384457569311, guid: 00e2210b13fc873458ba8b2017fba62e,
     type: 3}
   knockDownVFX: {fileID: 5854742832336096459, guid: 8a7c5d19d8a94cb41bccf41896137933,
@@ -14556,10 +14606,12 @@ MonoBehaviour:
     m_RotationOrder: 4
   standUpTime: 1.5
   destroyed: 0
+  DestroyedBody: {fileID: 0}
   healthBarRennder:
     healthBar: {fileID: 2278732330621463760, guid: 89c69c051ed5e2e46938d9c3f33174c4,
       type: 3}
     offset: 2.5
+    _healthBar: {fileID: 0}
   hitEffect: {fileID: 9046699384457569311, guid: 00e2210b13fc873458ba8b2017fba62e,
     type: 3}
   knockDownVFX: {fileID: 5854742832336096459, guid: 8a7c5d19d8a94cb41bccf41896137933,
@@ -22006,10 +22058,12 @@ MonoBehaviour:
     m_RotationOrder: 4
   standUpTime: 1.5
   destroyed: 0
+  DestroyedBody: {fileID: 0}
   healthBarRennder:
     healthBar: {fileID: 2278732330621463760, guid: 89c69c051ed5e2e46938d9c3f33174c4,
       type: 3}
     offset: 3
+    _healthBar: {fileID: 0}
   hitEffect: {fileID: 9046699384457569311, guid: 00e2210b13fc873458ba8b2017fba62e,
     type: 3}
   knockDownVFX: {fileID: 5854742832336096459, guid: 8a7c5d19d8a94cb41bccf41896137933,
@@ -27055,10 +27109,12 @@ MonoBehaviour:
     m_RotationOrder: 4
   standUpTime: 1.5
   destroyed: 0
+  DestroyedBody: {fileID: 0}
   healthBarRennder:
     healthBar: {fileID: 2278732330621463760, guid: 89c69c051ed5e2e46938d9c3f33174c4,
       type: 3}
     offset: 2.5
+    _healthBar: {fileID: 0}
   hitEffect: {fileID: 9046699384457569311, guid: 00e2210b13fc873458ba8b2017fba62e,
     type: 3}
   knockDownVFX: {fileID: 5854742832336096459, guid: 8a7c5d19d8a94cb41bccf41896137933,
@@ -32956,10 +33012,12 @@ MonoBehaviour:
     m_RotationOrder: 4
   standUpTime: 1.5
   destroyed: 0
+  DestroyedBody: {fileID: 0}
   healthBarRennder:
     healthBar: {fileID: 2278732330621463760, guid: 89c69c051ed5e2e46938d9c3f33174c4,
       type: 3}
     offset: 3
+    _healthBar: {fileID: 0}
   hitEffect: {fileID: 9046699384457569311, guid: 00e2210b13fc873458ba8b2017fba62e,
     type: 3}
   knockDownVFX: {fileID: 5854742832336096459, guid: 8a7c5d19d8a94cb41bccf41896137933,
@@ -34285,10 +34343,12 @@ MonoBehaviour:
     m_RotationOrder: 4
   standUpTime: 1.5
   destroyed: 0
+  DestroyedBody: {fileID: 0}
   healthBarRennder:
     healthBar: {fileID: 2278732330621463760, guid: 89c69c051ed5e2e46938d9c3f33174c4,
       type: 3}
     offset: 2.5
+    _healthBar: {fileID: 0}
   hitEffect: {fileID: 9046699384457569311, guid: 00e2210b13fc873458ba8b2017fba62e,
     type: 3}
   knockDownVFX: {fileID: 5854742832336096459, guid: 8a7c5d19d8a94cb41bccf41896137933,
@@ -35277,10 +35337,12 @@ MonoBehaviour:
     m_RotationOrder: 4
   standUpTime: 1.5
   destroyed: 0
+  DestroyedBody: {fileID: 0}
   healthBarRennder:
     healthBar: {fileID: 2278732330621463760, guid: 89c69c051ed5e2e46938d9c3f33174c4,
       type: 3}
     offset: 2.5
+    _healthBar: {fileID: 0}
   hitEffect: {fileID: 9046699384457569311, guid: 00e2210b13fc873458ba8b2017fba62e,
     type: 3}
   knockDownVFX: {fileID: 5854742832336096459, guid: 8a7c5d19d8a94cb41bccf41896137933,

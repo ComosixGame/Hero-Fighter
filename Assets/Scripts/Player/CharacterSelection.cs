@@ -33,12 +33,6 @@ public class CharacterSelection : MonoBehaviour
         playerData = PlayerData.Load();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     private void StartGame()
     {
         SpawnSelectedCharacter(playerPos);
@@ -46,7 +40,7 @@ public class CharacterSelection : MonoBehaviour
 
     private void NewGame()
     {
-        GameObject.Destroy(player);
+        Destroy(player);
     }
 
     private void GetPlayerPos(Transform pos)
@@ -56,10 +50,9 @@ public class CharacterSelection : MonoBehaviour
     }
 
     //Choice Character in Hero UI
-    public void ChoiceCharacters(int index)
+    public void ChoiceCharacters(string id)
     {
-        playerData.selectedCharacter = index;
-        playerData.Save();
+        gameManager.SelecteCharacter(id);
     }
 
 
@@ -68,17 +61,12 @@ public class CharacterSelection : MonoBehaviour
     public void SpawnSelectedCharacter(Vector3 checkPoint)
     {
         playerData = PlayerData.Load();
-        int selectedCharacter = playerData.selectedCharacter;
-        player = Instantiate(equipmentManager.Characters[selectedCharacter].character, checkPoint,equipmentManager.Characters[selectedCharacter].character.transform.rotation);
+        string selectedCharacter = playerData.selectedCharacter;
+        GameObject character = equipmentManager.GetCharacter(selectedCharacter).character;
+        player = Instantiate(character, checkPoint, Quaternion.LookRotation(Vector3.right));
         virtualCamera.Follow = player.transform;
         gameManager.player = player.transform;
         gameManager.virtualCamera = virtualCamera;
-    }
-
-    public void PlayerRevival()
-    {
-        // SpawnSelectedCharacter(playerPos);
-        player.GetComponent<PlayerDamageable>().Revival();
     }
 
     private void OnDrawGizmos() 

@@ -6,7 +6,12 @@ using MyCustomAttribute;
 
 public class GameManager : Singleton<GameManager>
 {
+#if UNITY_EDITOR
+[Header("Debug")]
     [SerializeField] private bool debugMode;
+    [SerializeField] private bool withoutUI;
+#endif
+[Header("Info")]
     [ReadOnly] public Transform player;
     [ReadOnly] public CinemachineVirtualCamera virtualCamera;
     private int money;
@@ -20,8 +25,8 @@ public class GameManager : Singleton<GameManager>
     public event Action OnCheckedPoint;
     public event Action OnInitUiDone;
     public event Action<int> OnSelectChapter;
-    public int chapterIndex;
-    public int levelIndex;
+    [ReadOnly] public int chapterIndex;
+    [ReadOnly] public int levelIndex;
     private PlayerData playerData;
     private ObjectPoolerManager objectPooler;
     private LoadSceneManager loadSceneManager;
@@ -47,11 +52,18 @@ public class GameManager : Singleton<GameManager>
     }
 
     private void OnEnable() {
+#if UNITY_EDITOR
         objectPooler.OnCreatedObjects += () => {
             if(debugMode) {
+                player = GameObject.FindWithTag("Player")?.transform;
                 StartGame();
             }
+
+            if(withoutUI) {
+                InitUiDone();
+            }
         };
+#endif
     }
 
     private void OnDestroy() {
@@ -136,5 +148,10 @@ public class GameManager : Singleton<GameManager>
     {
         objectPooler.ResetObjectPoolerManager();
     }
+
+    public void SelecteCharacter(string id) {
+        playerData.selectedCharacter = id;
+    }
+
 
 }

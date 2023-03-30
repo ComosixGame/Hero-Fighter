@@ -368,7 +368,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1614445377, guid: 3f49b085976b984488ba0736ecf25ea5, type: 3}
       propertyPath: skillTypes.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1701021460331676804, guid: 3f49b085976b984488ba0736ecf25ea5,
         type: 3}
@@ -430,7 +430,23 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 5345986584341595204, guid: 3f49b085976b984488ba0736ecf25ea5,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 7d8dd7d2fb30d1041a63edaaa63ac08f, type: 2}
+    - target: {fileID: 5345986584341595204, guid: 3f49b085976b984488ba0736ecf25ea5,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 2131854531, guid: 3f49b085976b984488ba0736ecf25ea5, type: 3}
+    - {fileID: 2131854533, guid: 3f49b085976b984488ba0736ecf25ea5, type: 3}
+    - {fileID: 1614445377, guid: 3f49b085976b984488ba0736ecf25ea5, type: 3}
+    - {fileID: 5185691523736363872, guid: 3f49b085976b984488ba0736ecf25ea5, type: 3}
+    - {fileID: 4557754036474310949, guid: 3f49b085976b984488ba0736ecf25ea5, type: 3}
+    - {fileID: 2131854532, guid: 3f49b085976b984488ba0736ecf25ea5, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3f49b085976b984488ba0736ecf25ea5, type: 3}
 --- !u!1 &330585543
 GameObject:
@@ -1486,7 +1502,7 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 324052772}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1614445378
+--- !u!114 &1614445370
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1495,19 +1511,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1342434232}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4874185986ed6b64cbdec2eebdf3aa64, type: 3}
+  m_Script: {fileID: 11500000, guid: c7e95bc4e5fd957429776eef3fdbf9a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: 
-  skillDescription: 
-  MaxEnergy: 0
-  energy: 0
-  animationClip: {fileID: 7400000, guid: fab96365261d03247aa6f8322742efa5, type: 2}
-  laserPosition: {x: 0, y: 1.67, z: 0.3}
-  laserObject: {fileID: 198433428268783098, guid: 7ceb803b1c2b96146b980ff7d09019cf,
-    type: 3}
-  damage: 0
-  speed: 0
 --- !u!1 &1636646146
 GameObject:
   m_ObjectHideFlags: 0
@@ -3907,7 +3913,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &644403704844936755
 GameObject:
   m_ObjectHideFlags: 0

@@ -35,14 +35,14 @@ public class FlipJump : AbsSkill
     private void OnEnable()
     {
         OnDone += CanceleJump;
+        playerInput.Player.Move.performed += GetDirection;
+        playerInput.Player.Move.canceled += GetDirection;
     }
 
     private void Start()
     {
         playerInput = GetComponent<PlayerController>().playerInputSystem;
 
-        playerInput.Player.Move.performed += GetDirection;
-        playerInput.Player.Move.canceled += GetDirection;
     }
 
     private void Update()

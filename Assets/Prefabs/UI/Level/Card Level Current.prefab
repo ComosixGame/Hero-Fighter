@@ -29,7 +29,7 @@ RectTransform:
   m_GameObject: {fileID: 2008663289228522027}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2008663291253810508}
@@ -119,7 +119,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 2008663289228522022}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
@@ -137,6 +137,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   chapter: 0
+  title: {fileID: 2008663291253810509}
+  lockIcon: {fileID: 0}
 --- !u!1 &2008663291253810511
 GameObject:
   m_ObjectHideFlags: 0

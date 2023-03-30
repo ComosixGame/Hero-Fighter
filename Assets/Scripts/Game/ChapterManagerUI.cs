@@ -10,18 +10,15 @@ public class ChapterManagerUI : MonoBehaviour
     public GameObject contentChapter;
     public GameObject cardChapter;
     public GameObject windowSelectLevel;
+    [SerializeField] private Transform commingSoonCard;
+    [SerializeField] private ScrollRect scrollRect;
     private PlayerData playerData;
+    private RectTransform currentCard;
     private List<ChapterCard> chapterCards = new List<ChapterCard>();
 
     private void Awake()
     {
         gameManager = GameManager.Instance;
-    }
-
-    private void OnEnable()
-    {
-
-
     }
 
     private void Start()
@@ -42,26 +39,31 @@ public class ChapterManagerUI : MonoBehaviour
     public void DisplayChapterUI()
     {
         ChapterState[] chapterStates =  gameManager.chapterManager.chapterStates;
+        int latestChapter = PlayerData.Load().latestChapter;
 
-        for (int l = 0; l < chapterStates.Length; l++)
+        for (int i = 0; i < chapterStates.Length; i++)
         {
             GameObject chapterInit = Instantiate(cardChapter);
             ChapterCard newCardChapter = chapterInit.GetComponent<ChapterCard>();
-            newCardChapter.id = l;
+            newCardChapter.id = i;
             newCardChapter.windowSelectLevel = windowSelectLevel;
             //Change name Chapter
-            newCardChapter.SetDataCard(chapterStates[l].sprite, chapterStates[l].name);
+            newCardChapter.SetDataCard(chapterStates[i].sprite, chapterStates[i].name);
             newCardChapter.transform.SetParent(contentChapter.transform, false);
             chapterCards.Add(newCardChapter);
+            chapterCards[i].Unlock(i <= latestChapter);
+            if(i == latestChapter) {
+                ScrollTo(chapterInit.GetComponent<RectTransform>());
+            }
         }
 
-        playerData = PlayerData.Load();
-        int chapter = playerData.LatestChapter;
+        commingSoonCard.SetAsLastSibling();
+    }
 
-        for (int i = 0; i < chapterCards.Count; i++)
-        {
-            chapterCards[i].Unlock(i <= chapter);
-        }
+    public void ScrollTo(RectTransform target)
+    {
+        Ultils.ScrollTo(scrollRect, target);
+        currentCard = target;
     }
 }
 

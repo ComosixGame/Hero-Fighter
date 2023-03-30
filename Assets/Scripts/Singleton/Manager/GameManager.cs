@@ -113,9 +113,9 @@ public class GameManager : Singleton<GameManager>
     {
         playerData = PlayerData.Load();
         //Add new Level
-        if (win && playerData.LatestLevel == levelIndex)
+        if (win && playerData.latestLevel == levelIndex)
         {
-            int nextLevel = playerData.LatestLevel+1;
+            int nextLevel = playerData.latestLevel+1;
             playerData.levels.Add(nextLevel);
             playerData.Save();
         }

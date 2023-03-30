@@ -62,7 +62,10 @@ public class PlayerData
     private string defaultCharacter = EquipmentManager.defaultCharacterStatic;
     public int money;
     public string selectedCharacter;
-    public int LatestLevel
+    public List<int> levels, chapters;
+    public List<Character> characters;
+
+    public int latestLevel
     {
         get
         {
@@ -70,24 +73,26 @@ public class PlayerData
         }
     }
 
-    public int LatestChapter
+    public int latestChapter
     {
         get
         {
             return chapters.Count > 0 ? chapters[chapters.Count - 1] : 0;
         }
     }
-    public List<int> levels, chapters;
-    public List<Character> characters;
 
 
     public PlayerData()
     {
         money = 0;
         selectedCharacter = defaultCharacter;
+        chapters = new List<int>();
         levels = new List<int>();
         characters = new List<Character>();
+        chapters.Add(0);
         levels.Add(0);
+        levels.Add(1);
+        levels.Add(2);
         characters.Add(new Character(defaultCharacter));
     }
     public void Save()

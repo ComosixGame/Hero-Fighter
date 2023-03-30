@@ -1,13 +1,14 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using MyCustomAttribute;
 
 public class LevelCard : MonoBehaviour
 {
     public int id;
     public int chapter;
     [SerializeField] private TextMeshProUGUI title;
-    [SerializeField] private GameObject lockIcon;
+    [SerializeField, Label("Lock Icon(optional)")] private GameObject lockIcon;
     private Button button;
     private GameManager gameManager;
     private LoadingScreen loadingScreen;
@@ -37,7 +38,9 @@ public class LevelCard : MonoBehaviour
 
     public void Unlock(bool unlock)
     {
-        lockIcon.SetActive(!unlock);
+        if(lockIcon) {
+            lockIcon.SetActive(!unlock);
+        }
         title.gameObject.SetActive(unlock);
         button.interactable = unlock;
     }

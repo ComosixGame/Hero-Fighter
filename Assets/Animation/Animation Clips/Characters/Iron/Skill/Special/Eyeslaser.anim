@@ -129479,7 +129479,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 2.6666667
+  - time: 2.0666666
     functionName: CastLaserDone
     data: 
     objectReferenceParameter: {fileID: 11500000, guid: 4874185986ed6b64cbdec2eebdf3aa64,

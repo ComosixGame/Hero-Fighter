@@ -30,7 +30,6 @@ public class GameManager : Singleton<GameManager>
     private PlayerData playerData;
     private ObjectPoolerManager objectPooler;
     private LoadSceneManager loadSceneManager;
-    private LoadingScreen loadingScreen;
     public LevelState levelState {
         get {
             return chapterManager.chapterStates[chapterIndex].levelStates[levelIndex];

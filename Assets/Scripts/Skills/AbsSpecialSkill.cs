@@ -11,24 +11,26 @@ public abstract class AbsSpecialSkill : MonoBehaviour
     [SerializeField, ReadOnly] private int energy;
     protected int SpecialSkilHash;
     [SerializeField] protected AnimationClip animationClip;
-    [SerializeField] protected AnimatorOverrideController animatorOverride;
     protected Animator animator;
     public event Action OnStart;
     public event Action OnDone;
     public event Action<int> OnAccumulationEnergy;
 
-    protected virtual void Awake() {
+    protected virtual void Awake()
+    {
         animator = GetComponent<Animator>();
         SpecialSkilHash = Animator.StringToHash("SpecialSkill");
-        animatorOverride["SpecialSkill"] = animationClip;
-        animator.runtimeAnimatorController = animatorOverride;
     }
 
-    private void Update() {
-        if(energy >= MaxEnergy) {
+    private void Update()
+    {
+        if (energy >= MaxEnergy)
+        {
             energy = MaxEnergy;
             ready = true;
-        } else {
+        }
+        else
+        {
             ready = false;
         }
     }
@@ -38,7 +40,7 @@ public abstract class AbsSpecialSkill : MonoBehaviour
     public bool Cast()
     {
         if (ready)
-        {   
+        {
             energy = 0;
             Action();
             OnStart?.Invoke();
@@ -62,6 +64,13 @@ public abstract class AbsSpecialSkill : MonoBehaviour
         }
 
         OnAccumulationEnergy?.Invoke(energy);
+    }
+
+    public void Active()
+    {
+        AnimatorOverrideController animatorOverride = new AnimatorOverrideController(animator.runtimeAnimatorController);
+        animatorOverride["SpecialSkill"] = animationClip;
+        animator.runtimeAnimatorController = animatorOverride;
     }
 
 }

@@ -7,21 +7,27 @@ using System.Collections;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
 {
+    private enum State
+    {
+        enable,
+        disable,
+
+    }
+    private State state;
     public PlayerInputSystem playerInputSystem;
     private Animator animator;
     private CharacterController characterController;
     private Vector3 direction;
     [SerializeField] private float speed = 20f;
-    private int velocityHash;
+    private int velocityXHash;
+    private int velocityZHash;
     private int attackHash;
     private int stateTimeHash;
     private bool isMoveState;
-    private bool isReady = true;
     private float stateTimeAnim;
     private bool disable;
     private Vector3 motionMove;
     private Coroutine attackWaitCoroutine;
-    [SerializeField, ReadOnly] private bool attacking;
     private AbsSkill[] skills;
     [SerializeField, ReadOnly] private AbsSkill skill1;
     [SerializeField, ReadOnly] private AbsSkill skill2;
@@ -45,7 +51,8 @@ public class PlayerController : MonoBehaviour
             playerHurtBox.gameObject.SetActive(false);
         }
 
-        velocityHash = Animator.StringToHash("Velocity");
+        velocityXHash = Animator.StringToHash("VelocityX");
+        velocityZHash = Animator.StringToHash("VelocityZ");
         attackHash = Animator.StringToHash("Attack");
         stateTimeHash = Animator.StringToHash("StateTime");
     }
@@ -78,16 +85,27 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (isStart)
         {
-            if (isReady && isMoveState)
+            CheckInStateMove();
+            switch (state)
             {
-                Move();
-                RotationLook();
+                case State.disable:
+                    characterController.enabled = false;
+                    break;
+                default:
+                    characterController.enabled = true;
+                    Move();
+                    RotationLook();
+                    break;
             }
 
             HandleAnimation();
         }
+
+
+
     }
 
     private void FixedUpdate()
@@ -98,11 +116,16 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat(stateTimeHash, Mathf.Repeat(stateTimeAnim, 1f));
     }
 
-    private void OnControllerColliderHit(ControllerColliderHit hit)
+    private void CheckInStateMove()
     {
-        // if(hit.gameObject.TryGetComponent(out EnemyBehaviour enemyBehaviour)) {
-        //     enemyBehaviour.Push((hit.transform.position - transform.position).normalized * 5f);
-        // }
+        if (isMoveState)
+        {
+            state = State.enable;
+        }
+        else
+        {
+            state = State.disable;
+        }
     }
 
     private void GetDirectionMove(InputAction.CallbackContext ctx)
@@ -127,46 +150,53 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        motionMove = direction * speed;
+        float s = speed;
+        if (motionMove.z != 0)
+        {
+            s = speed / 3;
+            if (motionMove.x != 0)
+            {
+                s = speed / 2;
+            }
+        }
+        motionMove = direction * s;
         characterController.SimpleMove(motionMove);
     }
 
     private void HandleAnimation()
     {
-        Vector3 horizontalVelocity = new Vector3(motionMove.x, 0, motionMove.z);
-        float Velocity = horizontalVelocity.magnitude / speed;
-        if (Velocity > 0)
+        Vector3 Velocity = new Vector3(motionMove.x, 0, motionMove.z).normalized;
+        if (Velocity.magnitude > 0)
         {
-            animator.SetFloat(velocityHash, Velocity);
+            animator.SetFloat(velocityXHash, Math.Abs(Velocity.x));
+            animator.SetFloat(velocityZHash, Velocity.x > 0 ? Velocity.z : -Velocity.z);
         }
         else
         {
-            float v = animator.GetFloat(velocityHash);
-            v = v > 0.10f ? Mathf.Lerp(v, 0, 20f * Time.deltaTime) : 0;
-            animator.SetFloat(velocityHash, v);
+            float vX = animator.GetFloat(velocityXHash);
+            float vZ = animator.GetFloat(velocityZHash);
+            vX = vX > 0.10f ? Mathf.Lerp(vX, 0, 20f * Time.deltaTime) : 0;
+            vZ = vZ > 0.10f || vZ < -0.1f ? Mathf.Lerp(vZ, 0, 20f * Time.deltaTime) : 0;
+            animator.SetFloat(velocityXHash, vX);
+            animator.SetFloat(velocityZHash, vZ);
         }
     }
 
     private void ActiveSkill(InputAction.CallbackContext ctx)
     {
-        if (!isReady) return;
         switch (ctx.control.displayName)
         {
             case "1":
-                if (skill1?.Cast() == true)
-                    isReady = false;
+                skill1?.Cast();
                 break;
             case "2":
-                if (skill2?.Cast() == true)
-                    isReady = false;
+                skill2?.Cast();
                 break;
             case "3":
-                if (skill3?.Cast() == true)
-                    isReady = false;
+                skill3?.Cast();
                 break;
             case "4":
-                if (skill4?.Cast() == true)
-                    isReady = false;
+                skill4?.Cast();
                 break;
             default:
                 throw new InvalidOperationException("key invalid");
@@ -175,11 +205,7 @@ public class PlayerController : MonoBehaviour
 
     private void ActiveSpecialSkill(InputAction.CallbackContext ctx)
     {
-        if (isReady)
-        {
-            if (specialskill?.Cast() == true)
-                isReady = false;
-        }
+        specialskill?.Cast();
     }
 
     private void HandleAttack(InputAction.CallbackContext ctx)
@@ -196,11 +222,6 @@ public class PlayerController : MonoBehaviour
         animator.SetTrigger(attackHash);
         yield return new WaitForSeconds(0.3f);
         animator.ResetTrigger(attackHash);
-    }
-
-    private void DoneExecutingSkill()
-    {
-        isReady = true;
     }
 
     public void AddSkill(AbsSkill[] skillsAvailable, AbsSpecialSkill specialSkillAvailable)
@@ -233,17 +254,6 @@ public class PlayerController : MonoBehaviour
                     throw new InvalidOperationException("invalid skill skillHolder");
             }
         }
-
-        //lắng nghe skill thực hiện xong
-        foreach (AbsSkill skill in skills)
-        {
-            skill.OnDone += DoneExecutingSkill;
-        }
-
-        if (specialskill != null)
-        {
-            specialskill.OnDone += DoneExecutingSkill;
-        }
     }
 
     public void AttackStart(int index)
@@ -251,7 +261,6 @@ public class PlayerController : MonoBehaviour
         if (!disable)
         {
             playerHurtBoxes[index].gameObject.SetActive(true);
-
         }
     }
 
@@ -294,16 +303,6 @@ public class PlayerController : MonoBehaviour
 
         playerDamageable.OnTakeDamageStart -= DisablePlayerHurtBox;
         playerDamageable.OnTakeDamageEnd -= EnablePlayer;
-
-        foreach (AbsSkill skill in skills)
-        {
-            skill.OnDone -= DoneExecutingSkill;
-        }
-
-        if (specialskill != null)
-        {
-            specialskill.OnDone -= DoneExecutingSkill;
-        }
 
         playerInputSystem.Disable();
 

@@ -23,7 +23,6 @@ public class PlayerController : MonoBehaviour
     private int velocityZHash;
     private int attackHash;
     private int stateTimeHash;
-    private bool isMoveState;
     private float stateTimeAnim;
     private bool disable;
     private Vector3 motionMove;
@@ -83,7 +82,6 @@ public class PlayerController : MonoBehaviour
 
         if (isStart)
         {
-            CheckInStateMove();
             switch (state)
             {
                 case State.disable:
@@ -104,13 +102,8 @@ public class PlayerController : MonoBehaviour
     {
         AnimatorStateInfo animationState = animator.GetCurrentAnimatorStateInfo(0);
         stateTimeAnim = animationState.normalizedTime;
-        isMoveState = animationState.IsName("Move");
         animator.SetFloat(stateTimeHash, Mathf.Repeat(stateTimeAnim, 1f));
-    }
-
-    private void CheckInStateMove()
-    {
-        if (isMoveState)
+        if (animationState.IsName("Move"))
         {
             state = State.enable;
         }
@@ -128,28 +121,15 @@ public class PlayerController : MonoBehaviour
 
     private void RotationLook()
     {
-        if (direction.x < 0)
-        {
-            Quaternion rot = Quaternion.LookRotation(Vector3.left);
-            transform.rotation = rot;
-        }
-        else if (direction.x > 0)
-        {
-            Quaternion rot = Quaternion.LookRotation(Vector3.right);
-            transform.rotation = rot;
-        }
+        transform.rotation = Ultils.GetRotationLook(direction, transform.forward);
     }
 
     private void Move()
     {
         float s = speed;
-        if (motionMove.z != 0)
+        if (direction.z != 0 && direction.x == 0)
         {
-            s = speed / 3;
-            if (motionMove.x != 0)
-            {
-                s = speed / 2;
-            }
+            s = speed / 2;
         }
         motionMove = direction * s;
         characterController.SimpleMove(motionMove);
@@ -161,7 +141,8 @@ public class PlayerController : MonoBehaviour
         if (Velocity.magnitude > 0)
         {
             animator.SetFloat(velocityXHash, Math.Abs(Velocity.x));
-            animator.SetFloat(velocityZHash, Velocity.x > 0 ? Velocity.z : -Velocity.z);
+            bool isLookRight = transform.forward.normalized == Vector3.right;
+            animator.SetFloat(velocityZHash, isLookRight ? -Velocity.z : Velocity.z);
         }
         else
         {

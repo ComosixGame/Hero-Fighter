@@ -16,7 +16,8 @@ public class PlayerHurtBox : MonoBehaviour
             if (other.TryGetComponent(out IDamageable damageable))
             {
                 Vector3 hitPoint = other.GetComponent<Collider>().ClosestPoint(transform.position);
-                damageable.TakeDamgae(hitPoint, damage, attackType);
+                Vector3 dirAttack = other.transform.position - transform.position;
+                damageable.TakeDamgae(hitPoint, dirAttack.normalized, damage, attackType);
                 OnHit?.Invoke(bonusEnergy);
             }
         }

@@ -456,7 +456,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.2046417
+      - time: 0.21766253
         functionName: KnockDownEffect
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: dd4c178db1bc1f4468ec3ef7175e66d8,

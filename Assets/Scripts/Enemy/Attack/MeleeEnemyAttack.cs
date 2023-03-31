@@ -1,34 +1,23 @@
 using UnityEngine;
-using UnityEngine.AI;
 
 public class MeleeEnemyAttack : AbsEnemyAttack
 {
-    [SerializeField] private Vector3 centerAttackRange;
-    [SerializeField] private float attackRange;
-    [SerializeField] private LayerMask playerLayer;
     [SerializeField] private EnemyHurtBox[] hurtBoxes;
-    private int attackHash;
-    private int stepBackHash;
-    private bool stepBack;
-    private float stepBackTimer;
-    private bool disable;
-    [SerializeField] private float stepBackTime;
-    [SerializeField] private AnimationCurve speepStepBackCuvre;
-    private NavMeshAgent agent;
+    private int attackHash, backwardHash;
     private Animator animator;
     private EnemyDamageable damageable;
     private GameManager gameManager;
     private EnemyBehaviour enemyBehaviour;
+    private bool attacking;
 
     private void Awake()
     {
         gameManager = GameManager.Instance;
-        agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         damageable = GetComponent<EnemyDamageable>();
 
         attackHash = Animator.StringToHash("Attack");
-        stepBackHash = Animator.StringToHash("StepBack");
+        backwardHash = Animator.StringToHash("backward");
         enemyBehaviour = GetComponent<EnemyBehaviour>();
     }
 
@@ -40,114 +29,43 @@ public class MeleeEnemyAttack : AbsEnemyAttack
         }
     }
 
-    private void OnEnable()
+    private void FixedUpdate()
     {
-        damageable.OnTakeDamageStart += DisableEnemy;
-        damageable.OnTakeDamageEnd += EnableEnemy;
-    }
-
-    private void OnDisable()
-    {
-        damageable.OnTakeDamageStart -= DisableEnemy;
-        damageable.OnTakeDamageEnd -= EnableEnemy;
-    }
-
-    private void Update()
-    {
-        HandleStepBack();
-
-    }
-
-    public override void HandleAttack()
-    {
-        if (!disable && readyAttack)
-        {
-            Collider[] hitCollidersAttack = Physics.OverlapSphere(transform.position + centerAttackRange, attackRange, playerLayer);
-            if (hitCollidersAttack.Length > 0)
+        if(attacking) {
+            AnimatorStateInfo animationState = animator.GetCurrentAnimatorStateInfo(0);
+            if (!animationState.IsName("Attacking"))
             {
-                MoveToPosition(transform.position);
-                readyAttack = false;
-                animator.SetTrigger(attackHash);
-                Invoke("AttackCoolDown", attackCooldown);
+                attacking = false;
+                foreach (EnemyHurtBox hurtBox in hurtBoxes)
+                {
+                    hurtBox.gameObject.SetActive(false);
+                }
             }
-            else
-            {
-                MoveToPosition(gameManager.player.position);
-            }
+
         }
-        else
-        {
-            MoveToPosition(transform.position);
-        }
+    }
+
+    protected override void Action()
+    {
+        animator.SetTrigger(attackHash);
     }
 
     public void StartAttack(int index)
     {
-        if(!disable) {
-            hurtBoxes[index].gameObject.SetActive(true);
-        }
+        attacking = true;
+        hurtBoxes[index].gameObject.SetActive(true);
     }
 
     public void EndAttack(int index)
     {
+        attacking = false;
         hurtBoxes[index].gameObject.SetActive(false);
-        stepBack = true;
-        animator.SetTrigger(stepBackHash);
+        animator.SetBool(backwardHash, true);
+        Invoke("CancleStepBack", 1.5f);
     }
 
-    private void MoveToPosition(Vector3 targetPos)
+    private void CancleStepBack()
     {
-        if (agent.enabled && agent.isOnNavMesh)
-        {
-            agent.SetDestination(targetPos);
-        }
+        animator.SetBool(backwardHash, false);
     }
-
-    private void HandleStepBack()
-    {
-        if (stepBack)
-        {
-            stepBackTimer += Time.deltaTime;
-            float speed = speepStepBackCuvre.Evaluate(stepBackTimer / stepBackTime) * 5f;
-            agent.Move(-transform.forward.normalized * speed * Time.deltaTime);
-            Invoke("StepBackDone", stepBackTime);
-        }
-    }
-
-    private void StepBackDone()
-    {
-        stepBack = false;
-        stepBackTimer = 0;
-    }
-
-    private void DisableEnemy(Vector3 hitPoint, float damage, AttackType attackType)
-    {
-        foreach (EnemyHurtBox hurtBox in hurtBoxes)
-        {
-            hurtBox.gameObject.SetActive(false);
-        }
-        disable = true;
-        agent.ResetPath();
-    }
-
-    private void EnableEnemy()
-    {
-        disable = false;
-    }
-
-    public override void CancleAttack()
-    {
-        foreach (EnemyHurtBox hurtBox in hurtBoxes)
-        {
-            hurtBox.gameObject.SetActive(false);
-        }
-    }
-
-#if UNITY_EDITOR
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position + centerAttackRange, attackRange);
-    }
-#endif
 }

@@ -207,9 +207,9 @@ GameObject:
   - component: {fileID: 2131854532}
   - component: {fileID: 2131854531}
   - component: {fileID: 2131854533}
-  - component: {fileID: 1614445377}
-  - component: {fileID: 5185691523736363872}
+  - component: {fileID: 8906427883867688507}
   - component: {fileID: 4557754036474310949}
+  - component: {fileID: 6403556104618053407}
   m_Layer: 6
   m_Name: Iron
   m_TagString: Player
@@ -246,7 +246,7 @@ Animator:
   m_GameObject: {fileID: 1701021460331676804}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 5ca210feb8f39ac48854a412631771a4, type: 3}
-  m_Controller: {fileID: 9100000, guid: 9617bfd43fe0f9a44abfa62935912ecc, type: 2}
+  m_Controller: {fileID: 9100000, guid: 7d8dd7d2fb30d1041a63edaaa63ac08f, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -302,8 +302,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e26f108ee7d8fa4f9d0e476a7355aa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 8
-  attacking: 0
+  speed: 5
   skill1: {fileID: 0}
   skill2: {fileID: 0}
   skill3: {fileID: 0}
@@ -325,47 +324,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77cf0e610e8ba024baf93a6f911ace3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  knockBackCuvre:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0.9924927
-      inSlope: 0.017630704
-      outSlope: 0.017630704
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.78615487
-    - serializedVersion: 3
-      time: 0.4421562
-      value: 0.6156232
-      inSlope: -2.0039356
-      outSlope: -2.0039356
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.06982154
-    - serializedVersion: 3
-      time: 1.2031031
-      value: 0.008596253
-      inSlope: -0.09675299
-      outSlope: -0.09675299
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.12787236
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  standupTime: 1
   maxHealth: 100
-  knocking: 0
   hitEffect: {fileID: 9046699384457569311, guid: 00e2210b13fc873458ba8b2017fba62e,
     type: 3}
   knockDownVFX: {fileID: 5854742832336096459, guid: 8a7c5d19d8a94cb41bccf41896137933,
     type: 3}
---- !u!114 &1614445377
+--- !u!114 &8906427883867688507
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -374,202 +338,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1701021460331676804}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eacfc2292c47dfd408c66c3e6155ac1b, type: 3}
+  m_Script: {fileID: 11500000, guid: 528ab0aa28c948941846ba9df4091e97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   specialSkillAvailable: {fileID: 0}
   skillsAvailable: []
---- !u!114 &5185691523736363872
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1701021460331676804}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae918e8cc92dbfe4e8b22393ef959229, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cooldownTimer: 0
-  skillName: 
-  skillDescription: 
-  skillHolder: 0
-  cooldownTime: 1
-  speedJump: 5
-  forwardFlipCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 1.050497
-      outSlope: 1.050497
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.10524593
-      value: 0.11056054
-      inSlope: 2.7193866
-      outSlope: 2.7193866
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33348244
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.27035424
-      value: 0.9976407
-      inSlope: -0.082993604
-      outSlope: -0.082993604
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.37563443
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.82188046
-      value: 0.9978533
-      inSlope: -0.03807452
-      outSlope: -0.03807452
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.34088352
-    - serializedVersion: 3
-      time: 0.9984741
-      value: 0
-      inSlope: -5.6505613
-      outSlope: -5.6505613
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  backFlipCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0.061195042
-      outSlope: 0.061195042
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.30310667
-      value: 0.018548625
-      inSlope: 0.2863043
-      outSlope: 0.2863043
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.24098286
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.3823385
-      value: 0.84396946
-      inSlope: 2.238606
-      outSlope: 2.238606
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.37563443
-      outWeight: 0.07534479
-    - serializedVersion: 3
-      time: 0.8172192
-      value: 0.57233477
-      inSlope: -2.5337207
-      outSlope: -2.5337207
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.10226981
-      outWeight: 0.18780206
-    - serializedVersion: 3
-      time: 0.99270093
-      value: 0.004101321
-      inSlope: -0.50813943
-      outSlope: -0.50813943
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.3795462
-    - serializedVersion: 3
-      time: 0.9984741
-      value: 0
-      inSlope: -0.7104085
-      outSlope: -0.7104085
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  sideFlipCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0.28133014
-      outSlope: 0.28133014
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.2003387
-      value: 0.056361318
-      inSlope: 1.3861012
-      outSlope: 1.3861012
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.21145192
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.40379235
-      value: 1.0023557
-      inSlope: -0.082993604
-      outSlope: -0.082993604
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.37563443
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.75901425
-      value: 0.9978533
-      inSlope: -0.03807452
-      outSlope: -0.03807452
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.34088352
-    - serializedVersion: 3
-      time: 0.886866
-      value: 0.07029395
-      inSlope: -1.8891039
-      outSlope: -1.8891039
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.42282242
-    - serializedVersion: 3
-      time: 0.9984741
-      value: 0
-      inSlope: -0.6298281
-      outSlope: -0.6298281
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  flipJumpVFX: {fileID: 5854742832336096459, guid: 8a7c5d19d8a94cb41bccf41896137933,
-    type: 3}
+  skillTypes: 
+  specialSkillType: 0
 --- !u!114 &4557754036474310949
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -588,12 +363,24 @@ MonoBehaviour:
   energy: 0
   animationClip: {fileID: -203655887218126122, guid: 2a8db53bcdc72e74880141267c984abf,
     type: 3}
-  animatorOverride: {fileID: 22100000, guid: ebc117df7a3090843bd6bf0d663e5697, type: 2}
   firePosition: {x: 0, y: 1.45, z: 1}
   fireBallObject: {fileID: -3004082893452583331, guid: 4613332ca99c1f64fb83d4c462534964,
     type: 3}
   damage: 50
   speed: 10
+--- !u!65 &6403556104618053407
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1701021460331676804}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1.85, z: 1}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &1820991002697448339
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,6 +7,6 @@ public enum AttackType {
 
 public interface IDamageable
 {
-    public void TakeDamgae(Vector3 hitPoint, float damage, AttackType attackType);
+    public void TakeDamgae(Vector3 hitPoint, Vector3 dirAttack, float damage, AttackType attackType);
     public void KnockDownEffect();
 }

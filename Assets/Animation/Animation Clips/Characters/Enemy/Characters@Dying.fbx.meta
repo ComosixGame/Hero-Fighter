@@ -59,15 +59,7 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events:
-      - time: 0.002692307
-        functionName: CancelHurtBox
-        data: 
-        objectReferenceParameter: {fileID: 11500000, guid: 69b1e0683aff35243b433ec8c8949683,
-          type: 3}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
+      events: []
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}

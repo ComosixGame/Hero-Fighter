@@ -5,13 +5,11 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
 {
     [SerializeField] private float maxHealth;
     private float health;
-    private int hitHash, knockHash, deathHash, dyingHash, revivalHash;
+    private int hitHash, knockHash, deathHash, revivalHash, deathKnock;
     private bool destroyed;
     private Animator animator;
     private HealthBarPlayer healthBarPlayer;
     private GameManager gameManager;
-    public event Action<Vector3, float, AttackType> OnTakeDamageStart;
-    public event Action OnTakeDamageEnd;
     private UIMenu ui;
     [Header("VFX")]
     [SerializeField] private EffectObjectPool hitEffect;
@@ -26,8 +24,8 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
         hitHash = Animator.StringToHash("hit");
         knockHash = Animator.StringToHash("knock");
         deathHash = Animator.StringToHash("death");
-        dyingHash = Animator.StringToHash("dying");
         revivalHash = Animator.StringToHash("revival");
+        deathKnock = Animator.StringToHash("deathKnock");
         healthBarPlayer = FindObjectOfType<HealthBarPlayer>();
         ui = FindObjectOfType<UIMenu>();
         objectPoolerManager = ObjectPoolerManager.Instance;
@@ -41,7 +39,20 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
         healthBarPlayer?.CreateHealthBar(maxHealth);
     }
 
-    public void TakeDamgae(Vector3 hitPoint, float damage, AttackType attackType)
+    private void FixedUpdate()
+    {
+        AnimatorStateInfo animationState = animator.GetCurrentAnimatorStateInfo(0);
+        if (!animationState.IsName("KnockDown"))
+        {
+            animator.ResetTrigger(knockHash);
+        }
+
+        if(!animationState.IsName("Hit")) {
+            animator.ResetTrigger(hitHash);
+        }
+    }
+
+    public void TakeDamgae(Vector3 hitPoint, Vector3 dirAttack, float damage, AttackType attackType)
     {
         if (!destroyed)
         {
@@ -63,14 +74,19 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
             }
             else
             {
-                Vector3 dirAttack = hitPoint - transform.position;
                 transform.rotation = Ultils.GetRotationLook(dirAttack, transform.forward);
                 animator.SetTrigger(knockHash);
             }
 
-            OnTakeDamageStart?.Invoke(hitPoint, damage, attackType);
+            AnimatorStateInfo animationState = animator.GetCurrentAnimatorStateInfo(0);
+            if (!animationState.IsName("KnockDown"))
+            {
+                animator.ResetTrigger(knockHash);
+            }
 
-
+            if(!animationState.IsName("Hit")) {
+                animator.ResetTrigger(hitHash);
+            }
         }
     }
 
@@ -83,8 +99,7 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
         }
         else
         {
-            animator.SetTrigger(knockHash);
-            animator.SetBool(dyingHash, true);
+            animator.SetTrigger(deathKnock);
         }
         gameManager.GameLose();
     }

@@ -11,7 +11,8 @@ public class EnemyHurtBox : MonoBehaviour
         {
             IDamageable damageable = other.GetComponentInParent<IDamageable>();
             Vector3 hitPoint = other.GetComponent<Collider>().ClosestPoint(transform.position);
-            damageable?.TakeDamgae(hitPoint, damage, attackType);
+            Vector3 dirAttack = other.transform.position - transform.position;
+            damageable?.TakeDamgae(hitPoint, dirAttack.normalized, damage, attackType);
         }
     }
 

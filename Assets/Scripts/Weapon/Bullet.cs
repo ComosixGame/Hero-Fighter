@@ -31,7 +31,8 @@ public class Bullet : GameObjectPool
         if((layerTarget & (1 << other.gameObject.layer)) != 0) {
             ContactPoint contact = other.contacts[0];
             if(other.gameObject.TryGetComponent(out IDamageable damageable)) {
-                damageable.TakeDamgae(contact.point, damage, attackType);
+                Vector3 dirAttack = other.transform.position - transform.position;
+                damageable.TakeDamgae(contact.point, dirAttack.normalized, damage, attackType);
             }
             Destroy();
         }

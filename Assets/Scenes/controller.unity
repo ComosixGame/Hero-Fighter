@@ -299,6 +299,14 @@ PrefabInstance:
       propertyPath: skillsAvailable.Array.size
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2131854533, guid: 3f49b085976b984488ba0736ecf25ea5, type: 3}
+      propertyPath: maxHealth
+      value: 99999
+      objectReference: {fileID: 0}
+    - target: {fileID: 2131854533, guid: 3f49b085976b984488ba0736ecf25ea5, type: 3}
+      propertyPath: standupTime
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1701021460331676804, guid: 3f49b085976b984488ba0736ecf25ea5,
         type: 3}
       propertyPath: m_Name
@@ -364,7 +372,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 7d8dd7d2fb30d1041a63edaaa63ac08f, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5185691523736363872, guid: 3f49b085976b984488ba0736ecf25ea5, type: 3}
+    - {fileID: 2131854521, guid: 3f49b085976b984488ba0736ecf25ea5, type: 3}
+    - {fileID: 1614445377, guid: 3f49b085976b984488ba0736ecf25ea5, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3f49b085976b984488ba0736ecf25ea5, type: 3}
 --- !u!1 &268575774
 GameObject:
@@ -1221,6 +1232,31 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6470155338879222795, guid: d26b24f4c4b3fa44caac12c37d492f14,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6470155338879222833, guid: d26b24f4c4b3fa44caac12c37d492f14,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6470155338879222834, guid: d26b24f4c4b3fa44caac12c37d492f14,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6470155338879222843, guid: d26b24f4c4b3fa44caac12c37d492f14,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6470155339788221648, guid: d26b24f4c4b3fa44caac12c37d492f14,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6791469458941341114, guid: d26b24f4c4b3fa44caac12c37d492f14,
         type: 3}
       propertyPath: m_RootOrder
@@ -1276,7 +1312,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6470155338879222838, guid: d26b24f4c4b3fa44caac12c37d492f14, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d26b24f4c4b3fa44caac12c37d492f14, type: 3}
 --- !u!1 &1358934933
 GameObject:

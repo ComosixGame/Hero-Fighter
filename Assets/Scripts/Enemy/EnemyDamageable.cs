@@ -52,7 +52,8 @@ public class EnemyDamageable : MonoBehaviour, IDamageable
         objectPoolerManager = ObjectPoolerManager.Instance;
     }
 
-    private void OnEnable() {
+    private void OnEnable()
+    {
         uI = FindObjectOfType<UIMenu>();
         gameManager.OnStartGame += StartGame;
         gameManager.OnEndGame += EndGame;
@@ -60,7 +61,8 @@ public class EnemyDamageable : MonoBehaviour, IDamageable
         colliderGameObject.enabled = true;
     }
 
-    private void OnDisable() {
+    private void OnDisable()
+    {
         gameManager.OnNewGame -= NewGame;
         gameManager.OnEndGame -= EndGame;
     }
@@ -81,7 +83,8 @@ public class EnemyDamageable : MonoBehaviour, IDamageable
             SetInitHealthBar(maxHealth);
             healthBarRennder.UpdateHealthBarRotation();
             health = maxHealth;
-        }else
+        }
+        else
         {
             healthBarRennder.UpdateHealthBarRotation();
         }
@@ -157,13 +160,6 @@ public class EnemyDamageable : MonoBehaviour, IDamageable
         healthBarRennder.CreateHealthBar(transform, maxHealth);
     }
 
-    //Attach Animation Event
-    public void KnockDownVFX()
-    {
-        objectPoolerManager.SpawnObject(knockDownVFX, transform.position, Quaternion.identity);
-        CinemachineShake.Instance.ShakeCamera(5, .1f);
-    }
-
     private void AttackVFX(Vector3 pos)
     {
         objectPoolerManager.SpawnObject(hitEffect, pos, Quaternion.identity);
@@ -200,4 +196,9 @@ public class EnemyDamageable : MonoBehaviour, IDamageable
 
     }
 
+    public void KnockDownEffect()
+    {
+        objectPoolerManager.SpawnObject(knockDownVFX, transform.position, Quaternion.identity);
+        CinemachineShake.Instance.ShakeCamera(5, .1f);
+    }
 }

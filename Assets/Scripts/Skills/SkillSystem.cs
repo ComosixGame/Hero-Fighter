@@ -9,7 +9,7 @@ using MyCustomAttribute;
 
 public enum SkillType
 {
-    FlipJump,
+    
 }
 
 public enum SpecialSkillType

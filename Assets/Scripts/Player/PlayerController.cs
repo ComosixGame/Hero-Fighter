@@ -35,7 +35,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField, ReadOnly] private AbsSkill skill4;
     [SerializeField, ReadOnly] private AbsSpecialSkill specialskill;
     [SerializeField] private PlayerHurtBox[] playerHurtBoxes;
-    private PlayerDamageable playerDamageable;
     private GameManager gameManager;
     public bool isStart;
 
@@ -43,7 +42,6 @@ public class PlayerController : MonoBehaviour
     {
         gameManager = GameManager.Instance;
         characterController = GetComponent<CharacterController>();
-        playerDamageable = GetComponent<PlayerDamageable>();
         playerInputSystem = new PlayerInputSystem();
 
         foreach (PlayerHurtBox playerHurtBox in playerHurtBoxes)
@@ -68,9 +66,6 @@ public class PlayerController : MonoBehaviour
         playerInputSystem.Player.Skil3.started += ActiveSkill;
         playerInputSystem.Player.Skil4.started += ActiveSkill;
         playerInputSystem.Player.SpecialSkil.started += ActiveSpecialSkill;
-
-        playerDamageable.OnTakeDamageStart += DisablePlayerHurtBox;
-        playerDamageable.OnTakeDamageEnd += EnablePlayer;
 
         gameManager.OnInitUiDone += StartGame;
 
@@ -103,9 +98,6 @@ public class PlayerController : MonoBehaviour
 
             HandleAnimation();
         }
-
-
-
     }
 
     private void FixedUpdate()
@@ -270,21 +262,6 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    private void DisablePlayerHurtBox(Vector3 hitPoint, float damage, AttackType attackType)
-    {
-        foreach (PlayerHurtBox playerAttack in playerHurtBoxes)
-        {
-            playerAttack.gameObject.SetActive(false);
-        }
-        disable = true;
-
-    }
-
-    private void EnablePlayer()
-    {
-        disable = false;
-    }
-
     private void StartGame()
     {
         isStart = true;
@@ -300,9 +277,6 @@ public class PlayerController : MonoBehaviour
         playerInputSystem.Player.Skil3.started -= ActiveSkill;
         playerInputSystem.Player.Skil4.started -= ActiveSkill;
         playerInputSystem.Player.SpecialSkil.started -= ActiveSpecialSkill;
-
-        playerDamageable.OnTakeDamageStart -= DisablePlayerHurtBox;
-        playerDamageable.OnTakeDamageEnd -= EnablePlayer;
 
         playerInputSystem.Disable();
 

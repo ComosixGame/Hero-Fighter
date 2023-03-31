@@ -38,4 +38,8 @@ public class BossDamageable : MonoBehaviour, IDamageable
         destroyed = true;
     }
 
+    public void KnockDownEffect()
+    {
+        throw new NotImplementedException();
+    }
 }

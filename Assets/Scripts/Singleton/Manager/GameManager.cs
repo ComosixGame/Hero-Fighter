@@ -16,6 +16,7 @@ public class GameManager : Singleton<GameManager>
     [ReadOnly] public CinemachineVirtualCamera virtualCamera;
     private int money;
     public ChapterManager chapterManager;
+    public EquipmentManager equipmentManager;
     public event Action OnStartGame;
     public event Action OnPause;
     public event Action OnResume;
@@ -31,6 +32,7 @@ public class GameManager : Singleton<GameManager>
     private ObjectPoolerManager objectPooler;
     private LoadSceneManager loadSceneManager;
     private LoadingScreen loadingScreen;
+    
     public LevelState levelState {
         get {
             return chapterManager.chapterStates[chapterIndex].levelStates[levelIndex];
@@ -152,6 +154,5 @@ public class GameManager : Singleton<GameManager>
     public void SelecteCharacter(string id) {
         playerData.selectedCharacter = id;
     }
-
 
 }

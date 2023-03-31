@@ -14,18 +14,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultCharacter: iron_man
   Characters:
-  - keyID: iron_man
-    name: Iron Man
-    price: 0
-    character: {fileID: 1701021460331676804, guid: 3f49b085976b984488ba0736ecf25ea5,
-      type: 3}
   - keyID: hero1
+    thumbnail: {fileID: 21300000, guid: 4395e9f9635e04da39033df3aef85405, type: 3}
     name: Hero 1
-    price: 0
+    price: 800
+    start: 3
+    evaluate: A
     character: {fileID: 1963772456342324074, guid: bf6f302059923914daf917d3f04736ee,
       type: 3}
   - keyID: hero2
+    thumbnail: {fileID: 21300000, guid: ee3007011e5514149bf4a97734ab917a, type: 3}
     name: Hero 2
-    price: 0
+    price: 1000
+    start: 5
+    evaluate: S
     character: {fileID: 1963772456342324074, guid: e173501746e8b634c8e89f5b465eb8f1,
+      type: 3}
+  - keyID: iron_man
+    thumbnail: {fileID: 21300000, guid: a0727b02cdbaf431582847a2d0774045, type: 3}
+    name: Iron Man
+    price: 500
+    start: 0
+    evaluate: C
+    character: {fileID: 1701021460331676804, guid: 3f49b085976b984488ba0736ecf25ea5,
       type: 3}

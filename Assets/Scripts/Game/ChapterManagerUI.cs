@@ -12,6 +12,7 @@ public class ChapterManagerUI : MonoBehaviour
     public GameObject windowSelectLevel;
     [SerializeField] private Transform commingSoonCard;
     [SerializeField] private ScrollRect scrollRect;
+
     private RectTransform currentCard;
     private List<ChapterCard> chapterCards = new List<ChapterCard>();
 

@@ -15,10 +15,10 @@ public class HeroManagerUI : MonoBehaviour
 
     private void Start()
     {
-        DisplayHeroUI();
+        RenderHeroCardUI();
     }
 
-    private void DisplayHeroUI()
+    private void RenderHeroCardUI()
     {
         PlayerCharacter[] playerCharacters = gameManager.equipmentManager.Characters;
 
@@ -31,7 +31,6 @@ public class HeroManagerUI : MonoBehaviour
             playerCharacters[i].price, playerCharacters[i].start, playerCharacters[i].evaluate);
             newCardHero.transform.SetParent(contentHero.transform, false);
         }
-
     }
 
     public void ScrollTo(RectTransform target)

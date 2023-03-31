@@ -11,6 +11,9 @@ public class HeroCard : MonoBehaviour
     [SerializeField] private TextMeshProUGUI priceTxt;
     [SerializeField] private TextMeshProUGUI evaluateTxt;
     [SerializeField] private GameObject startGo;
+
+    //
+    public GameObject windowSkill;
     private GameManager gameManager;
 
     private void Awake()
@@ -24,7 +27,7 @@ public class HeroCard : MonoBehaviour
 
     private void ClickButton()
     {
-        
+        windowSkill.SetActive(true);
     }
 
     public void SetDataCard(Sprite thumbnailSprite, string title, float price, int start, string evaluate)
@@ -33,6 +36,16 @@ public class HeroCard : MonoBehaviour
         this.title.text = title;
         evaluateTxt.text = evaluate;
         priceTxt.text = price+"";
+        for(int i = 0; i < start; i++)
+        {
+            startGo.transform.GetChild(i).gameObject.SetActive(true);
+        }
+    }
+
+    public void SetDataCard(Sprite thumbnailSprite, string title, int start)
+    {
+        thumbnail.sprite = thumbnailSprite;
+        this.title.text = title;
         for(int i = 0; i < start; i++)
         {
             startGo.transform.GetChild(i).gameObject.SetActive(true);

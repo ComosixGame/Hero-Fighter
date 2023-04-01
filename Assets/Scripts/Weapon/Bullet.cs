@@ -4,6 +4,7 @@ public class Bullet : GameObjectPool
 {
     [SerializeField] private AttackType attackType;
     [SerializeField] private LayerMask layerTarget;
+    [SerializeField] private EffectObjectPool hitEffect;
     private float speed;
     [SerializeField] private Rigidbody rb;
     private bool fired, hit;
@@ -29,9 +30,11 @@ public class Bullet : GameObjectPool
 
     private void OnCollisionEnter(Collision other) {
         if((layerTarget & (1 << other.gameObject.layer)) != 0) {
-            ContactPoint contact = other.contacts[0];
             if(other.gameObject.TryGetComponent(out IDamageable damageable)) {
-                damageable.TakeDamgae(contact.point, damage, attackType);
+                ContactPoint contact = other.contacts[0];
+                ObjectPoolerManager.SpawnObject(hitEffect, contact.point, Quaternion.LookRotation(contact.normal));
+                Vector3 dirAttack = transform.position - other.transform.position;
+                damageable.TakeDamgae(dirAttack.normalized, damage, attackType);
             }
             Destroy();
         }

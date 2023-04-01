@@ -33,14 +33,12 @@ public class GunEnemyAttack : AbsEnemyAttack
 
     private void OnEnable()
     {
-        damageable.OnTakeDamageStart += DisableEnemy;
-        damageable.OnTakeDamageEnd += EnableEnemy;
+
     }
 
     private void OnDisable()
     {
-        damageable.OnTakeDamageStart -= DisableEnemy;
-        damageable.OnTakeDamageEnd -= EnableEnemy;
+
     }
 
     private void Start()
@@ -56,20 +54,20 @@ public class GunEnemyAttack : AbsEnemyAttack
         HandleMeleeAttack();
     }
 
-    public override void HandleAttack()
-    {
-        MoveToPosition(transform.position);
-        transform.LookAt(gameManager.player);
+    // public override void HandleAttack()
+    // {
+    //     MoveToPosition(transform.position);
+    //     transform.LookAt(gameManager.player);
 
-        if (!disable && !attackMelee && readyAttack)
-        {
-            Bullet newBullet = ObjectPoolerManager.SpawnObject(bullet, shotPos.position, shotPos.rotation) as Bullet;
-            newBullet.Fire(damage, speedBullet);
-            readyAttack = false;
-            animator.SetTrigger(shootHash);
-            Invoke("AttackCoolDown", attackCooldown);
-        }
-    }
+    //     if (!disable && !attackMelee && readyAttack)
+    //     {
+    //         Bullet newBullet = ObjectPoolerManager.SpawnObject(bullet, shotPos.position, shotPos.rotation) as Bullet;
+    //         newBullet.Fire(damage, speedBullet);
+    //         readyAttack = false;
+    //         animator.SetTrigger(shootHash);
+    //         Invoke("AttackCoolDown", attackCooldown);
+    //     }
+    // }
 
     public void HandleMeleeAttack()
     {
@@ -126,20 +124,16 @@ public class GunEnemyAttack : AbsEnemyAttack
         }
     }
 
-    
-    public override void CancleAttack()
-    {
-        foreach (EnemyHurtBox hurtBox in hurtBoxes)
-        {
-            hurtBox.gameObject.SetActive(false);
-        }
-    }
-
 #if UNITY_EDITOR
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position + centerMeleeRange, meleeRange);
+    }
+
+    protected override void Action()
+    {
+        throw new System.NotImplementedException();
     }
 
 #endif

@@ -4,11 +4,18 @@ using UnityEngine;
 
 public abstract class AbsEnemyAttack : MonoBehaviour
 {
-    [SerializeField] protected float attackCooldown;
+    [SerializeField] protected float coolDownTime;
     protected bool readyAttack = true;
-    public abstract void HandleAttack();
-    //Sometime enemy die hurtBox still take dame player
-    public abstract void CancleAttack();
+    public void Attack()
+    {
+        if (readyAttack)
+        {
+            readyAttack = false;
+            Action();
+            Invoke("AttackCoolDown", coolDownTime);
+        }
+    }
+    protected abstract void Action();
     protected void AttackCoolDown()
     {
         readyAttack = true;

@@ -158,6 +158,7 @@ MonoBehaviour:
     m_Bits: 64
   damage: 3
   attackType: 0
+  hitEffect: {fileID: 0}
 --- !u!65 &63877590
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -334,6 +335,7 @@ MonoBehaviour:
     m_Bits: 64
   damage: 3
   attackType: 0
+  hitEffect: {fileID: 0}
 --- !u!65 &268575777
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -535,6 +537,7 @@ MonoBehaviour:
     m_Bits: 64
   damage: 5
   attackType: 1
+  hitEffect: {fileID: 0}
 --- !u!65 &354274020
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1032,6 +1035,8 @@ MonoBehaviour:
     m_Bits: 64
   damage: 3
   attackType: 0
+  hitEffect: {fileID: 9046699384457569311, guid: 00e2210b13fc873458ba8b2017fba62e,
+    type: 3}
 --- !u!65 &960988359
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1044,7 +1049,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 2, y: 0.8, z: 0.8}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0, z: 0.4}
 --- !u!4 &960988360
 Transform:
   m_ObjectHideFlags: 0
@@ -1053,7 +1058,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 960988357}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.843, z: 0.735}
+  m_LocalPosition: {x: 0, y: 1.205, z: 0.156}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1197,6 +1202,31 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2365304843506742657, guid: 3f49b085976b984488ba0736ecf25ea5,
+        type: 3}
+      propertyPath: m_Center.z
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2365304843506742659, guid: 3f49b085976b984488ba0736ecf25ea5,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.201
+      objectReference: {fileID: 0}
+    - target: {fileID: 2365304844446138285, guid: 3f49b085976b984488ba0736ecf25ea5,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2365304844446138285, guid: 3f49b085976b984488ba0736ecf25ea5,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.201
+      objectReference: {fileID: 0}
+    - target: {fileID: 2365304844446138291, guid: 3f49b085976b984488ba0736ecf25ea5,
+        type: 3}
+      propertyPath: m_Center.z
+      value: 0.6
+      objectReference: {fileID: 0}
     - target: {fileID: 4557754036474310949, guid: 3f49b085976b984488ba0736ecf25ea5,
         type: 3}
       propertyPath: MaxEnergy
@@ -1208,8 +1238,8 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 9100000, guid: 7d8dd7d2fb30d1041a63edaaa63ac08f, type: 2}
     m_RemovedComponents:
-    - {fileID: 1614445377, guid: 3f49b085976b984488ba0736ecf25ea5, type: 3}
-    - {fileID: 5185691523736363872, guid: 3f49b085976b984488ba0736ecf25ea5, type: 3}
+    - {fileID: 0}
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 3f49b085976b984488ba0736ecf25ea5, type: 3}
 --- !u!1 &1358934933
 GameObject:
@@ -1375,6 +1405,7 @@ MonoBehaviour:
     m_Bits: 64
   damage: 3
   attackType: 0
+  hitEffect: {fileID: 0}
 --- !u!65 &1636646149
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1469,6 +1500,7 @@ MonoBehaviour:
     m_Bits: 64
   damage: 5
   attackType: 1
+  hitEffect: {fileID: 0}
 --- !u!65 &1862914070
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4950,42 +4982,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 50
-  knockBackCuvre:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0.9924927
-      inSlope: 0.017630704
-      outSlope: 0.017630704
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.78615487
-    - serializedVersion: 3
-      time: 0.4421562
-      value: 0.6156232
-      inSlope: -2.0039356
-      outSlope: -2.0039356
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.06982154
-    - serializedVersion: 3
-      time: 1.2031031
-      value: 0.008596253
-      inSlope: -0.09675299
-      outSlope: -0.09675299
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.12787236
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  standUpTime: 1.5
   destroyed: 0
-  DestroyedBody: {fileID: 0}
   healthBarRennder:
     healthBar: {fileID: 2278732330621463760, guid: 89c69c051ed5e2e46938d9c3f33174c4,
       type: 3}
@@ -5032,9 +5029,8 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 1073741888
-  viewRange: 3.5
+  attackRange: 0
   centerAttackRange: {x: 0, y: 1.3, z: 0}
-  stepBackTime: 1
   maxSpeed: 4
   walkSpeed: 1
 --- !u!114 &681569156994710526
@@ -5049,7 +5045,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37b7f76fe38c53a4aaed83d6ad1fee34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackCooldown: 5
+  coolDownTime: 0
   damage: 10
   speedBullet: 10
   layerTarget:
@@ -5104,42 +5100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 50
-  knockBackCuvre:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0.9924927
-      inSlope: 0.017630704
-      outSlope: 0.017630704
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.78615487
-    - serializedVersion: 3
-      time: 0.4421562
-      value: 0.6156232
-      inSlope: -2.0039356
-      outSlope: -2.0039356
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.06982154
-    - serializedVersion: 3
-      time: 1.2031031
-      value: 0.008596253
-      inSlope: -0.09675299
-      outSlope: -0.09675299
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.12787236
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  standUpTime: 1.5
   destroyed: 0
-  DestroyedBody: {fileID: 0}
   healthBarRennder:
     healthBar: {fileID: 2278732330621463760, guid: 89c69c051ed5e2e46938d9c3f33174c4,
       type: 3}
@@ -5164,9 +5125,8 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 1073741888
-  viewRange: 3.5
+  attackRange: 0
   centerAttackRange: {x: 0, y: 1.3, z: 0}
-  stepBackTime: 1
   maxSpeed: 4
   walkSpeed: 1
 --- !u!195 &694439572305233453
@@ -5203,39 +5163,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fb34382dedccdc44863f0519d0877e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackCooldown: 3
-  centerAttackRange: {x: 0, y: 1.26, z: 0}
-  attackRange: 0.9
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 64
+  coolDownTime: 0
   hurtBoxes:
   - {fileID: 891927318036718669}
-  stepBackTime: 0.8
-  speepStepBackCuvre:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!54 &694439572305233455
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5418,6 +5348,7 @@ MonoBehaviour:
     m_Bits: 64
   damage: 3
   attackType: 0
+  hitEffect: {fileID: 0}
 --- !u!4 &891927318036718670
 Transform:
   m_ObjectHideFlags: 0
@@ -12573,42 +12504,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 50
-  knockBackCuvre:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0.9924927
-      inSlope: 0.017630704
-      outSlope: 0.017630704
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.78615487
-    - serializedVersion: 3
-      time: 0.4421562
-      value: 0.6156232
-      inSlope: -2.0039356
-      outSlope: -2.0039356
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.06982154
-    - serializedVersion: 3
-      time: 1.2031031
-      value: 0.008596253
-      inSlope: -0.09675299
-      outSlope: -0.09675299
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.12787236
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  standUpTime: 1.5
   destroyed: 0
-  DestroyedBody: {fileID: 0}
   healthBarRennder:
     healthBar: {fileID: 2278732330621463760, guid: 89c69c051ed5e2e46938d9c3f33174c4,
       type: 3}
@@ -12633,9 +12529,8 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 1073741888
-  viewRange: 3.5
-  centerAttackRange: {x: 0, y: 1.3, z: 0}
-  stepBackTime: 1
+  attackRange: 1.2
+  centerAttackRange: {x: 0, y: 1, z: 0}
   maxSpeed: 4
   walkSpeed: 1
 --- !u!195 &2724045828050203440
@@ -12652,12 +12547,12 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 1.2
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 1.8
-  m_BaseOffset: 0
+  m_BaseOffset: -0.07
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!114 &2724045828050203441
@@ -12672,39 +12567,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fb34382dedccdc44863f0519d0877e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackCooldown: 3
-  centerAttackRange: {x: 0, y: 1.26, z: 0}
-  attackRange: 1
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 64
+  coolDownTime: 4
   hurtBoxes:
   - {fileID: 960988358}
-  stepBackTime: 0.8
-  speepStepBackCuvre:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!65 &2724045828050203442
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12716,7 +12581,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.8, y: 2, z: 0.8}
+  m_Size: {x: 0.8, y: 1.8, z: 0.8}
   m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!4 &3027556541017620313
 Transform:
@@ -14391,42 +14256,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 50
-  knockBackCuvre:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0.9924927
-      inSlope: 0.017630704
-      outSlope: 0.017630704
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.78615487
-    - serializedVersion: 3
-      time: 0.4421562
-      value: 0.6156232
-      inSlope: -2.0039356
-      outSlope: -2.0039356
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.06982154
-    - serializedVersion: 3
-      time: 1.2031031
-      value: 0.008596253
-      inSlope: -0.09675299
-      outSlope: -0.09675299
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.12787236
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  standUpTime: 1.5
   destroyed: 0
-  DestroyedBody: {fileID: 0}
   healthBarRennder:
     healthBar: {fileID: 2278732330621463760, guid: 89c69c051ed5e2e46938d9c3f33174c4,
       type: 3}
@@ -14473,9 +14303,8 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 1073741888
-  viewRange: 3.5
+  attackRange: 0
   centerAttackRange: {x: 0, y: 1.3, z: 0}
-  stepBackTime: 1
   maxSpeed: 4
   walkSpeed: 1
 --- !u!114 &3125228884538583325
@@ -14490,39 +14319,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fb34382dedccdc44863f0519d0877e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackCooldown: 3
-  centerAttackRange: {x: 0, y: 1.26, z: 0}
-  attackRange: 1
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 64
+  coolDownTime: 0
   hurtBoxes:
   - {fileID: 63877589}
-  stepBackTime: 0.8
-  speepStepBackCuvre:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!136 &3125228884538583326
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -21776,7 +21575,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37b7f76fe38c53a4aaed83d6ad1fee34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackCooldown: 5
+  coolDownTime: 0
   damage: 10
   speedBullet: 10
   layerTarget:
@@ -21825,9 +21624,8 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 1073741888
-  viewRange: 3.5
+  attackRange: 0
   centerAttackRange: {x: 0, y: 1.3, z: 0}
-  stepBackTime: 1
   maxSpeed: 4
   walkSpeed: 1
 --- !u!114 &4733783985798542884
@@ -21843,42 +21641,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 50
-  knockBackCuvre:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0.9924927
-      inSlope: 0.017630704
-      outSlope: 0.017630704
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.78615487
-    - serializedVersion: 3
-      time: 0.4421562
-      value: 0.6156232
-      inSlope: -2.0039356
-      outSlope: -2.0039356
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.06982154
-    - serializedVersion: 3
-      time: 1.2031031
-      value: 0.008596253
-      inSlope: -0.09675299
-      outSlope: -0.09675299
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.12787236
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  standUpTime: 1.5
   destroyed: 0
-  DestroyedBody: {fileID: 0}
   healthBarRennder:
     healthBar: {fileID: 2278732330621463760, guid: 89c69c051ed5e2e46938d9c3f33174c4,
       type: 3}
@@ -26806,39 +26569,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fb34382dedccdc44863f0519d0877e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackCooldown: 3
-  centerAttackRange: {x: 0, y: 1.26, z: 0}
-  attackRange: 1.5
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 64
+  coolDownTime: 0
   hurtBoxes:
   - {fileID: 1636646148}
-  stepBackTime: 0.8
-  speepStepBackCuvre:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!195 &6616901760515662359
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -26876,9 +26609,8 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 1073741888
-  viewRange: 3.5
+  attackRange: 0
   centerAttackRange: {x: 0, y: 1.3, z: 0}
-  stepBackTime: 1
   maxSpeed: 4
   walkSpeed: 1
 --- !u!114 &6616901760515662361
@@ -26894,42 +26626,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 50
-  knockBackCuvre:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0.9924927
-      inSlope: 0.017630704
-      outSlope: 0.017630704
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.78615487
-    - serializedVersion: 3
-      time: 0.4421562
-      value: 0.6156232
-      inSlope: -2.0039356
-      outSlope: -2.0039356
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.06982154
-    - serializedVersion: 3
-      time: 1.2031031
-      value: 0.008596253
-      inSlope: -0.09675299
-      outSlope: -0.09675299
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.12787236
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  standUpTime: 1.5
   destroyed: 0
-  DestroyedBody: {fileID: 0}
   healthBarRennder:
     healthBar: {fileID: 2278732330621463760, guid: 89c69c051ed5e2e46938d9c3f33174c4,
       type: 3}
@@ -27494,6 +27191,7 @@ MonoBehaviour:
     m_Bits: 64
   damage: 3
   attackType: 0
+  hitEffect: {fileID: 0}
 --- !u!1 &7023660300890822607
 GameObject:
   m_ObjectHideFlags: 0
@@ -32797,42 +32495,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 50
-  knockBackCuvre:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0.9924927
-      inSlope: 0.017630704
-      outSlope: 0.017630704
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.78615487
-    - serializedVersion: 3
-      time: 0.4421562
-      value: 0.6156232
-      inSlope: -2.0039356
-      outSlope: -2.0039356
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.06982154
-    - serializedVersion: 3
-      time: 1.2031031
-      value: 0.008596253
-      inSlope: -0.09675299
-      outSlope: -0.09675299
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.12787236
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  standUpTime: 1.5
   destroyed: 0
-  DestroyedBody: {fileID: 0}
   healthBarRennder:
     healthBar: {fileID: 2278732330621463760, guid: 89c69c051ed5e2e46938d9c3f33174c4,
       type: 3}
@@ -32879,9 +32542,8 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 1073741888
-  viewRange: 3.5
+  attackRange: 0
   centerAttackRange: {x: 0, y: 1.3, z: 0}
-  stepBackTime: 1
   maxSpeed: 4
   walkSpeed: 1
 --- !u!114 &8044311328189225188
@@ -32896,7 +32558,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37b7f76fe38c53a4aaed83d6ad1fee34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackCooldown: 5
+  coolDownTime: 0
   damage: 10
   speedBullet: 10
   layerTarget:
@@ -34040,39 +33702,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fb34382dedccdc44863f0519d0877e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackCooldown: 3
-  centerAttackRange: {x: 0, y: 1.26, z: 0}
-  attackRange: 1.5
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 64
+  coolDownTime: 0
   hurtBoxes:
   - {fileID: 268575776}
-  stepBackTime: 0.8
-  speepStepBackCuvre:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!195 &8874613419878681998
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -34110,9 +33742,8 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 1073741888
-  viewRange: 3.5
+  attackRange: 0
   centerAttackRange: {x: 0, y: 1.3, z: 0}
-  stepBackTime: 1
   maxSpeed: 4
   walkSpeed: 1
 --- !u!114 &8874613419878682000
@@ -34128,42 +33759,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 50
-  knockBackCuvre:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0.9924927
-      inSlope: 0.017630704
-      outSlope: 0.017630704
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.78615487
-    - serializedVersion: 3
-      time: 0.4421562
-      value: 0.6156232
-      inSlope: -2.0039356
-      outSlope: -2.0039356
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.06982154
-    - serializedVersion: 3
-      time: 1.2031031
-      value: 0.008596253
-      inSlope: -0.09675299
-      outSlope: -0.09675299
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.12787236
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  standUpTime: 1.5
   destroyed: 0
-  DestroyedBody: {fileID: 0}
   healthBarRennder:
     healthBar: {fileID: 2278732330621463760, guid: 89c69c051ed5e2e46938d9c3f33174c4,
       type: 3}
@@ -35122,42 +34718,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 50
-  knockBackCuvre:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0.9924927
-      inSlope: 0.017630704
-      outSlope: 0.017630704
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.78615487
-    - serializedVersion: 3
-      time: 0.4421562
-      value: 0.6156232
-      inSlope: -2.0039356
-      outSlope: -2.0039356
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.06982154
-    - serializedVersion: 3
-      time: 1.2031031
-      value: 0.008596253
-      inSlope: -0.09675299
-      outSlope: -0.09675299
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.12787236
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  standUpTime: 1.5
   destroyed: 0
-  DestroyedBody: {fileID: 0}
   healthBarRennder:
     healthBar: {fileID: 2278732330621463760, guid: 89c69c051ed5e2e46938d9c3f33174c4,
       type: 3}
@@ -35218,9 +34779,8 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 1073741888
-  viewRange: 3.5
+  attackRange: 0
   centerAttackRange: {x: 0, y: 1.3, z: 0}
-  stepBackTime: 1
   maxSpeed: 4
   walkSpeed: 1
 --- !u!95 &9115486011712097420
@@ -35255,39 +34815,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fb34382dedccdc44863f0519d0877e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackCooldown: 3
-  centerAttackRange: {x: 0, y: 1.26, z: 0}
-  attackRange: 0.9
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 64
+  coolDownTime: 0
   hurtBoxes:
   - {fileID: 7023660300890822605}
-  stepBackTime: 0.8
-  speepStepBackCuvre:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!95 &9125083301544761419
 Animator:
   serializedVersion: 4

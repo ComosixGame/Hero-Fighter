@@ -205,11 +205,12 @@ GameObject:
   - component: {fileID: 5345986584341595204}
   - component: {fileID: 2131854521}
   - component: {fileID: 2131854532}
+  - component: {fileID: 6403556104618053407}
   - component: {fileID: 2131854531}
   - component: {fileID: 2131854533}
   - component: {fileID: 8906427883867688507}
   - component: {fileID: 4557754036474310949}
-  - component: {fileID: 6403556104618053407}
+  - component: {fileID: 7826504019510501653}
   m_Layer: 6
   m_Name: Iron
   m_TagString: Player
@@ -290,6 +291,19 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!65 &6403556104618053407
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1701021460331676804}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1.85, z: 1}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &2131854531
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -325,8 +339,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  hitEffect: {fileID: 9046699384457569311, guid: 00e2210b13fc873458ba8b2017fba62e,
-    type: 3}
   knockDownVFX: {fileID: 5854742832336096459, guid: 8a7c5d19d8a94cb41bccf41896137933,
     type: 3}
 --- !u!114 &8906427883867688507
@@ -344,7 +356,7 @@ MonoBehaviour:
   specialSkillAvailable: {fileID: 0}
   skillsAvailable: []
   skillTypes: 
-  specialSkillType: 0
+  specialSkillType: 1
 --- !u!114 &4557754036474310949
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -368,19 +380,28 @@ MonoBehaviour:
     type: 3}
   damage: 50
   speed: 10
---- !u!65 &6403556104618053407
-BoxCollider:
+--- !u!114 &7826504019510501653
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1701021460331676804}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1.85, z: 1}
-  m_Center: {x: 0, y: 1, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4874185986ed6b64cbdec2eebdf3aa64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillName: 
+  skillDescription: 
+  MaxEnergy: 0
+  energy: 0
+  animationClip: {fileID: 7400000, guid: d8b0cd58b52969749bfb0215754c73e9, type: 3}
+  laserPosition: {x: 0, y: 1.55, z: 0.3}
+  laserObject: {fileID: 6197080751168193181, guid: a81c073a5caaaf440b481ed76fbc4eef,
+    type: 3}
+  damage: 0
+  speed: 0
 --- !u!1 &1820991002697448339
 GameObject:
   m_ObjectHideFlags: 0
@@ -471,7 +492,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2365304843506742658}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 1.37, z: 0.92}
+  m_LocalPosition: {x: -0, y: 1.37, z: 0.63}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -509,6 +530,8 @@ MonoBehaviour:
   attackType: 0
   damage: 3
   bonusEnergy: 1
+  hitEffect: {fileID: 9046699384457569311, guid: 00e2210b13fc873458ba8b2017fba62e,
+    type: 3}
 --- !u!1 &2365304844446138284
 GameObject:
   m_ObjectHideFlags: 0
@@ -535,7 +558,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2365304844446138284}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 1.37, z: 0.92}
+  m_LocalPosition: {x: -0, y: 1.37, z: 0.63}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -573,6 +596,8 @@ MonoBehaviour:
   attackType: 1
   damage: 5
   bonusEnergy: 2
+  hitEffect: {fileID: 9046699384457569311, guid: 00e2210b13fc873458ba8b2017fba62e,
+    type: 3}
 --- !u!1 &2420550092026887036
 GameObject:
   m_ObjectHideFlags: 0

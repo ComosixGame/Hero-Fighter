@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1830199917388019074}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.835, z: 0.999}
+  m_LocalPosition: {x: 0, y: 1.293, z: 0.197}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -45,7 +45,7 @@ BoxCollider:
   m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 2, y: 0.8, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0, z: 0.5}
 --- !u!114 &1830199917388019132
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63,6 +63,8 @@ MonoBehaviour:
     m_Bits: 0
   damage: 3
   attackType: 0
+  hitEffect: {fileID: 9046699384457569311, guid: 00e2210b13fc873458ba8b2017fba62e,
+    type: 3}
 --- !u!1 &7080512912626343472
 GameObject:
   m_ObjectHideFlags: 0
@@ -1837,42 +1839,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 50
-  knockBackCuvre:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0.9924927
-      inSlope: 0.017630704
-      outSlope: 0.017630704
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.78615487
-    - serializedVersion: 3
-      time: 0.4421562
-      value: 0.6156232
-      inSlope: -2.0039356
-      outSlope: -2.0039356
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.06982154
-    - serializedVersion: 3
-      time: 1.2031031
-      value: 0.008596253
-      inSlope: -0.09675299
-      outSlope: -0.09675299
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.12787236
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  standUpTime: 1.5
   destroyed: 0
-  DestroyedBody: {fileID: 0}
   healthBarRennder:
     healthBar: {fileID: 2278732330621463760, guid: 89c69c051ed5e2e46938d9c3f33174c4,
       type: 3}
@@ -1897,9 +1864,8 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 1073741888
-  viewRange: 3.5
+  attackRange: 0
   centerAttackRange: {x: 0, y: 1.3, z: 0}
-  stepBackTime: 1
   maxSpeed: 4
   walkSpeed: 1
 --- !u!195 &7083837593465789458
@@ -1936,39 +1902,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fb34382dedccdc44863f0519d0877e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackCooldown: 3
-  centerAttackRange: {x: 0, y: 1.26, z: 0}
-  attackRange: 1.2
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 64
+  coolDownTime: 0
   hurtBoxes:
   - {fileID: 1830199917388019132}
-  stepBackTime: 0.8
-  speepStepBackCuvre:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!114 &3179910275667844987
 MonoBehaviour:
   m_ObjectHideFlags: 0

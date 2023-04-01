@@ -12,7 +12,6 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
     private GameManager gameManager;
     private UIMenu ui;
     [Header("VFX")]
-    [SerializeField] private EffectObjectPool hitEffect;
     [SerializeField] private EffectObjectPool knockDownVFX;
     private ObjectPoolerManager objectPoolerManager;
     private PlayerController playerController;
@@ -52,13 +51,11 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
         }
     }
 
-    public void TakeDamgae(Vector3 hitPoint, Vector3 dirAttack, float damage, AttackType attackType)
+    public void TakeDamgae(Vector3 dirAttack, float damage, AttackType attackType)
     {
         if (!destroyed)
         {
             health -= damage;
-
-            objectPoolerManager.SpawnObject(hitEffect, hitPoint, Quaternion.identity);
             ui?.DisplayHitPoint(false);
             healthBarPlayer?.UpdateHealthBarValue(health);
 
@@ -76,16 +73,6 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
             {
                 transform.rotation = Ultils.GetRotationLook(dirAttack, transform.forward);
                 animator.SetTrigger(knockHash);
-            }
-
-            AnimatorStateInfo animationState = animator.GetCurrentAnimatorStateInfo(0);
-            if (!animationState.IsName("KnockDown"))
-            {
-                animator.ResetTrigger(knockHash);
-            }
-
-            if(!animationState.IsName("Hit")) {
-                animator.ResetTrigger(hitHash);
             }
         }
     }

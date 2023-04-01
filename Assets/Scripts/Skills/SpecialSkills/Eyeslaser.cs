@@ -3,12 +3,15 @@ using UnityEngine;
 public class Eyeslaser : AbsSpecialSkill
 {
     [SerializeField] private Vector3 laserPosition;
-    [SerializeField] private ParticleSystem laserObject;
+    [SerializeField] private EffectObjectPool laserObject;
     [SerializeField] private float damage;
-    [SerializeField] private float speed;
     private ParticleSystem generatedLaserObject;
-    override protected void Awake() {
+    private ObjectPoolerManager objectPooler;
+
+    override protected void Awake()
+    {
         base.Awake();
+        objectPooler = ObjectPoolerManager.Instance;
     }
 
     private void OnEnable()
@@ -23,7 +26,11 @@ public class Eyeslaser : AbsSpecialSkill
 
     public void CastLaser()
     {
-        generatedLaserObject = Instantiate(laserObject, transform.TransformPoint(laserPosition), transform.rotation);
+        generatedLaserObject = objectPooler.SpawnObject(
+                laserObject,
+                transform.TransformPoint(laserPosition),
+                transform.rotation
+            ).GetComponent<ParticleSystem>();
         generatedLaserObject.Play();
     }
 
@@ -32,7 +39,8 @@ public class Eyeslaser : AbsSpecialSkill
         generatedLaserObject.Stop();
     }
 
-    private void OnDrawGizmosSelected() {
+    private void OnDrawGizmosSelected()
+    {
         Gizmos.color = Color.blue;
         Gizmos.DrawSphere(transform.TransformPoint(laserPosition), 0.1f);
     }

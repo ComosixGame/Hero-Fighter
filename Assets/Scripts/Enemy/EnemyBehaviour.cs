@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -45,12 +46,14 @@ public class EnemyBehaviour : MonoBehaviour
             agent.ResetPath();
         }
         gameManager.OnInitUiDone += StartGame;
+        StartCoroutine(CheckPlayerInAttackRange());
     }
 
     private void OnDisable()
     {
         agent.enabled = false;
         gameManager.OnInitUiDone -= StartGame;
+        StopAllCoroutines();
     }
 
     private void StartGame()
@@ -63,7 +66,6 @@ public class EnemyBehaviour : MonoBehaviour
     {
         if (isStart)
         {
-            CheckPlayerInAttackRange();
             HandleLook();
             HandleAnimationMove();
             switch (state)
@@ -93,31 +95,28 @@ public class EnemyBehaviour : MonoBehaviour
         }
     }
 
-    private void CheckPlayerInAttackRange()
+    private IEnumerator CheckPlayerInAttackRange()
     {
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position + centerAttackRange, attackRange, playerLayer);
-        if (hitColliders.Length == 0)
-        {
-            state = State.chase;
-        }
-        else
-        {
-            state = State.attack;
+        while(true) {
+            Collider[] hitColliders = Physics.OverlapSphere(transform.position + centerAttackRange, attackRange, playerLayer);
+            if (hitColliders.Length == 0)
+            {
+                state = State.chase;
+            }
+            else
+            {
+                state = State.attack;
+            }
+            yield return new WaitForSeconds(0.1f);
         }
     }
 
     private void HandleChase()
     {
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position + centerAttackRange, 5f, playerLayer);
-        if (hitColliders.Length == 0)
-        {
-            agent.speed = maxSpeed;
-            state = State.chase;
-        }
-        else
-        {
+        if(Vector3.Distance(gameManager.player.position, transform.position) <= 5f) {
             agent.speed = walkSpeed;
-            state = State.attack;
+        } else {
+            agent.speed = maxSpeed;
         }
         MoveToPosition(gameManager.player.position);
     }
@@ -150,8 +149,10 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void HandleLook()
     {
-        Vector3 dirLook = gameManager.player.position - transform.position;
-        transform.rotation = Ultils.GetRotationLook(dirLook, transform.forward);
+        if(agent.enabled) {
+            Vector3 dirLook = gameManager.player.position - transform.position;
+            transform.rotation = Ultils.GetRotationLook(dirLook, transform.forward);
+        }
     }
 
 

@@ -19,7 +19,7 @@ public class BossDamageable : MonoBehaviour, IDamageable
         health = maxHealth;
     }
 
-    public void TakeDamgae(Vector3 hitPoint, Vector3 dirAttack, float damage, AttackType attackType)
+    public void TakeDamgae(Vector3 dirAttack, float damage, AttackType attackType)
     {
         health -= damage;
         if(health <= 0 && !destroyed) {

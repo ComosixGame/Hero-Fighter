@@ -7,7 +7,14 @@ public class PlayerHurtBox : MonoBehaviour
     [SerializeField] private AttackType attackType;
     [SerializeField] private float damage;
     [SerializeField] private int bonusEnergy;
+    [SerializeField] private EffectObjectPool hitEffect;
+    private ObjectPoolerManager objectPooler;
     public static event Action<int> OnHit;
+
+
+    private void Awake() {
+        objectPooler = ObjectPoolerManager.Instance;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -16,8 +23,9 @@ public class PlayerHurtBox : MonoBehaviour
             if (other.TryGetComponent(out IDamageable damageable))
             {
                 Vector3 hitPoint = other.GetComponent<Collider>().ClosestPoint(transform.position);
-                Vector3 dirAttack = other.transform.position - transform.position;
-                damageable.TakeDamgae(hitPoint, dirAttack.normalized, damage, attackType);
+                objectPooler.SpawnObject(hitEffect, hitPoint, Quaternion.identity);
+                Vector3 dirAttack = transform.position - other.transform.position;
+                damageable.TakeDamgae(dirAttack.normalized, damage, attackType);
                 OnHit?.Invoke(bonusEnergy);
             }
         }
@@ -27,9 +35,9 @@ public class PlayerHurtBox : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = new Color32(255, 0, 0, 80);
-        Vector3 size = GetComponent<BoxCollider>().size;
+        BoxCollider box = GetComponent<BoxCollider>();
         Gizmos.matrix = transform.localToWorldMatrix;
-        Gizmos.DrawCube(Vector3.zero, size);
+        Gizmos.DrawCube(box.center, box.size);
     }
 #endif
 }

@@ -1,3 +1,4 @@
+using System.Collections;
 using System;
 using UnityEngine;
 using UnityEngine.AI;
@@ -8,6 +9,7 @@ public class EnemyDamageable : MonoBehaviour, IDamageable
     private float health;
     public bool destroyed;
     private int hitHash;
+    private int hitContinuousHash;
     private int knockHash;
     private int deathHash;
     private int deathKnockHash;
@@ -19,7 +21,6 @@ public class EnemyDamageable : MonoBehaviour, IDamageable
     private UIMenu uI;
 
     [Header("VFX")]
-    [SerializeField] private EffectObjectPool hitEffect;
     [SerializeField] private EffectObjectPool knockDownVFX;
 
     private ObjectPoolerManager objectPoolerManager;
@@ -32,6 +33,7 @@ public class EnemyDamageable : MonoBehaviour, IDamageable
         colliderGameObject = GetComponent<Collider>();
 
         hitHash = Animator.StringToHash("Hit");
+        hitContinuousHash = Animator.StringToHash("HitContinuous");
         knockHash = Animator.StringToHash("Knock");
         deathHash = Animator.StringToHash("death");
         deathKnockHash = Animator.StringToHash("deathKnock");
@@ -61,6 +63,11 @@ public class EnemyDamageable : MonoBehaviour, IDamageable
         {
             animator.ResetTrigger(hitHash);
         }
+
+        if (!animationState.IsName("HitContinuous"))
+        {
+            animator.ResetTrigger(hitContinuousHash);
+        }
     }
 
     private void LateUpdate()
@@ -68,12 +75,11 @@ public class EnemyDamageable : MonoBehaviour, IDamageable
         healthBarRennder.UpdateHealthBarRotation();
     }
 
-    public void TakeDamgae(Vector3 hitPoint, Vector3 dirAttack, float damage, AttackType attackType)
+    public void TakeDamgae(Vector3 dirAttack, float damage, AttackType attackType)
     {
         if (!destroyed)
         {
             uI?.DisplayHitPoint(true);
-            AttackVFX(hitPoint);
             health -= damage;
             healthBarRennder.UpdateHealthBarValue(health);
             if (health <= 0)
@@ -82,43 +88,61 @@ public class EnemyDamageable : MonoBehaviour, IDamageable
                 Destroy(attackType);
                 return;
             }
-            HandleHitReaction(hitPoint, attackType);
+            HandleHitReaction(dirAttack, attackType);
         }
     }
 
     private void HandleHitReaction(Vector3 dirAttack, AttackType attackType)
     {
         transform.rotation = Ultils.GetRotationLook(dirAttack, transform.forward);
-        if (attackType == AttackType.light)
+        switch (attackType)
         {
-            animator.SetTrigger(hitHash);
+            case AttackType.heavy:
+                animator.SetTrigger(knockHash);
+                break;
+            case AttackType.continuous:
+                animator.SetTrigger(hitContinuousHash);
+                break;
+            default:
+                animator.SetTrigger(hitHash);
+                break;
         }
-        else
-        {
-            animator.SetTrigger(knockHash);
-        }
-    }
-
-    private void AttackVFX(Vector3 pos)
-    {
-        objectPoolerManager.SpawnObject(hitEffect, pos, Quaternion.identity);
     }
 
     private void Destroy(AttackType attackType)
     {
-        if (attackType == AttackType.light)
+        switch (attackType)
         {
-            animator.SetTrigger(deathHash);
-        }
-        else
-        {
-            animator.SetTrigger(deathKnockHash);
+            case AttackType.heavy:
+                animator.SetTrigger(deathKnockHash);
+                break;
+            default:
+                animator.SetTrigger(deathHash);
+                break;
         }
 
         enemyBehaviour.enabled = false;
         colliderGameObject.enabled = false;
         healthBarRennder.DestroyHeathBar();
         destroyed = true;
+        Invoke("Hide", 3f);
+    }
+
+    private void Hide()
+    {
+        StartCoroutine(Dissolve());
+    }
+
+    private IEnumerator Dissolve()
+    {
+        SkinnedMeshRenderer skinned = GetComponentInChildren<SkinnedMeshRenderer>();
+        for (int i = 0; i < 4; i++)
+        {
+            skinned.enabled = !skinned.enabled;
+            yield return new WaitForSeconds(0.3f);
+        }
+
+        // objectPoolerManager.DeactiveObject(GetComponent<GameObjectPool>());
     }
 
     public void KnockDownEffect()

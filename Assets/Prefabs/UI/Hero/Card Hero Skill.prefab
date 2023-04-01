@@ -1976,7 +1976,7 @@ GameObject:
   - component: {fileID: 6553314692579435244}
   - component: {fileID: 6553314692579435247}
   - component: {fileID: 6553314692579435246}
-  - component: {fileID: 865301730714040784}
+  - component: {fileID: 5922808519454307679}
   m_Layer: 5
   m_Name: Card Hero Skill
   m_TagString: Untagged
@@ -2095,7 +2095,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &865301730714040784
+--- !u!114 &5922808519454307679
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2104,16 +2104,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 6553314692579435240}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd6a9c59f59792741b3efd6337f6544c, type: 3}
+  m_Script: {fileID: 11500000, guid: 8eeb621b7be5f7442a4a0074d9d19370, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
   thumbnail: {fileID: 6553314692369765304}
   title: {fileID: 6553314691896074632}
   button: {fileID: 6553314692579435246}
-  priceTxt: {fileID: 0}
-  evaluateTxt: {fileID: 0}
   startGo: {fileID: 6553314692424195901}
+  windowSkill: {fileID: 0}
+  UIMenu: {fileID: 0}
+  skillTreeUI: {fileID: 0}
 --- !u!1 &6553314692641524449
 GameObject:
   m_ObjectHideFlags: 0

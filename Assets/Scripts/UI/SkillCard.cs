@@ -7,7 +7,6 @@ public class SkillCard : MonoBehaviour
 {
     public int skillId;
     public int heroId;
-    public int currentId;
     public GameObject windowSkillTreeDetail;
     public Animator UIMenu;
     public Image sprite;
@@ -41,11 +40,31 @@ public class SkillCard : MonoBehaviour
 
     private void ClickButton()
     {
+        windowSkillTreeDetail.transform.GetChild(2).GetChild(0).GetComponent<Button>().onClick.AddListener(ClickBuy);
         windowSkillTreeDetail.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = skillTreeManager.skillTreeStates[heroId].skillStates[skillId].nameSkill;
-        windowSkillTreeDetail.transform.GetChild(2).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = skillTreeManager.skillTreeStates[heroId].skillStates[skillId].price+"";
+        //Read file Save
+        if (false)
+        {
+            //Permit Player Buy Skill
+            windowSkillTreeDetail.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = "";
+            windowSkillTreeDetail.transform.GetChild(2).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = skillTreeManager.skillTreeStates[heroId].skillStates[skillId].price+"";
+        }else
+        {
+            //Alert Player Buy Skill Perivous 
+            windowSkillTreeDetail.transform.GetChild(2).GetChild(0).GetComponent<Button>().interactable = false;
+            windowSkillTreeDetail.transform.GetChild(2).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = "";
+            windowSkillTreeDetail.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = "Open Previous Skill";
+        }
+
         if(!windowSkillTreeDetail.activeInHierarchy)
         {
             UIMenu.SetTrigger("OpenSkillDetail");
         }
+    }
+
+    //Handle Buy Skill
+    private void ClickBuy()
+    {
+        Debug.Log("ABC");
     }
 }

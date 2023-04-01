@@ -25,5 +25,20 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 022a732feea80024ba1374b992035433, type: 2}
     - {fileID: 11400000, guid: 022a732feea80024ba1374b992035433, type: 2}
     - {fileID: 11400000, guid: 022a732feea80024ba1374b992035433, type: 2}
-  - name: 
-    skillStates: []
+  - name: Hero1
+    skillStates:
+    - {fileID: 11400000, guid: 8db8153db7190fc418faedb21491381b, type: 2}
+    - {fileID: 11400000, guid: 8db8153db7190fc418faedb21491381b, type: 2}
+    - {fileID: 11400000, guid: 8db8153db7190fc418faedb21491381b, type: 2}
+    - {fileID: 11400000, guid: 8db8153db7190fc418faedb21491381b, type: 2}
+    - {fileID: 11400000, guid: 8db8153db7190fc418faedb21491381b, type: 2}
+  - name: Hero2
+    skillStates:
+    - {fileID: 11400000, guid: 022a732feea80024ba1374b992035433, type: 2}
+    - {fileID: 11400000, guid: 022a732feea80024ba1374b992035433, type: 2}
+    - {fileID: 11400000, guid: 022a732feea80024ba1374b992035433, type: 2}
+    - {fileID: 11400000, guid: 022a732feea80024ba1374b992035433, type: 2}
+    - {fileID: 11400000, guid: 022a732feea80024ba1374b992035433, type: 2}
+    - {fileID: 11400000, guid: 022a732feea80024ba1374b992035433, type: 2}
+    - {fileID: 11400000, guid: 022a732feea80024ba1374b992035433, type: 2}
+    - {fileID: 11400000, guid: 022a732feea80024ba1374b992035433, type: 2}

@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,22 +6,29 @@ using TMPro;
 public class LevelManagerUI : MonoBehaviour
 {
     public Transform contentLevel;
-    public LevelCard levelCard, bossCard;
-    public GameObject currentLevelImage;
-    public GameObject doneLevelImage;
-    public GameObject bossLevelImage;
+    public LevelCard levelCard, currentLevelCard, bossCard;
     [SerializeField] private GameObject levelGroup;
     [SerializeField] private ChapterManager chapterManager;
+    [SerializeField] private TextMeshProUGUI titleChapter;
+    [SerializeField] private ScrollRect scrollRect;
     private GameManager gameManager;
     private int currentChapter = -1;
     private List<GameObject> children;
     private List<LevelCard> levelCards = new List<LevelCard>();
-    private PlayerData playerData;
+    private RectTransform currentCard;
 
     private void Awake()
     {
         gameManager = GameManager.Instance;
         children = new List<GameObject>();
+    }
+
+    private void OnEnable()
+    {
+        if (currentCard)
+        {
+            ScrollTo(currentCard);
+        }
     }
 
     private void Update()
@@ -45,8 +51,11 @@ public class LevelManagerUI : MonoBehaviour
         Vector2 anchor;
         GameObject newLevelGroup = levelGroup;
         LevelState[] levelStates = chapterManager.chapterStates[chapter].levelStates;
+        titleChapter.text = chapterManager.chapterStates[chapter].name;
+        int latestLevel = PlayerData.Load().latestLevel;
         for (int i = 0; i < levelStates.Length; i++)
         {
+            LevelCard lv;
             if (levelStates[i].type == LevelType.normal)
             {
                 step++;
@@ -72,11 +81,20 @@ public class LevelManagerUI : MonoBehaviour
                         break;
                 }
 
-                LevelCard lv = Instantiate(levelCard, Vector3.zero, Quaternion.identity);
-                lv.chapter = currentChapter+1;
-                int index =i+1;
-                lv.GetComponentInChildren<TMP_Text>().text = ""+index;
+                if (i == latestLevel)
+                {
+                    lv = Instantiate(currentLevelCard, Vector3.zero, Quaternion.identity);
+                }
+                else
+                {
+                    lv = Instantiate(levelCard, Vector3.zero, Quaternion.identity);
+                }
+
+                lv.chapter = currentChapter + 1;
+                int index = i + 1;
+                lv.GetComponentInChildren<TextMeshProUGUI>().text = index.ToString();
                 lv.id = i;
+                lv.Unlock(i <= latestLevel);
                 RectTransform rectTransform = lv.GetComponent<RectTransform>();
                 rectTransform.anchorMax = anchor;
                 rectTransform.anchorMin = anchor;
@@ -87,27 +105,26 @@ public class LevelManagerUI : MonoBehaviour
             }
             else
             {
-                LevelCard lv = Instantiate(bossCard);
-                lv.chapter = currentChapter+1;
-                lv.GetComponentInChildren<TMP_Text>().text = "Boss";
+                lv = Instantiate(bossCard);
+                lv.chapter = currentChapter + 1;
+                lv.GetComponentInChildren<TextMeshProUGUI>().text = "Boss";
                 lv.id = i;
+                lv.Unlock(i <= latestLevel);
                 lv.transform.SetParent(contentLevel, false);
                 children.Add(lv.gameObject);
                 levelCards.Add(lv);
             }
 
+            if (i == latestLevel)
+            {
+                ScrollTo(lv.GetComponent<RectTransform>());
+            }
         }
-        DisplayLevelUI(chapter);
     }
 
-    public void DisplayLevelUI(int chapter)
+    public void ScrollTo(RectTransform target)
     {
-        
-        playerData = PlayerData.Load();
-
-        for (int i= 0; i < levelCards.Count; i++)
-        {
-            levelCards[i].Unlock(i <= playerData.LatestLevel);
-        }
+        Ultils.ScrollTo(scrollRect, target);
+        currentCard = target;
     }
 }

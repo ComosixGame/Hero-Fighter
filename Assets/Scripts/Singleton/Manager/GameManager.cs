@@ -16,6 +16,7 @@ public class GameManager : Singleton<GameManager>
     [ReadOnly] public CinemachineVirtualCamera virtualCamera;
     private int money;
     public ChapterManager chapterManager;
+    public EquipmentManager equipmentManager;
     public event Action OnStartGame;
     public event Action OnPause;
     public event Action OnResume;
@@ -30,6 +31,8 @@ public class GameManager : Singleton<GameManager>
     private PlayerData playerData;
     private ObjectPoolerManager objectPooler;
     private LoadSceneManager loadSceneManager;
+    private LoadingScreen loadingScreen;
+
     public LevelState levelState {
         get {
             return chapterManager.chapterStates[chapterIndex].levelStates[levelIndex];
@@ -112,9 +115,9 @@ public class GameManager : Singleton<GameManager>
     {
         playerData = PlayerData.Load();
         //Add new Level
-        if (win && playerData.LatestLevel == levelIndex)
+        if (win && playerData.latestLevel == levelIndex)
         {
-            int nextLevel = playerData.LatestLevel+1;
+            int nextLevel = playerData.latestLevel+1;
             playerData.levels.Add(nextLevel);
             playerData.Save();
         }
@@ -151,6 +154,5 @@ public class GameManager : Singleton<GameManager>
     public void SelecteCharacter(string id) {
         playerData.selectedCharacter = id;
     }
-
 
 }

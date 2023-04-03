@@ -75,5 +75,4 @@ public class CharacterSelection : MonoBehaviour
         Gizmos.DrawSphere(playerPos, 0.5f);
     }
 
-
 }

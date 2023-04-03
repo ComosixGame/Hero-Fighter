@@ -5,13 +5,23 @@ public class EnemyHurtBox : MonoBehaviour
     public LayerMask targetLayer;
     [SerializeField] private float damage;
     [SerializeField] private AttackType attackType;
+    [SerializeField] private EffectObjectPool hitEffect;
+    private ObjectPoolerManager objectPooler;
+
+    private void Awake()
+    {
+        objectPooler = ObjectPoolerManager.Instance;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if ((targetLayer & (1 << other.gameObject.layer)) != 0)
         {
             IDamageable damageable = other.GetComponentInParent<IDamageable>();
             Vector3 hitPoint = other.GetComponent<Collider>().ClosestPoint(transform.position);
-            damageable?.TakeDamgae(hitPoint, damage, attackType);
+            objectPooler.SpawnObject(hitEffect, hitPoint, Quaternion.identity);
+            Vector3 dirAttack = transform.position - other.transform.position;
+            damageable?.TakeDamgae(dirAttack.normalized, damage, attackType);
         }
     }
 
@@ -19,9 +29,9 @@ public class EnemyHurtBox : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = new Color32(255, 0, 0, 80);
-        Vector3 size = GetComponent<BoxCollider>().size;
+        BoxCollider box = GetComponent<BoxCollider>();
         Gizmos.matrix = transform.localToWorldMatrix;
-        Gizmos.DrawCube(Vector3.zero, size);
+        Gizmos.DrawCube(box.center, box.size);
     }
 #endif
 }

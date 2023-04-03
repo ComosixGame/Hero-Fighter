@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -12,12 +13,11 @@ public class EnemyBehaviour : MonoBehaviour
         disable,
     }
     [SerializeField] private LayerMask playerLayer;
-    [SerializeField] private float viewRange;
+    [SerializeField] private float attackRange;
     [SerializeField] private Vector3 centerAttackRange;
-    [SerializeField] private float stepBackTime;
     [SerializeField] private float maxSpeed;
     [SerializeField] private float walkSpeed;
-    private int velocityHash;
+    private int velocityXHash, velocityZHash;
     private State state = State.chase;
     private bool disable;
     private NavMeshAgent agent;
@@ -35,24 +35,27 @@ public class EnemyBehaviour : MonoBehaviour
         damageable = GetComponent<EnemyDamageable>();
         absEnemyAttack = GetComponent<AbsEnemyAttack>();
 
-        velocityHash = Animator.StringToHash("Velocity");
+        velocityXHash = Animator.StringToHash("VelocityX");
+        velocityZHash = Animator.StringToHash("VelocityZ");
     }
 
     private void OnEnable()
     {
-        damageable.OnTakeDamageStart += DisableEnemy;
-        damageable.OnTakeDamageEnd += EnableEnemy;
+        agent.enabled = true;
+        if(agent.hasPath) {
+            agent.ResetPath();
+        }
         gameManager.OnInitUiDone += StartGame;
+        StartCoroutine(CheckPlayerInAttackRange());
     }
 
     private void OnDisable()
     {
-        isStart = false;
-        damageable.OnTakeDamageStart -= DisableEnemy;
-        damageable.OnTakeDamageEnd -= EnableEnemy;
+        agent.enabled = false;
         gameManager.OnInitUiDone -= StartGame;
+        StopAllCoroutines();
     }
-        
+
     private void StartGame()
     {
         isStart = true;
@@ -63,8 +66,6 @@ public class EnemyBehaviour : MonoBehaviour
     {
         if (isStart)
         {
-            CheckPlayerInView();
-            CheckEnemyTakeDamage();
             HandleLook();
             HandleAnimationMove();
             switch (state)
@@ -73,87 +74,87 @@ public class EnemyBehaviour : MonoBehaviour
                     HandleChase();
                     break;
                 case State.attack:
-                    agent.speed = walkSpeed;
-                    absEnemyAttack.HandleAttack();
-                    break;
-                case State.disable:
+                    HandleAttack();
                     break;
                 default:
-                    throw new InvalidCastException("invlid state");
-
+                    break;
             }
         }
     }
 
-    private void CheckPlayerInView()
+    private void FixedUpdate()
     {
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position + centerAttackRange, viewRange, playerLayer);
-        if (hitColliders.Length == 0)
+        AnimatorStateInfo animationState = animator.GetCurrentAnimatorStateInfo(0);
+        if (animationState.IsName("Move"))
         {
-            state = State.chase;
+            agent.enabled = true;
         }
         else
         {
-            state = State.attack;
+            agent.enabled = false;
         }
     }
 
-    private void CheckEnemyTakeDamage()
+    private IEnumerator CheckPlayerInAttackRange()
     {
-        if (disable)
-        {
-            state = State.disable;
+        while(true) {
+            Collider[] hitColliders = Physics.OverlapSphere(transform.position + centerAttackRange, attackRange, playerLayer);
+            if (hitColliders.Length == 0)
+            {
+                state = State.chase;
+            }
+            else
+            {
+                state = State.attack;
+            }
+            yield return new WaitForSeconds(0.1f);
         }
     }
 
     private void HandleChase()
     {
-        agent.speed = maxSpeed;
+        if(Vector3.Distance(gameManager.player.position, transform.position) <= 5f) {
+            agent.speed = walkSpeed;
+        } else {
+            agent.speed = maxSpeed;
+        }
         MoveToPosition(gameManager.player.position);
+    }
+
+    private void HandleAttack()
+    {
+        absEnemyAttack.Attack();
     }
 
 
     private void HandleAnimationMove()
     {
-        Vector3 horizontalVelocity = new Vector3(agent.velocity.x, 0, agent.velocity.z);
-        float Velocity = horizontalVelocity.magnitude / maxSpeed;
-        if (Velocity > 0)
+        Vector3 Velocity = new Vector3(agent.velocity.x, 0, agent.velocity.z).normalized;
+        if (Velocity.magnitude > 0)
         {
-            animator.SetFloat(velocityHash, Velocity);
+            animator.SetFloat(velocityXHash, Math.Abs(agent.velocity.x / maxSpeed));
+            bool isLookRight = transform.forward.normalized == Vector3.right;
+            animator.SetFloat(velocityZHash, isLookRight ? -Velocity.z : Velocity.z);
         }
         else
         {
-            float v = animator.GetFloat(velocityHash);
-            v = Mathf.MoveTowards(v, 0, 2f * Time.deltaTime);
-            animator.SetFloat(velocityHash, v);
+            float vX = animator.GetFloat(velocityXHash);
+            float vZ = animator.GetFloat(velocityZHash);
+            vX = vX > 0.10f ? Mathf.Lerp(vX, 0, 20f * Time.deltaTime) : 0;
+            vZ = vZ > 0.10f || vZ < -0.1f ? Mathf.Lerp(vZ, 0, 20f * Time.deltaTime) : 0;
+            animator.SetFloat(velocityXHash, vX);
+            animator.SetFloat(velocityZHash, vZ);
         }
     }
 
     private void HandleLook()
     {
-        if (agent.velocity.x > 0)
-        {
-            Quaternion rot = Quaternion.LookRotation(Vector3.right);
-            transform.rotation = Quaternion.LerpUnclamped(transform.rotation, rot, 40 * Time.deltaTime);
-        }
-        else if (agent.velocity.x < 0)
-        {
-            Quaternion rot = Quaternion.LookRotation(Vector3.left);
-            transform.rotation = Quaternion.LerpUnclamped(transform.rotation, rot, 40 * Time.deltaTime);
+        if(agent.enabled) {
+            Vector3 dirLook = gameManager.player.position - transform.position;
+            transform.rotation = Ultils.GetRotationLook(dirLook, transform.forward);
         }
     }
 
-    private void DisableEnemy(Vector3 hitPoint, float damage, AttackType attackType)
-    {
-        disable = true;
-        agent.ResetPath();
-
-    }
-
-    private void EnableEnemy()
-    {
-        disable = false;
-    }
 
     private void MoveToPosition(Vector3 targetPos)
     {
@@ -163,18 +164,11 @@ public class EnemyBehaviour : MonoBehaviour
         }
     }
 
-    //Attach Animation Event
-    public void CancelHurtBox()
-    {
-        absEnemyAttack.CancleAttack();
-    }
-
-
 #if UNITY_EDITOR
     private void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position + centerAttackRange, viewRange);
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position + centerAttackRange, attackRange);
     }
 #endif
 }

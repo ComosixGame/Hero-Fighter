@@ -9,6 +9,7 @@ public class MeleeEnemyAttack : AbsEnemyAttack
     private GameManager gameManager;
     private EnemyBehaviour enemyBehaviour;
     private bool attacking;
+    [SerializeField] private float timeStepBack;
 
     private void Awake()
     {
@@ -61,7 +62,7 @@ public class MeleeEnemyAttack : AbsEnemyAttack
         attacking = false;
         hurtBoxes[index].gameObject.SetActive(false);
         animator.SetBool(backwardHash, true);
-        Invoke("CancleStepBack", 1.5f);
+        Invoke("CancleStepBack", timeStepBack);
     }
 
     private void CancleStepBack()

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EffectObjectPool : GameObjectPool
 {
-    private ParticleSystem particle;
+    protected ParticleSystem particle;
     private ObjectPoolerManager ObjectPoolerManager;
 
     private void Awake() {
@@ -10,9 +10,9 @@ public class EffectObjectPool : GameObjectPool
         particle = GetComponent<ParticleSystem>();
     }
 
-    void Update()
+    protected virtual void Update()
     {
-        if(!particle.IsAlive(false)) {
+        if(!particle.IsAlive()) {
             ObjectPoolerManager.DeactiveObject(this);
         }
     }

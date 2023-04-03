@@ -6,13 +6,8 @@ public class Laser : EffectObjectPool
     [SerializeField] private LayerMask layerTarget;
     [SerializeField] private AttackType attackType;
     [SerializeField] private float damage;
-    private ParticleSystem ps;
     private bool explored;
 
-    private void Awake()
-    {
-        ps = GetComponent<ParticleSystem>();
-    }
 
     private void OnParticleCollision(GameObject other)
     {
@@ -28,7 +23,7 @@ public class Laser : EffectObjectPool
 
     private void FixedUpdate()
     {
-        if (ps.IsAlive() && !explored)
+        if (particle.IsAlive() && !explored)
         {
             explored = true;
             Collider[] hitColliders = Physics.OverlapSphere(transform.position, 2f, layerTarget);
@@ -41,7 +36,7 @@ public class Laser : EffectObjectPool
                         if (collider.TryGetComponent(out IDamageable damageable))
                         {
                             Vector3 dirAttack = transform.position - collider.transform.position;
-                            damageable.TakeDamgae(dirAttack.normalized, damage, AttackType.heavy);
+                            damageable.TakeDamgae(dirAttack.normalized, damage * 2, AttackType.heavy);
                         }
                     }
                 }

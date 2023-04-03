@@ -99,7 +99,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 1827226128182048838, guid: bb99e34c359502b41b568ca32a065c11,
+  m_Motion: {fileID: 1827226128182048838, guid: d951d74b8d4add34a9d6a5cd59fbde5f,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -270,7 +270,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: HitContinuous
-  m_Speed: 1
+  m_Speed: 1.5
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 6569314924638298085}

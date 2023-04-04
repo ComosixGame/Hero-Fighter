@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class MeleeEnemyAttack : AbsEnemyAttack
 {
@@ -10,6 +11,9 @@ public class MeleeEnemyAttack : AbsEnemyAttack
     private EnemyBehaviour enemyBehaviour;
     private bool attacking;
     [SerializeField] private float timeStepBack;
+    public UnityEvent OnAction;
+    public UnityEvent OnStartAttack;
+    public UnityEvent OnEndAttack;
 
     private void Awake()
     {
@@ -49,12 +53,14 @@ public class MeleeEnemyAttack : AbsEnemyAttack
     protected override void Action()
     {
         animator.SetTrigger(attackHash);
+        OnAction?.Invoke();
     }
 
     public void StartAttack(int index)
     {
         attacking = true;
         hurtBoxes[index].gameObject.SetActive(true);
+        OnStartAttack?.Invoke();
     }
 
     public void EndAttack(int index)
@@ -63,6 +69,7 @@ public class MeleeEnemyAttack : AbsEnemyAttack
         hurtBoxes[index].gameObject.SetActive(false);
         animator.SetBool(backwardHash, true);
         Invoke("CancleStepBack", timeStepBack);
+        OnEndAttack?.Invoke();
     }
 
     private void CancleStepBack()

@@ -7,11 +7,11 @@ using MyCustomAttribute;
 public class GameManager : Singleton<GameManager>
 {
 #if UNITY_EDITOR
-[Header("Debug")]
+    [Header("Debug")]
     [SerializeField] private bool debugMode;
     [SerializeField] private bool withoutUI;
 #endif
-[Header("Info")]
+    [Header("Info")]
     [ReadOnly] public Transform player;
     [ReadOnly] public CinemachineVirtualCamera virtualCamera;
     private int money;
@@ -26,6 +26,7 @@ public class GameManager : Singleton<GameManager>
     public event Action OnCheckedPoint;
     public event Action OnInitUiDone;
     public event Action<int> OnSelectChapter;
+    public event Action<string> OnSelectCharacter;
     [ReadOnly] public int chapterIndex;
     [ReadOnly] public int levelIndex;
     private PlayerData playerData;
@@ -33,42 +34,51 @@ public class GameManager : Singleton<GameManager>
     private LoadSceneManager loadSceneManager;
     private LoadingScreen loadingScreen;
 
-    public LevelState levelState {
-        get {
+    public LevelState levelState
+    {
+        get
+        {
             return chapterManager.chapterStates[chapterIndex].levelStates[levelIndex];
         }
     }
- 
+
 
     protected override void Awake()
     {
         base.Awake();
+        playerData = PlayerData.Load();
         objectPooler = ObjectPoolerManager.Instance;
         loadSceneManager = LoadSceneManager.Instance;
     }
 
-    private void Start() {
+    private void Start()
+    {
         Application.targetFrameRate = 60;
         loadSceneManager.OnDone += InitGame;
         chapterIndex = -1;
     }
 
-    private void OnEnable() {
+    private void OnEnable()
+    {
 #if UNITY_EDITOR
-        objectPooler.OnCreatedObjects += () => {
-            if(debugMode) {
+        objectPooler.OnCreatedObjects += () =>
+        {
+            if (debugMode)
+            {
                 player = GameObject.FindWithTag("Player")?.transform;
                 StartGame();
             }
 
-            if(withoutUI) {
+            if (withoutUI)
+            {
                 InitUiDone();
             }
         };
 #endif
     }
 
-    private void OnDestroy() {
+    private void OnDestroy()
+    {
         loadSceneManager.OnDone -= InitGame;
     }
 
@@ -82,7 +92,7 @@ public class GameManager : Singleton<GameManager>
         Time.timeScale = 1;
         OnStartGame?.Invoke();
     }
-    
+
     public void PauseGame()
     {
         Time.timeScale = 0;
@@ -113,11 +123,10 @@ public class GameManager : Singleton<GameManager>
 
     public void NewGame(bool win)
     {
-        playerData = PlayerData.Load();
         //Add new Level
         if (win && playerData.latestLevel == levelIndex)
         {
-            int nextLevel = playerData.latestLevel+1;
+            int nextLevel = playerData.latestLevel + 1;
             playerData.levels.Add(nextLevel);
             playerData.Save();
         }
@@ -125,7 +134,8 @@ public class GameManager : Singleton<GameManager>
         OnNewGame?.Invoke();
     }
 
-    public void UpdateMoney(int amount) {
+    public void UpdateMoney(int amount)
+    {
         money += amount;
         OnUpdateMoney?.Invoke(money);
     }
@@ -151,8 +161,41 @@ public class GameManager : Singleton<GameManager>
         objectPooler.ResetObjectPoolerManager();
     }
 
-    public void SelecteCharacter(string id) {
+    public void SelecteCharacter(string id)
+    {
         playerData.selectedCharacter = id;
     }
 
+    public bool BuyHero(PlayerCharacter character)
+    {
+        if (playerData.money >= character.price && !CheckCharacterOwed(character))
+        {
+            playerData.money -= character.price;
+            playerData.characters.Add(new PlayerData.Character(character.keyID));
+            playerData.Save();
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public bool selectedHero(PlayerCharacter character)
+    {
+        if(CheckCharacterOwed(character)) {
+            playerData.selectedCharacter = character.keyID;
+            playerData.Save();
+            OnSelectCharacter?.Invoke(character.keyID);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public bool CheckCharacterOwed(PlayerCharacter character)
+    {
+        PlayerData.Character playerChar = playerData.characters.Find(charac => charac.keyID == character.keyID);
+        return playerChar != null;
+    }
 }

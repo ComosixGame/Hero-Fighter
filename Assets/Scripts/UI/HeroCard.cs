@@ -1,53 +1,56 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class HeroCard : MonoBehaviour
 {
-    public int id;
+    private PlayerCharacter playerCharacter;
     [SerializeField] private Image thumbnail;
     [SerializeField] private TextMeshProUGUI title;
     [SerializeField] private Button button;
     [SerializeField] private TextMeshProUGUI priceTxt;
     [SerializeField] private TextMeshProUGUI evaluateTxt;
     [SerializeField] private GameObject startGo;
-
-    //
-    public GameObject windowSkill;
+    [SerializeField] private UnityEvent OnBuySuccess;
     private GameManager gameManager;
 
     private void Awake()
     {
+        gameManager = GameManager.Instance;
         button = GetComponentInChildren<Button>();
     }
 
-    private void OnEnable() {
+    private void OnEnable()
+    {
         button.onClick.AddListener(ClickButton);
     }
 
     private void ClickButton()
     {
-    }
-
-    public void SetDataCard(Sprite thumbnailSprite, string title, float price, int start, string evaluate)
-    {
-        thumbnail.sprite = thumbnailSprite;
-        this.title.text = title;
-        evaluateTxt.text = evaluate;
-        priceTxt.text = price+"";
-        for(int i = 0; i < start; i++)
+        if (gameManager.BuyHero(playerCharacter))
         {
-            startGo.transform.GetChild(i).gameObject.SetActive(true);
+            button.interactable = false;
+            OnBuySuccess?.Invoke();
         }
     }
 
-    public void SetDataCard(Sprite thumbnailSprite, string title, int start)
+    public void SetDataCard(PlayerCharacter playerCharacter, bool owned)
     {
-        thumbnail.sprite = thumbnailSprite;
-        this.title.text = title;
-        for(int i = 0; i < start; i++)
+        this.playerCharacter = playerCharacter;
+        thumbnail.sprite = playerCharacter.thumbnail;
+        this.title.text = playerCharacter.name;
+        evaluateTxt.text = playerCharacter.evaluate;
+        priceTxt.text = playerCharacter.price.ToString();
+        if (owned)
+        {
+            button.interactable = false;
+            OnBuySuccess?.Invoke();
+        }
+        for (int i = 0; i < playerCharacter.start; i++)
         {
             startGo.transform.GetChild(i).gameObject.SetActive(true);
         }
+
     }
 }

@@ -211,11 +211,11 @@ public class UIMenu : MonoBehaviour
 
     public void SaveMoney()
     {
-        playerData = PlayerData.Load();
-        totalMoney = playerData.money;
-        totalMoney += money;
-        playerData.money = totalMoney;
-        playerData.Save();
+        // playerData = PlayerData.Load();
+        // totalMoney = playerData.money;
+        // totalMoney += money;
+        // playerData.money = totalMoney;
+        // playerData.Save();
     }
 
     public void LoadMoney()

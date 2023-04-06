@@ -60,18 +60,18 @@ public class SkillSystem : MonoBehaviour
         PlayerData playerData = PlayerData.Load();
         selectedCharacter = playerData.selectedCharacter;
         var character = playerData.characters.Single(character => character.keyID == selectedCharacter);
-        foreach (string skillName in character.selectedSkill)
-        {
-            AbsSkill skill = GetComponent(Type.GetType(skillName)) as AbsSkill;
-            skill.enabled = true;
-            skillsAvailable.Add(skill);
-        }
-        if (!String.IsNullOrEmpty(character.selectedSpecialSkill))
-        {
-            specialSkillAvailable = GetComponent(Type.GetType(character.selectedSpecialSkill)) as AbsSpecialSkill;
-            specialSkillAvailable.enabled = true;
-            specialSkillAvailable.Active();
-        }
+        // foreach (string skillName in character.selectedSkill)
+        // {
+        //     AbsSkill skill = GetComponent(Type.GetType(skillName)) as AbsSkill;
+        //     skill.enabled = true;
+        //     skillsAvailable.Add(skill);
+        // }
+        // if (!String.IsNullOrEmpty(character.selectedSpecialSkill))
+        // {
+        //     specialSkillAvailable = GetComponent(Type.GetType(character.selectedSpecialSkill)) as AbsSpecialSkill;
+        //     specialSkillAvailable.enabled = true;
+        //     specialSkillAvailable.Active();
+        // }
 
     }
 

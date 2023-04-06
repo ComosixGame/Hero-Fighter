@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class SkillManagerUI : MonoBehaviour
 {
@@ -12,7 +11,7 @@ public class SkillManagerUI : MonoBehaviour
 
     //Hero UI
     [Header("HeroUI")]
-    [SerializeField] private GameObject contentHero;
+    [SerializeField] private Transform contentHero;
     [SerializeField] private GameObject cardHero;
     [SerializeField] private ScrollRect scrollRect;
     public SkillTreeUI skillTreeUI;
@@ -25,23 +24,20 @@ public class SkillManagerUI : MonoBehaviour
         children = new List<GameObject>();
     }
 
-    // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
         RenderHeroCardUI();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     private void RenderHeroCardUI()
     {
-        PlayerCharacter[] playerCharacters = gameManager.equipmentManager.Characters;
+        ClearChidlren();
+        PlayerData playerData = PlayerData.Load();
+        List<PlayerData.Character> characters = playerData.characters;
+        string selectedCharacter = playerData.selectedCharacter;
+        EquipmentManager equipmentManager = gameManager.equipmentManager;
 
-        for (int i = 0; i < playerCharacters.Length; i++)
+        for (int i = 0; i < characters.Count; i++)
         {
             GameObject heroCardInit = Instantiate(cardHero);
             HeroCardSkill newCardHeroSkill = heroCardInit.GetComponent<HeroCardSkill>();
@@ -49,8 +45,15 @@ public class SkillManagerUI : MonoBehaviour
             newCardHeroSkill.skillTreeUI = skillTreeUI;
             newCardHeroSkill.windowSkill = windowSkill;
             newCardHeroSkill.id = i;
-            newCardHeroSkill.SetDataCard(playerCharacters[i].thumbnail, playerCharacters[i].name, playerCharacters[i].start);
-            newCardHeroSkill.transform.SetParent(contentHero.transform, false);
+            bool selected = characters[i].keyID == selectedCharacter;
+            newCardHeroSkill.SetDataCard(equipmentManager.GetCharacter(characters[i].keyID), selected);
+            newCardHeroSkill.transform.SetParent(contentHero, false);
+        }
+    }
+
+    private void ClearChidlren() {
+        for(int i = 0; i < contentHero.childCount; i++) {
+            Destroy(contentHero.GetChild(i).gameObject);
         }
     }
 }

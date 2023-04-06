@@ -109,16 +109,11 @@ public class PlayerData
     public class Character
     {
         public string keyID;
-        public string selectedSpecialSkill;
-        public List<string> selectedSkill;
-        public List<string> ownedSpecialSkills;
-        public List<string> ownedSkills;
+        public int[] levelSkills;
         public Character(string id)
         {
             keyID = id;
-            selectedSkill = new List<string>();
-            ownedSpecialSkills = new List<string>();
-            ownedSkills = new List<string>();
+            levelSkills = new int[5] {1,1,1,1,1};
         }
     }
 }

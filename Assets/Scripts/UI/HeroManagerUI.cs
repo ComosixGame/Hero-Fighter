@@ -26,9 +26,7 @@ public class HeroManagerUI : MonoBehaviour
         {
             GameObject heroCardInit = Instantiate(cardHero);
             HeroCard newCardHero = heroCardInit.GetComponent<HeroCard>();
-            newCardHero.id = i;
-            newCardHero.SetDataCard(playerCharacters[i].thumbnail, playerCharacters[i].name,
-            playerCharacters[i].price, playerCharacters[i].start, playerCharacters[i].evaluate);
+            newCardHero.SetDataCard(playerCharacters[i], gameManager.CheckCharacterOwed(playerCharacters[i]));
             newCardHero.transform.SetParent(contentHero.transform, false);
         }
     }

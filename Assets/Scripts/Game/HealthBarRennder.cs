@@ -37,9 +37,9 @@ public class HealthBarRennder
         sliderHealthBar.value = health;
     }
 
-    public void DestroyHeathBar()
+    public void SetActive(bool active)
     {
-        _healthBar.SetActive(false);
+        _healthBar.SetActive(active);
     }
 
 }

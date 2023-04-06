@@ -1,7 +1,7 @@
 using System.Collections;
 using System;
 using UnityEngine;
-using UnityEngine.AI;
+using UnityEngine.Events;
 
 public class EnemyDamageable : MonoBehaviour, IDamageable
 {
@@ -22,8 +22,8 @@ public class EnemyDamageable : MonoBehaviour, IDamageable
 
     [Header("VFX")]
     [SerializeField] private EffectObjectPool knockDownVFX;
-
     private ObjectPoolerManager objectPoolerManager;
+    public UnityEvent OnDestroy;
 
     private void Awake()
     {
@@ -49,6 +49,7 @@ public class EnemyDamageable : MonoBehaviour, IDamageable
         destroyed = false;
         health = maxHealth;
         healthBarRennder.UpdateHealthBarValue(health);
+        healthBarRennder.SetActive(true);
     }
 
     private void FixedUpdate()
@@ -123,9 +124,10 @@ public class EnemyDamageable : MonoBehaviour, IDamageable
 
         enemyBehaviour.enabled = false;
         colliderGameObject.enabled = false;
-        healthBarRennder.DestroyHeathBar();
+        healthBarRennder.SetActive(false);
         destroyed = true;
         Invoke("Hide", 3f);
+        OnDestroy?.Invoke();
     }
 
     private void Hide()
@@ -142,7 +144,7 @@ public class EnemyDamageable : MonoBehaviour, IDamageable
             yield return new WaitForSeconds(0.3f);
         }
 
-        // objectPoolerManager.DeactiveObject(GetComponent<GameObjectPool>());
+        objectPoolerManager.DeactiveObject(GetComponent<GameObjectPool>());
     }
 
     public void KnockDownEffect()

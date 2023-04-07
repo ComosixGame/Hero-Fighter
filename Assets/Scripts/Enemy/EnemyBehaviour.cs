@@ -17,6 +17,7 @@ public class EnemyBehaviour : MonoBehaviour
     [SerializeField] private Vector3 centerAttackRange;
     [SerializeField] private float maxSpeed;
     [SerializeField] private float walkSpeed;
+    [HideInInspector] public bool lockRotation = true;
     private int velocityXHash, velocityZHash;
     private State state = State.chase;
     private bool disable;
@@ -42,7 +43,8 @@ public class EnemyBehaviour : MonoBehaviour
     private void OnEnable()
     {
         agent.enabled = true;
-        if(agent.hasPath) {
+        if (agent.hasPath)
+        {
             agent.ResetPath();
         }
         gameManager.OnInitUiDone += StartGame;
@@ -97,7 +99,8 @@ public class EnemyBehaviour : MonoBehaviour
 
     private IEnumerator CheckPlayerInAttackRange()
     {
-        while(true) {
+        while (true)
+        {
             Collider[] hitColliders = Physics.OverlapSphere(transform.position + centerAttackRange, attackRange, playerLayer);
             if (hitColliders.Length == 0)
             {
@@ -105,6 +108,7 @@ public class EnemyBehaviour : MonoBehaviour
             }
             else
             {
+                if (agent.hasPath) agent.ResetPath();
                 state = State.attack;
             }
             yield return new WaitForSeconds(0.1f);
@@ -113,9 +117,12 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void HandleChase()
     {
-        if(Vector3.Distance(gameManager.player.position, transform.position) <= 5f) {
+        if (Vector3.Distance(gameManager.player.position, transform.position) <= 5f)
+        {
             agent.speed = walkSpeed;
-        } else {
+        }
+        else
+        {
             agent.speed = maxSpeed;
         }
         MoveToPosition(gameManager.player.position);
@@ -149,7 +156,8 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void HandleLook()
     {
-        if(agent.enabled) {
+        if (lockRotation && agent.enabled)
+        {
             Vector3 dirLook = gameManager.player.position - transform.position;
             transform.rotation = Ultils.GetRotationLook(dirLook, transform.forward);
         }

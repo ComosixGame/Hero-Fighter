@@ -1,140 +1,153 @@
+using System.Collections;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class GunEnemyAttack : AbsEnemyAttack
 {
-    public float damage;
-    public float speedBullet;
-    [SerializeField] private LayerMask layerTarget;
-    [SerializeField] private Vector3 centerMeleeRange;
-    [SerializeField] private float meleeRange;
-    [SerializeField] private Bullet bullet;
-    [SerializeField] private Transform shotPos;
-    [SerializeField] private EnemyHurtBox[] hurtBoxes;
-    private int shootHash;
-    private int rifleKickHash;
-    private bool disable, attackMelee;
-    private NavMeshAgent agent;
+    [SerializeField] private Vector3 offsetCenter;
+    [SerializeField] private float closeRange;
+    [SerializeField] private LayerMask playerLayer;
+    [SerializeField] private EnemyHurtBox hurtBox;
+    [SerializeField] private Transform gun;
+    private int attackHash, attack2Hash;
+    private float timer;
+    private bool readyCloseAttack = true;
+    private bool closeAttacking;
     private ObjectPoolerManager ObjectPoolerManager;
     private Animator animator;
-    private EnemyDamageable damageable;
     private GameManager gameManager;
+    private ObjectPoolerManager objectPooler;
+    private EnemyBehaviour behaviour;
 
     private void Awake()
     {
         gameManager = GameManager.Instance;
-        agent = GetComponent<NavMeshAgent>();
+        objectPooler = ObjectPoolerManager.Instance;
+        behaviour = GetComponent<EnemyBehaviour>();
         animator = GetComponent<Animator>();
-        damageable = GetComponent<EnemyDamageable>();
-        shootHash = Animator.StringToHash("Shoot");
-        rifleKickHash = Animator.StringToHash("RifleKick");
+        attackHash = Animator.StringToHash("Attack");
+        attack2Hash = Animator.StringToHash("Attack 2");
         ObjectPoolerManager = ObjectPoolerManager.Instance;
-    }
-
-    private void OnEnable()
-    {
-
-    }
-
-    private void OnDisable()
-    {
-
     }
 
     private void Start()
     {
-        foreach (EnemyHurtBox hurtBox in hurtBoxes)
-        {
-            hurtBox.gameObject.SetActive(false);
-        }
+        hurtBox.gameObject.SetActive(false);
+        StartCoroutine(CheckPlayerInCloseRange());
     }
 
     private void Update()
     {
-        HandleMeleeAttack();
-    }
-
-    // public override void HandleAttack()
-    // {
-    //     MoveToPosition(transform.position);
-    //     transform.LookAt(gameManager.player);
-
-    //     if (!disable && !attackMelee && readyAttack)
-    //     {
-    //         Bullet newBullet = ObjectPoolerManager.SpawnObject(bullet, shotPos.position, shotPos.rotation) as Bullet;
-    //         newBullet.Fire(damage, speedBullet);
-    //         readyAttack = false;
-    //         animator.SetTrigger(shootHash);
-    //         Invoke("AttackCoolDown", attackCooldown);
-    //     }
-    // }
-
-    public void HandleMeleeAttack()
-    {
-        if (!disable && !attackMelee)
+        if (attacking && !closeAttacking)
         {
-            Collider[] hitCollidersAttack = Physics.OverlapSphere(transform.position + centerMeleeRange, meleeRange, layerTarget);
-            if (hitCollidersAttack.Length > 0)
+            Vector3 dirLook = gameManager.player.position - transform.position;
+            dirLook.y = 0;
+            Quaternion rot = Quaternion.LookRotation(dirLook) * Quaternion.FromToRotation(gun.forward, transform.forward);
+            transform.rotation = Quaternion.Lerp(transform.rotation, rot, 5f * Time.deltaTime);
+
+            if (Vector3.Angle(gun.forward, dirLook) <= 10f)
             {
-                // CancelInvoke("AttackMeleeCoolDown");
-                attackMelee = true;
-                animator.SetTrigger(rifleKickHash);
-                // Invoke("AttackMeleeCoolDown", attackCooldown);
+                timer += Time.deltaTime;
+                if (timer >= 2f)
+                {
+                    timer = 0;
+                    animator.SetTrigger(attackHash);
+                }
             }
         }
     }
-    
 
-    public void StartMeleeAttack(int index)
+    private void FixedUpdate()
     {
-        if (!disable)
+        if (closeAttacking)
         {
-            hurtBoxes[index].gameObject.SetActive(true);
+            AnimatorStateInfo animationState = animator.GetCurrentAnimatorStateInfo(0);
+            if (!animationState.IsName("Attacking 2"))
+            {
+                closeAttacking = false;
+                hurtBox.gameObject.SetActive(false);
+            }
+
+            if (!animationState.IsName("Attacking 2"))
+            {
+                closeAttacking = false;
+                hurtBox.gameObject.SetActive(false);
+            }
+
+        }
+
+        if (attacking)
+        {
+            AnimatorStateInfo animationState = animator.GetCurrentAnimatorStateInfo(0);
+            if (!animationState.IsName("Move"))
+            {
+                timer = 0;
+                EndFiring();
+            }
         }
     }
 
-    public void EndMeleeAttack(int index)
+    private IEnumerator CheckPlayerInCloseRange()
     {
-        attackMelee = false;
-        hurtBoxes[index].gameObject.SetActive(false);
-    }
-
-
-    private void DisableEnemy(Vector3 hitPoint, float damage, AttackType attackType)
-    {
-        foreach (EnemyHurtBox hurtBox in hurtBoxes)
+        while (true)
         {
-            hurtBox.gameObject.SetActive(false);
-        }
-        attackMelee = false;
-        disable = true;
-        agent.ResetPath();
-    }
+            Collider[] hitColliders = Physics.OverlapSphere(transform.position + offsetCenter, closeRange, playerLayer);
+            if (hitColliders.Length > 0)
+            {
+                if (!closeAttacking && readyCloseAttack)
+                {
+                    readyCloseAttack = false;
+                    behaviour.lockRotation = true;
+                    timer = 0;
+                    animator.SetTrigger(attack2Hash);
+                    Invoke("CoolDownCloseAttack", 3f);
+                }
+            }
 
-    private void EnableEnemy()
-    {
-        disable = false;
-    }
-
-    private void MoveToPosition(Vector3 targetPos)
-    {
-        if (agent.enabled && agent.isOnNavMesh)
-        {
-            agent.SetDestination(targetPos);
+            yield return new WaitForSeconds(0.1f);
         }
     }
+
+
+    protected override void Action()
+    {
+        behaviour.lockRotation = false;
+        attacking = true;
+        OnAction?.Invoke();
+    }
+
+    public void StartFiring()
+    {
+        OnStartAttack?.Invoke();
+    }
+
+    public void EndFiring()
+    {
+        attacking = false;
+        behaviour.lockRotation = true;
+        OnEndAttack?.Invoke();
+    }
+
+    public void StartCloseAttack()
+    {
+        hurtBox.gameObject.SetActive(true);
+    }
+
+    public void EndCloseAttack()
+    {
+        hurtBox.gameObject.SetActive(false);
+    }
+
+    private void CoolDownCloseAttack()
+    {
+        readyCloseAttack = true;
+    }
+
 
 #if UNITY_EDITOR
     private void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position + centerMeleeRange, meleeRange);
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position + offsetCenter, closeRange);
     }
-
-    protected override void Action()
-    {
-        throw new System.NotImplementedException();
-    }
-
 #endif
 }

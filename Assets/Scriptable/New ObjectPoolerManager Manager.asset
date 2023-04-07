@@ -77,3 +77,7 @@ MonoBehaviour:
     size: 10
     GameObjectPool: {fileID: 2018003970529574609, guid: 59a1d1ba6321dfc45b267c1b7b459c2a,
       type: 3}
+  - name: Enemy Sniper 01
+    size: 10
+    GameObjectPool: {fileID: -7693793984158827952, guid: 40ce5000199d910489886a884159b416,
+      type: 3}

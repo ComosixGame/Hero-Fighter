@@ -354,7 +354,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  windowSkill: {fileID: 0}
+  OnBuyFailure:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &3848266205220205836
 GameObject:
   m_ObjectHideFlags: 0

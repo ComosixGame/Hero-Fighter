@@ -1,24 +1,49 @@
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
+using System.Collections.Generic;
 
 public class SkillTreeUI : MonoBehaviour
 {
-    public SkillCard skillCard;
-    public Transform contentSkill;
+    public HeroCardSkillTree heroCardSkillTree;
+    public Transform contentHero;
+
+    private GameManager gameManager;
+    private PlayerData playerData;
+
+    //Skill
+    private List<GameObject> children;
+    [SerializeField] private Transform contentSkill;
+    [SerializeField] private SkillCard skillCard;
     [SerializeField] private GameObject skillGroup;
     [SerializeField] private TextMeshProUGUI titleSkill;
     [SerializeField] private SkillTreeManager skillTreeManager;
     [SerializeField] private GameObject windowSkillDetail;
-    [SerializeField] private GameObject windowSkill;
-    [SerializeField] private Animator UIMenu;
-    private List<GameObject> children;
-    private GameManager gameManager;
+    [SerializeField] private Animator uIMenu;
+
     private void Awake()
     {
         gameManager = GameManager.Instance;
         children = new List<GameObject>();
+    }
+
+    private void OnEnable() {
+        RenderHeroCard();
+    }
+
+    public void RenderHeroCard()
+    {
+        playerData = PlayerData.Load();
+        List<PlayerData.Character> characters = playerData.characters;
+        EquipmentManager equipmentManager = gameManager.equipmentManager;
+        for (int i = 0; i < playerData.characters.Count; i++)
+        {
+            HeroCardSkillTree heroCardSkillTreeInit = Instantiate(heroCardSkillTree);
+            heroCardSkillTreeInit.GetComponent<HeroCardSkillTree>();
+            heroCardSkillTreeInit.SetDataCard(i, equipmentManager.GetCharacter(characters[i].keyID));
+            heroCardSkillTreeInit.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
+            heroCardSkillTreeInit.transform.SetParent(contentSkill.transform, false);
+        }
     }
 
     public void RenderSkillCard(int heroId)
@@ -62,7 +87,7 @@ public class SkillTreeUI : MonoBehaviour
             RectTransform rectTransform = sk.GetComponent<RectTransform>();
             sk.windowSkillTreeDetail = windowSkillDetail;
             sk.sprite.GetComponent<Image>().sprite = skillStates[i].sprite;
-            sk.UIMenu = UIMenu;
+            // sk.UIMenu = UIMenu;
             sk.skillId = i;
             rectTransform.anchorMax = anchor;
             rectTransform.anchorMin = anchor;
@@ -70,4 +95,5 @@ public class SkillTreeUI : MonoBehaviour
             children.Add(newSkillGroup);
         }
     }
+
 }

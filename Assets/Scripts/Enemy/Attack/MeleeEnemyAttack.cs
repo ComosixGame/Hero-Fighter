@@ -9,11 +9,7 @@ public class MeleeEnemyAttack : AbsEnemyAttack
     private EnemyDamageable damageable;
     private GameManager gameManager;
     private EnemyBehaviour enemyBehaviour;
-    private bool attacking;
     [SerializeField] private float timeStepBack;
-    public UnityEvent OnAction;
-    public UnityEvent OnStartAttack;
-    public UnityEvent OnEndAttack;
 
     private void Awake()
     {

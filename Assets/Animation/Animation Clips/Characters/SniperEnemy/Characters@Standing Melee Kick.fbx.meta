@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 23cfca142bc83aa4596aefdf35142426
+guid: 5f29e370fe487a947827f7fbe03cca3d
 ModelImporter:
   serializedVersion: 21202
   internalIDToNameTable:
   - first:
       74: -203655887218126122
-    second: Rifle Idle
+    second: Standing Melee Kick
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -36,19 +36,19 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Rifle Idle
+      name: Standing Melee Kick
       takeName: mixamo.com
       internalID: 0
       firstFrame: 0
-      lastFrame: 63
+      lastFrame: 43
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 1
+      loopTime: 0
+      loopBlend: 0
       loopBlendOrientation: 1
       loopBlendPositionY: 1
       loopBlendPositionXZ: 1
@@ -59,7 +59,23 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.35427752
+        functionName: StartCloseAttack
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 37b7f76fe38c53a4aaed83d6ad1fee34,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.5378151
+        functionName: EndCloseAttack
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 37b7f76fe38c53a4aaed83d6ad1fee34,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}

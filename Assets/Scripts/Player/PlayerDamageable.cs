@@ -38,7 +38,7 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
         healthBarPlayer?.CreateHealthBar(maxHealth);
     }
 
-    private void FixedUpdate()
+    private void LateUpdate()
     {
         AnimatorStateInfo animationState = animator.GetCurrentAnimatorStateInfo(0);
         if (!animationState.IsName("KnockDown"))

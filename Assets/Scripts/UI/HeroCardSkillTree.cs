@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class HeroCardSkillTree : MonoBehaviour
 {
     private int id;
-
+    private SkillTreeUI skillTreeUI;
     [SerializeField] private Image thumbnail;
     [SerializeField] private Button button;
   
@@ -38,13 +38,14 @@ public class HeroCardSkillTree : MonoBehaviour
 
     private void ClickButton()
     {
-
+        
     }
 
-    public void SetDataCard(int id,PlayerCharacter playerCharacter)
+    public void SetDataCard(int id,PlayerCharacter playerCharacter, SkillTreeUI skillTreeUI)
     {
         this.id = id;
-        thumbnail.sprite = playerCharacter.thumbnail;
+        this.thumbnail.sprite = playerCharacter.thumbnail;
+        this.skillTreeUI = skillTreeUI;
     }
 
     

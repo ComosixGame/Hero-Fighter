@@ -10,6 +10,10 @@ public class SkillTreeUI : MonoBehaviour
     [SerializeField] private List<TextMeshProUGUI> levelSkill2Text;
     [SerializeField] private List<TextMeshProUGUI> levelSkill3Text;
     [SerializeField] private List<TextMeshProUGUI> levelSkill4Text;
+    [SerializeField] private List<TextMeshProUGUI> levelSkill1PriceText;
+    [SerializeField] private List<TextMeshProUGUI> levelSkill2PriceText;
+    [SerializeField] private List<TextMeshProUGUI> levelSkill3PriceText;
+    [SerializeField] private List<TextMeshProUGUI> levelSkill4PriceText;
 
     private GameManager gameManager;
     private PlayerData playerData;
@@ -23,6 +27,7 @@ public class SkillTreeUI : MonoBehaviour
     {
         playerData = PlayerData.Load();
         LoadSkillLevel(0);
+        GetPriceSkill(0);
         for (int i = 0; i < playerData.characters.Count; i++)
         {
             choiceHeroBtn[i].interactable = true;
@@ -100,6 +105,16 @@ public class SkillTreeUI : MonoBehaviour
         levelSkill2Text[characterId].text = "Level Skill: "+ playerData.characters[characterId].skill2;
         levelSkill3Text[characterId].text = "Level Skill: "+ playerData.characters[characterId].skill3;
         levelSkill4Text[characterId].text = "Level Skill: "+ playerData.characters[characterId].skill4;
+    }
+
+    public void GetPriceSkill(int characterId)
+    {
+        //Load Price from PlayerData
+        levelSkill1PriceText[characterId].text = ""+"";
+        levelSkill2PriceText[characterId].text = ""+"";
+        levelSkill3PriceText[characterId].text = ""+"";
+        levelSkill4PriceText[characterId].text = ""+"";
+
     }
 
 }

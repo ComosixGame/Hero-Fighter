@@ -1689,6 +1689,7 @@ GameObject:
   - component: {fileID: 1086226646}
   - component: {fileID: 95599179295885280}
   - component: {fileID: 95599179295885281}
+  - component: {fileID: 95599179295885282}
   m_Layer: 7
   m_Name: Character_Muscle_Male_01
   m_TagString: Untagged
@@ -2728,6 +2729,20 @@ MonoBehaviour:
   type: 0
   magic: {fileID: 714058997551900812, guid: fe5425e97d7b7aa4bb350bd7bfb2ae30, type: 3}
   firePosition: {x: 0, y: 0, z: 1.4}
+--- !u!114 &95599179295885282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1828322699895137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55290df13f538e74787f1aecff8acdd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 0
+  maxStun: 0
 --- !u!137 &137810470466947847
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0

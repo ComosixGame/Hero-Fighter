@@ -4,37 +4,103 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 
 public class SkillTreeUI : MonoBehaviour
-{
-    public HeroCardSkillTree heroCardSkillTree;
-    public Transform contentHero;
+{ 
+    [SerializeField] private List<Button> choiceHeroBtn;
+    [SerializeField] private List<TextMeshProUGUI> levelSkill1Text;
+    [SerializeField] private List<TextMeshProUGUI> levelSkill2Text;
+    [SerializeField] private List<TextMeshProUGUI> levelSkill3Text;
+    [SerializeField] private List<TextMeshProUGUI> levelSkill4Text;
+
     private GameManager gameManager;
     private PlayerData playerData;
-
+    
 
     private void Awake()
     {
         gameManager = GameManager.Instance;
     }
-
-    private void Start() {
-        RenderHeroCard();
-    }
-
-
-    public void RenderHeroCard()
+    private void OnEnable()
     {
         playerData = PlayerData.Load();
-        List<PlayerData.Character> characters = playerData.characters;
-        EquipmentManager equipmentManager = gameManager.equipmentManager;
+        LoadSkillLevel(0);
         for (int i = 0; i < playerData.characters.Count; i++)
         {
-            HeroCardSkillTree heroCardSkillTreeInit = Instantiate(heroCardSkillTree);
-            heroCardSkillTreeInit.GetComponent<HeroCardSkillTree>();
-            heroCardSkillTreeInit.SetDataCard(i, equipmentManager.GetCharacter(characters[i].keyID), gameObject.GetComponent<SkillTreeUI>());
-            heroCardSkillTreeInit.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
-            heroCardSkillTreeInit.transform.SetParent(contentHero.transform, false);
+            choiceHeroBtn[i].interactable = true;
         }
     }
 
 
+    public void UpgradeSkill1Hero(int id)
+    {
+        playerData = PlayerData.Load();
+        if (playerData.money > 5)
+        {
+            levelSkill1Text[id].text = "Level Skill: "+ playerData.characters[id].skill1;
+            playerData.money = playerData.money - 5;
+            playerData.UpgradeSkill1(id);
+            playerData.Save();
+        }
+        else
+        {
+            gameManager.BuyFailure();
+        }
+    }
+
+    public void UpgradeSkill2Hero(int id)
+    {
+        playerData = PlayerData.Load();
+        if (playerData.money > 5)
+        {
+            levelSkill2Text[id].text = "Level Skill: "+ playerData.characters[id].skill2;
+            playerData.money = playerData.money - 5;
+            playerData.UpgradeSkill2(id);
+            playerData.Save();
+        }
+        else
+        {
+            gameManager.BuyFailure();
+        }
+    }
+
+    public void UpgradeSkill3Hero(int id)
+    {
+        playerData = PlayerData.Load();
+        if (playerData.money > 5)
+        {
+            levelSkill3Text[id].text = "Level Skill: "+ playerData.characters[id].skill3;
+            playerData.money = playerData.money - 5;
+            playerData.UpgradeSkill3(id);
+            playerData.Save();
+        }
+        else
+        {
+            gameManager.BuyFailure();
+        }
+    }
+
+    public void UpgradeSkill4Hero(int id)
+    {
+        playerData = PlayerData.Load();
+        if (playerData.money > 5)
+        {
+            levelSkill4Text[id].text = "Level Skill: "+ playerData.characters[id].skill4;
+            playerData.money = playerData.money - 5;
+            playerData.UpgradeSkill4(id);
+            playerData.Save();
+        }
+        else
+        {
+            gameManager.BuyFailure();
+        }
+    }
+
+    public void LoadSkillLevel(int characterId)
+    {
+        levelSkill1Text[characterId].text = "Level Skill: "+ playerData.characters[characterId].skill1;
+        levelSkill2Text[characterId].text = "Level Skill: "+ playerData.characters[characterId].skill2;
+        levelSkill3Text[characterId].text = "Level Skill: "+ playerData.characters[characterId].skill3;
+        levelSkill4Text[characterId].text = "Level Skill: "+ playerData.characters[characterId].skill4;
+    }
+
 }
+

@@ -6545,7 +6545,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7396906229488945734
 Transform:
   m_ObjectHideFlags: 0
@@ -6604,6 +6604,7 @@ MonoBehaviour:
   centerAttackRange: {x: 0, y: 1, z: 0}
   maxSpeed: 3
   walkSpeed: 1
+  lockRotation: 1
 --- !u!114 &7492265343599478088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6617,9 +6618,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coolDownTime: 5
-  hurtBoxes:
-  - {fileID: 2623610699866803841}
-  timeStepBack: 1
   OnAction:
     m_PersistentCalls:
       m_Calls: []
@@ -6641,6 +6639,9 @@ MonoBehaviour:
   OnEndAttack:
     m_PersistentCalls:
       m_Calls: []
+  hurtBoxes:
+  - {fileID: 2623610699866803841}
+  timeStepBack: 1
 --- !u!114 &7492265343599478095
 MonoBehaviour:
   m_ObjectHideFlags: 0

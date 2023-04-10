@@ -4,8 +4,10 @@ using UnityEngine.AI;
 
 public class BossDamageable : MonoBehaviour, IDamageable
 {
-    public float maxHealth;
-    [SerializeField] private float health;
+    [SerializeField] private float maxHealth;
+    [SerializeField] private float maxStun;
+    private float health;
+    private float stunLevel;
     private bool destroyed;
     private BossBehaviour bossBehaviour;
     private Collider colliderObject;
@@ -21,7 +23,7 @@ public class BossDamageable : MonoBehaviour, IDamageable
 
     public void TakeDamgae(Vector3 dirAttack, float damage, AttackType attackType)
     {
-        health -= damage;
+        stunLevel += damage;
         if(health <= 0 && !destroyed) {
             if(!destroyed) {
                 Destroy();

@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Collider))]
 public class EnemyHurtBox : MonoBehaviour
 {
     public LayerMask targetLayer;
@@ -19,7 +20,9 @@ public class EnemyHurtBox : MonoBehaviour
         {
             IDamageable damageable = other.GetComponentInParent<IDamageable>();
             Vector3 hitPoint = other.GetComponent<Collider>().ClosestPoint(transform.position);
-            objectPooler.SpawnObject(hitEffect, hitPoint, Quaternion.identity);
+            if(hitEffect != null) {
+                objectPooler.SpawnObject(hitEffect, hitPoint, Quaternion.identity);
+            }
             Vector3 dirAttack = transform.position - other.transform.position;
             damageable?.TakeDamgae(dirAttack.normalized, damage, attackType);
         }

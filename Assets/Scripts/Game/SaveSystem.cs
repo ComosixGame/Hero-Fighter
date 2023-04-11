@@ -91,8 +91,6 @@ public class PlayerData
         characters = new List<Character>();
         chapters.Add(0);
         levels.Add(0);
-        levels.Add(1);
-        levels.Add(2);
         characters.Add(new Character(defaultCharacter));
     }
     public void Save()
@@ -105,15 +103,44 @@ public class PlayerData
         return SaveSystem<PlayerData>.Load();
     }
 
+    public void UpgradeSkill1(int characterId)
+    {
+        characters[characterId].skill1 = characters[characterId].skill1+1;
+    }
+
+    public void UpgradeSkill2(int characterId)
+    {
+        characters[characterId].skill2 = characters[characterId].skill2+1;
+    }
+
+    public void UpgradeSkill3(int characterId)
+    {
+        characters[characterId].skill3 = characters[characterId].skill3+1;
+    }
+
+    public void UpgradeSkill4(int characterId)
+    {
+        characters[characterId].skill4 = characters[characterId].skill4+1;
+    }
+
     [Serializable]
     public class Character
     {
         public string keyID;
         public int[] levelSkills;
+        public int skill1;
+        public int skill2;
+        public int skill3;
+        public int skill4;
+
         public Character(string id)
         {
             keyID = id;
             levelSkills = new int[5] {1,1,1,1,1};
+            skill1 = 0;
+            skill2 = 0;
+            skill3 = 0;
+            skill4 = 0;
         }
     }
 }

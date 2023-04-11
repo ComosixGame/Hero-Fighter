@@ -26,18 +26,6 @@ public class SkillCard : MonoBehaviour
         button.onClick.AddListener(ClickButton);
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     private void ClickButton()
     {
         windowSkillTreeDetail.transform.GetChild(2).GetChild(0).GetComponent<Button>().onClick.AddListener(ClickBuy);
@@ -51,9 +39,10 @@ public class SkillCard : MonoBehaviour
         }else
         {
             //Alert Player Buy Skill Perivous 
-            windowSkillTreeDetail.transform.GetChild(2).GetChild(0).GetComponent<Button>().interactable = false;
-            windowSkillTreeDetail.transform.GetChild(2).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = "";
-            windowSkillTreeDetail.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = "Open Previous Skill";
+            // windowSkillTreeDetail.transform.GetChild(2).GetChild(0).GetComponent<Button>().interactable = false;
+            // windowSkillTreeDetail.transform.GetChild(2).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = "";
+            // windowSkillTreeDetail.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = "Open Previous Skill";
+            windowSkillTreeDetail.SetActive(true);
         }
 
         if(!windowSkillTreeDetail.activeInHierarchy)

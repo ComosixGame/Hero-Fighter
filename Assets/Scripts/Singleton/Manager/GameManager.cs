@@ -27,12 +27,14 @@ public class GameManager : Singleton<GameManager>
     public event Action OnInitUiDone;
     public event Action<int> OnSelectChapter;
     public event Action<string> OnSelectCharacter;
+    public event Action OnBuyFailure;
     [ReadOnly] public int chapterIndex;
     [ReadOnly] public int levelIndex;
     private PlayerData playerData;
     private ObjectPoolerManager objectPooler;
     private LoadSceneManager loadSceneManager;
     private LoadingScreen loadingScreen;
+
 
     public LevelState levelState
     {
@@ -154,6 +156,11 @@ public class GameManager : Singleton<GameManager>
     public void SetLevel(int id)
     {
         levelIndex = id;
+    }
+
+    public void BuyFailure()
+    {
+        OnBuyFailure?.Invoke();
     }
 
     public void DestroyGameObjectPooler()

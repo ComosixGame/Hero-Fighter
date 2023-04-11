@@ -27,6 +27,11 @@ public class HeroCardSkill : MonoBehaviour
         gameManager.OnSelectCharacter += CheckSelect;
     }
 
+    private void OnDisable() {
+        button.onClick.RemoveListener(ClickButton);
+        gameManager.OnSelectCharacter -= CheckSelect;
+    }
+
     private void ClickButton()
     {
         // windowSkill.SetActive(true);

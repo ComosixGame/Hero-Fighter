@@ -22,6 +22,11 @@ MonoBehaviour:
     evaluate: C
     character: {fileID: 1701021460331676804, guid: 3f49b085976b984488ba0736ecf25ea5,
       type: 3}
+    skillStates:
+    - {fileID: 11400000, guid: 022a732feea80024ba1374b992035433, type: 2}
+    - {fileID: 11400000, guid: 8db8153db7190fc418faedb21491381b, type: 2}
+    - {fileID: 11400000, guid: d290394b229409f4f9ed6a54f0ec014b, type: 2}
+    - {fileID: 11400000, guid: ac0c9e15d56cc4442b417212a997e9cd, type: 2}
   - keyID: hero1
     thumbnail: {fileID: 21300000, guid: 55dd57caf880e487f954759ce13fd24d, type: 3}
     name: Hero 1
@@ -30,6 +35,7 @@ MonoBehaviour:
     evaluate: A
     character: {fileID: 1963772456342324074, guid: bf6f302059923914daf917d3f04736ee,
       type: 3}
+    skillStates: []
   - keyID: hero2
     thumbnail: {fileID: 21300000, guid: cd4b92d9387a24fd78f12c20f0f74a53, type: 3}
     name: Hero 2
@@ -38,3 +44,4 @@ MonoBehaviour:
     evaluate: S
     character: {fileID: 1963772456342324074, guid: e173501746e8b634c8e89f5b465eb8f1,
       type: 3}
+    skillStates: []

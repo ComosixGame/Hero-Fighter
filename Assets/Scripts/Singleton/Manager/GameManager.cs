@@ -27,13 +27,13 @@ public class GameManager : Singleton<GameManager>
     public event Action OnInitUiDone;
     public event Action<int> OnSelectChapter;
     public event Action<string> OnSelectCharacter;
-    public event Action OnBuyFailure;
     [ReadOnly] public int chapterIndex;
     [ReadOnly] public int levelIndex;
     private PlayerData playerData;
     private ObjectPoolerManager objectPooler;
     private LoadSceneManager loadSceneManager;
     private LoadingScreen loadingScreen;
+    [SerializeField] private GameObject windowPopup;
 
 
     public LevelState levelState
@@ -158,10 +158,7 @@ public class GameManager : Singleton<GameManager>
         levelIndex = id;
     }
 
-    public void BuyFailure()
-    {
-        OnBuyFailure?.Invoke();
-    }
+ 
 
     public void DestroyGameObjectPooler()
     {
@@ -184,6 +181,7 @@ public class GameManager : Singleton<GameManager>
         }
         else
         {
+            windowPopup.SetActive(true);
             return false;
         }
     }
@@ -204,5 +202,22 @@ public class GameManager : Singleton<GameManager>
     {
         PlayerData.Character playerChar = playerData.characters.Find(charac => charac.keyID == character.keyID);
         return playerChar != null;
+    }
+
+    public bool BuySkill(PlayerCharacter character, int skillId)
+    {
+        if (playerData.money >= character.skillStates[skillId].price)
+        {
+            playerData.money -= character.skillStates[skillId].price;
+            int index =  playerData.characters.FindIndex(x => x.keyID == character.keyID);
+            playerData.characters[index].levelSkills[skillId] +=1;
+            playerData.Save();
+            return true;
+        }
+        else
+        {
+            windowPopup.SetActive(true);
+            return false;
+        }
     }
 }

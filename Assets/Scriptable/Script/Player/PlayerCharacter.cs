@@ -11,4 +11,5 @@ public class PlayerCharacter
     public int start;
     public string evaluate;
     public GameObject character;
+    public SkillState[] skillStates;
 }

@@ -4,117 +4,78 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 
 public class SkillTreeUI : MonoBehaviour
-{ 
-    [SerializeField] private List<Button> choiceHeroBtn;
-    [SerializeField] private List<TextMeshProUGUI> levelSkill1Text;
-    [SerializeField] private List<TextMeshProUGUI> levelSkill2Text;
-    [SerializeField] private List<TextMeshProUGUI> levelSkill3Text;
-    [SerializeField] private List<TextMeshProUGUI> levelSkill4Text;
-    [SerializeField] private List<TextMeshProUGUI> levelSkill1PriceText;
-    [SerializeField] private List<TextMeshProUGUI> levelSkill2PriceText;
-    [SerializeField] private List<TextMeshProUGUI> levelSkill3PriceText;
-    [SerializeField] private List<TextMeshProUGUI> levelSkill4PriceText;
+{
+    [SerializeField] private Transform contentHero;
+    [SerializeField] private Button heroBtn;
+    [SerializeField] private TextMeshProUGUI heroTitle;
+    [SerializeField] private Image heroSprite;
+    [SerializeField] private Sprite selectedBoder;
+    //Skill
+    [SerializeField] private Transform contentSkill;
+    [SerializeField] private SkillDetailCard skillDetailCard;
 
     private GameManager gameManager;
-    private PlayerData playerData;
-    
+
 
     private void Awake()
     {
         gameManager = GameManager.Instance;
     }
-    private void OnEnable()
+
+    private void Start()
     {
-        playerData = PlayerData.Load();
-        LoadSkillLevel(0);
-        GetPriceSkill(0);
-        for (int i = 0; i < playerData.characters.Count; i++)
-        {
-            choiceHeroBtn[i].interactable = true;
-        }
+        RenderHeroButton();
     }
 
 
-    public void UpgradeSkill1Hero(int id)
+    private void RenderHeroButton()
     {
-        playerData = PlayerData.Load();
-        if (playerData.money > 5)
+        PlayerData playerData = PlayerData.Load();
+        List<PlayerData.Character> characters = playerData.characters;
+        string selectedCharacter = playerData.selectedCharacter;
+        RenderSkillDetail(selectedCharacter);
+        EquipmentManager equipmentManager = gameManager.equipmentManager;
+        
+        for (int i = 0; i < characters.Count; i++)
         {
-            levelSkill1Text[id].text = "Level Skill: "+ playerData.characters[id].skill1;
-            playerData.money = playerData.money - 5;
-            playerData.UpgradeSkill1(id);
-            playerData.Save();
-        }
-        else
-        {
-            gameManager.BuyFailure();
+            Button heroBtnInit = Instantiate(heroBtn);
+            bool selected = characters[i].keyID == selectedCharacter;
+            SetDataButton(heroBtnInit, selected, i);
+            heroTitle.text = equipmentManager.Characters[i].name;
+            heroSprite.sprite = equipmentManager.Characters[i].thumbnail;
+            heroBtnInit.GetComponentInChildren<TextMeshProUGUI>().text = equipmentManager.Characters[i].name;
+            heroBtnInit.transform.SetParent(contentHero.transform, false);
         }
     }
 
-    public void UpgradeSkill2Hero(int id)
+    private void RenderSkillDetail(string charaterId)
     {
-        playerData = PlayerData.Load();
-        if (playerData.money > 5)
+        PlayerData playerData = PlayerData.Load();
+        EquipmentManager equipmentManager = gameManager.equipmentManager;
+        PlayerCharacter playerCharacter = equipmentManager.GetCharacter(charaterId);
+        for (int i = 0; i < playerCharacter.skillStates.Length; i++)
         {
-            levelSkill2Text[id].text = "Level Skill: "+ playerData.characters[id].skill2;
-            playerData.money = playerData.money - 5;
-            playerData.UpgradeSkill2(id);
-            playerData.Save();
+            SkillDetailCard skillDetailCardInit = Instantiate(skillDetailCard);
+            skillDetailCardInit.id = i;
+            int index =  playerData.characters.FindIndex(x => x.keyID == charaterId);
+            string skillLevel = "Level Skill: " + playerData.characters[index].levelSkills[i];
+            skillDetailCardInit.SetDataCard(playerCharacter, i, skillLevel);
+            skillDetailCardInit.transform.SetParent(contentSkill.transform, false);
         }
-        else
-        {
-            gameManager.BuyFailure();
-        }
+
     }
 
-    public void UpgradeSkill3Hero(int id)
+    private void SetDataButton(Button button ,bool selected, int id)
     {
-        playerData = PlayerData.Load();
-        if (playerData.money > 5)
+        if (selected)
         {
-            levelSkill3Text[id].text = "Level Skill: "+ playerData.characters[id].skill3;
-            playerData.money = playerData.money - 5;
-            playerData.UpgradeSkill3(id);
-            playerData.Save();
-        }
-        else
+            button.interactable = false;
+            button.GetComponent<Image>().sprite = selectedBoder;
+        }else
         {
-            gameManager.BuyFailure();
+            button.interactable = true;
         }
-    }
-
-    public void UpgradeSkill4Hero(int id)
-    {
-        playerData = PlayerData.Load();
-        if (playerData.money > 5)
-        {
-            levelSkill4Text[id].text = "Level Skill: "+ playerData.characters[id].skill4;
-            playerData.money = playerData.money - 5;
-            playerData.UpgradeSkill4(id);
-            playerData.Save();
-        }
-        else
-        {
-            gameManager.BuyFailure();
-        }
-    }
-
-    public void LoadSkillLevel(int characterId)
-    {
-        levelSkill1Text[characterId].text = "Level Skill: "+ playerData.characters[characterId].skill1;
-        levelSkill2Text[characterId].text = "Level Skill: "+ playerData.characters[characterId].skill2;
-        levelSkill3Text[characterId].text = "Level Skill: "+ playerData.characters[characterId].skill3;
-        levelSkill4Text[characterId].text = "Level Skill: "+ playerData.characters[characterId].skill4;
-    }
-
-    public void GetPriceSkill(int characterId)
-    {
-        //Load Price from PlayerData
-        levelSkill1PriceText[characterId].text = ""+"";
-        levelSkill2PriceText[characterId].text = ""+"";
-        levelSkill3PriceText[characterId].text = ""+"";
-        levelSkill4PriceText[characterId].text = ""+"";
-
+        // button.onClick.
     }
 
 }

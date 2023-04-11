@@ -2741,8 +2741,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55290df13f538e74787f1aecff8acdd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 0
-  maxStun: 0
+  maxHealth: 50
+  maxStun: 20
+  health: 0
+  stunLevel: 0
 --- !u!137 &137810470466947847
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0

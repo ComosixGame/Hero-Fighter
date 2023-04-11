@@ -83,6 +83,7 @@ public class BossBehaviour : MonoBehaviour
         }
         else
         {
+            if(agent.hasPath) agent.ResetPath();
             agent.enabled = false;
         }
     }

@@ -12,7 +12,7 @@ public class MagicBossAttack : AbsBossAttack
     {
         base.Awake();
         objectPooler = ObjectPoolerManager.Instance;
-        gameManager =  GameManager.Instance;
+        gameManager = GameManager.Instance;
     }
 
     protected override void Action()
@@ -21,26 +21,31 @@ public class MagicBossAttack : AbsBossAttack
         dirAttack = gameManager.player.position - transform.TransformPoint(firePosition);
     }
 
-    public void StartCast() {
-        if(attacking) {
+    public void StartCast()
+    {
+        if (attacking)
+        {
             GameObjectPool magicEffect = objectPooler.SpawnObject(
                 magic.GetComponent<EffectObjectPool>(),
                 transform.TransformPoint(firePosition),
                 Quaternion.LookRotation(dirAttack));
-            
+
             magicEffect.GetComponent<AbsMagic>().Cast();
         }
     }
 
-    public void EndCast() {
-        if(attacking) {
+    public void EndCast()
+    {
+        if (attacking)
+        {
             attacking = false;
         }
     }
 
 #if UNITY_EDITOR
-    private void OnDrawGizmosSelected() {
-        Gizmos.color = new Color(1,0,0, 0.8f);
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = new Color(1, 0, 0, 0.8f);
         Gizmos.DrawSphere(transform.TransformPoint(firePosition), 0.2f);
     }
 #endif

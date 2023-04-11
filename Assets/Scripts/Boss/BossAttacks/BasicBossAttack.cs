@@ -4,7 +4,15 @@ public class BasicBossAttack : AbsBossAttack
 {
     [SerializeField] private EnemyHurtBox hurtBox;
 
-    private void Start() {
+    private void OnEnable()
+    {
+        OnCancelCloseAttack += () => {
+            hurtBox.gameObject.SetActive(false);
+        };
+    }
+
+    private void Start()
+    {
         hurtBox.gameObject.SetActive(false);
     }
 
@@ -13,14 +21,18 @@ public class BasicBossAttack : AbsBossAttack
         animator.SetTrigger(attackHash);
     }
 
-    public void StartAttack() {
-        if(attacking) {
+    public void StartAttack()
+    {
+        if (attacking)
+        {
             hurtBox.gameObject.SetActive(true);
         }
     }
 
-    public void EndAttack() {
-        if(attacking) {
+    public void EndAttack()
+    {
+        if (attacking)
+        {
             hurtBox.gameObject.SetActive(false);
             attacking = false;
         }

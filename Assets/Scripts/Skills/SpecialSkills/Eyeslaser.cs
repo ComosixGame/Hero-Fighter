@@ -5,6 +5,7 @@ public class Eyeslaser : AbsSpecialSkill
     [SerializeField] private Vector3 laserPosition;
     [SerializeField] private EffectObjectPool laserObject;
     [SerializeField] private float damage;
+    private bool casting;
     private ParticleSystem generatedLaserObject;
     private ObjectPoolerManager objectPooler;
 
@@ -19,6 +20,15 @@ public class Eyeslaser : AbsSpecialSkill
         PlayerHurtBox.OnHit += AccumulationEnergy;
     }
 
+    private void LateUpdate() {
+        if(casting) {
+            AnimatorStateInfo animationState = animator.GetCurrentAnimatorStateInfo(0);
+            if(!animationState.IsName("SpecialSkill")) {
+                CastLaserDone();
+            }
+        }
+    }
+
     protected override void Action()
     {
         animator.SetTrigger(SpecialSkilHash);
@@ -26,6 +36,7 @@ public class Eyeslaser : AbsSpecialSkill
 
     public void CastLaser()
     {
+        casting =  true;
         generatedLaserObject = objectPooler.SpawnObject(
                 laserObject,
                 transform.TransformPoint(laserPosition),
@@ -36,6 +47,7 @@ public class Eyeslaser : AbsSpecialSkill
 
     public void CastLaserDone()
     {
+        casting = false;
         generatedLaserObject.Stop();
     }
 

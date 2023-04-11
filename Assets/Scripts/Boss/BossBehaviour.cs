@@ -1,7 +1,7 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
-using MyCustomAttribute;
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class BossBehaviour : MonoBehaviour
@@ -9,21 +9,21 @@ public class BossBehaviour : MonoBehaviour
     public enum State
     {
         chase,
-        attack,
-        attacking,
+        rangeAttack,
+        closeAttack,
         disable,
     }
     [SerializeField] private LayerMask playerLayer;
-    [SerializeField] private float rangedAttackRange;
+    [SerializeField] private float attackRange;
     [SerializeField] private float closeAttackRange;
     [SerializeField] private Vector3 centerAttackRange;
     [SerializeField] private float maxSpeed;
-    [SerializeField] private float walkSpeed;
-    [SerializeField] private EnemyHurtBox[] hurtBoxes;
-    [SerializeField] private BossPhase[] phases;
-    private int velocityHash;
-    [SerializeField, ReadOnly] private int indexPhase;
-    private State state = State.chase;
+    [SerializeField] private AbsBossAttack closeAttack;
+    [SerializeField] private AbsBossAttack rangeAttack;
+    private int velocityXHash, velocityZHash;
+    private Collider[] hitColliders = new Collider[1];
+    private Collider[] closeColliders = new Collider[1];
+    [SerializeField] private State state = State.chase;
     private NavMeshAgent agent;
     private Animator animator;
     private BossDamageable damageable;
@@ -34,35 +34,20 @@ public class BossBehaviour : MonoBehaviour
         gameManager = GameManager.Instance;
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
-        velocityHash = Animator.StringToHash("Velocity");
-        hurtBoxes = GetComponentsInChildren<EnemyHurtBox>();
+        velocityXHash = Animator.StringToHash("VelocityX");
+        velocityZHash = Animator.StringToHash("VelocityZ");
         damageable = GetComponent<BossDamageable>();
 
     }
 
-    private void OnEnable()
-    {
-        damageable.OnTakeDamage += CheckPhase;
-    }
-
-    private void OnDisable()
-    {
-        damageable.OnTakeDamage -= CheckPhase;
-    }
-
     private void Start()
     {
-        foreach (EnemyHurtBox hurtBox in hurtBoxes)
-        {
-            hurtBox.gameObject.SetActive(false);
-        }
+        StartCoroutine(CheckPlayerInAttackRange());
     }
 
     // Update is called once per frame
     void Update()
     {
-        CheckPlayerInView();
-        CheckAttacking();
         HandleLook();
 
         switch (state)
@@ -70,42 +55,58 @@ public class BossBehaviour : MonoBehaviour
             case State.chase:
                 HandleChase();
                 break;
-            case State.attack:
-            case State.attacking:
-                HandleAttack();
+            case State.rangeAttack:
+                if (rangeAttack?.Attack() == false)
+                {
+                    MoveToPosition(gameManager.player.position);
+                }
                 break;
-            case State.disable:
+            case State.closeAttack:
+                if (!closeAttack?.Attack() == false)
+                {
+                    MoveToPosition(gameManager.player.position);
+                }
                 break;
             default:
-                throw new InvalidCastException("invlid state");
+                break;
         }
 
         HandleAnimationMove();
     }
 
-    private void CheckPlayerInView()
+    private void FixedUpdate()
     {
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position + centerAttackRange, rangedAttackRange, playerLayer);
-        if (hitColliders.Length == 0)
+        AnimatorStateInfo animationState = animator.GetCurrentAnimatorStateInfo(0);
+        if (animationState.IsName("Move"))
         {
-            agent.speed = maxSpeed;
-            state = State.chase;
+            agent.enabled = true;
         }
         else
         {
-            agent.speed = walkSpeed;
-            state = State.attack;
+            if(agent.hasPath) agent.ResetPath();
+            agent.enabled = false;
         }
     }
 
-    private void CheckPhase(float health)
+    private IEnumerator CheckPlayerInAttackRange()
     {
-        for (int i = 0; i < phases.Length; i++)
+        while (true)
         {
-            if (health <= damageable.maxHealth * phases[i].healthThreshold / 100)
+            int hitColliderCount = Physics.OverlapSphereNonAlloc(transform.position + centerAttackRange, attackRange, hitColliders, playerLayer);
+            if (hitColliderCount == 0)
             {
-                indexPhase = i;
+                state = State.chase;
             }
+            else
+            {
+                state = State.rangeAttack;
+                int closeColliderCount = Physics.OverlapSphereNonAlloc(transform.position + centerAttackRange, closeAttackRange, closeColliders, playerLayer);
+                if (closeColliderCount > 0)
+                {
+                    state = State.closeAttack;
+                }
+            }
+            yield return new WaitForSeconds(0.1f);
         }
     }
 
@@ -122,77 +123,42 @@ public class BossBehaviour : MonoBehaviour
         }
     }
 
-
-    private void CheckAttacking()
-    {
-        BossPhase currentPhase = phases[indexPhase];
-        if (currentPhase.rangedAttack?.attacking == true || currentPhase.closeAttack?.attacking == true)
-        {
-            state = State.attacking;
-        }
-    }
-
-    private void HandleAttack()
-    {
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position + centerAttackRange, closeAttackRange, playerLayer);
-
-
-        BossPhase currentPhase = phases[indexPhase];
-        if (hitColliders.Length == 0)
-        {
-            if (!currentPhase.closeAttack?.attacking == true)
-            {
-                currentPhase.rangedAttack?.Attack();
-            }
-        }
-        else
-        {
-            if (!currentPhase.rangedAttack?.attacking == true)
-            {
-                currentPhase.closeAttack?.Attack();
-            }
-        }
-
-    }
-
     private void HandleAnimationMove()
     {
-        Vector3 horizontalVelocity = new Vector3(agent.velocity.x, 0, agent.velocity.z);
-        float Velocity = horizontalVelocity.magnitude / maxSpeed;
-        if (Velocity > 0)
+        Vector3 Velocity = new Vector3(agent.velocity.x, 0, agent.velocity.z).normalized;
+        if (Velocity.magnitude > 0)
         {
-            animator.SetFloat(velocityHash, Velocity);
+            animator.SetFloat(velocityXHash, Math.Abs(agent.velocity.x / maxSpeed));
+            bool isLookRight = transform.forward.normalized == Vector3.right;
+            animator.SetFloat(velocityZHash, isLookRight ? -Velocity.z : Velocity.z);
         }
         else
         {
-            float v = animator.GetFloat(velocityHash);
-            v = Mathf.MoveTowards(v, 0, 2f * Time.deltaTime);
-            animator.SetFloat(velocityHash, v);
+            float vX = animator.GetFloat(velocityXHash);
+            float vZ = animator.GetFloat(velocityZHash);
+            vX = vX > 0.10f ? Mathf.Lerp(vX, 0, 20f * Time.deltaTime) : 0;
+            vZ = vZ > 0.10f || vZ < -0.1f ? Mathf.Lerp(vZ, 0, 20f * Time.deltaTime) : 0;
+            animator.SetFloat(velocityXHash, vX);
+            animator.SetFloat(velocityZHash, vZ);
         }
     }
 
     private void HandleLook()
     {
-        Quaternion rot = Ultils.GetRotationLook(agent.velocity, transform.forward);
-        transform.rotation = Quaternion.LerpUnclamped(transform.rotation, rot, 40 * Time.deltaTime);
+        if (agent.enabled)
+        {
+            Vector3 dirLook = gameManager.player.position - transform.position;
+            transform.rotation = Ultils.GetRotationLook(dirLook, transform.forward);
+        }
     }
 
 #if UNITY_EDITOR
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position + centerAttackRange, rangedAttackRange);
+        Gizmos.DrawWireSphere(transform.position + centerAttackRange, attackRange);
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position + centerAttackRange, closeAttackRange);
     }
 #endif
-
-    [Serializable]
-    private class BossPhase
-    {
-        public string name;
-        [Label("Health Threshold (%)")] public float healthThreshold = 100;
-        public AbsBossCloseAttack closeAttack;
-        public AbsBossRangedAttack rangedAttack;
-    }
 }

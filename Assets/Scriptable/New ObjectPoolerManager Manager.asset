@@ -45,6 +45,10 @@ MonoBehaviour:
     size: 20
     GameObjectPool: {fileID: 1019285742973570300, guid: 489556e0dee707b4a9ba7bb024f3190c,
       type: 3}
+  - name: shardIce
+    size: 10
+    GameObjectPool: {fileID: 714058997551900808, guid: fe5425e97d7b7aa4bb350bd7bfb2ae30,
+      type: 3}
   - name: Enemy basic 01
     size: 10
     GameObjectPool: {fileID: 3549116654673358126, guid: 46f8cfb4efc8f8d4aab991e8096fedf1,

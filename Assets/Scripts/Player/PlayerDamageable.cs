@@ -1,10 +1,10 @@
-using System;
 using UnityEngine;
+using MyCustomAttribute;
 
 public class PlayerDamageable : MonoBehaviour, IDamageable
 {
     [SerializeField] private float maxHealth;
-    private float health;
+    [SerializeField, ReadOnly] private float health;
     private int hitHash, knockHash, deathHash, revivalHash, deathKnock;
     private bool destroyed;
     private Animator animator;
@@ -41,11 +41,6 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
     private void LateUpdate()
     {
         AnimatorStateInfo animationState = animator.GetCurrentAnimatorStateInfo(0);
-        if (!animationState.IsName("KnockDown"))
-        {
-            animator.ResetTrigger(knockHash);
-        }
-
         if(!animationState.IsName("Hit")) {
             animator.ResetTrigger(hitHash);
         }

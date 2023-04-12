@@ -27,6 +27,10 @@ public class GameManager : Singleton<GameManager>
     public event Action OnInitUiDone;
     public event Action<int> OnSelectChapter;
     public event Action<string> OnSelectCharacter;
+    public event Action<string> OnSelectHeroSkill;
+    public event Action OnBuyHero;
+
+
     [ReadOnly] public int chapterIndex;
     [ReadOnly] public int levelIndex;
     private PlayerData playerData;
@@ -174,6 +178,7 @@ public class GameManager : Singleton<GameManager>
     {
         if (playerData.money >= character.price && !CheckCharacterOwed(character))
         {
+            OnBuyHero?.Invoke();
             playerData.money -= character.price;
             playerData.characters.Add(new PlayerData.Character(character.keyID));
             playerData.Save();
@@ -198,11 +203,28 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+    public void selectHeroSkillUpgrade(PlayerCharacter character)
+    {
+        OnSelectHeroSkill?.Invoke(character.keyID);
+    }
+
+    public bool choiceHeroUpgradeSkill(string characterid, string keyID)
+    {
+        if (characterid != keyID)
+        {
+            return true;
+        }else
+        {
+            return false;
+        }
+    }
+
     public bool CheckCharacterOwed(PlayerCharacter character)
     {
         PlayerData.Character playerChar = playerData.characters.Find(charac => charac.keyID == character.keyID);
         return playerChar != null;
     }
+
 
     public bool BuySkill(PlayerCharacter character, int skillId)
     {

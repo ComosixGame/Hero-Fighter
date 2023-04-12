@@ -10,9 +10,13 @@ public class SkillTreeUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI heroTitle;
     [SerializeField] private Image heroSprite;
     [SerializeField] private Sprite selectedBoder;
+    [SerializeField] private Sprite normalBoder;
+    private int index = 0;
+
     //Skill
     [SerializeField] private Transform contentSkill;
     [SerializeField] private SkillDetailCard skillDetailCard;
+    private List<GameObject> children;
 
     private GameManager gameManager;
 
@@ -20,6 +24,15 @@ public class SkillTreeUI : MonoBehaviour
     private void Awake()
     {
         gameManager = GameManager.Instance;
+        children = new List<GameObject>();
+    }
+
+    private void OnEnable() {
+        gameManager.OnBuyHero += UnLockNewButtonHero;
+    }
+
+    private void OnDisable() {
+        gameManager.OnBuyHero -= UnLockNewButtonHero;
     }
 
     private void Start()
@@ -35,20 +48,21 @@ public class SkillTreeUI : MonoBehaviour
         string selectedCharacter = playerData.selectedCharacter;
         RenderSkillDetail(selectedCharacter);
         EquipmentManager equipmentManager = gameManager.equipmentManager;
-        
         for (int i = 0; i < characters.Count; i++)
         {
             Button heroBtnInit = Instantiate(heroBtn);
             bool selected = characters[i].keyID == selectedCharacter;
-            SetDataButton(heroBtnInit, selected, i);
-            heroTitle.text = equipmentManager.Characters[i].name;
-            heroSprite.sprite = equipmentManager.Characters[i].thumbnail;
+            if (selected) index = i;
+            heroBtnInit.GetComponent<CardChoiceHeroSkillUI>().SetDataButton(selected, selectedBoder, normalBoder, equipmentManager.GetCharacter(characters[i].keyID), this);
             heroBtnInit.GetComponentInChildren<TextMeshProUGUI>().text = equipmentManager.Characters[i].name;
             heroBtnInit.transform.SetParent(contentHero.transform, false);
         }
+
+        heroTitle.text = equipmentManager.Characters[index].name;
+        heroSprite.sprite = equipmentManager.Characters[index].thumbnail;
     }
 
-    private void RenderSkillDetail(string charaterId)
+    public void RenderSkillDetail(string charaterId)
     {
         PlayerData playerData = PlayerData.Load();
         EquipmentManager equipmentManager = gameManager.equipmentManager;
@@ -61,22 +75,31 @@ public class SkillTreeUI : MonoBehaviour
             string skillLevel = "Level Skill: " + playerData.characters[index].levelSkills[i];
             skillDetailCardInit.SetDataCard(playerCharacter, i, skillLevel);
             skillDetailCardInit.transform.SetParent(contentSkill.transform, false);
+            children.Add(skillDetailCardInit.gameObject);
         }
-
     }
 
-    private void SetDataButton(Button button ,bool selected, int id)
+    public void ChangeInforCard(Sprite thumbnail, string heroName)
     {
-        if (selected)
-        {
-            button.interactable = false;
-            button.GetComponent<Image>().sprite = selectedBoder;
-        }else
-        {
-            button.interactable = true;
-        }
-        // button.onClick.
+        heroSprite.sprite = thumbnail;
+        heroTitle.text = heroName;
     }
+
+    
+    private void UnLockNewButtonHero()
+    {
+        RenderHeroButton();
+    }
+
+    public void ClearSkillCardData()
+    {
+        foreach(GameObject child in children)
+        {
+            Destroy(child);
+        }
+    }
+
+    
 
 }
 

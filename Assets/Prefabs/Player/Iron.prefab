@@ -316,7 +316,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e26f108ee7d8fa4f9d0e476a7355aa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 6
   skill1: {fileID: 0}
   skill2: {fileID: 0}
   skill3: {fileID: 0}
@@ -339,6 +339,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  health: 0
   knockDownVFX: {fileID: 5854742832336096459, guid: 8a7c5d19d8a94cb41bccf41896137933,
     type: 3}
 --- !u!114 &8906427883867688507
@@ -401,7 +402,6 @@ MonoBehaviour:
   laserObject: {fileID: 6197080751168193181, guid: a81c073a5caaaf440b481ed76fbc4eef,
     type: 3}
   damage: 0
-  speed: 0
 --- !u!1 &1820991002697448339
 GameObject:
   m_ObjectHideFlags: 0

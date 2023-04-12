@@ -129,7 +129,7 @@ public class PlayerController : MonoBehaviour
         float s = speed;
         if (direction.z != 0 && direction.x == 0)
         {
-            s = speed / 2;
+            s = speed / 1.5f;
         }
         motionMove = direction * s;
         characterController.SimpleMove(motionMove);

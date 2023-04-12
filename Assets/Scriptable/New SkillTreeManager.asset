@@ -15,30 +15,10 @@ MonoBehaviour:
   skillTreeStates:
   - name: Iron Man
     skillStates:
-    - {fileID: 11400000, guid: 8db8153db7190fc418faedb21491381b, type: 2}
-    - {fileID: 11400000, guid: 8db8153db7190fc418faedb21491381b, type: 2}
-    - {fileID: 11400000, guid: 8db8153db7190fc418faedb21491381b, type: 2}
-    - {fileID: 11400000, guid: 8db8153db7190fc418faedb21491381b, type: 2}
-    - {fileID: 11400000, guid: 8db8153db7190fc418faedb21491381b, type: 2}
     - {fileID: 11400000, guid: 022a732feea80024ba1374b992035433, type: 2}
-    - {fileID: 11400000, guid: 022a732feea80024ba1374b992035433, type: 2}
-    - {fileID: 11400000, guid: 022a732feea80024ba1374b992035433, type: 2}
-    - {fileID: 11400000, guid: 022a732feea80024ba1374b992035433, type: 2}
-    - {fileID: 11400000, guid: 022a732feea80024ba1374b992035433, type: 2}
-  - name: Hero1
-    skillStates:
-    - {fileID: 11400000, guid: 8db8153db7190fc418faedb21491381b, type: 2}
-    - {fileID: 11400000, guid: 8db8153db7190fc418faedb21491381b, type: 2}
-    - {fileID: 11400000, guid: 8db8153db7190fc418faedb21491381b, type: 2}
-    - {fileID: 11400000, guid: 8db8153db7190fc418faedb21491381b, type: 2}
-    - {fileID: 11400000, guid: 8db8153db7190fc418faedb21491381b, type: 2}
-  - name: Hero2
+  - name: Iron Man
     skillStates:
     - {fileID: 11400000, guid: 022a732feea80024ba1374b992035433, type: 2}
-    - {fileID: 11400000, guid: 022a732feea80024ba1374b992035433, type: 2}
-    - {fileID: 11400000, guid: 022a732feea80024ba1374b992035433, type: 2}
-    - {fileID: 11400000, guid: 022a732feea80024ba1374b992035433, type: 2}
-    - {fileID: 11400000, guid: 022a732feea80024ba1374b992035433, type: 2}
-    - {fileID: 11400000, guid: 022a732feea80024ba1374b992035433, type: 2}
-    - {fileID: 11400000, guid: 022a732feea80024ba1374b992035433, type: 2}
-    - {fileID: 11400000, guid: 022a732feea80024ba1374b992035433, type: 2}
+    - {fileID: 11400000, guid: 8db8153db7190fc418faedb21491381b, type: 2}
+    - {fileID: 11400000, guid: d290394b229409f4f9ed6a54f0ec014b, type: 2}
+    - {fileID: 11400000, guid: ac0c9e15d56cc4442b417212a997e9cd, type: 2}

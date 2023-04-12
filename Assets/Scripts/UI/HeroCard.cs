@@ -33,10 +33,6 @@ public class HeroCard : MonoBehaviour
             button.interactable = false;
             OnBuySuccess?.Invoke();
         }
-        else
-        {
-            gameManager.BuyFailure();
-        }
     }
 
     public void SetDataCard(PlayerCharacter playerCharacter, bool owned)

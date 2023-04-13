@@ -1,107 +1,40 @@
-// #define DEBUG
-
 using System;
-using System.Linq;
-using System.Collections.Generic;
 using UnityEngine;
-using MyCustomAttribute;
-
-
-public enum SkillType
-{
-    
-}
-
-public enum SpecialSkillType
-{
-    FireBall,
-    Eyeslaser
-}
 
 public class SkillSystem : MonoBehaviour
 {
-    [ReadOnly] public AbsSpecialSkill specialSkillAvailable;
-    [ReadOnly] public List<AbsSkill> skillsAvailable;
-#if DEBUG
-    [SerializeField] private SkillType[] skillTypes;
-    [SerializeField] private SpecialSkillType specialSkillType;
-#endif
-    private string selectedCharacter;
+    [SerializeField] private EquipmentManager equipmentManager;
+    public static int currentEnergy;
+    public static int maxEnergy = 100;
+    private PlayerData playerData;
+    private GameManager gameManager;
 
-    private void Start()
+    private void Awake()
     {
-#if DEBUG
-        DebugMode();
-#else
-        skillsAvailable = new List<AbsSkill>();
-
-        AbsSkill[] skills = GetComponents<AbsSkill>();
-        AbsSpecialSkill[] specialSkills = GetComponents<AbsSpecialSkill>();
-
-        foreach (AbsSkill skill in skills)
-        {
-            skill.enabled = false;
-        }
-
-        foreach (AbsSpecialSkill specialSkill in specialSkills)
-        {
-            specialSkill.enabled = false;
-        }
-
-        SetAvailableSkills();
-
-        GetComponent<PlayerController>().AddSkill(skillsAvailable.ToArray(), specialSkillAvailable);
-#endif
+        gameManager = GameManager.Instance;
     }
 
-    private void SetAvailableSkills()
+    private void OnEnable()
     {
-
-        PlayerData playerData = PlayerData.Load();
-        selectedCharacter = playerData.selectedCharacter;
-        var character = playerData.characters.Single(character => character.keyID == selectedCharacter);
-        // foreach (string skillName in character.selectedSkill)
-        // {
-        //     AbsSkill skill = GetComponent(Type.GetType(skillName)) as AbsSkill;
-        //     skill.enabled = true;
-        //     skillsAvailable.Add(skill);
-        // }
-        // if (!String.IsNullOrEmpty(character.selectedSpecialSkill))
-        // {
-        //     specialSkillAvailable = GetComponent(Type.GetType(character.selectedSpecialSkill)) as AbsSpecialSkill;
-        //     specialSkillAvailable.enabled = true;
-        //     specialSkillAvailable.Active();
-        // }
-
+        PlayerHurtBox.OnHit += BonusEnergy;
     }
 
-    private void DebugMode()
+    private void OnDisable()
     {
-        skillsAvailable = new List<AbsSkill>();
+        PlayerHurtBox.OnHit += BonusEnergy;
+    }
 
-        AbsSkill[] skills = GetComponents<AbsSkill>();
-        AbsSpecialSkill[] specialSkills = GetComponents<AbsSpecialSkill>();
+    private void Start() {
+        
+    }
 
-        foreach (AbsSkill skill in skills)
+    private void BonusEnergy(int energy)
+    {
+        if (currentEnergy < maxEnergy)
         {
-            skill.enabled = false;
+            currentEnergy += energy;
+            Debug.Log(energy);
         }
 
-        foreach (AbsSpecialSkill specialSkill in specialSkills)
-        {
-            specialSkill.enabled = false;
-        }
-        foreach (SkillType skillName in skillTypes)
-        {
-            AbsSkill skill = GetComponent(Type.GetType(skillName.ToString())) as AbsSkill;
-            skill.enabled = true;
-            skillsAvailable.Add(skill);
-        }
-
-        specialSkillAvailable = GetComponent(Type.GetType(specialSkillType.ToString())) as AbsSpecialSkill;
-        specialSkillAvailable.enabled = true;
-        specialSkillAvailable.Active();
-
-        GetComponent<PlayerController>().AddSkill(skillsAvailable.ToArray(), specialSkillAvailable);
     }
 }

@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: New SkillState 3
   m_EditorClassIdentifier: 
   nameSkill: Boom
-  level: 1
   price: 100
   sprite: {fileID: 21300000, guid: 3de738833f6e24ce1b6c5ec60489172b, type: 3}
+  attritionEnergys: 000000000a000000140000001e0000002800000032000000
+  maxCoolDownTimes: 
+  damages: 

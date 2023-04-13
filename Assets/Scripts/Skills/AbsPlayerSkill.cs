@@ -1,73 +1,104 @@
 using System;
 using UnityEngine;
+using System.Collections;
+
+public enum skillHolder
+{
+    skill1,
+    skill2,
+    skill3,
+    skill4
+}
 
 public abstract class AbsPlayerSkill : MonoBehaviour
 {
     public string skillName;
     protected int PlayerSkillHash;
+    protected int PlayerSkill1Hash;
+    protected int PlayerSkill2Hash;
+    protected int PlayerSkill3Hash;
+    protected int PlayerSkill4Hash;
     protected Animator animator;
     public event Action OnStart;
     public event Action OnDone;
-    public event Action<int> OnAccumulationEnergy;
-    [SerializeField] private int attritionEnergy;
-    [SerializeField] private int currentEnergy;
-    [SerializeField] private float coolDownTime;
-    [SerializeField] private float maxCoolDownTime;
+    public skillHolder skillHolder;
+    
+    [SerializeField] protected float maxCoolDownTime;
+    [SerializeField] protected SkillLevel[] skillLevels = new SkillLevel[5];
+    public int energy;
+    public float cooldownTimer = 0;
+    protected SkillSystem skillSystem;
+    protected bool ready, coolDown;
+    protected int currentLevel;
 
-    [SerializeField] protected AnimationClip animationClip;
-    private bool ready, coolDown;
 
     protected virtual void Awake()
     {
         animator = GetComponent<Animator>();
         PlayerSkillHash = Animator.StringToHash("PlayerSkill");
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
+        PlayerSkill1Hash = Animator.StringToHash("PlayerSkill1");
+        PlayerSkill2Hash = Animator.StringToHash("PlayerSkill2");
+        PlayerSkill3Hash = Animator.StringToHash("PlayerSkill3");
+        PlayerSkill4Hash = Animator.StringToHash("PlayerSkill4");
     }
 
     // Update is called once per frame
     void Update()
-    {
-        if (attritionEnergy >= currentEnergy)
-        {
+    {   
+        if ((this.energy >= skillLevels[currentLevel].energy) && (cooldownTimer <=0))
+        {   
             ready = true;
         }
-        else
-        {
-            ready = false;
-        }
-
-        if (coolDown)
-        {
-            coolDownTime -= Time.deltaTime;
-
-            if (coolDownTime == 0)
-            {
-                coolDown = false;
-            }
-        }
-
     }
 
-    protected abstract void Action();
-
-    public bool Cast()
+    protected void Action(skillHolder skillHolder)
     {
-        if (ready)
+        switch(skillHolder)
         {
-            ready = false;
-            currentEnergy -= attritionEnergy;
-            coolDownTime = maxCoolDownTime;
-            Action();
-            OnStart?.Invoke();
-            return true;
+            case skillHolder.skill1:
+                    animator.SetTrigger(PlayerSkill1Hash);
+                    break;
+            case skillHolder.skill2:
+                    animator.SetTrigger(PlayerSkill2Hash);
+                    break;
+            case skillHolder.skill3:
+                    animator.SetTrigger(PlayerSkill3Hash);
+                    break;
+            case skillHolder.skill4:
+                    animator.SetTrigger(PlayerSkill4Hash);
+                    break;
+            default:
+                    throw new InvalidOperationException("invalid skill skillHolder");
+        }
+    }
+
+    public void UpgradeLevelSkill(int level)
+    {
+        if(currentLevel <= 5)
+        {
+            currentLevel=level;  
+        }
+    }
+
+    public bool Cast(skillHolder skillHolder)
+    {
+        Action(skillHolder);
+        OnStart?.Invoke();
+        StartCoroutine(CoolDownCoroutine());
+        return true;
+    }
+
+    private IEnumerator CoolDownCoroutine()
+    {
+        SkillSystem.currentEnergy -= skillLevels[currentLevel].energy;
+        cooldownTimer = maxCoolDownTime;
+        while(cooldownTimer >= 0)
+        {
+            cooldownTimer -= Time.deltaTime;
+            yield return null;
         }
 
-        return false;
+        cooldownTimer = 0;
     }
 
     public void Done()
@@ -75,10 +106,12 @@ public abstract class AbsPlayerSkill : MonoBehaviour
         OnDone?.Invoke();
     }
 
-    public void Active()
+    [Serializable]
+    protected class SkillLevel
     {
-        AnimatorOverrideController animatorOverride = new AnimatorOverrideController(animator.runtimeAnimatorController);
-        animatorOverride["PlayerSkill"] = animationClip;
-        animator.runtimeAnimatorController = animatorOverride;
+        public int energy;
+        public int maxCoolDownTime;
+        public float damage;
     }
 }
+

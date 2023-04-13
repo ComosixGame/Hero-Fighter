@@ -1,7 +1,6 @@
-using System.Collections;
 using UnityEngine;
 
-public class Laser : EffectObjectPool
+public class Missile : EffectObjectPool
 {
     [SerializeField] private LayerMask layerTarget;
     [SerializeField] private AttackType attackType;

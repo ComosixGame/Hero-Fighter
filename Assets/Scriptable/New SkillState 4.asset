@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: New SkillState 4
   m_EditorClassIdentifier: 
   nameSkill: Blacksmith
-  level: 1
   price: 100
   sprite: {fileID: 21300000, guid: 90b242ee2c8c44b42812f499ef893862, type: 3}
+  attritionEnergys: 000000000a000000140000001e0000002800000032000000
+  maxCoolDownTimes: 
+  damages: 

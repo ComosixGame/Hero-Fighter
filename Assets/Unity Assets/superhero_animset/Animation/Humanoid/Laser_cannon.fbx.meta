@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 81eb873789dc4ce419299c257872dd86
+guid: 8f460bfcf4770c94396ca4df339c0430
 ModelImporter:
   serializedVersion: 21202
   internalIDToNameTable:
@@ -395,7 +395,7 @@ ModelImporter:
     second: STYLIZED-BASEMESH-BIGMALE-OBJ
   - first:
       74: 7400000
-    second: Laser_01
+    second: eyelaser
   - first:
       95: 9500000
     second: //RootNode
@@ -432,11 +432,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Laser_01
-      takeName: Laser_01
+      name: eyelaser
+      takeName: eyelaser
       internalID: 0
       firstFrame: 0
-      lastFrame: 52
+      lastFrame: 50
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -456,10 +456,18 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.39617413
-        functionName: CastMissile
+      - time: 0.3186813
+        functionName: CastLaser
         data: 
-        objectReferenceParameter: {fileID: 11500000, guid: b198ea64fb539ad4cab726b21fc2b07c,
+        objectReferenceParameter: {fileID: 11500000, guid: 397d07ac4d65c834f947eb5a0e46d6cb,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.8644688
+        functionName: CastLaserDone
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 397d07ac4d65c834f947eb5a0e46d6cb,
           type: 3}
         floatParameter: 0
         intParameter: 0

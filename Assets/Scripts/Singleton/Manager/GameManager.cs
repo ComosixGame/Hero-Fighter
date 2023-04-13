@@ -30,7 +30,6 @@ public class GameManager : Singleton<GameManager>
     public event Action<string> OnSelectHeroSkill;
     public event Action OnBuyHero;
 
-
     [ReadOnly] public int chapterIndex;
     [ReadOnly] public int levelIndex;
     private PlayerData playerData;
@@ -208,16 +207,16 @@ public class GameManager : Singleton<GameManager>
         OnSelectHeroSkill?.Invoke(character.keyID);
     }
 
-    public bool choiceHeroUpgradeSkill(string characterid, string keyID)
-    {
-        if (characterid != keyID)
-        {
-            return true;
-        }else
-        {
-            return false;
-        }
-    }
+    // public bool choiceHeroUpgradeSkill(string characterid, string keyID)
+    // {
+    //     if (characterid != keyID)
+    //     {
+    //         return true;
+    //     }else
+    //     {
+    //         return false;
+    //     }
+    // }
 
     public bool CheckCharacterOwed(PlayerCharacter character)
     {

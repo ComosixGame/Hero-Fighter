@@ -1194,7 +1194,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 62eb68da0d82b144096aec45e985b083,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 62eb68da0d82b144096aec45e985b083,
         type: 3}
@@ -1351,8 +1351,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  skill1: {fileID: 0}
-  skill2: {fileID: 0}
+  skill1: {fileID: 1069777020}
+  skill2: {fileID: 1069777022}
   skill3: {fileID: 0}
   skill4: {fileID: 0}
   specialskill: {fileID: 0}
@@ -1396,6 +1396,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  health: 0
   knockDownVFX: {fileID: 5854742832336096459, guid: 8a7c5d19d8a94cb41bccf41896137933,
     type: 3}
 --- !u!4 &1069777016 stripped
@@ -1404,27 +1405,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1069777004}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1069777017
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1069777005}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4874185986ed6b64cbdec2eebdf3aa64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skillName: 
-  skillDescription: 
-  MaxEnergy: 0
-  energy: 0
-  animationClip: {fileID: 7400000, guid: d8b0cd58b52969749bfb0215754c73e9, type: 3}
-  laserPosition: {x: 0, y: 1.55, z: 0.3}
-  laserObject: {fileID: 6197080751168193181, guid: a81c073a5caaaf440b481ed76fbc4eef,
-    type: 3}
-  damage: 0
 --- !u!114 &1069777018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1437,10 +1417,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 528ab0aa28c948941846ba9df4091e97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  specialSkillAvailable: {fileID: 0}
-  skillsAvailable: []
-  skillTypes: 
-  specialSkillType: 1
+  equipmentManager: {fileID: 11400000, guid: 95e4de297bdbf0946830ebbf0a141d8e, type: 2}
 --- !u!65 &1069777019
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1454,6 +1431,113 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.85, z: 1}
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &1069777020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1069777005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 397d07ac4d65c834f947eb5a0e46d6cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillName: Laser Cannon
+  skillHolder: 0
+  maxCoolDownTime: 0
+  skillLevels:
+  - energy: 10
+    maxCoolDownTime: 10
+    damage: 1
+  - energy: 0
+    maxCoolDownTime: 30
+    damage: 0
+  - energy: 0
+    maxCoolDownTime: 0
+    damage: 0
+  - energy: 0
+    maxCoolDownTime: 0
+    damage: 0
+  - energy: 0
+    maxCoolDownTime: 0
+    damage: 0
+  energy: 0
+  cooldownTimer: 0
+  laserPosition: {x: 0, y: 1.55, z: 0.3}
+  laserObject: {fileID: 6197080751168193181, guid: a81c073a5caaaf440b481ed76fbc4eef,
+    type: 3}
+--- !u!114 &1069777022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1069777005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b198ea64fb539ad4cab726b21fc2b07c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillName: Follow Missile
+  skillHolder: 1
+  maxCoolDownTime: 0
+  skillLevels:
+  - energy: 0
+    maxCoolDownTime: 10
+    damage: 0
+  - energy: 0
+    maxCoolDownTime: 0
+    damage: 0
+  - energy: 0
+    maxCoolDownTime: 0
+    damage: 0
+  - energy: 0
+    maxCoolDownTime: 0
+    damage: 0
+  - energy: 0
+    maxCoolDownTime: 0
+    damage: 0
+  energy: 0
+  cooldownTimer: 0
+  missilePosition: {x: 0, y: 1.55, z: 0.3}
+  missileObject: {fileID: 4308499586458287988, guid: 6328e21184a9dba448bdc2abda48709c,
+    type: 3}
+--- !u!114 &1069777024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1069777005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f25a7ab3446b2c44184131233965753d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillName: 
+  skillHolder: 2
+  maxCoolDownTime: 0
+  skillLevels:
+  - energy: 0
+    maxCoolDownTime: 0
+    damage: 0
+  - energy: 0
+    maxCoolDownTime: 0
+    damage: 0
+  - energy: 0
+    maxCoolDownTime: 0
+    damage: 0
+  - energy: 0
+    maxCoolDownTime: 0
+    damage: 0
+  - energy: 0
+    maxCoolDownTime: 0
+    damage: 0
+  energy: 0
+  cooldownTimer: 0
+  explosionPosition: {x: 0, y: 1, z: 0}
+  explosionObject: {fileID: 0}
 --- !u!1 &1235871963
 GameObject:
   m_ObjectHideFlags: 0
@@ -1589,10 +1673,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 528ab0aa28c948941846ba9df4091e97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  specialSkillAvailable: {fileID: 0}
-  skillsAvailable: []
-  skillTypes: 
-  specialSkillType: 1
+  equipmentManager: {fileID: 0}
 --- !u!114 &1364752924
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1606,6 +1687,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  health: 0
   knockDownVFX: {fileID: 5854742832336096459, guid: 8a7c5d19d8a94cb41bccf41896137933,
     type: 3}
 --- !u!114 &1364752925
@@ -1964,7 +2046,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 27cd8465eda3e9140a9b71419255e1b1,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 27cd8465eda3e9140a9b71419255e1b1,
         type: 3}
@@ -2090,6 +2172,7 @@ MonoBehaviour:
   equipmentManager: {fileID: 0}
   chapterIndex: 0
   levelIndex: 0
+  windowPopup: {fileID: 0}
 --- !u!4 &2137343309
 Transform:
   m_ObjectHideFlags: 0
@@ -3853,16 +3936,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coolDownTime: 0
-  damage: 0
-  speedBullet: 0
-  layerTarget:
+  OnAction:
+    m_PersistentCalls:
+      m_Calls: []
+  OnStartAttack:
+    m_PersistentCalls:
+      m_Calls: []
+  OnEndAttack:
+    m_PersistentCalls:
+      m_Calls: []
+  offsetCenter: {x: 0, y: 0, z: 0}
+  closeRange: 0
+  playerLayer:
     serializedVersion: 2
-    m_Bits: 64
-  centerMeleeRange: {x: 0, y: 0, z: 0}
-  meleeRange: 0
-  bullet: {fileID: 0}
-  shotPos: {fileID: 880661147}
-  hurtBoxes: []
+    m_Bits: 0
+  hurtBox: {fileID: 0}
+  gun: {fileID: 0}
 --- !u!114 &95937467988272714
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3882,6 +3971,7 @@ MonoBehaviour:
   centerAttackRange: {x: 0, y: 1, z: 0}
   maxSpeed: 3
   walkSpeed: 1
+  lockRotation: 1
 --- !u!114 &100288966783701540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13306,17 +13396,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coolDownTime: 0
-  damage: 10
-  speedBullet: 10
-  layerTarget:
+  OnAction:
+    m_PersistentCalls:
+      m_Calls: []
+  OnStartAttack:
+    m_PersistentCalls:
+      m_Calls: []
+  OnEndAttack:
+    m_PersistentCalls:
+      m_Calls: []
+  offsetCenter: {x: 0, y: 0, z: 0}
+  closeRange: 0
+  playerLayer:
     serializedVersion: 2
-    m_Bits: 64
-  centerMeleeRange: {x: 0, y: 1.3, z: 0}
-  meleeRange: 1.3
-  bullet: {fileID: -3004082893452583331, guid: 735f00c7848260b41bfb70132b93e223, type: 3}
-  shotPos: {fileID: 6470155338579794361}
-  hurtBoxes:
-  - {fileID: 406088105539116346}
+    m_Bits: 0
+  hurtBox: {fileID: 0}
+  gun: {fileID: 0}
 --- !u!136 &6470155340086731093
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -13350,6 +13445,7 @@ MonoBehaviour:
   centerAttackRange: {x: 0, y: 1.3, z: 0}
   maxSpeed: 4
   walkSpeed: 1
+  lockRotation: 1
 --- !u!195 &6470155340086731098
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -15555,8 +15651,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coolDownTime: 0
-  hurtBoxes: []
-  timeStepBack: 0
   OnAction:
     m_PersistentCalls:
       m_Calls: []
@@ -15566,6 +15660,8 @@ MonoBehaviour:
   OnEndAttack:
     m_PersistentCalls:
       m_Calls: []
+  hurtBoxes: []
+  timeStepBack: 0
 --- !u!114 &7919919428302450339
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15585,6 +15681,7 @@ MonoBehaviour:
   centerAttackRange: {x: 0, y: 0, z: 0}
   maxSpeed: 0
   walkSpeed: 0
+  lockRotation: 1
 --- !u!4 &7919933077344056668
 Transform:
   m_ObjectHideFlags: 0
@@ -16472,6 +16569,7 @@ MonoBehaviour:
   centerAttackRange: {x: 0, y: 1.3, z: 0}
   maxSpeed: 4
   walkSpeed: 1
+  lockRotation: 1
 --- !u!195 &8522840542555607178
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -16523,9 +16621,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coolDownTime: 0
-  hurtBoxes:
-  - {fileID: 8522840543469350670}
-  timeStepBack: 0
   OnAction:
     m_PersistentCalls:
       m_Calls: []
@@ -16535,6 +16630,9 @@ MonoBehaviour:
   OnEndAttack:
     m_PersistentCalls:
       m_Calls: []
+  hurtBoxes:
+  - {fileID: 8522840543469350670}
+  timeStepBack: 0
 --- !u!114 &8522840542555607219
 MonoBehaviour:
   m_ObjectHideFlags: 0

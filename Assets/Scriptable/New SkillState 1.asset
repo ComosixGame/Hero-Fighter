@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: New SkillState 1
   m_EditorClassIdentifier: 
   nameSkill: Attack
-  level: 1
   price: 200
   sprite: {fileID: 21300000, guid: 3e25c2c33ef2144eda39933daeb77c67, type: 3}
+  attritionEnergys: 000000000a000000140000001e0000002800000032000000
+  maxCoolDownTimes: 
+  damages: 

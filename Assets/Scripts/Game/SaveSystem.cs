@@ -111,7 +111,7 @@ public class PlayerData
         public Character(string id)
         {
             keyID = id;
-            levelSkills = new int[5] {1,1,1,1,1};
+            levelSkills = new int[4] {1,1,1,1};
         }
     }
 }

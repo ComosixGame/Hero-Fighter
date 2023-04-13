@@ -1,10 +1,9 @@
 using UnityEngine;
 
-public class LaserCannon : AbsPlayerSkill
+public class ExplosionEnergy : AbsPlayerSkill
 {
-    [SerializeField] private Vector3 laserPosition;
-    [SerializeField] private EffectObjectPool laserObject;
-    private bool casting;
+    [SerializeField] private Vector3 explosionPosition;
+    [SerializeField] private EffectObjectPool explosionObject;
     private ParticleSystem generatedLaserObject;
     private ObjectPoolerManager objectPooler;
 
@@ -14,20 +13,25 @@ public class LaserCannon : AbsPlayerSkill
         objectPooler = ObjectPoolerManager.Instance;
     }
 
-    private void Start() {
+    // Start is called before the first frame update
+    void Start()
+    {
         energy = skillLevels[currentLevel].energy;
         maxCoolDownTime = skillLevels[currentLevel].maxCoolDownTime;
-        laserObject.GetComponent<Laser>().damage = skillLevels[currentLevel].damage;
-
+        // laserObject.GetComponent<Laser>().damage = skillLevels[currentLevel].damage;
     }
 
-
-    public void CastLaser()
+    // Update is called once per frame
+    void Update()
     {
-        casting =  true;
+        
+    }
+
+    public void CastExplosion()
+    {
         generatedLaserObject = objectPooler.SpawnObject(
-                laserObject,
-                transform.TransformPoint(laserPosition),
+                explosionObject,
+                transform.TransformPoint(explosionPosition),
                 transform.rotation
             ).GetComponent<ParticleSystem>();
         generatedLaserObject.Play();
@@ -35,13 +39,6 @@ public class LaserCannon : AbsPlayerSkill
 
     public void CastLaserDone()
     {
-        casting = false;
         generatedLaserObject.Stop();
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.blue;
-        Gizmos.DrawSphere(transform.TransformPoint(laserPosition), 0.1f);
     }
 }

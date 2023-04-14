@@ -915,6 +915,72 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 19.469, y: 0, z: 0}
+--- !u!1 &823927290
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 823927291}
+  - component: {fileID: 823927293}
+  - component: {fileID: 823927292}
+  m_Layer: 10
+  m_Name: HurtBoxExplosion
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &823927291
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 823927290}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1069777016}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &823927292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 823927290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33dd088018be73d4291ef45d927c7acb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  attackType: 1
+  damage: 0
+  bonusEnergy: 0
+  hitEffect: {fileID: 9046699384457569311, guid: 00e2210b13fc873458ba8b2017fba62e,
+    type: 3}
+--- !u!65 &823927293
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 823927290}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4, y: 2, z: 2.5}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -963,6 +1029,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &859893169
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 859893170}
+  m_Layer: 6
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &859893170
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 859893169}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.7, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1069777016}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &880661146
 GameObject:
@@ -1353,36 +1450,14 @@ MonoBehaviour:
   speed: 5
   skill1: {fileID: 1069777020}
   skill2: {fileID: 1069777022}
-  skill3: {fileID: 0}
-  skill4: {fileID: 0}
+  skill3: {fileID: 1069777024}
+  skill4: {fileID: 1069777025}
   specialskill: {fileID: 0}
   playerHurtBoxes:
   - {fileID: 466506650}
   - {fileID: 1594190987}
+  - {fileID: 823927292}
   isStart: 0
---- !u!114 &1069777011
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1069777005}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d7226f5a6f908a459e869f624dca347, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skillName: 
-  skillDescription: 
-  MaxEnergy: 5
-  energy: 0
-  animationClip: {fileID: -203655887218126122, guid: 2a8db53bcdc72e74880141267c984abf,
-    type: 3}
-  firePosition: {x: 0, y: 1.45, z: 1}
-  fireBallObject: {fileID: -3004082893452583331, guid: 4613332ca99c1f64fb83d4c462534964,
-    type: 3}
-  damage: 50
-  speed: 10
 --- !u!114 &1069777014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1500,9 +1575,12 @@ MonoBehaviour:
     damage: 0
   energy: 0
   cooldownTimer: 0
-  missilePosition: {x: 0, y: 1.55, z: 0.3}
+  missilePosition: {x: 0, y: 1.7, z: 1}
   missileObject: {fileID: 4308499586458287988, guid: 6328e21184a9dba448bdc2abda48709c,
     type: 3}
+  missileObjectPool: {fileID: 4135065646595766581, guid: 62004bcb22fd6294b93eccad886eaa2b,
+    type: 3}
+  speed: 5
 --- !u!114 &1069777024
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1515,7 +1593,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f25a7ab3446b2c44184131233965753d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: 
+  skillName: Explosion Energy
   skillHolder: 2
   maxCoolDownTime: 0
   skillLevels:
@@ -1536,8 +1614,47 @@ MonoBehaviour:
     damage: 0
   energy: 0
   cooldownTimer: 0
-  explosionPosition: {x: 0, y: 1, z: 0}
-  explosionObject: {fileID: 0}
+  explosionPosition: {x: 0, y: 1.5, z: 0}
+  explosionForceObject: {fileID: 6208770777685358958, guid: b8b77c9f612b4c64e8da391b0d8fded7,
+    type: 3}
+  explosionObject: {fileID: 8169326039529051692, guid: f3ce71a262662da40acd255a12a6adfa,
+    type: 3}
+--- !u!114 &1069777025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1069777005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbbd672c7a747204eb24f2d9896462a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillName: Flame Thrower
+  skillHolder: 3
+  maxCoolDownTime: 0
+  skillLevels:
+  - energy: 0
+    maxCoolDownTime: 0
+    damage: 0
+  - energy: 0
+    maxCoolDownTime: 0
+    damage: 0
+  - energy: 0
+    maxCoolDownTime: 0
+    damage: 0
+  - energy: 0
+    maxCoolDownTime: 0
+    damage: 0
+  - energy: 0
+    maxCoolDownTime: 0
+    damage: 0
+  energy: 0
+  cooldownTimer: 0
+  flamePosition: {x: -0.03, y: 1.8, z: 1}
+  flameObject: {fileID: 4549751650876894990, guid: fa264294b8fe3d64eba0df4502065604,
+    type: 3}
 --- !u!1 &1235871963
 GameObject:
   m_ObjectHideFlags: 0
@@ -6295,7 +6412,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1376734880936320577
 GameObject:
   m_ObjectHideFlags: 0
@@ -6881,6 +6998,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_Sword_01
       objectReference: {fileID: 0}
+    - target: {fileID: 1171731433241525198, guid: e38bdca78999e554ab943fd4ce04306a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1177198497902424102, guid: e38bdca78999e554ab943fd4ce04306a,
         type: 3}
       propertyPath: m_RootOrder
@@ -7194,6 +7316,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Enemy_Sword_02
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399074286960320196, guid: 190b7d0bcae2bb0489d1858336996515,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 190b7d0bcae2bb0489d1858336996515, type: 3}
@@ -7754,7 +7881,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &3125989174389847176
 GameObject:
   m_ObjectHideFlags: 0
@@ -13142,6 +13269,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_Sword_03
       objectReference: {fileID: 0}
+    - target: {fileID: 7669818210105850556, guid: 133e6b66263892a4998f7572ff592123,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 133e6b66263892a4998f7572ff592123, type: 3}
 --- !u!4 &6166445761784155047
@@ -13839,6 +13971,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Enemy_Basic_02
+      objectReference: {fileID: 0}
+    - target: {fileID: 1165911524298237487, guid: e0063af90519e3e4396084135e6a4162,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1169891396189989815, guid: e0063af90519e3e4396084135e6a4162,
         type: 3}

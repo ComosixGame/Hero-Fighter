@@ -37,7 +37,7 @@ MonoBehaviour:
     size: 5
     GameObjectPool: {fileID: 6197080751168193181, guid: a81c073a5caaaf440b481ed76fbc4eef,
       type: 3}
-  - name: Missile
+  - name: Missile VFX
     size: 5
     GameObjectPool: {fileID: 4308499586458287988, guid: 6328e21184a9dba448bdc2abda48709c,
       type: 3}
@@ -88,4 +88,20 @@ MonoBehaviour:
   - name: Enemy Sniper 01
     size: 10
     GameObjectPool: {fileID: -7693793984158827952, guid: 40ce5000199d910489886a884159b416,
+      type: 3}
+  - name: Explosion Energy
+    size: 10
+    GameObjectPool: {fileID: 8169326039529051692, guid: f3ce71a262662da40acd255a12a6adfa,
+      type: 3}
+  - name: Explosion Force
+    size: 10
+    GameObjectPool: {fileID: 6208770777685358958, guid: b8b77c9f612b4c64e8da391b0d8fded7,
+      type: 3}
+  - name: FlameThrower
+    size: 10
+    GameObjectPool: {fileID: 4549751650876894990, guid: fa264294b8fe3d64eba0df4502065604,
+      type: 3}
+  - name: Rocket
+    size: 50
+    GameObjectPool: {fileID: 4135065646595766581, guid: 62004bcb22fd6294b93eccad886eaa2b,
       type: 3}

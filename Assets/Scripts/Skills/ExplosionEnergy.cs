@@ -3,9 +3,11 @@ using UnityEngine;
 public class ExplosionEnergy : AbsPlayerSkill
 {
     [SerializeField] private Vector3 explosionPosition;
+    [SerializeField] private EffectObjectPool explosionForceObject;
     [SerializeField] private EffectObjectPool explosionObject;
-    private ParticleSystem generatedLaserObject;
+    private ParticleSystem generatedExplosionObject;
     private ObjectPoolerManager objectPooler;
+
 
     override protected void Awake()
     {
@@ -29,16 +31,21 @@ public class ExplosionEnergy : AbsPlayerSkill
 
     public void CastExplosion()
     {
-        generatedLaserObject = objectPooler.SpawnObject(
+        generatedExplosionObject = objectPooler.SpawnObject(
                 explosionObject,
                 transform.TransformPoint(explosionPosition),
                 transform.rotation
             ).GetComponent<ParticleSystem>();
-        generatedLaserObject.Play();
+        generatedExplosionObject.Play();
     }
 
-    public void CastLaserDone()
+    public void CastExplosionForce()
     {
-        generatedLaserObject.Stop();
+        generatedExplosionObject = objectPooler.SpawnObject(
+                explosionForceObject,
+                transform.TransformPoint(explosionPosition),
+                transform.rotation
+            ).GetComponent<ParticleSystem>();
+        generatedExplosionObject.Play();
     }
 }

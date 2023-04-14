@@ -1366,6 +1366,7 @@ GameObject:
   - component: {fileID: 1305857928851026452}
   - component: {fileID: 1305857928851026453}
   - component: {fileID: 1305857928851026457}
+  - component: {fileID: 2136547550968114149}
   m_Layer: 7
   m_Name: Enemy_Knife_01
   m_TagString: Untagged
@@ -1431,6 +1432,7 @@ MonoBehaviour:
   centerAttackRange: {x: 0, y: 1, z: 0}
   maxSpeed: 3
   walkSpeed: 1
+  lockRotation: 1
 --- !u!114 &1305857928851026455
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1444,9 +1446,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coolDownTime: 5
-  hurtBoxes:
-  - {fileID: 4457454884403507295}
-  timeStepBack: 1
   OnAction:
     m_PersistentCalls:
       m_Calls: []
@@ -1468,6 +1467,9 @@ MonoBehaviour:
   OnEndAttack:
     m_PersistentCalls:
       m_Calls: []
+  hurtBoxes:
+  - {fileID: 4457454884403507295}
+  timeStepBack: 1
 --- !u!114 &1305857928851026454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1540,6 +1542,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: enemy_knife_01
+--- !u!114 &2136547550968114149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1390076223753098413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc93016a74dd6844cb07a81736a45cf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fallSound: {fileID: 8300000, guid: 33fcda97233176e45b9a9064332bea6b, type: 3}
+  attackSound: {fileID: 8300000, guid: 4691940b32b5e8843ba8a0f302850a8b, type: 3}
+  dieSound: {fileID: 8300000, guid: c90c839e829fcb04c856bab8b03b913b, type: 3}
 --- !u!1 &1390082678551095717
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,10 +14,13 @@ public class HeroCard : MonoBehaviour
     [SerializeField] private GameObject startGo;
     [SerializeField] private UnityEvent OnBuySuccess;
     private GameManager gameManager;
+    private SoundManager soundManager;
+    public AudioClip soundBtn;
 
     private void Awake()
     {
         gameManager = GameManager.Instance;
+        soundManager = SoundManager.Instance;
         button = GetComponentInChildren<Button>();
     }
 
@@ -33,6 +36,10 @@ public class HeroCard : MonoBehaviour
             button.interactable = false;
             OnBuySuccess?.Invoke();
         }
+    }
+
+    public void PlaySound(){
+        soundManager.PlaySound(soundBtn);
     }
 
     public void SetDataCard(PlayerCharacter playerCharacter, bool owned)

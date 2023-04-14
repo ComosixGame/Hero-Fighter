@@ -546,10 +546,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SkillTreeUI, Assembly-CSharp
-        m_MethodName: UpgradeSkill1Hero
-        m_Mode: 3
+      - m_Target: {fileID: 5639140293821420722}
+        m_TargetAssemblyTypeName: SkillDetailCard, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -947,6 +947,7 @@ MonoBehaviour:
   skillLevel: {fileID: 8495000264462575221}
   price: {fileID: 8495000263790449257}
   updrageBtn: {fileID: 8495000263978727366}
+  soundBtn: {fileID: 8300000, guid: 1dd8f12ff296a644eaf8274844d4e147, type: 3}
 --- !u!1 &8495000264684286633
 GameObject:
   m_ObjectHideFlags: 0

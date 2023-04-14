@@ -35,11 +35,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField, ReadOnly] private AbsSpecialSkill specialskill;
     [SerializeField] private PlayerHurtBox[] playerHurtBoxes;
     private GameManager gameManager;
+    private SoundManager soundManager;
     public bool isStart;
 
     private void Awake()
     {
         gameManager = GameManager.Instance;
+        soundManager = SoundManager.Instance;
         characterController = GetComponent<CharacterController>();
         playerInputSystem = new PlayerInputSystem();
 
@@ -133,6 +135,7 @@ public class PlayerController : MonoBehaviour
         }
         motionMove = direction * s;
         characterController.SimpleMove(motionMove);
+        //soundManager.PlaySound(walkSound);
     }
 
     private void HandleAnimation()

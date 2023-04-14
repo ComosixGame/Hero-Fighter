@@ -34,6 +34,7 @@ public class GameManager : Singleton<GameManager>
     [ReadOnly] public int chapterIndex;
     [ReadOnly] public int levelIndex;
     private PlayerData playerData;
+    public SettingData settingData;
     private ObjectPoolerManager objectPooler;
     private LoadSceneManager loadSceneManager;
     private LoadingScreen loadingScreen;
@@ -55,6 +56,7 @@ public class GameManager : Singleton<GameManager>
         playerData = PlayerData.Load();
         objectPooler = ObjectPoolerManager.Instance;
         loadSceneManager = LoadSceneManager.Instance;
+        settingData = SettingData.Load();
     }
 
     private void Start()

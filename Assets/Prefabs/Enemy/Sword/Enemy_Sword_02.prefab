@@ -6539,6 +6539,7 @@ GameObject:
   - component: {fileID: 7492265343599478092}
   - component: {fileID: 7492265343599478093}
   - component: {fileID: 7492265343599478091}
+  - component: {fileID: 1250345660067358287}
   m_Layer: 7
   m_Name: Enemy_Sword_02
   m_TagString: Untagged
@@ -6726,6 +6727,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: enemy_sword_02
+--- !u!114 &1250345660067358287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7399074286960320196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc93016a74dd6844cb07a81736a45cf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fallSound: {fileID: 8300000, guid: 33fcda97233176e45b9a9064332bea6b, type: 3}
+  attackSound: {fileID: 8300000, guid: 0526541d0f43758449759a6fcb9a54f9, type: 3}
+  dieSound: {fileID: 8300000, guid: c90c839e829fcb04c856bab8b03b913b, type: 3}
 --- !u!1 &7399089811768252002
 GameObject:
   m_ObjectHideFlags: 0

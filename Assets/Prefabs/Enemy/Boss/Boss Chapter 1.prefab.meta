@@ -1,6 +1,12 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Sounds/Epic Adventure Orchestral Background Music/Resources.meta
+guid: dd88bb71d425abe4987d4a437a7713af
+folderAsset: yes
+DefaultImporter:
+========
 guid: f9c0d6bc7446db9488215bf4a7f22f5b
 PrefabImporter:
+>>>>>>>> 250325bcc6a4c2f7a5730dd50afc95c359679485:Assets/Prefabs/Enemy/Boss/Boss Chapter 1.prefab.meta
   externalObjects: {}
   userData: 
   assetBundleName: 

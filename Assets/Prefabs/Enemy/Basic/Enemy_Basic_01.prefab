@@ -1169,6 +1169,7 @@ GameObject:
   - component: {fileID: 3549116654673358127}
   - component: {fileID: 3463976318942777647}
   - component: {fileID: 3549116654673358126}
+  - component: {fileID: -997640066687214994}
   m_Layer: 7
   m_Name: Enemy_Basic_01
   m_TagString: Untagged
@@ -1233,6 +1234,7 @@ MonoBehaviour:
   centerAttackRange: {x: 0, y: 1, z: 0}
   maxSpeed: 3
   walkSpeed: 1
+  lockRotation: 1
 --- !u!114 &3463976318942777634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1246,9 +1248,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coolDownTime: 5
-  hurtBoxes:
-  - {fileID: 3463976318973803344}
-  timeStepBack: 0
   OnAction:
     m_PersistentCalls:
       m_Calls: []
@@ -1258,6 +1257,9 @@ MonoBehaviour:
   OnEndAttack:
     m_PersistentCalls:
       m_Calls: []
+  hurtBoxes:
+  - {fileID: 3463976318973803344}
+  timeStepBack: 0
 --- !u!114 &3463976318942777645
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1330,6 +1332,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: enemy_01
+--- !u!114 &-997640066687214994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3465175795924111386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc93016a74dd6844cb07a81736a45cf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fallSound: {fileID: 8300000, guid: 33fcda97233176e45b9a9064332bea6b, type: 3}
+  attackSound: {fileID: 8300000, guid: 702fde88eaef9c94b829dab2f72ba66a, type: 3}
+  dieSound: {fileID: 8300000, guid: c90c839e829fcb04c856bab8b03b913b, type: 3}
 --- !u!1 &3465212642492546454
 GameObject:
   m_ObjectHideFlags: 0

@@ -123,7 +123,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2008663289228522022}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 909841076241096082}
+        m_TargetAssemblyTypeName: LevelCard, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &909841076241096082
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,6 +152,7 @@ MonoBehaviour:
   chapter: 0
   title: {fileID: 2008663291253810509}
   lockIcon: {fileID: 4384381046670693132}
+  soundBtn: {fileID: 8300000, guid: 1dd8f12ff296a644eaf8274844d4e147, type: 3}
 --- !u!1 &2008663291253810511
 GameObject:
   m_ObjectHideFlags: 0

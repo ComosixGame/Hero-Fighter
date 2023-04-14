@@ -60,6 +60,14 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
+      - time: 0.11023622
+        functionName: PlayEnemySound
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: dc93016a74dd6844cb07a81736a45cf0,
+          type: 3}
+        floatParameter: 0
+        intParameter: 2
+        messageOptions: 0
       - time: 0.40675667
         functionName: StartAttack
         data: 
@@ -68,7 +76,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.64000005
+      - time: 0.64524937
         functionName: EndAttack
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 6fb34382dedccdc44863f0519d0877e8,

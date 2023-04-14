@@ -36,7 +36,7 @@ public class CurrencyBonus : MonoBehaviour
     private void OnTriggerEnter(Collider other) {
         if((layer & (1 << other.gameObject.layer)) != 0) {
             ObjectPoolerManager.DeactiveObject(gameObjectPool);
-            soundManager.PlayOneShot(audioClip, volumeScale);
+            // soundManager.PlayOneShot(audioClip, volumeScale);
         }   
     }
 

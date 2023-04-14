@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class MapGeneration : MonoBehaviour
 {
+    [SerializeField] private bool debug;
     public LevelState levelState;
     [SerializeField] private UIMenu uIMenu;
     [SerializeField] private Collider[] areaColliders;
@@ -25,8 +26,9 @@ public class MapGeneration : MonoBehaviour
         isReset = false;
         gameManager.OnStartGame += StartGame;
         gameManager.OnNewGame += ResetGame;
-        uIMenu = FindObjectOfType<UIMenu>();
-        levelState = gameManager.levelState;
+        if(!debug) {
+            levelState = gameManager.levelState;
+        }
     }
 
     private void OnDisable()

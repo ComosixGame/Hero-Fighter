@@ -317,7 +317,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e26f108ee7d8fa4f9d0e476a7355aa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 6
   skill1: {fileID: 0}
   skill2: {fileID: 0}
   skill3: {fileID: 0}
@@ -403,6 +403,7 @@ MonoBehaviour:
   laserObject: {fileID: 6197080751168193181, guid: a81c073a5caaaf440b481ed76fbc4eef,
     type: 3}
   damage: 0
+<<<<<<< HEAD
 --- !u!114 &-3412631797912490926
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -421,6 +422,8 @@ MonoBehaviour:
   mmaKichTwoSound: {fileID: 8300000, guid: fd8635b3a92ea3c4498187be1fdeea8e, type: 3}
   walkSound: {fileID: 8300000, guid: 95b4e90429676cc4e9746d5e68544a0a, type: 3}
   dieSound: {fileID: 8300000, guid: c57fb8dce33b6a648b84f60aeb397b79, type: 3}
+=======
+>>>>>>> 250325bcc6a4c2f7a5730dd50afc95c359679485
 --- !u!1 &1820991002697448339
 GameObject:
   m_ObjectHideFlags: 0

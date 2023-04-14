@@ -1,3 +1,4 @@
+using System.Collections;
 using System;
 using UnityEngine;
 using UnityEngine.AI;
@@ -12,6 +13,7 @@ public class BossDamageable : MonoBehaviour, IDamageable
     [SerializeField, ReadOnly] private float stunLevel;
     private bool stunning, destroyed;
     private int dizzyHash, deadHash;
+    private Coroutine reduceStunCoroutine;
     private BossBehaviour bossBehaviour;
     private Collider colliderObject;
     private NavMeshAgent agent;
@@ -38,13 +40,21 @@ public class BossDamageable : MonoBehaviour, IDamageable
         colliderObject.enabled = true;
     }
 
+    private void Update() {
+    }
+
     public void TakeDamgae(Vector3 dirAttack, float damage, AttackType attackType)
     {
         if (!destroyed)
         {
             if (!stunning)
             {
+                CancelInvoke("StartReduceStun");
+                if(reduceStunCoroutine != null) {
+                    StopCoroutine(reduceStunCoroutine);
+                }
                 stunLevel += damage;
+                Invoke("StartReduceStun", 2);
                 if (stunLevel >= maxStun)
                 {
                     Dizzy();
@@ -64,6 +74,18 @@ public class BossDamageable : MonoBehaviour, IDamageable
 
 
         OnTakeDamage?.Invoke(health);
+    }
+
+    private void StartReduceStun() {
+        reduceStunCoroutine = StartCoroutine(ReduceStun());
+    }
+
+    private IEnumerator ReduceStun() {
+        while(stunLevel > 0) {
+            stunLevel -= 0.1f;
+            stunLevel = stunLevel < 0 ? 0: stunLevel; 
+            yield return new WaitForSeconds(0.1f);
+        }
     }
 
     private void Dizzy()

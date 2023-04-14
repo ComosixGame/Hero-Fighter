@@ -1,8 +1,13 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Sounds/Epic Adventure Orchestral Background Music/Resources/epic_battle/battle1.meta
 guid: 4cfc8c9a0d42f6447b7cad4755697d2e
 folderAsset: yes
+========
+guid: 6149b716e09fa8a49b1c0da3907634db
+timeCreated: 1524015038
+licenseType: Store
+>>>>>>>> 250325bcc6a4c2f7a5730dd50afc95c359679485:Assets/Unity Assets/PolygonSciFiCity/Scenes/Demo_TriplanarDirt.unity.meta
 DefaultImporter:
-  externalObjects: {}
   userData: 
   assetBundleName: 
   assetBundleVariant: 

@@ -4857,6 +4857,7 @@ MonoBehaviour:
   equipmentManager: {fileID: 0}
   chapterIndex: 0
   levelIndex: 0
+  windowPopup: {fileID: 0}
 --- !u!1 &613947875
 GameObject:
   m_ObjectHideFlags: 0

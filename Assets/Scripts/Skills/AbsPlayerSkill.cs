@@ -72,14 +72,6 @@ public abstract class AbsPlayerSkill : MonoBehaviour
         }
     }
 
-    public void UpgradeLevelSkill(int level)
-    {
-        if(currentLevel <= 5)
-        {
-            currentLevel=level;  
-        }
-    }
-
     public bool Cast(skillHolder skillHolder)
     {
         Action(skillHolder);

@@ -12,6 +12,7 @@ public class SkillDetailCard : MonoBehaviour
     [SerializeField] private TextMeshProUGUI skillLevel;
     [SerializeField] private TextMeshProUGUI price;
     [SerializeField] private Button updrageBtn;
+    private PlayerData playerData;
 
     private PlayerCharacter playerCharacter;
 
@@ -42,10 +43,19 @@ public class SkillDetailCard : MonoBehaviour
 
     private void ClickButton()
     {
+        playerData = PlayerData.Load();
+        int index = playerData.characters.FindIndex(x => x.keyID == playerCharacter.keyID);
         if (gameManager.BuySkill(playerCharacter, id))
         {
             SetDataLevel(id);
         }
+
+        if (playerData.characters[index].levelSkills[id] >= 4)
+        {
+            this.skillLevel.text = "Max Skill";
+            updrageBtn.interactable = false;
+        }
+
     }
 
     public void SetDataCard(PlayerCharacter playerCharacter, int skillStateId, string skillLevel)
@@ -54,13 +64,13 @@ public class SkillDetailCard : MonoBehaviour
         this.thumnail.sprite = playerCharacter.skillStates[skillStateId].sprite;
         this.titleSkill.text = playerCharacter.skillStates[skillStateId].nameSkill;
         this.skillLevel.text = skillLevel;
-        this.price.text = playerCharacter.skillStates[skillStateId].price+"";
+        this.price.text = playerCharacter.skillStates[skillStateId].price + "";
     }
 
     private void SetDataLevel(int index)
     {
         PlayerData playerData = PlayerData.Load();
-        int id =  playerData.characters.FindIndex(x => x.keyID == playerCharacter.keyID);
-        this.skillLevel.text = "Level Skill: " + playerData.characters[id].levelSkills[index];  
+        int id = playerData.characters.FindIndex(x => x.keyID == playerCharacter.keyID);
+        this.skillLevel.text = "Level Skill: " + playerData.characters[id].levelSkills[index];
     }
 }

@@ -4,6 +4,7 @@ public class FlameThrower : AbsPlayerSkill
 {
     [SerializeField] private Vector3 flamePosition;
     [SerializeField] private EffectObjectPool flameObject;
+    [SerializeField] private SkillState skillState;
     private ParticleSystem generatedFlameObject;
     private ObjectPoolerManager objectPooler;
 
@@ -11,6 +12,7 @@ public class FlameThrower : AbsPlayerSkill
     {
         base.Awake();
         objectPooler = ObjectPoolerManager.Instance;
+        currentLevel = skillState.level;
     }
 
     // Start is called before the first frame update
@@ -18,12 +20,6 @@ public class FlameThrower : AbsPlayerSkill
     {
         energy = skillLevels[currentLevel].energy;
         maxCoolDownTime = skillLevels[currentLevel].maxCoolDownTime;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void CastFlameThrower()

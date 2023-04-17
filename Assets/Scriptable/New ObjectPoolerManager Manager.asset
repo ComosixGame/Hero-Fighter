@@ -85,3 +85,31 @@ MonoBehaviour:
     size: 10
     GameObjectPool: {fileID: -7693793984158827952, guid: 40ce5000199d910489886a884159b416,
       type: 3}
+  - name: Explosion Energy
+    size: 10
+    GameObjectPool: {fileID: 8169326039529051692, guid: f3ce71a262662da40acd255a12a6adfa,
+      type: 3}
+  - name: Explosion Force
+    size: 10
+    GameObjectPool: {fileID: 6208770777685358958, guid: b8b77c9f612b4c64e8da391b0d8fded7,
+      type: 3}
+  - name: FlameThrower
+    size: 10
+    GameObjectPool: {fileID: 7231578038427852017, guid: fa264294b8fe3d64eba0df4502065604,
+      type: 3}
+  - name: Missile Rocket
+    size: 50
+    GameObjectPool: {fileID: 8094371061200057340, guid: 3de3f2757da0f2d4e95016e6527ef6c4,
+      type: 3}
+  - name: Missile Explosion Rocket
+    size: 50
+    GameObjectPool: {fileID: 8425411093853235473, guid: 510ed98b0978fdd4a80f21ef5587d129,
+      type: 3}
+  - name: Missile Smoke
+    size: 50
+    GameObjectPool: {fileID: -3010659556601128215, guid: abaa45c961f4b414eb62b7fa0fd5efa7,
+      type: 3}
+  - name: Grenade
+    size: 50
+    GameObjectPool: {fileID: 8512415354843900337, guid: 648631ec082d88c4b8407d1168a6d26e,
+      type: 3}

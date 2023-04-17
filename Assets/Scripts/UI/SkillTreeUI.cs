@@ -73,7 +73,7 @@ public class SkillTreeUI : MonoBehaviour
             skillDetailCardInit.id = i;
             int index =  playerData.characters.FindIndex(x => x.keyID == charaterId);
             string skillLevel = "Level Skill: " + playerData.characters[index].levelSkills[i];
-            skillDetailCardInit.SetDataCard(playerCharacter, i, skillLevel);
+            skillDetailCardInit.SetDataCard(playerCharacter, i, skillLevel, equipmentManager.Characters[index].skillStates[i]);
             skillDetailCardInit.transform.SetParent(contentSkill.transform, false);
             children.Add(skillDetailCardInit.gameObject);
         }

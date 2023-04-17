@@ -5,9 +5,8 @@ public class Laser : EffectObjectPool
 {
     [SerializeField] private LayerMask layerTarget;
     [SerializeField] private AttackType attackType;
-    [SerializeField] private float damage;
+    public float damage;
     private bool explored;
-
 
     private void OnParticleCollision(GameObject other)
     {

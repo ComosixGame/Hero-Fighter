@@ -1,8 +1,6 @@
 using TMPro;
 using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
-using UnityEngine.Events;
 
 public class SkillDetailCard : MonoBehaviour
 {
@@ -12,9 +10,9 @@ public class SkillDetailCard : MonoBehaviour
     [SerializeField] private TextMeshProUGUI skillLevel;
     [SerializeField] private TextMeshProUGUI price;
     [SerializeField] private Button updrageBtn;
-
     private PlayerCharacter playerCharacter;
-
+    private PlayerData playerData;
+    private SkillState skillState;
     private GameManager gameManager;
     private SoundManager soundManager;
     public AudioClip soundBtn;
@@ -48,25 +46,35 @@ public class SkillDetailCard : MonoBehaviour
 
     private void ClickButton()
     {
+        playerData = PlayerData.Load();
+        int index = playerData.characters.FindIndex(x => x.keyID == playerCharacter.keyID);
         if (gameManager.BuySkill(playerCharacter, id))
         {
             SetDataLevel(id);
         }
+
+        if (skillState.level >= 5)
+        {
+            this.skillLevel.text = "Max Level";
+            updrageBtn.gameObject.SetActive(false);
+        }
+
     }
 
-    public void SetDataCard(PlayerCharacter playerCharacter, int skillStateId, string skillLevel)
+    public void SetDataCard(PlayerCharacter playerCharacter, int skillStateId, string skillLevel, SkillState skill)
     {
         this.playerCharacter = playerCharacter;
         this.thumnail.sprite = playerCharacter.skillStates[skillStateId].sprite;
         this.titleSkill.text = playerCharacter.skillStates[skillStateId].nameSkill;
         this.skillLevel.text = skillLevel;
-        this.price.text = playerCharacter.skillStates[skillStateId].price+"";
+        this.price.text = playerCharacter.skillStates[skillStateId].price + "";
+        this.skillState = skill;
     }
 
     private void SetDataLevel(int index)
     {
         PlayerData playerData = PlayerData.Load();
-        int id =  playerData.characters.FindIndex(x => x.keyID == playerCharacter.keyID);
-        this.skillLevel.text = "Level Skill: " + playerData.characters[id].levelSkills[index];  
+        int id = playerData.characters.FindIndex(x => x.keyID == playerCharacter.keyID);
+        this.skillLevel.text = "Level Skill: " + skillState.level;
     }
 }

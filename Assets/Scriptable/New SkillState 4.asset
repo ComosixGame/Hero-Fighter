@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28f9c013322679b4fb80afe64927ff27, type: 3}
   m_Name: New SkillState 4
   m_EditorClassIdentifier: 
-  nameSkill: Blacksmith
+  nameSkill: Laser Beam
+  price: 3000
+  sprite: {fileID: 21300000, guid: 3e25c2c33ef2144eda39933daeb77c67, type: 3}
   level: 1
-  price: 100
-  sprite: {fileID: 21300000, guid: 90b242ee2c8c44b42812f499ef893862, type: 3}

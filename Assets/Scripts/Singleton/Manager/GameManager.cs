@@ -30,7 +30,6 @@ public class GameManager : Singleton<GameManager>
     public event Action<string> OnSelectHeroSkill;
     public event Action OnBuyHero;
 
-
     [ReadOnly] public int chapterIndex;
     [ReadOnly] public int levelIndex;
     private PlayerData playerData;
@@ -164,7 +163,7 @@ public class GameManager : Singleton<GameManager>
         levelIndex = id;
     }
 
- 
+
 
     public void DestroyGameObjectPooler()
     {
@@ -184,6 +183,7 @@ public class GameManager : Singleton<GameManager>
             playerData.money -= character.price;
             playerData.characters.Add(new PlayerData.Character(character.keyID));
             playerData.Save();
+
             return true;
         }
         else
@@ -195,12 +195,15 @@ public class GameManager : Singleton<GameManager>
 
     public bool selectedHero(PlayerCharacter character)
     {
-        if(CheckCharacterOwed(character)) {
+        if (CheckCharacterOwed(character))
+        {
             playerData.selectedCharacter = character.keyID;
             playerData.Save();
             OnSelectCharacter?.Invoke(character.keyID);
             return true;
-        } else {
+        }
+        else
+        {
             return false;
         }
     }
@@ -208,17 +211,6 @@ public class GameManager : Singleton<GameManager>
     public void selectHeroSkillUpgrade(PlayerCharacter character)
     {
         OnSelectHeroSkill?.Invoke(character.keyID);
-    }
-
-    public bool choiceHeroUpgradeSkill(string characterid, string keyID)
-    {
-        if (characterid != keyID)
-        {
-            return true;
-        }else
-        {
-            return false;
-        }
     }
 
     public bool CheckCharacterOwed(PlayerCharacter character)
@@ -232,10 +224,13 @@ public class GameManager : Singleton<GameManager>
     {
         if (playerData.money >= character.skillStates[skillId].price)
         {
-            playerData.money -= character.skillStates[skillId].price;
-            int index =  playerData.characters.FindIndex(x => x.keyID == character.keyID);
-            playerData.characters[index].levelSkills[skillId] +=1;
-            playerData.Save();
+            int index = playerData.characters.FindIndex(x => x.keyID == character.keyID);
+            if (equipmentManager.Characters[index].skillStates[skillId].level < 5)
+            {
+                playerData.money -= character.skillStates[skillId].price;
+                equipmentManager.Characters[index].skillStates[skillId].level += 1;
+                playerData.Save();
+            }
             return true;
         }
         else

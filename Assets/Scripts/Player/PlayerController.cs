@@ -27,11 +27,11 @@ public class PlayerController : MonoBehaviour
     private bool disable;
     private Vector3 motionMove;
     private Coroutine attackWaitCoroutine;
-    private AbsSkill[] skills;
-    [SerializeField, ReadOnly] private AbsSkill skill1;
-    [SerializeField, ReadOnly] private AbsSkill skill2;
-    [SerializeField, ReadOnly] private AbsSkill skill3;
-    [SerializeField, ReadOnly] private AbsSkill skill4;
+    private AbsPlayerSkill[] skills;
+    [SerializeField] private AbsPlayerSkill skill1;
+    [SerializeField] private AbsPlayerSkill skill2;
+    [SerializeField] private AbsPlayerSkill skill3;
+    [SerializeField] private AbsPlayerSkill skill4;
     [SerializeField, ReadOnly] private AbsSpecialSkill specialskill;
     [SerializeField] private PlayerHurtBox[] playerHurtBoxes;
     private GameManager gameManager;
@@ -163,16 +163,28 @@ public class PlayerController : MonoBehaviour
         switch (ctx.control.displayName)
         {
             case "1":
-                skill1?.Cast();
+            if ((SkillSystem.currentEnergy >= skill1.energy) && (skill1.cooldownTimer <= 0))
+            {
+                skill1?.Cast(skillHolder.skill1);
+            }
                 break;
             case "2":
-                skill2?.Cast();
+            if ((SkillSystem.currentEnergy >= skill2.energy) && (skill2.cooldownTimer <= 0))
+            {
+                skill2?.Cast(skillHolder.skill2);
+            }   
                 break;
             case "3":
-                skill3?.Cast();
+            if((SkillSystem.currentEnergy >= skill3.energy) && (skill3.cooldownTimer <= 0))
+            {
+                skill3?.Cast(skillHolder.skill3);
+            }
                 break;
             case "4":
-                skill4?.Cast();
+            if((SkillSystem.currentEnergy >= skill4.energy) && (skill4.cooldownTimer <= 0))
+            {
+                skill4?.Cast(skillHolder.skill4);
+            }
                 break;
             default:
                 throw new InvalidOperationException("key invalid");
@@ -200,7 +212,7 @@ public class PlayerController : MonoBehaviour
         animator.ResetTrigger(attackHash);
     }
 
-    public void AddSkill(AbsSkill[] skillsAvailable, AbsSpecialSkill specialSkillAvailable)
+    public void AddSkill(AbsPlayerSkill[] skillsAvailable, AbsSpecialSkill specialSkillAvailable)
     {
         specialskill = specialSkillAvailable;
         skills = skillsAvailable;
@@ -210,7 +222,7 @@ public class PlayerController : MonoBehaviour
             throw new InvalidOperationException("skills Length more than 4");
         }
 
-        foreach (AbsSkill skill in skills)
+        foreach (AbsPlayerSkill skill in skills)
         {
             switch (skill.skillHolder)
             {

@@ -489,7 +489,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.31132078, g: 0.31132078, b: 0.31132078, a: 1}
   m_Intensity: 2
   m_Range: 10
   m_SpotAngle: 30
@@ -685,7 +685,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.04, y: 1.12, z: 1.2}
+  m_Size: {x: 2.04, y: 1.12, z: 1.5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &466506650
 MonoBehaviour:
@@ -915,6 +915,72 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 19.469, y: 0, z: 0}
+--- !u!1 &823927290
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 823927291}
+  - component: {fileID: 823927293}
+  - component: {fileID: 823927292}
+  m_Layer: 10
+  m_Name: HurtBoxExplosion
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &823927291
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 823927290}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1069777016}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &823927292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 823927290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33dd088018be73d4291ef45d927c7acb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  attackType: 1
+  damage: 0
+  bonusEnergy: 0
+  hitEffect: {fileID: 9046699384457569311, guid: 00e2210b13fc873458ba8b2017fba62e,
+    type: 3}
+--- !u!65 &823927293
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 823927290}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5, y: 2, z: 4}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -963,6 +1029,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &859893169
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 859893170}
+  m_Layer: 6
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &859893170
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 859893169}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.7, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1069777016}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &880661146
 GameObject:
@@ -1194,7 +1291,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 62eb68da0d82b144096aec45e985b083,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 62eb68da0d82b144096aec45e985b083,
         type: 3}
@@ -1351,38 +1448,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  skill1: {fileID: 0}
-  skill2: {fileID: 0}
-  skill3: {fileID: 0}
-  skill4: {fileID: 0}
+  skill1: {fileID: 1069777027}
+  skill2: {fileID: 1069777024}
+  skill3: {fileID: 1069777025}
+  skill4: {fileID: 1069777020}
   specialskill: {fileID: 0}
   playerHurtBoxes:
   - {fileID: 466506650}
   - {fileID: 1594190987}
+  - {fileID: 823927292}
   isStart: 0
---- !u!114 &1069777011
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1069777005}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d7226f5a6f908a459e869f624dca347, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skillName: 
-  skillDescription: 
-  MaxEnergy: 5
-  energy: 0
-  animationClip: {fileID: -203655887218126122, guid: 2a8db53bcdc72e74880141267c984abf,
-    type: 3}
-  firePosition: {x: 0, y: 1.45, z: 1}
-  fireBallObject: {fileID: -3004082893452583331, guid: 4613332ca99c1f64fb83d4c462534964,
-    type: 3}
-  damage: 50
-  speed: 10
 --- !u!114 &1069777014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1396,6 +1471,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  health: 0
   knockDownVFX: {fileID: 5854742832336096459, guid: 8a7c5d19d8a94cb41bccf41896137933,
     type: 3}
 --- !u!4 &1069777016 stripped
@@ -1404,27 +1480,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1069777004}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1069777017
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1069777005}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4874185986ed6b64cbdec2eebdf3aa64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skillName: 
-  skillDescription: 
-  MaxEnergy: 0
-  energy: 0
-  animationClip: {fileID: 7400000, guid: d8b0cd58b52969749bfb0215754c73e9, type: 3}
-  laserPosition: {x: 0, y: 1.55, z: 0.3}
-  laserObject: {fileID: 6197080751168193181, guid: a81c073a5caaaf440b481ed76fbc4eef,
-    type: 3}
-  damage: 0
 --- !u!114 &1069777018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1437,10 +1492,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 528ab0aa28c948941846ba9df4091e97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  specialSkillAvailable: {fileID: 0}
-  skillsAvailable: []
-  skillTypes: 
-  specialSkillType: 1
+  equipmentManager: {fileID: 11400000, guid: 95e4de297bdbf0946830ebbf0a141d8e, type: 2}
 --- !u!65 &1069777019
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1454,6 +1506,165 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.85, z: 1}
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &1069777020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1069777005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 397d07ac4d65c834f947eb5a0e46d6cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillName: Laser Cannon
+  skillHolder: 3
+  maxCoolDownTime: 0
+  skillLevels:
+  - energy: 0
+    maxCoolDownTime: 10
+    damage: 1
+  - energy: 0
+    maxCoolDownTime: 30
+    damage: 0
+  - energy: 0
+    maxCoolDownTime: 0
+    damage: 0
+  - energy: 0
+    maxCoolDownTime: 0
+    damage: 0
+  - energy: 0
+    maxCoolDownTime: 0
+    damage: 0
+  - energy: 0
+    maxCoolDownTime: 0
+    damage: 0
+  energy: 0
+  cooldownTimer: 0
+  laserPosition: {x: 0, y: 1.55, z: 0.3}
+  laserObject: {fileID: 6197080751168193181, guid: a81c073a5caaaf440b481ed76fbc4eef,
+    type: 3}
+  skillState: {fileID: 11400000, guid: ac0c9e15d56cc4442b417212a997e9cd, type: 2}
+--- !u!114 &1069777024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1069777005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f25a7ab3446b2c44184131233965753d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillName: Explosion Energy
+  skillHolder: 1
+  maxCoolDownTime: 0
+  skillLevels:
+  - energy: 0
+    maxCoolDownTime: 0
+    damage: 0
+  - energy: 0
+    maxCoolDownTime: 0
+    damage: 0
+  - energy: 0
+    maxCoolDownTime: 0
+    damage: 0
+  - energy: 0
+    maxCoolDownTime: 0
+    damage: 0
+  - energy: 0
+    maxCoolDownTime: 0
+    damage: 0
+  - energy: 0
+    maxCoolDownTime: 0
+    damage: 0
+  energy: 0
+  cooldownTimer: 0
+  explosionPosition: {x: 0, y: 1.5, z: 0}
+  explosionForceObject: {fileID: 6208770777685358958, guid: b8b77c9f612b4c64e8da391b0d8fded7,
+    type: 3}
+  explosionObject: {fileID: 8169326039529051692, guid: f3ce71a262662da40acd255a12a6adfa,
+    type: 3}
+  skillState: {fileID: 11400000, guid: 8db8153db7190fc418faedb21491381b, type: 2}
+--- !u!114 &1069777025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1069777005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbbd672c7a747204eb24f2d9896462a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillName: Flame Thrower
+  skillHolder: 2
+  maxCoolDownTime: 0
+  skillLevels:
+  - energy: 0
+    maxCoolDownTime: 0
+    damage: 0
+  - energy: 0
+    maxCoolDownTime: 0
+    damage: 0
+  - energy: 0
+    maxCoolDownTime: 0
+    damage: 0
+  - energy: 0
+    maxCoolDownTime: 0
+    damage: 0
+  - energy: 0
+    maxCoolDownTime: 0
+    damage: 0
+  - energy: 0
+    maxCoolDownTime: 0
+    damage: 0
+  energy: 0
+  cooldownTimer: 0
+  flamePosition: {x: -0.03, y: 1.8, z: 1}
+  flameObject: {fileID: 7231578038427852017, guid: fa264294b8fe3d64eba0df4502065604,
+    type: 3}
+  skillState: {fileID: 11400000, guid: d290394b229409f4f9ed6a54f0ec014b, type: 2}
+--- !u!114 &1069777027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1069777005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d540c7b8043237b4dac3a26114f350ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillName: Grenade
+  skillHolder: 0
+  maxCoolDownTime: 0
+  skillLevels:
+  - energy: 0
+    maxCoolDownTime: 0
+    damage: 0
+  - energy: 0
+    maxCoolDownTime: 0
+    damage: 0
+  - energy: 0
+    maxCoolDownTime: 0
+    damage: 0
+  - energy: 0
+    maxCoolDownTime: 0
+    damage: 0
+  - energy: 0
+    maxCoolDownTime: 0
+    damage: 0
+  energy: 0
+  cooldownTimer: 0
+  grenadePosition: {x: 0, y: 1.7, z: 1}
+  grenadeObjectPool: {fileID: 8512415354843900337, guid: 648631ec082d88c4b8407d1168a6d26e,
+    type: 3}
+  skillState: {fileID: 11400000, guid: 022a732feea80024ba1374b992035433, type: 2}
 --- !u!1 &1235871963
 GameObject:
   m_ObjectHideFlags: 0
@@ -1589,10 +1800,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 528ab0aa28c948941846ba9df4091e97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  specialSkillAvailable: {fileID: 0}
-  skillsAvailable: []
-  skillTypes: 
-  specialSkillType: 1
+  equipmentManager: {fileID: 0}
 --- !u!114 &1364752924
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1606,6 +1814,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  health: 0
   knockDownVFX: {fileID: 5854742832336096459, guid: 8a7c5d19d8a94cb41bccf41896137933,
     type: 3}
 --- !u!114 &1364752925
@@ -1705,7 +1914,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.04, y: 1.12, z: 1.2}
+  m_Size: {x: 2.04, y: 1.12, z: 1.5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1594190987
 MonoBehaviour:
@@ -1964,7 +2173,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 27cd8465eda3e9140a9b71419255e1b1,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 27cd8465eda3e9140a9b71419255e1b1,
         type: 3}
@@ -2090,6 +2299,7 @@ MonoBehaviour:
   equipmentManager: {fileID: 0}
   chapterIndex: 0
   levelIndex: 0
+  windowPopup: {fileID: 0}
 --- !u!4 &2137343309
 Transform:
   m_ObjectHideFlags: 0
@@ -3853,16 +4063,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coolDownTime: 0
-  damage: 0
-  speedBullet: 0
-  layerTarget:
+  OnAction:
+    m_PersistentCalls:
+      m_Calls: []
+  OnStartAttack:
+    m_PersistentCalls:
+      m_Calls: []
+  OnEndAttack:
+    m_PersistentCalls:
+      m_Calls: []
+  offsetCenter: {x: 0, y: 0, z: 0}
+  closeRange: 0
+  playerLayer:
     serializedVersion: 2
-    m_Bits: 64
-  centerMeleeRange: {x: 0, y: 0, z: 0}
-  meleeRange: 0
-  bullet: {fileID: 0}
-  shotPos: {fileID: 880661147}
-  hurtBoxes: []
+    m_Bits: 0
+  hurtBox: {fileID: 0}
+  gun: {fileID: 0}
 --- !u!114 &95937467988272714
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3882,6 +4098,7 @@ MonoBehaviour:
   centerAttackRange: {x: 0, y: 1, z: 0}
   maxSpeed: 3
   walkSpeed: 1
+  lockRotation: 1
 --- !u!114 &100288966783701540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6205,7 +6422,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1376734880936320577
 GameObject:
   m_ObjectHideFlags: 0
@@ -6791,6 +7008,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_Sword_01
       objectReference: {fileID: 0}
+    - target: {fileID: 1171731433241525198, guid: e38bdca78999e554ab943fd4ce04306a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1177198497902424102, guid: e38bdca78999e554ab943fd4ce04306a,
         type: 3}
       propertyPath: m_RootOrder
@@ -7104,6 +7326,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Enemy_Sword_02
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399074286960320196, guid: 190b7d0bcae2bb0489d1858336996515,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 190b7d0bcae2bb0489d1858336996515, type: 3}
@@ -7664,7 +7891,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &3125989174389847176
 GameObject:
   m_ObjectHideFlags: 0
@@ -13052,6 +13279,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_Sword_03
       objectReference: {fileID: 0}
+    - target: {fileID: 7669818210105850556, guid: 133e6b66263892a4998f7572ff592123,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 133e6b66263892a4998f7572ff592123, type: 3}
 --- !u!4 &6166445761784155047
@@ -13306,17 +13538,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coolDownTime: 0
-  damage: 10
-  speedBullet: 10
-  layerTarget:
+  OnAction:
+    m_PersistentCalls:
+      m_Calls: []
+  OnStartAttack:
+    m_PersistentCalls:
+      m_Calls: []
+  OnEndAttack:
+    m_PersistentCalls:
+      m_Calls: []
+  offsetCenter: {x: 0, y: 0, z: 0}
+  closeRange: 0
+  playerLayer:
     serializedVersion: 2
-    m_Bits: 64
-  centerMeleeRange: {x: 0, y: 1.3, z: 0}
-  meleeRange: 1.3
-  bullet: {fileID: -3004082893452583331, guid: 735f00c7848260b41bfb70132b93e223, type: 3}
-  shotPos: {fileID: 6470155338579794361}
-  hurtBoxes:
-  - {fileID: 406088105539116346}
+    m_Bits: 0
+  hurtBox: {fileID: 0}
+  gun: {fileID: 0}
 --- !u!136 &6470155340086731093
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -13350,6 +13587,7 @@ MonoBehaviour:
   centerAttackRange: {x: 0, y: 1.3, z: 0}
   maxSpeed: 4
   walkSpeed: 1
+  lockRotation: 1
 --- !u!195 &6470155340086731098
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -13743,6 +13981,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Enemy_Basic_02
+      objectReference: {fileID: 0}
+    - target: {fileID: 1165911524298237487, guid: e0063af90519e3e4396084135e6a4162,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1169891396189989815, guid: e0063af90519e3e4396084135e6a4162,
         type: 3}
@@ -15555,8 +15798,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coolDownTime: 0
-  hurtBoxes: []
-  timeStepBack: 0
   OnAction:
     m_PersistentCalls:
       m_Calls: []
@@ -15566,6 +15807,8 @@ MonoBehaviour:
   OnEndAttack:
     m_PersistentCalls:
       m_Calls: []
+  hurtBoxes: []
+  timeStepBack: 0
 --- !u!114 &7919919428302450339
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15585,6 +15828,7 @@ MonoBehaviour:
   centerAttackRange: {x: 0, y: 0, z: 0}
   maxSpeed: 0
   walkSpeed: 0
+  lockRotation: 1
 --- !u!4 &7919933077344056668
 Transform:
   m_ObjectHideFlags: 0
@@ -16472,6 +16716,7 @@ MonoBehaviour:
   centerAttackRange: {x: 0, y: 1.3, z: 0}
   maxSpeed: 4
   walkSpeed: 1
+  lockRotation: 1
 --- !u!195 &8522840542555607178
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -16523,9 +16768,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coolDownTime: 0
-  hurtBoxes:
-  - {fileID: 8522840543469350670}
-  timeStepBack: 0
   OnAction:
     m_PersistentCalls:
       m_Calls: []
@@ -16535,6 +16777,9 @@ MonoBehaviour:
   OnEndAttack:
     m_PersistentCalls:
       m_Calls: []
+  hurtBoxes:
+  - {fileID: 8522840543469350670}
+  timeStepBack: 0
 --- !u!114 &8522840542555607219
 MonoBehaviour:
   m_ObjectHideFlags: 0

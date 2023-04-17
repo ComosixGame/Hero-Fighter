@@ -113,3 +113,15 @@ MonoBehaviour:
     size: 50
     GameObjectPool: {fileID: 8512415354843900337, guid: 648631ec082d88c4b8407d1168a6d26e,
       type: 3}
+  - name: Shard Rock
+    size: 50
+    GameObjectPool: {fileID: 543559913779944548, guid: ecb98f323b634314696dd390c2f4034d,
+      type: 3}
+  - name: Shard Mountain
+    size: 50
+    GameObjectPool: {fileID: -7972350417780390436, guid: e837a6aaca8fb98428ecbd9265e70823,
+      type: 3}
+  - name: Around Attack
+    size: 50
+    GameObjectPool: {fileID: 74189023271161525, guid: 5a41479194c77ef4196144fcabcdf914,
+      type: 3}

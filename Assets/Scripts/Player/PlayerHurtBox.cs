@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 
+[RequireComponent(typeof(Collider))]
 public class PlayerHurtBox : MonoBehaviour
 {
     [SerializeField] private LayerMask targetLayer;
@@ -15,7 +16,8 @@ public class PlayerHurtBox : MonoBehaviour
     public AudioClip hit;
 
 
-    private void Awake() {
+    private void Awake()
+    {
         objectPooler = ObjectPoolerManager.Instance;
         soundManager = SoundManager.Instance;
     }
@@ -40,9 +42,16 @@ public class PlayerHurtBox : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = new Color32(255, 0, 0, 80);
-        BoxCollider box = GetComponent<BoxCollider>();
-        Gizmos.matrix = transform.localToWorldMatrix;
-        Gizmos.DrawCube(box.center, box.size);
+        Collider collider = GetComponent<Collider>();
+        Type colliderType = collider.GetType();
+        if (colliderType == typeof(BoxCollider)) {
+            BoxCollider box = collider as BoxCollider;
+            Gizmos.matrix = transform.localToWorldMatrix;
+            Gizmos.DrawCube(box.center, box.size);
+        } else if(colliderType == typeof(SphereCollider)) {
+            SphereCollider sphere = collider as SphereCollider;
+            Gizmos.DrawSphere(transform.TransformPoint(sphere.center), sphere.radius);
+        }
     }
 #endif
 }

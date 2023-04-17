@@ -109,3 +109,7 @@ MonoBehaviour:
     size: 50
     GameObjectPool: {fileID: -3010659556601128215, guid: abaa45c961f4b414eb62b7fa0fd5efa7,
       type: 3}
+  - name: Grenade
+    size: 50
+    GameObjectPool: {fileID: 8512415354843900337, guid: 648631ec082d88c4b8407d1168a6d26e,
+      type: 3}

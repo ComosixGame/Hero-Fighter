@@ -5,6 +5,7 @@ public class ExplosionEnergy : AbsPlayerSkill
     [SerializeField] private Vector3 explosionPosition;
     [SerializeField] private EffectObjectPool explosionForceObject;
     [SerializeField] private EffectObjectPool explosionObject;
+    [SerializeField] private SkillState skillState;
     private ParticleSystem generatedExplosionObject;
     private ObjectPoolerManager objectPooler;
 
@@ -13,6 +14,7 @@ public class ExplosionEnergy : AbsPlayerSkill
     {
         base.Awake();
         objectPooler = ObjectPoolerManager.Instance;
+        currentLevel = skillState.level;
     }
 
     // Start is called before the first frame update
@@ -20,7 +22,6 @@ public class ExplosionEnergy : AbsPlayerSkill
     {
         energy = skillLevels[currentLevel].energy;
         maxCoolDownTime = skillLevels[currentLevel].maxCoolDownTime;
-        // laserObject.GetComponent<Laser>().damage = skillLevels[currentLevel].damage;
     }
 
     // Update is called once per frame

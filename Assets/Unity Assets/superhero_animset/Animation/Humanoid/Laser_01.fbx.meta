@@ -456,10 +456,10 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.39617413
-        functionName: CastMissile
+      - time: 0.39894456
+        functionName: CastGrenade
         data: 
-        objectReferenceParameter: {fileID: 11500000, guid: b198ea64fb539ad4cab726b21fc2b07c,
+        objectReferenceParameter: {fileID: 11500000, guid: d540c7b8043237b4dac3a26114f350ee,
           type: 3}
         floatParameter: 0
         intParameter: 0

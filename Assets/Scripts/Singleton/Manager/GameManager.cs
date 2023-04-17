@@ -226,7 +226,6 @@ public class GameManager : Singleton<GameManager>
             if (equipmentManager.Characters[index].skillStates[skillId].level < 5)
             {
                 playerData.money -= character.skillStates[skillId].price;
-                playerData.characters[index].levelSkills[skillId] += 1;
                 equipmentManager.Characters[index].skillStates[skillId].level += 1;
                 playerData.Save();
             }

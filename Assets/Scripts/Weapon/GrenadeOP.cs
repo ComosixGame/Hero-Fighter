@@ -1,26 +1,19 @@
 using UnityEngine;
 
-public class Missile : GameObjectPool
+public class GrenadeOP : GameObjectPool
 {
     [SerializeField] private LayerMask layerTarget;
     [SerializeField] private AttackType attackType;
     [SerializeField] private EffectObjectPool hitEffect;
-    [SerializeField] private EffectObjectPool smokeEffect;
-    [SerializeField] private Vector3 smokePosition;
-    private ParticleSystem generatedMissileSmoke;
-
     public float damage;
     private ObjectPoolerManager objectPoolerManager;
 
     //Missile
-    [Header("REFERENCES")]
     [SerializeField] private Rigidbody rb;
     [SerializeField] private Transform target;
 
     [SerializeField] private float speed = 2;
     [SerializeField] private float rotateSpeed = 100;
-
-    private bool flag;
 
 
     private void Awake()
@@ -30,18 +23,11 @@ public class Missile : GameObjectPool
 
     private void OnEnable()
     {
-
-        target = FindObjectOfType<EnemyBehaviour>().transform;
-        flag = true;
+        // target = FindObjectOfType<EnemyBehaviour>().transform;
     }
 
-    private void SpawnParticle()
-    {
-        flag = false;
-        generatedMissileSmoke = objectPoolerManager.SpawnObject(smokeEffect, transform.TransformPoint(smokePosition)
-        , transform.rotation).
-        GetComponent<ParticleSystem>();
-        generatedMissileSmoke.Play();
+    private void Start() {
+        target = FindObjectOfType<EnemyBehaviour>().transform;
     }
 
 
@@ -51,11 +37,6 @@ public class Missile : GameObjectPool
         direction.Normalize();
         rb.angularVelocity = -Vector3.Cross(direction, transform.forward) * rotateSpeed;
         rb.velocity = transform.forward * speed;
-
-        if (flag)
-        {
-            SpawnParticle();
-        }
     }
 
     private void OnCollisionEnter(Collision other)
@@ -78,6 +59,5 @@ public class Missile : GameObjectPool
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
         objectPoolerManager.DeactiveObject(this);
-        generatedMissileSmoke.Stop();
     }
 }

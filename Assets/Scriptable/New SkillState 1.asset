@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28f9c013322679b4fb80afe64927ff27, type: 3}
   m_Name: New SkillState 1
   m_EditorClassIdentifier: 
-  nameSkill: Missile
+  nameSkill: Grenade
   price: 500
-  sprite: {fileID: 21300000, guid: 3e361a468feb74d638b5e71dd2142ef1, type: 3}
+  sprite: {fileID: 21300000, guid: 77ea13923e1074d0e928e45176023ba0, type: 3}
   level: 1

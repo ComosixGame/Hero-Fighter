@@ -142,7 +142,7 @@ MonoBehaviour:
   rb: {fileID: 8094371061200057343}
   target: {fileID: 0}
   speed: 15
-  rotateSpeed: 95
+  rotateSpeed: 200
 --- !u!114 &8094371061200057314
 MonoBehaviour:
   m_ObjectHideFlags: 0

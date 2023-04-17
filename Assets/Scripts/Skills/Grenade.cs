@@ -1,9 +1,9 @@
 using UnityEngine;
 
-public class FollowMissile : AbsPlayerSkill
+public class Grenade : AbsPlayerSkill
 {
-    [SerializeField] private Vector3 missilePosition;
-    [SerializeField] private GameObjectPool missileObjectPool;
+    [SerializeField] private Vector3 grenadePosition;
+    [SerializeField] private GameObjectPool grenadeObjectPool;
     [SerializeField] private SkillState skillState;
     private ObjectPoolerManager objectPooler;
     private GameObjectPool gameObjectPool;
@@ -20,13 +20,12 @@ public class FollowMissile : AbsPlayerSkill
     {
         energy = skillLevels[currentLevel].energy;
         maxCoolDownTime = skillLevels[currentLevel].maxCoolDownTime;
-        Debug.Log(currentLevel);
     }
 
 
-    public void CastMissile()
+    public void CastGrenade()
     {
-        gameObjectPool = objectPooler.SpawnObject(missileObjectPool, transform.TransformPoint(missilePosition)
-        , missileObjectPool.transform.rotation);
+        gameObjectPool = objectPooler.SpawnObject(grenadeObjectPool, transform.TransformPoint(grenadePosition)
+        , grenadeObjectPool.transform.rotation);
     }
 }

@@ -40,6 +40,12 @@ public class UIMenu : MonoBehaviour
     [SerializeField] private Color color, color1, color2, color3, color4;
     private GameManager gameManager;
 
+    //Audio
+    public AudioClip clickBtn;
+    public AudioClip backgroundSound;
+    public AudioClip winSound;
+    public AudioClip loseSound;
+
     private void Awake() {
         animator = GetComponent<Animator>();
         previousHash = Animator.StringToHash("isPrevious");
@@ -70,6 +76,8 @@ public class UIMenu : MonoBehaviour
         bigSize = 150;
         smallSize = 120;
         timerBigSize = 0.2f;
+        soundManager.SetMusicbackGround(backgroundSound);
+        soundManager.SetPlayMusic(true);
     }
 
     void FixedUpdate()
@@ -191,9 +199,10 @@ public class UIMenu : MonoBehaviour
         if(win) {
             BonusMoney();
             animator.SetTrigger(winGameHash);
+            soundManager.PlaySound(winSound);
         } else {
             animator.SetTrigger(loseGameHash);
-
+            soundManager.PlaySound(loseSound);
         }
     }
 
@@ -234,6 +243,10 @@ public class UIMenu : MonoBehaviour
     public void ReadyFight()
     {
         gameManager.InitUiDone();
+    }
+
+    public void PlaySound(){
+        soundManager.PlaySound(clickBtn);
     }
 
 }

@@ -11,15 +11,21 @@ public class ChapterCard : MonoBehaviour
     [HideInInspector] public GameObject windowSelectLevel;
     private Button button;
     private GameManager gameManager;
+    private SoundManager soundManager;
+    public AudioClip soundBtn;
     private void Awake()
     {
         button = GetComponent<Button>();
         gameManager = GameManager.Instance;
+        soundManager = SoundManager.Instance;
     }
 
     private void OnEnable()
     {
         button.onClick.AddListener(ClickButton);
+    }
+    public void PlaySound(){
+        soundManager.PlaySound(soundBtn);
     }
 
     private void ClickButton()

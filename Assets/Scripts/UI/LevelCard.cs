@@ -12,11 +12,14 @@ public class LevelCard : MonoBehaviour
     private Button button;
     private GameManager gameManager;
     private LoadingScreen loadingScreen;
+    private SoundManager soundManager;
+    public AudioClip soundBtn;
 
     private void Awake()
     {
         button = GetComponent<Button>();
         gameManager = GameManager.Instance;
+        soundManager = SoundManager.Instance;
         loadingScreen = FindObjectOfType<LoadingScreen>();
     }
 
@@ -24,6 +27,10 @@ public class LevelCard : MonoBehaviour
     {
         gameManager.OnSelectChapter += SelectChapter;
         button.onClick.AddListener(ClickButton);
+    }
+
+    public void PlaySound(){
+        soundManager.PlaySound(soundBtn);
     }
 
     private void SelectChapter(int index)

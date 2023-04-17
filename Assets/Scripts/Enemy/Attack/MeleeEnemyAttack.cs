@@ -10,7 +10,6 @@ public class MeleeEnemyAttack : AbsEnemyAttack
     private GameManager gameManager;
     private EnemyBehaviour enemyBehaviour;
     [SerializeField] private float timeStepBack;
-
     private void Awake()
     {
         gameManager = GameManager.Instance;

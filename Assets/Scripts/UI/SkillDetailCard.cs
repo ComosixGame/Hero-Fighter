@@ -14,12 +14,18 @@ public class SkillDetailCard : MonoBehaviour
     private PlayerData playerData;
     private SkillState skillState;
     private GameManager gameManager;
+    private SoundManager soundManager;
+    public AudioClip soundBtn;
 
     private void Awake()
     {
         gameManager = GameManager.Instance;
+        soundManager = SoundManager.Instance;
     }
 
+    public void PlaySound(){
+        soundManager.PlaySound(soundBtn);
+    }
     private void OnEnable()
     {
         updrageBtn.onClick.AddListener(ClickButton);

@@ -13,7 +13,7 @@ public class LevelState : ScriptableObject
     public string nameLevel;
     public LevelType type;
     public List<Wave> waves = new List<Wave>();
-
+    public int bonousCoin;
 
 
     [Serializable]

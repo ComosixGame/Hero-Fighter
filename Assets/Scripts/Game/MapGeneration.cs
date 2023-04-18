@@ -14,6 +14,8 @@ public class MapGeneration : MonoBehaviour
     private List<GameObjectPool> enemyList = new List<GameObjectPool>();
     private bool isStart, isReset;
     private PlayerData playerData;
+    private float process;
+    private float totalEnemy;
     private void Awake()
     {
         gameManager = GameManager.Instance;
@@ -26,9 +28,17 @@ public class MapGeneration : MonoBehaviour
         isReset = false;
         gameManager.OnStartGame += StartGame;
         gameManager.OnNewGame += ResetGame;
-        if(!debug) {
+        if (!debug)
+        {
             levelState = gameManager.levelState;
         }
+        uIMenu.processGame.value = 0;
+        uIMenu.processPrecent.text = "0%";
+        for (int i = 0; i < levelState.waves.Count; i++)
+        {
+            totalEnemy += levelState.waves[i].enemies.Count;
+        }
+        process = 1 / totalEnemy;
     }
 
     private void OnDisable()
@@ -47,6 +57,8 @@ public class MapGeneration : MonoBehaviour
                 {
                     if (enemyList[i].gameObject.GetComponent<EnemyDamageable>().destroyed)
                     {
+                        uIMenu.processGame.value += process;
+                        uIMenu.processPrecent.text = Mathf.Round(uIMenu.processGame.value * 100) + "%";
                         enemyList.RemoveAt(i);
                     }
                 }
@@ -54,7 +66,7 @@ public class MapGeneration : MonoBehaviour
         }
 
 
-        if(isStart)
+        if (isStart)
         {
             if (currentWave < totalWaves - 1)
             {
@@ -63,7 +75,8 @@ public class MapGeneration : MonoBehaviour
                     uIMenu.PreviousAnimation(true);
                     areaColliders[currentWave].isTrigger = true;
                 }
-            } else
+            }
+            else
             {
                 if (enemyList.Count == 0)
                 {
@@ -78,6 +91,7 @@ public class MapGeneration : MonoBehaviour
     private void StartGame()
     {
         totalWaves = levelState.waves.Count;
+        uIMenu.levelState = levelState;
         StartNewWave();
     }
 

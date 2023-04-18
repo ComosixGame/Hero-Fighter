@@ -20,7 +20,7 @@ MonoBehaviour:
     price: 12000
     start: 5
     evaluate: S
-    character: {fileID: 1963772456342324074, guid: e173501746e8b634c8e89f5b465eb8f1,
+    character: {fileID: 2158405830315843366, guid: 4b1f5cdcd9ccf9b42904c7732769853a,
       type: 3}
     skillStates:
     - {fileID: 11400000, guid: 022a732feea80024ba1374b992035433, type: 2}

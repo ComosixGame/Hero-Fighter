@@ -22,12 +22,6 @@ public class AroundAttack : AbsPlayerSkill
         maxCoolDownTime = skillLevels[currentLevel].maxCoolDownTime;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void CastAroundAttack()
     {
         generatedAroundAttackObject = objectPooler.SpawnObject(

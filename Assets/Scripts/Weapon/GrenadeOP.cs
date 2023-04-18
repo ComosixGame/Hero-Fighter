@@ -31,7 +31,7 @@ public class GrenadeOP : GameObjectPool
     }
 
     private void OnDisable() {
-        gameManager.OnInitUiDone -= StartGame;
+        // gameManager.OnInitUiDone -= StartGame;
     }
 
     private void StartGame()
@@ -43,7 +43,7 @@ public class GrenadeOP : GameObjectPool
     {
         if (isStart)
         {
-            target = FindObjectOfType<EnemyBehaviour>().transform;
+           target = objectPoolerManager.GetComponentInChildren<EnemyBehaviour>().transform;
         }
         Vector3 direction = new Vector3(target.transform.position.x, target.transform.position.y + 1, target.transform.position.z) - rb.position;
         direction.Normalize();

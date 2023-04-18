@@ -24,7 +24,7 @@ public abstract class AbsPlayerSkill : MonoBehaviour
     public skillHolder skillHolder;
     
     [SerializeField] protected float maxCoolDownTime;
-    [SerializeField] protected SkillLevel[] skillLevels = new SkillLevel[5];
+    [SerializeField] protected SkillLevel[] skillLevels = new SkillLevel[6];
     public int energy;
     public float cooldownTimer = 0;
     protected SkillSystem skillSystem;

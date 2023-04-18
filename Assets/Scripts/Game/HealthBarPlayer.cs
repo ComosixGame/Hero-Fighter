@@ -4,7 +4,6 @@ using UnityEngine.UI;
 public class HealthBarPlayer : MonoBehaviour
 {
     private Slider slider;
-
     public void CreateHealthBar(float maxHealth)
     {
         slider = GetComponentInChildren<Slider>();

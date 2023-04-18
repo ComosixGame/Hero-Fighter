@@ -10,6 +10,7 @@ public class ShardMountain : EffectObjectPool
 
     private void OnParticleCollision(GameObject other)
     {
+        Debug.Log(123);
         if ((layerTarget & (1 << other.layer)) != 0)
         {
             if (other.TryGetComponent(out IDamageable damageable))

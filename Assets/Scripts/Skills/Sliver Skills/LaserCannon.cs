@@ -19,7 +19,7 @@ public class LaserCannon : AbsPlayerSkill
     private void Start() {
         energy = skillLevels[currentLevel].energy;
         maxCoolDownTime = skillLevels[currentLevel].maxCoolDownTime;
-        laserObject.GetComponent<Laser>().damage = skillLevels[currentLevel].damage;
+        // laserObject.GetComponent<Laser>().damage = skillLevels[currentLevel].damage;
     }
 
 

@@ -9,17 +9,19 @@ public class PlayerHurtBox : MonoBehaviour
     [SerializeField] private float damage;
     [SerializeField] private int bonusEnergy;
     [SerializeField] private EffectObjectPool hitEffect;
-    private ObjectPoolerManager objectPooler;
-    public static event Action<int> OnHit;
 
+    private ObjectPoolerManager objectPooler;
     private SoundManager soundManager;
     public AudioClip hit;
+    public static event Action<int> OnHit;
+    private SkillSystem skillSystem;
 
 
     private void Awake()
     {
         objectPooler = ObjectPoolerManager.Instance;
         soundManager = SoundManager.Instance;
+        skillSystem = GetComponentInParent<SkillSystem>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -34,6 +36,7 @@ public class PlayerHurtBox : MonoBehaviour
                 damageable.TakeDamgae(dirAttack.normalized, damage, attackType);
                 OnHit?.Invoke(bonusEnergy);
                 soundManager.PlaySound(hit);
+                skillSystem.energyBarPlayer.UpdateHealthBarValue(bonusEnergy);
             }
         }
     }

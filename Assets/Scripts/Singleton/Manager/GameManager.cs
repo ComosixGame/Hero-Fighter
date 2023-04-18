@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using Cinemachine;
 using MyCustomAttribute;
+using TMPro;
 
 
 public class GameManager : Singleton<GameManager>
@@ -29,7 +30,7 @@ public class GameManager : Singleton<GameManager>
     public event Action<string> OnSelectCharacter;
     public event Action<string> OnSelectHeroSkill;
     public event Action OnBuyHero;
-
+    public event Action OnNotEnoughEnergy;
     [ReadOnly] public int chapterIndex;
     [ReadOnly] public int levelIndex;
     private PlayerData playerData;
@@ -38,7 +39,8 @@ public class GameManager : Singleton<GameManager>
     private LoadSceneManager loadSceneManager;
     private LoadingScreen loadingScreen;
     [SerializeField] private GameObject windowPopup;
-
+    [SerializeField] private TextMeshProUGUI coin;
+    public int bonousCoin;
 
     public LevelState levelState
     {
@@ -62,11 +64,13 @@ public class GameManager : Singleton<GameManager>
     {
         Application.targetFrameRate = 60;
         loadSceneManager.OnDone += InitGame;
-        chapterIndex = -1;
+        // chapterIndex = -1;
     }
 
     private void OnEnable()
     {
+        // playerData = PlayerData.Load();
+        // coin.text = playerData.money + "";
 #if UNITY_EDITOR
         objectPooler.OnCreatedObjects += () =>
         {
@@ -163,8 +167,6 @@ public class GameManager : Singleton<GameManager>
         levelIndex = id;
     }
 
-
-
     public void DestroyGameObjectPooler()
     {
         objectPooler.ResetObjectPoolerManager();
@@ -239,4 +241,27 @@ public class GameManager : Singleton<GameManager>
             return false;
         }
     }
+
+    public PlayerCharacter DisplayHeroInUi()
+    {
+        playerData = PlayerData.Load();
+        return equipmentManager.GetCharacter(playerData.selectedCharacter);
+    }
+
+    public void BonousCoin(bool isTriple ,int coin)
+    {
+        playerData = PlayerData.Load();
+        if (isTriple)
+        {
+            coin = coin*3;
+        }
+        playerData.money += coin;
+        playerData.Save();
+    }
+
+    public void NotEnoughEnergy()
+    {
+        OnNotEnoughEnergy?.Invoke();
+    }
+    
 }

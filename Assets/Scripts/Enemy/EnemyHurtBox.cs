@@ -8,10 +8,12 @@ public class EnemyHurtBox : MonoBehaviour
     [SerializeField] private AttackType attackType;
     [SerializeField] private EffectObjectPool hitEffect;
     private ObjectPoolerManager objectPooler;
+    private EnemyBehaviour enemyBehaviour;
 
     private void Awake()
     {
         objectPooler = ObjectPoolerManager.Instance;
+        enemyBehaviour = GetComponentInParent<EnemyBehaviour>();
     }
 
     private void OnTriggerEnter(Collider other)

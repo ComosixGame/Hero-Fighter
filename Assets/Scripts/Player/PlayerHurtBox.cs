@@ -6,7 +6,7 @@ public class PlayerHurtBox : MonoBehaviour
 {
     [SerializeField] private LayerMask targetLayer;
     [SerializeField] private AttackType attackType;
-    [SerializeField] private float damage;
+    public float damage;
     [SerializeField] private int bonusEnergy;
     [SerializeField] private EffectObjectPool hitEffect;
 
@@ -36,7 +36,7 @@ public class PlayerHurtBox : MonoBehaviour
                 damageable.TakeDamgae(dirAttack.normalized, damage, attackType);
                 OnHit?.Invoke(bonusEnergy);
                 soundManager.PlaySound(hit);
-                skillSystem.energyBarPlayer.UpdateHealthBarValue(bonusEnergy);
+                skillSystem.energyBarPlayer.UpdateEnergyBarValue(bonusEnergy);
             }
         }
     }

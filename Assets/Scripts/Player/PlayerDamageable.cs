@@ -23,7 +23,7 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
         hitHash = Animator.StringToHash("hit");
         knockHash = Animator.StringToHash("knock");
         deathHash = Animator.StringToHash("death");
-        revivalHash = Animator.StringToHash("revival");
+        revivalHash = Animator.StringToHash("Revival");
         deathKnock = Animator.StringToHash("deathKnock");
         healthBarPlayer = FindObjectOfType<HealthBarPlayer>();
         ui = FindObjectOfType<UIMenu>();
@@ -75,6 +75,7 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
     private void Destroy(AttackType attackType)
     {
         destroyed = true;
+        gameManager.playerDestroyed = destroyed;
         if (attackType == AttackType.light)
         {
             animator.SetTrigger(deathHash);
@@ -89,12 +90,13 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
     public void Revival()
     {
         gameObject.SetActive(false);
-        animator.SetTrigger(revivalHash);
         playerController.isStart = true;
         GameObject newPlayer = Instantiate(gameObject, transform.position, transform.rotation);
-        gameManager.player = newPlayer.transform;
         newPlayer.SetActive(true);
+        animator.SetTrigger(revivalHash);
         destroyed = false;
+        gameManager.player = newPlayer.transform;
+        gameManager.playerDestroyed = destroyed;
         gameManager.virtualCamera.Follow = newPlayer.transform;
     }
 

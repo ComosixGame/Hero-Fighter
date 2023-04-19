@@ -9401,4 +9401,4 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   attackType: 2
-  damage: 1
+  damage: 0

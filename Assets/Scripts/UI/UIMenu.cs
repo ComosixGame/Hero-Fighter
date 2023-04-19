@@ -131,6 +131,9 @@ public class UIMenu : MonoBehaviour
             if (absPlayerSkills[i].cooldownTimer != 0)
             {
                 skillCountTxt[i].text = Mathf.Round(absPlayerSkills[i].cooldownTimer)+"";
+            }else
+            {
+                skillCountTxt[i].text = "";
             }
         }
         // Debug.Log(gameManager.player.GetComponent<PlayerDamageable>().maxHealth);

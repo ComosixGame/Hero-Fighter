@@ -536,10 +536,6 @@ MonoBehaviour:
   - {fileID: 1239997857744200347}
   - {fileID: 1239997857744200346}
   - {fileID: 1239997857744200295}
-  maxEnergy: 100
-  energy: 0
-  currentEnergy: 20
-  energyBarPlayer: {fileID: 0}
 --- !u!114 &1239997857744200301
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -552,7 +548,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77cf0e610e8ba024baf93a6f911ace3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 20
+  maxHealth: 5
   health: 0
   knockDownVFX: {fileID: 5854742832336096459, guid: 8a7c5d19d8a94cb41bccf41896137933,
     type: 3}
@@ -569,6 +565,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   equipmentManager: {fileID: 11400000, guid: 95e4de297bdbf0946830ebbf0a141d8e, type: 2}
+  energyBarPlayer: {fileID: 0}
 --- !u!114 &1239997857744200344
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -588,20 +585,20 @@ MonoBehaviour:
   - energy: 0
     maxCoolDownTime: 0
     damage: 0
-  - energy: 0
-    maxCoolDownTime: 10
-    damage: 1
-  - energy: 18
+  - energy: 8
     maxCoolDownTime: 8
     damage: 2
-  - energy: 16
-    maxCoolDownTime: 7
+  - energy: 18
+    maxCoolDownTime: 8
     damage: 4
-  - energy: 14
+  - energy: 6
     maxCoolDownTime: 6
     damage: 6
-  - energy: 10
-    maxCoolDownTime: 5
+  - energy: 4
+    maxCoolDownTime: 6
+    damage: 8
+  - energy: 4
+    maxCoolDownTime: 6
     damage: 8
   energy: 0
   cooldownTimer: 0
@@ -628,21 +625,21 @@ MonoBehaviour:
   - energy: 0
     maxCoolDownTime: 0
     damage: 0
-  - energy: 34
-    maxCoolDownTime: 14
-    damage: 0
-  - energy: 32
-    maxCoolDownTime: 12
-    damage: 0
-  - energy: 30
-    maxCoolDownTime: 10
-    damage: 0
   - energy: 26
-    maxCoolDownTime: 10
+    maxCoolDownTime: 14
+    damage: 10
+  - energy: 24
+    maxCoolDownTime: 12
     damage: 0
   - energy: 22
     maxCoolDownTime: 10
-    damage: 0
+    damage: 16
+  - energy: 20
+    maxCoolDownTime: 10
+    damage: 18
+  - energy: 18
+    maxCoolDownTime: 10
+    damage: 20
   energy: 0
   cooldownTimer: 0
   explosionPosition: {x: 0, y: 1.5, z: 0}
@@ -651,6 +648,7 @@ MonoBehaviour:
   explosionObject: {fileID: 8169326039529051692, guid: f3ce71a262662da40acd255a12a6adfa,
     type: 3}
   skillState: {fileID: 11400000, guid: 8db8153db7190fc418faedb21491381b, type: 2}
+  playerHurtBox: {fileID: 1239997857722336231}
 --- !u!114 &1239997857744200346
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -670,21 +668,21 @@ MonoBehaviour:
   - energy: 0
     maxCoolDownTime: 0
     damage: 0
-  - energy: 30
+  - energy: 24
     maxCoolDownTime: 18
-    damage: 0
-  - energy: 28
+    damage: 0.2
+  - energy: 22
     maxCoolDownTime: 16
-    damage: 0
-  - energy: 26
+    damage: 0.4
+  - energy: 20
     maxCoolDownTime: 14
-    damage: 0
+    damage: 0.6
   - energy: 24
     maxCoolDownTime: 12
-    damage: 0
+    damage: 0.8
   - energy: 20
     maxCoolDownTime: 10
-    damage: 0
+    damage: 1
   energy: 0
   cooldownTimer: 0
   flamePosition: {x: -0.03, y: 1.8, z: 1}
@@ -710,21 +708,21 @@ MonoBehaviour:
   - energy: 0
     maxCoolDownTime: 10
     damage: 1
-  - energy: 40
-    maxCoolDownTime: 30
+  - energy: 22
+    maxCoolDownTime: 18
+    damage: 0.2
+  - energy: 20
+    maxCoolDownTime: 16
+    damage: 0.4
+  - energy: 18
+    maxCoolDownTime: 16
+    damage: 0.6
+  - energy: 16
+    maxCoolDownTime: 14
+    damage: 0.8
+  - energy: 14
+    maxCoolDownTime: 12
     damage: 1
-  - energy: 36
-    maxCoolDownTime: 26
-    damage: 0
-  - energy: 34
-    maxCoolDownTime: 24
-    damage: 0
-  - energy: 32
-    maxCoolDownTime: 22
-    damage: 0
-  - energy: 30
-    maxCoolDownTime: 20
-    damage: 0
   energy: 0
   cooldownTimer: 0
   laserPosition: {x: 0, y: 1.55, z: 0.3}

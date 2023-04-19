@@ -38,6 +38,7 @@ public class PlayerController : MonoBehaviour
     private SoundManager soundManager;
     public bool isStart;
     public AbsPlayerSkill[] absPlayerSkills;
+    private SkillSystem skillSystem;
 
 
     private void Awake()
@@ -57,7 +58,7 @@ public class PlayerController : MonoBehaviour
         attackHash = Animator.StringToHash("Attack");
         stateTimeHash = Animator.StringToHash("StateTime");
         
-
+        skillSystem = GetComponent<SkillSystem>();
     }
 
     private void OnEnable()
@@ -170,6 +171,7 @@ public class PlayerController : MonoBehaviour
                 if ((SkillSystem.currentEnergy >= skill1.energy) && (skill1.cooldownTimer <= 0))
                 {
                     skill1?.Cast(skillHolder.skill1);
+                    skillSystem.energyBarPlayer.UpdateEnergyBarValue(-skill1.energy);
                 }
                 else if (SkillSystem.currentEnergy <= skill1.energy)
                 {
@@ -180,6 +182,7 @@ public class PlayerController : MonoBehaviour
                 if ((SkillSystem.currentEnergy >= skill2.energy) && (skill2.cooldownTimer <= 0))
                 {
                     skill2?.Cast(skillHolder.skill2);
+                    skillSystem.energyBarPlayer.UpdateEnergyBarValue(-skill2.energy);
                 }
                 else if (SkillSystem.currentEnergy <= skill2.energy)
                 {
@@ -190,6 +193,7 @@ public class PlayerController : MonoBehaviour
                 if ((SkillSystem.currentEnergy >= skill3.energy) && (skill3.cooldownTimer <= 0))
                 {
                     skill3?.Cast(skillHolder.skill3);
+                    skillSystem.energyBarPlayer.UpdateEnergyBarValue(-skill3.energy);
                 }
                 else if (SkillSystem.currentEnergy <= skill3.energy)
                 {
@@ -200,6 +204,7 @@ public class PlayerController : MonoBehaviour
                 if ((SkillSystem.currentEnergy >= skill4.energy) && (skill4.cooldownTimer <= 0))
                 {
                     skill4?.Cast(skillHolder.skill4);
+                    skillSystem.energyBarPlayer.UpdateEnergyBarValue(-skill4.energy);
                 }
                 else if (SkillSystem.currentEnergy <= skill4.energy)
                 {

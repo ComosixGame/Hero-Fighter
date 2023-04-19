@@ -302,9 +302,8 @@ MonoBehaviour:
   attackType: 1
   hitEffect: {fileID: 8425411093853235473, guid: 510ed98b0978fdd4a80f21ef5587d129,
     type: 3}
-  damage: 0
+  damage: 2
   rb: {fileID: 7552257854842813845}
   target: {fileID: 0}
-  speed: 15
+  speed: 30
   rotateSpeed: 200
-  isStart: 1

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d72ae5ef80a3d44f90b6cfa30150df8, type: 3}
   m_Name: New LevelState 15
   m_EditorClassIdentifier: 
-  nameLevel: Level2
+  nameLevel: Level15
   type: 1
   waves:
   - name: 
@@ -21,15 +21,4 @@ MonoBehaviour:
         type: 3}
       position: {x: -17.579004, y: 0, z: -5.2071066}
       eulerRotation: {x: -0, y: 286.70227, z: 0}
-  - name: 
-    enemies:
-    - enemyObjectPool: {fileID: 3492585246985200005, guid: 2d55c3939f20f374ab1650e91ebf786c,
-        type: 3}
-      position: {x: 8.493949, y: 0, z: -2.5207906}
-      eulerRotation: {x: -0, y: 276.2635, z: 0}
-  - name: 
-    enemies:
-    - enemyObjectPool: {fileID: -1348277006179719198, guid: 0aba806c22f8e81469efeb3e22ae215c,
-        type: 3}
-      position: {x: 31.909035, y: 0, z: -4.221925}
-      eulerRotation: {x: -0, y: 268.9217, z: 0}
+  bonousCoin: 300

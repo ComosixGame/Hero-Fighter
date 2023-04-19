@@ -4,7 +4,7 @@ using UnityEngine;
 public class SkillSystem : MonoBehaviour
 {
     [SerializeField] private EquipmentManager equipmentManager;
-    public static int currentEnergy = 20;
+    public static int currentEnergy = 0;
     public static int maxEnergy = 100;
     private PlayerData playerData;
     private GameManager gameManager;
@@ -24,11 +24,7 @@ public class SkillSystem : MonoBehaviour
 
     private void OnDisable()
     {
-        PlayerHurtBox.OnHit += BonusEnergy;
-    }
-
-    private void Start() {
-        
+        PlayerHurtBox.OnHit -= BonusEnergy;
     }
 
     private void BonusEnergy(int energy)
@@ -37,6 +33,5 @@ public class SkillSystem : MonoBehaviour
         {
             currentEnergy += energy;
         }
-
     }
 }

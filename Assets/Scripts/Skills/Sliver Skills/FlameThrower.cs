@@ -20,6 +20,7 @@ public class FlameThrower : AbsPlayerSkill
     {
         energy = skillLevels[currentLevel].energy;
         maxCoolDownTime = skillLevels[currentLevel].maxCoolDownTime;
+        flameObject.GetComponent<Firer>().damage = skillLevels[currentLevel].damage;
     }
 
     public void CastFlameThrower()

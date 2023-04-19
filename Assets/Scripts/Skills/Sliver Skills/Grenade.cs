@@ -20,6 +20,7 @@ public class Grenade : AbsPlayerSkill
     {
         energy = skillLevels[currentLevel].energy;
         maxCoolDownTime = skillLevels[currentLevel].maxCoolDownTime;
+        grenadeObjectPool.GetComponent<GrenadeOP>().damage = skillLevels[currentLevel].damage;
     }
 
     public void CastGrenade()

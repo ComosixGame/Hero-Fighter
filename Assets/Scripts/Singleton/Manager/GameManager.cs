@@ -41,6 +41,7 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private GameObject windowPopup;
     [SerializeField] private TextMeshProUGUI coin;
     public int bonousCoin;
+    public bool playerDestroyed;
 
     public LevelState levelState
     {
@@ -123,7 +124,6 @@ public class GameManager : Singleton<GameManager>
 
     public void GameLose()
     {
-
         OnEndGame.Invoke(false);
     }
 

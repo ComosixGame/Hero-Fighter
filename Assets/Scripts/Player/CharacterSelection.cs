@@ -3,7 +3,7 @@ using Cinemachine;
 
 public class CharacterSelection : MonoBehaviour
 {
-    private GameObject player;
+    public GameObject player;
     private PlayerData playerData;
     public EquipmentManager equipmentManager;
     public Vector3 playerPos;
@@ -67,6 +67,11 @@ public class CharacterSelection : MonoBehaviour
         virtualCamera.Follow = player.transform;
         gameManager.player = player.transform;
         gameManager.virtualCamera = virtualCamera;
+    }
+
+    public void RevivalPlayer()
+    {
+        player.GetComponent<PlayerDamageable>().Revival();
     }
 
     private void OnDrawGizmos() 

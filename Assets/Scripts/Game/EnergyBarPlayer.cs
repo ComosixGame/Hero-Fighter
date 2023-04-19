@@ -13,7 +13,7 @@ public class EnergyBarPlayer : MonoBehaviour
         this.maxEnergy = maxEnergy;
     }
 
-    public void UpdateHealthBarValue(float energy)
+    public void UpdateEnergyBarValue(float energy)
     {
         if (energy < maxEnergy)
         {

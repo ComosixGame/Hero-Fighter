@@ -6,9 +6,10 @@ public class ExplosionEnergy : AbsPlayerSkill
     [SerializeField] private EffectObjectPool explosionForceObject;
     [SerializeField] private EffectObjectPool explosionObject;
     [SerializeField] private SkillState skillState;
+    [SerializeField] private PlayerHurtBox playerHurtBox;
     private ParticleSystem generatedExplosionObject;
     private ObjectPoolerManager objectPooler;
-
+    
 
     override protected void Awake()
     {
@@ -22,6 +23,7 @@ public class ExplosionEnergy : AbsPlayerSkill
     {
         energy = skillLevels[currentLevel].energy;
         maxCoolDownTime = skillLevels[currentLevel].maxCoolDownTime;
+        playerHurtBox.damage = skillLevels[currentLevel].damage;
     }
 
     // Update is called once per frame

@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour
         velocityZHash = Animator.StringToHash("VelocityZ");
         attackHash = Animator.StringToHash("Attack");
         stateTimeHash = Animator.StringToHash("StateTime");
-        
+
         skillSystem = GetComponent<SkillSystem>();
     }
 
@@ -73,7 +73,7 @@ public class PlayerController : MonoBehaviour
         playerInputSystem.Player.Skil4.started += ActiveSkill;
         playerInputSystem.Player.SpecialSkil.started += ActiveSpecialSkill;
 
-        gameManager.OnInitUiDone += StartGame;
+        StartGameEvent.OnStart += StartGame;
 
     }
 
@@ -165,51 +165,20 @@ public class PlayerController : MonoBehaviour
 
     private void ActiveSkill(InputAction.CallbackContext ctx)
     {
+        if (!isStart) return;
         switch (ctx.control.displayName)
         {
             case "1":
-                if ((SkillSystem.currentEnergy >= skill1.energy) && (skill1.cooldownTimer <= 0))
-                {
-                    skill1?.Cast(skillHolder.skill1);
-                    skillSystem.energyBarPlayer.UpdateEnergyBarValue(-skill1.energy);
-                }
-                else if (SkillSystem.currentEnergy <= skill1.energy)
-                {
-                    gameManager.NotEnoughEnergy();
-                }
+                skill1?.Cast();
                 break;
             case "2":
-                if ((SkillSystem.currentEnergy >= skill2.energy) && (skill2.cooldownTimer <= 0))
-                {
-                    skill2?.Cast(skillHolder.skill2);
-                    skillSystem.energyBarPlayer.UpdateEnergyBarValue(-skill2.energy);
-                }
-                else if (SkillSystem.currentEnergy <= skill2.energy)
-                {
-                    gameManager.NotEnoughEnergy();
-                }
+                skill2?.Cast();
                 break;
             case "3":
-                if ((SkillSystem.currentEnergy >= skill3.energy) && (skill3.cooldownTimer <= 0))
-                {
-                    skill3?.Cast(skillHolder.skill3);
-                    skillSystem.energyBarPlayer.UpdateEnergyBarValue(-skill3.energy);
-                }
-                else if (SkillSystem.currentEnergy <= skill3.energy)
-                {
-                    gameManager.NotEnoughEnergy();
-                }
+                skill3?.Cast();
                 break;
             case "4":
-                if ((SkillSystem.currentEnergy >= skill4.energy) && (skill4.cooldownTimer <= 0))
-                {
-                    skill4?.Cast(skillHolder.skill4);
-                    skillSystem.energyBarPlayer.UpdateEnergyBarValue(-skill4.energy);
-                }
-                else if (SkillSystem.currentEnergy <= skill4.energy)
-                {
-                    gameManager.NotEnoughEnergy();
-                }
+                skill4?.Cast();
                 break;
             default:
                 throw new InvalidOperationException("key invalid");
@@ -301,6 +270,6 @@ public class PlayerController : MonoBehaviour
 
         playerInputSystem.Disable();
 
-        gameManager.OnInitUiDone -= StartGame;
+        StartGameEvent.OnStart += StartGame;
     }
 }

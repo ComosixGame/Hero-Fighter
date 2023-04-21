@@ -2,15 +2,12 @@ using System;
 using UnityEngine;
 using Cinemachine;
 using MyCustomAttribute;
-using TMPro;
-
 
 public class GameManager : Singleton<GameManager>
 {
 #if UNITY_EDITOR
     [Header("Debug")]
     [SerializeField] private bool debugMode;
-    [SerializeField] private bool withoutUI;
 #endif
     [Header("Info")]
     [ReadOnly] public Transform player;
@@ -18,19 +15,19 @@ public class GameManager : Singleton<GameManager>
     private int money;
     public ChapterManager chapterManager;
     public EquipmentManager equipmentManager;
-    public event Action OnStartGame;
     public event Action OnPause;
     public event Action OnResume;
     public event Action<bool> OnEndGame;
     public event Action OnNewGame;
     public event Action<int> OnUpdateMoney;
     public event Action OnCheckedPoint;
-    public event Action OnInitUiDone;
     public event Action<int> OnSelectChapter;
     public event Action<string> OnSelectCharacter;
     public event Action<string> OnSelectHeroSkill;
     public event Action OnBuyHero;
     public event Action OnNotEnoughEnergy;
+    public event Action OnPlayerRevival;
+    public event Action OnNextWaveDone;
     [ReadOnly] public int chapterIndex;
     [ReadOnly] public int levelIndex;
     private PlayerData playerData;
@@ -39,7 +36,6 @@ public class GameManager : Singleton<GameManager>
     private LoadSceneManager loadSceneManager;
     private LoadingScreen loadingScreen;
     [SerializeField] private GameObject windowPopup;
-    [SerializeField] private TextMeshProUGUI coin;
     public int bonousCoin;
     public bool playerDestroyed;
 
@@ -64,45 +60,21 @@ public class GameManager : Singleton<GameManager>
     private void Start()
     {
         Application.targetFrameRate = 60;
-        loadSceneManager.OnDone += InitGame;
         // chapterIndex = -1;
     }
 
     private void OnEnable()
     {
-        // playerData = PlayerData.Load();
-        // coin.text = playerData.money + "";
+        playerData = PlayerData.Load();
 #if UNITY_EDITOR
         objectPooler.OnCreatedObjects += () =>
         {
             if (debugMode)
             {
                 player = GameObject.FindWithTag("Player")?.transform;
-                StartGame();
-            }
-
-            if (withoutUI)
-            {
-                InitUiDone();
             }
         };
 #endif
-    }
-
-    private void OnDestroy()
-    {
-        loadSceneManager.OnDone -= InitGame;
-    }
-
-    private void InitGame()
-    {
-        StartGame();
-    }
-
-    public void StartGame()
-    {
-        Time.timeScale = 1;
-        OnStartGame?.Invoke();
     }
 
     public void PauseGame()
@@ -125,11 +97,6 @@ public class GameManager : Singleton<GameManager>
     public void GameLose()
     {
         OnEndGame.Invoke(false);
-    }
-
-    public void InitUiDone()
-    {
-        OnInitUiDone?.Invoke();
     }
 
     public void NewGame(bool win)
@@ -262,6 +229,16 @@ public class GameManager : Singleton<GameManager>
     public void NotEnoughEnergy()
     {
         OnNotEnoughEnergy?.Invoke();
+    }
+
+    public void RevivalPlayer()
+    {
+        OnPlayerRevival?.Invoke();
+    }
+
+    public void NextWaveDone()
+    {
+        OnNextWaveDone?.Invoke();
     }
     
 }

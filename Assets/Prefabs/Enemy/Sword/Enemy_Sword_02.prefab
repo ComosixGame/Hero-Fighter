@@ -93,7 +93,7 @@ MonoBehaviour:
   targetLayer:
     serializedVersion: 2
     m_Bits: 64
-  damage: 0
+  damage: 2
   attackType: 0
   hitEffect: {fileID: 1019285742973570300, guid: 489556e0dee707b4a9ba7bb024f3190c,
     type: 3}

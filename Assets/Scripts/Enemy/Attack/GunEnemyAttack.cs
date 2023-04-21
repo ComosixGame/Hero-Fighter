@@ -56,7 +56,7 @@ public class GunEnemyAttack : AbsEnemyAttack
         }
     }
 
-    private void FixedUpdate()
+    private void LateUpdate()
     {
         if (closeAttacking)
         {
@@ -129,11 +129,13 @@ public class GunEnemyAttack : AbsEnemyAttack
 
     public void StartCloseAttack()
     {
+        closeAttacking = true;
         hurtBox.gameObject.SetActive(true);
     }
 
     public void EndCloseAttack()
     {
+        closeAttacking = false;
         hurtBox.gameObject.SetActive(false);
     }
 

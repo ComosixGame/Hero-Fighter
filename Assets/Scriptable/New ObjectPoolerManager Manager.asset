@@ -85,6 +85,10 @@ MonoBehaviour:
     size: 10
     GameObjectPool: {fileID: -7693793984158827952, guid: 40ce5000199d910489886a884159b416,
       type: 3}
+  - name: Enemy Boss 1
+    size: 10
+    GameObjectPool: {fileID: 2703406654381666274, guid: dd88bb71d425abe4987d4a437a7713af,
+      type: 3}
   - name: Explosion Energy
     size: 10
     GameObjectPool: {fileID: 8169326039529051692, guid: f3ce71a262662da40acd255a12a6adfa,

@@ -1,37 +1,54 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class SkillSystem : MonoBehaviour
 {
     [SerializeField] private EquipmentManager equipmentManager;
-    public static int currentEnergy = 0;
-    public static int maxEnergy = 100;
+    [SerializeField] private int maxEnergy;
+    private int currentEnergy = 0;
     private PlayerData playerData;
     private GameManager gameManager;
-    public EnergyBarPlayer energyBarPlayer;
+    public static event Action<int> onUpdatEnegry;
+    public static event Action<int> onInit;
 
     private void Awake()
     {
         gameManager = GameManager.Instance;
-        energyBarPlayer = FindObjectOfType<EnergyBarPlayer>();
-        energyBarPlayer?.CreateEnergyBar(currentEnergy, maxEnergy);
+        onInit?.Invoke(maxEnergy);
+    }
+
+    private void Start() {
+        UpdateEnergy(maxEnergy);
     }
 
     private void OnEnable()
     {
-        PlayerHurtBox.OnHit += BonusEnergy;
+        currentEnergy = 0;
+        PlayerHurtBox.OnHit += UpdateEnergy;
     }
 
     private void OnDisable()
     {
-        PlayerHurtBox.OnHit -= BonusEnergy;
+        PlayerHurtBox.OnHit -= UpdateEnergy;
+    }
+    
+    public void UpdateEnergy(int energy) {
+
+        currentEnergy += energy;
+        if (currentEnergy >= maxEnergy)
+        {
+            currentEnergy = maxEnergy;
+        }
+
+        if(currentEnergy <= 0) {
+            currentEnergy = 0;
+        }
+        
+        onUpdatEnegry?.Invoke(currentEnergy);
     }
 
-    private void BonusEnergy(int energy)
-    {
-        if (currentEnergy < maxEnergy)
-        {
-            currentEnergy += energy;
-        }
+    public bool CheckEnergy(int energy) {
+        return currentEnergy >= energy;
     }
 }

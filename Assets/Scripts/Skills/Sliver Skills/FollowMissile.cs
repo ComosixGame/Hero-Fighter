@@ -4,7 +4,6 @@ public class FollowMissile : AbsPlayerSkill
 {
     [SerializeField] private Vector3 missilePosition;
     [SerializeField] private GameObjectPool missileObjectPool;
-    [SerializeField] private SkillState skillState;
     private ObjectPoolerManager objectPooler;
     private GameObjectPool gameObjectPool;
 

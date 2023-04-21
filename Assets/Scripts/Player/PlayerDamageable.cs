@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using MyCustomAttribute;
 
@@ -10,11 +11,12 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
     private Animator animator;
     private HealthBarPlayer healthBarPlayer;
     private GameManager gameManager;
-    private UIMenu ui;
     [Header("VFX")]
     [SerializeField] private EffectObjectPool knockDownVFX;
     private ObjectPoolerManager objectPoolerManager;
     private PlayerController playerController;
+    public static event Action<float> onTakeDamage;
+    public static event Action<float> onInit;
 
     private void Awake()
     {
@@ -25,17 +27,15 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
         deathHash = Animator.StringToHash("death");
         revivalHash = Animator.StringToHash("Revival");
         deathKnock = Animator.StringToHash("deathKnock");
-        healthBarPlayer = FindObjectOfType<HealthBarPlayer>();
-        ui = FindObjectOfType<UIMenu>();
         objectPoolerManager = ObjectPoolerManager.Instance;
         playerController = GetComponent<PlayerController>();
+        onInit?.Invoke(maxHealth);
     }
 
 
     private void Start()
     {
         health = maxHealth;
-        healthBarPlayer?.CreateHealthBar(maxHealth);
     }
 
     private void LateUpdate()
@@ -44,16 +44,19 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
         if(!animationState.IsName("Hit")) {
             animator.ResetTrigger(hitHash);
         }
+
+        if(!animationState.IsName("knock")) {
+            animator.ResetTrigger(knockHash);
+        }
     }
 
     public void TakeDamgae(Vector3 dirAttack, float damage, AttackType attackType)
     {
         if (!destroyed)
         {
+            animator.applyRootMotion = true;
             health -= damage;
-            ui?.DisplayHitPoint(false);
-            healthBarPlayer?.UpdateHealthBarValue(health);
-
+            onTakeDamage?.Invoke(health);
             if (health <= 0)
             {
                 Destroy(attackType);

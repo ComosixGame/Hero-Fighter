@@ -14,19 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultCharacter: sliver
   Characters:
-  - keyID: sliver
-    thumbnail: {fileID: 21300000, guid: 8b41931bf3c1b5241ac36a6b7c350828, type: 3}
-    name: Sliver
-    price: 12000
-    start: 5
-    evaluate: S
-    character: {fileID: 2158405830315843366, guid: 4b1f5cdcd9ccf9b42904c7732769853a,
-      type: 3}
-    skillStates:
-    - {fileID: 11400000, guid: 022a732feea80024ba1374b992035433, type: 2}
-    - {fileID: 11400000, guid: 8db8153db7190fc418faedb21491381b, type: 2}
-    - {fileID: 11400000, guid: d290394b229409f4f9ed6a54f0ec014b, type: 2}
-    - {fileID: 11400000, guid: ac0c9e15d56cc4442b417212a997e9cd, type: 2}
   - keyID: iron_man
     thumbnail: {fileID: 21300000, guid: 63edeb0b7f7214dc38711d5331b5e15f, type: 3}
     name: Iron Man
@@ -66,3 +53,16 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 8db8153db7190fc418faedb21491381b, type: 2}
     - {fileID: 11400000, guid: 8db8153db7190fc418faedb21491381b, type: 2}
     - {fileID: 11400000, guid: 8db8153db7190fc418faedb21491381b, type: 2}
+  - keyID: sliver
+    thumbnail: {fileID: 21300000, guid: 8b41931bf3c1b5241ac36a6b7c350828, type: 3}
+    name: Sliver
+    price: 12000
+    start: 5
+    evaluate: S
+    character: {fileID: 2158405830315843366, guid: 4b1f5cdcd9ccf9b42904c7732769853a,
+      type: 3}
+    skillStates:
+    - {fileID: 11400000, guid: 022a732feea80024ba1374b992035433, type: 2}
+    - {fileID: 11400000, guid: 8db8153db7190fc418faedb21491381b, type: 2}
+    - {fileID: 11400000, guid: d290394b229409f4f9ed6a54f0ec014b, type: 2}
+    - {fileID: 11400000, guid: ac0c9e15d56cc4442b417212a997e9cd, type: 2}

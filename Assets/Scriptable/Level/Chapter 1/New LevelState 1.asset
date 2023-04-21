@@ -19,22 +19,25 @@ MonoBehaviour:
     enemies:
     - enemyObjectPool: {fileID: 3549116654673358126, guid: 46f8cfb4efc8f8d4aab991e8096fedf1,
         type: 3}
-      position: {x: -17.579004, y: 0, z: -5.2071066}
+      position: {x: -17.26073, y: 0, z: -5.2071066}
       eulerRotation: {x: -0, y: 286.70227, z: 0}
   - name: 
     enemies:
     - enemyObjectPool: {fileID: 1165911524298237473, guid: e0063af90519e3e4396084135e6a4162,
         type: 3}
-      position: {x: 10.277121, y: 0, z: -6.909565}
+      position: {x: -5.1934004, y: 0, z: -4.923196}
       eulerRotation: {x: -0, y: 262.68842, z: 0}
   - name: 
     enemies:
     - enemyObjectPool: {fileID: 7948901677471127035, guid: e26fec94c38b382469c677bbb5ce1e14,
         type: 3}
-      position: {x: 31.909035, y: 0, z: -4.221925}
+      position: {x: 9.465381, y: 0, z: -4.221925}
       eulerRotation: {x: -0, y: 268.9217, z: 0}
   bonousCoin: 30
   areaRestrictors:
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
+  - {x: -12.17, y: 5.13, z: -4.05}
+  - {x: 2.29, y: 5.13, z: -4.05}
+  wallColliders:
+  - {x: -28.23937, y: 0.6168137, z: -2.295986}
+  - {x: 19.39, y: 0.6168137, z: -2.295986}
+  checkPointPlayer: {x: -26.97, y: 0, z: -4.4}

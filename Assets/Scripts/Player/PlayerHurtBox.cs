@@ -36,7 +36,6 @@ public class PlayerHurtBox : MonoBehaviour
                 damageable.TakeDamgae(dirAttack.normalized, damage, attackType);
                 OnHit?.Invoke(bonusEnergy);
                 soundManager.PlaySound(hit);
-                skillSystem.energyBarPlayer.UpdateEnergyBarValue(bonusEnergy);
             }
         }
     }

@@ -4,7 +4,6 @@ public class LaserCannon : AbsPlayerSkill
 {
     [SerializeField] private Vector3 laserPosition;
     [SerializeField] private EffectObjectPool laserObject;
-    [SerializeField] private SkillState skillState;
     private bool casting;
     private ParticleSystem generatedLaserObject;
     private ObjectPoolerManager objectPooler;

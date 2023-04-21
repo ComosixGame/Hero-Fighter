@@ -13,36 +13,15 @@ MonoBehaviour:
   m_Name: New LevelState 7
   m_EditorClassIdentifier: 
   nameLevel: Level7
-  type: 0
+  type: 1
   waves:
   - name: 
     enemies:
-    - enemyObjectPool: {fileID: 3549116654673358126, guid: 46f8cfb4efc8f8d4aab991e8096fedf1,
+    - enemyObjectPool: {fileID: 2703406654381666274, guid: dd88bb71d425abe4987d4a437a7713af,
         type: 3}
       position: {x: -17.579004, y: 0, z: -5.2071066}
       eulerRotation: {x: -0, y: 286.70227, z: 0}
-    - enemyObjectPool: {fileID: 1231653136056299475, guid: e38bdca78999e554ab943fd4ce04306a,
-        type: 3}
-      position: {x: -17.579004, y: 0, z: -5.2071066}
-      eulerRotation: {x: -0, y: 286.70227, z: 0}
-  - name: 
-    enemies:
-    - enemyObjectPool: {fileID: 2018003970529574609, guid: 59a1d1ba6321dfc45b267c1b7b459c2a,
-        type: 3}
-      position: {x: 8.493949, y: 0, z: -2.5207906}
-      eulerRotation: {x: -0, y: 276.2635, z: 0}
-    - enemyObjectPool: {fileID: -7693793984158827952, guid: 40ce5000199d910489886a884159b416,
-        type: 3}
-      position: {x: 8.493949, y: 0, z: -2.5207906}
-      eulerRotation: {x: -0, y: 276.2635, z: 0}
-  - name: 
-    enemies:
-    - enemyObjectPool: {fileID: 7669818210105850550, guid: 133e6b66263892a4998f7572ff592123,
-        type: 3}
-      position: {x: 31.909035, y: 0, z: -4.221925}
-      eulerRotation: {x: -0, y: 268.9217, z: 0}
-    - enemyObjectPool: {fileID: -7693793984158827952, guid: 40ce5000199d910489886a884159b416,
-        type: 3}
-      position: {x: 31.909035, y: 0, z: -4.221925}
-      eulerRotation: {x: -0, y: 268.9217, z: 0}
-  bonousCoin: 170
+  bonousCoin: 300
+  areaRestrictors: []
+  wallColliders: []
+  checkPointPlayer: {x: 0, y: 0, z: 0}

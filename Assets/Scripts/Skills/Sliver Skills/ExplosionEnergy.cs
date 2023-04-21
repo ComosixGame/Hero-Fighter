@@ -5,7 +5,6 @@ public class ExplosionEnergy : AbsPlayerSkill
     [SerializeField] private Vector3 explosionPosition;
     [SerializeField] private EffectObjectPool explosionForceObject;
     [SerializeField] private EffectObjectPool explosionObject;
-    [SerializeField] private SkillState skillState;
     [SerializeField] private PlayerHurtBox playerHurtBox;
     private ParticleSystem generatedExplosionObject;
     private ObjectPoolerManager objectPooler;

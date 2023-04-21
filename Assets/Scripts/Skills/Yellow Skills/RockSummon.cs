@@ -19,15 +19,6 @@ public class RockSummon : AbsPlayerSkill
         // currentLevel = skillState.level;
     }
 
-    private void OnEnable()
-    {
-        gameManager.OnInitUiDone += StartGame;
-    }
-
-    private void OnDisable() {
-        gameManager.OnInitUiDone -= StartGame;
-    }
-
     private void StartGame()
     {
         isStart = true;
@@ -38,13 +29,6 @@ public class RockSummon : AbsPlayerSkill
     {
         energy = skillLevels[currentLevel].energy;
         maxCoolDownTime = skillLevels[currentLevel].maxCoolDownTime;
-    }
-
-    private void FixedUpdate() {
-        if (isStart)
-        {
-            target = FindObjectOfType<EnemyBehaviour>().transform;
-        }
     }
 
     public void CastRockSummon()

@@ -7,6 +7,7 @@ public class MapGeneration : MonoBehaviour
     public LevelState levelState;
     [SerializeField] private UIMenu uIMenu;
     [SerializeField] private Collider[] areaColliders;
+    [SerializeField] private Collider[] wallColliders;
     private int currentWave = 0;
     private int totalWaves;
     private GameManager gameManager;
@@ -26,12 +27,7 @@ public class MapGeneration : MonoBehaviour
     {
         isStart = false;
         isReset = false;
-        gameManager.OnStartGame += StartGame;
-        gameManager.OnNewGame += ResetGame;
-        if (!debug)
-        {
-            levelState = gameManager.levelState;
-        }
+        levelState = gameManager.levelState;
         uIMenu.processGame.value = 0;
         uIMenu.processPrecent.text = "0%";
         for (int i = 0; i < levelState.waves.Count; i++)
@@ -39,65 +35,59 @@ public class MapGeneration : MonoBehaviour
             totalEnemy += levelState.waves[i].enemies.Count;
         }
         process = 1 / totalEnemy;
+
+        for (int i = 0; i < areaColliders.Length; i++)
+        {
+            areaColliders[i].transform.position = new Vector3(levelState.areaRestrictors[i].x, levelState.areaRestrictors[i].y, levelState.areaRestrictors[i].z);
+        }
+
+        for (int i = 0; i < wallColliders.Length; i++)
+        {
+            wallColliders[i].transform.position = new Vector3(levelState.wallColliders[i].x, levelState.wallColliders[i].y, levelState.wallColliders[i].z);
+        }
     }
 
-    private void OnDisable()
+    private void Start()
     {
-        gameManager.OnStartGame -= StartGame;
-        gameManager.OnNewGame -= ResetGame;
+        totalWaves = levelState.waves.Count;
+        StartNewWave();
     }
 
     private void Update()
     {
-        if (!isReset)
+        if (enemyList != null)
         {
-            if (enemyList != null)
+            for (int i = 0; i < enemyList.Count; i++)
             {
-                for (int i = 0; i < enemyList.Count; i++)
+                if (enemyList[i].gameObject.GetComponent<EnemyDamageable>().destroyed)
                 {
-                    if (enemyList[i].gameObject.GetComponent<EnemyDamageable>().destroyed)
-                    {
-                        uIMenu.processGame.value += process;
-                        uIMenu.processPrecent.text = Mathf.Round(uIMenu.processGame.value * 100) + "%";
-                        enemyList.RemoveAt(i);
-                    }
+                    uIMenu.processGame.value += process;
+                    uIMenu.processPrecent.text = Mathf.Round(uIMenu.processGame.value * 100) + "%";
+                    enemyList.RemoveAt(i);
                 }
             }
         }
 
 
-        if (isStart)
+        if (currentWave < totalWaves - 1)
         {
-            if (currentWave < totalWaves - 1)
+            if (enemyList.Count == 0)
             {
-                if (enemyList.Count == 0)
-                {
-                    uIMenu.PreviousAnimation(true);
-                    areaColliders[currentWave].isTrigger = true;
-                }
-            }
-            else
-            {
-                if (enemyList.Count == 0)
-                {
-                    gameManager.GameWin();
-                    isStart = false;
-                }
+                //event
+                uIMenu.PreviousAnimation(true);
+                areaColliders[currentWave].isTrigger = true;
+                currentWave++;
+                StartNewWave();
             }
         }
-    }
-
-
-    private void StartGame()
-    {
-        totalWaves = levelState.waves.Count;
-        uIMenu.levelState = levelState;
-        StartNewWave();
-    }
-
-    private void ResetGame()
-    {
-        isReset = true;
+        else
+        {
+            if (enemyList.Count == 0)
+            {
+                gameManager.GameWin();
+                isStart = false;
+            }
+        }
     }
 
     //Able all the enemies in wave
@@ -134,8 +124,8 @@ public class MapGeneration : MonoBehaviour
             foreach (LevelState.Enemy enemy in wave.enemies)
             {
                 GameObject prefab = enemy.enemyObjectPool.GetGameObject();
-                Gizmos.color = new Color32(255, 0, 0, 255);
-                Gizmos.DrawMesh(prefab.GetComponentInChildren<SkinnedMeshRenderer>().sharedMesh, enemy.position, Quaternion.Euler(enemy.eulerRotation));
+                Gizmos.color = new Color32(255, 0, 0, 200);
+                Gizmos.DrawSphere(enemy.position, 1.2f);
             }
         }
     }

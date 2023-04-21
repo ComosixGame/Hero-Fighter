@@ -1,6 +1,5 @@
-using System.Collections;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class UIMenu : MonoBehaviour
@@ -23,7 +22,6 @@ public class UIMenu : MonoBehaviour
     private SettingData settingData;
     public Slider processGame;
     public TextMeshProUGUI processPrecent;
-    public LevelState levelState;
     [SerializeField] private Image characterAva;
     [SerializeField] private TextMeshProUGUI characterName;
     [SerializeField] private Image[] skillBtn;
@@ -45,11 +43,9 @@ public class UIMenu : MonoBehaviour
 
     //Time display big size
     private float timerBigSize;
-
     //Color 
     [SerializeField] private Color color, color1, color2, color3, color4;
     private GameManager gameManager;
-
     //Audio
     public AudioClip clickBtn;
     public AudioClip backgroundSound;
@@ -72,9 +68,9 @@ public class UIMenu : MonoBehaviour
 
     private void OnEnable()
     {
-        gameManager.OnStartGame += StartGame;
         gameManager.OnEndGame += HandleEndGameUI;
         gameManager.OnNotEnoughEnergy += DisplayNotEnoughEnergy;
+        gameManager.OnPlayerRevival += PlayerRevival;
         PlayerCharacter playerCharacter = gameManager.DisplayHeroInUi();
         characterAva.sprite = playerCharacter.thumbnail;
         characterName.text = playerCharacter.name;
@@ -82,14 +78,14 @@ public class UIMenu : MonoBehaviour
         {
             skillBtn[i].sprite = playerCharacter.skillStates[i].sprite;
         }
-
+        animator.SetTrigger(startGameHash);
     }
 
     private void OnDisable()
     {
-        gameManager.OnStartGame -= StartGame;
         gameManager.OnEndGame -= HandleEndGameUI;
         gameManager.OnNotEnoughEnergy -= DisplayNotEnoughEnergy;
+        gameManager.OnPlayerRevival -= PlayerRevival;
     }
 
     void Start()
@@ -97,7 +93,7 @@ public class UIMenu : MonoBehaviour
         soundManager.MuteGame(settingData.mute);
         playerData = PlayerData.Load();
         CoefficientCombo = 0.5f;
-        bigSize = 150;
+        bigSize = 140;
         smallSize = 120;
         timerBigSize = 0.2f;
         soundManager.SetMusicbackGround(backgroundSound);
@@ -124,20 +120,19 @@ public class UIMenu : MonoBehaviour
         absPlayerSkills = gameManager.player.GetComponent<PlayerController>().absPlayerSkills;
     }
 
-    private void Update()
-    {
-        for (int i = 0; i < absPlayerSkills.Length; i++)
-        {
-            if (absPlayerSkills[i].cooldownTimer != 0)
-            {
-                skillCountTxt[i].text = Mathf.Round(absPlayerSkills[i].cooldownTimer)+"";
-            }else
-            {
-                skillCountTxt[i].text = "";
-            }
-        }
-        // Debug.Log(gameManager.player.GetComponent<PlayerDamageable>().maxHealth);
-    }
+    // private void Update()
+    // {
+    //     for (int i = 0; i < absPlayerSkills.Length; i++)
+    //     {
+    //         if (absPlayerSkills[i].cooldownTimer != 0)
+    //         {
+    //             skillCountTxt[i].text = Mathf.Round(absPlayerSkills[i].cooldownTimer)+"";
+    //         }else
+    //         {
+    //             skillCountTxt[i].text = "";
+    //         }
+    //     }
+    // }
 
     //Display Hit Point in UI
     public void DisplayHitPoint(bool hit)
@@ -221,6 +216,10 @@ public class UIMenu : MonoBehaviour
     //True if Clear Wave and False if Player Move to new Wave
     public void PreviousAnimation(bool isActive)
     {
+        if (!isActive)
+        {
+            gameManager.NextWaveDone();
+        }
         animator.SetBool(previousHash, isActive);
     }
 
@@ -238,7 +237,7 @@ public class UIMenu : MonoBehaviour
     {
         if (win)
         {
-            BonusCoin(levelState.bonousCoin);
+            BonusCoin(gameManager.levelState.bonousCoin);
             animator.SetTrigger(winGameHash);
             soundManager.PlaySound(winSound);
         }
@@ -257,18 +256,13 @@ public class UIMenu : MonoBehaviour
     //Used
     public void BonusCoin(bool isTriple)
     {
-        gameManager.BonousCoin(isTriple, levelState.bonousCoin);
+        gameManager.BonousCoin(isTriple, gameManager.levelState.bonousCoin);
     }
 
     //Used
     public void SaveLevel(bool isSave)
     {
         gameManager.NewGame(isSave);
-    }
-
-    public void ReadyFight()
-    {
-        gameManager.InitUiDone();
     }
 
     private void DisplayNotEnoughEnergy()
@@ -290,6 +284,11 @@ public class UIMenu : MonoBehaviour
     public void PlaySound()
     {
         soundManager.PlaySound(clickBtn);
+    }
+
+    private void PlayerRevival()
+    {
+        absPlayerSkills = gameManager.player.GetComponent<PlayerController>().absPlayerSkills;
     }
 
 }

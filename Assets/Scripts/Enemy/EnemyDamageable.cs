@@ -16,9 +16,11 @@ public class EnemyDamageable : MonoBehaviour, IDamageable
     private Animator animator;
     private EnemyBehaviour enemyBehaviour;
     private Collider colliderGameObject;
+    private Coroutine coroutine;
     private GameManager gameManager;
     [SerializeField] private HealthBarRennder healthBarRennder = new HealthBarRennder();
     private UIMenu uI;
+    private LoadSceneManager loadSceneManager;
 
     [Header("VFX")]
     [SerializeField] private EffectObjectPool knockDownVFX;
@@ -28,6 +30,7 @@ public class EnemyDamageable : MonoBehaviour, IDamageable
     private void Awake()
     {
         gameManager = GameManager.Instance;
+        loadSceneManager = LoadSceneManager.Instance;
         animator = GetComponent<Animator>();
         enemyBehaviour = GetComponent<EnemyBehaviour>();
         colliderGameObject = GetComponent<Collider>();
@@ -50,6 +53,13 @@ public class EnemyDamageable : MonoBehaviour, IDamageable
         health = maxHealth;
         healthBarRennder.UpdateHealthBarValue(health);
         healthBarRennder.SetActive(true);
+        loadSceneManager.OnStart += CancelDissolve;
+    }
+
+    private void OnDisable()
+    {
+        CancelInvoke("Hide");
+        loadSceneManager.OnStart -= CancelDissolve;
     }
 
     private void FixedUpdate()
@@ -80,6 +90,7 @@ public class EnemyDamageable : MonoBehaviour, IDamageable
     {
         if (!destroyed)
         {
+            animator.applyRootMotion = true;
             uI?.DisplayHitPoint(true);
             health -= damage;
             healthBarRennder.UpdateHealthBarValue(health);
@@ -132,7 +143,14 @@ public class EnemyDamageable : MonoBehaviour, IDamageable
 
     private void Hide()
     {
-        StartCoroutine(Dissolve());
+        coroutine = StartCoroutine(Dissolve());
+    }
+
+    private void CancelDissolve()
+    {
+        StopCoroutine(coroutine);
+        SkinnedMeshRenderer skinned = GetComponentInChildren<SkinnedMeshRenderer>();
+        skinned.enabled = true;
     }
 
     private IEnumerator Dissolve()

@@ -4,7 +4,6 @@ public class FlameThrower : AbsPlayerSkill
 {
     [SerializeField] private Vector3 flamePosition;
     [SerializeField] private EffectObjectPool flameObject;
-    [SerializeField] private SkillState skillState;
     private ParticleSystem generatedFlameObject;
     private ObjectPoolerManager objectPooler;
 

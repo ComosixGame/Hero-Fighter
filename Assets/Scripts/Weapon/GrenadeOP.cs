@@ -25,26 +25,12 @@ public class GrenadeOP : GameObjectPool
         objectPoolerManager = ObjectPoolerManager.Instance;
     }
 
-    private void OnEnable()
-    {
-        gameManager.OnInitUiDone += StartGame;
-    }
-
     private void OnDisable() {
         // gameManager.OnInitUiDone -= StartGame;
     }
 
-    private void StartGame()
-    {
-        isStart = true;
-    }
-
     private void FixedUpdate()
-    {
-        if (isStart)
-        {
-           target = objectPoolerManager.GetComponentInChildren<EnemyBehaviour>().transform;
-        }
+    { 
         Vector3 direction = new Vector3(target.transform.position.x, target.transform.position.y + 1, target.transform.position.z) - rb.position;
         direction.Normalize();
         rb.angularVelocity = -Vector3.Cross(direction, transform.forward) * rotateSpeed;

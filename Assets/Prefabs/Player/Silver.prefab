@@ -409,10 +409,10 @@ GameObject:
   - component: {fileID: 1239997857744200299}
   - component: {fileID: 1239997857744200301}
   - component: {fileID: 1239997857744200289}
-  - component: {fileID: 1239997857744200344}
   - component: {fileID: 1239997857744200347}
   - component: {fileID: 1239997857744200346}
   - component: {fileID: 1239997857744200295}
+  - component: {fileID: 3695993669038199943}
   m_Layer: 6
   m_Name: Silver
   m_TagString: Player
@@ -521,7 +521,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  skill1: {fileID: 1239997857744200344}
+  skill1: {fileID: 3695993669038199943}
   skill2: {fileID: 1239997857744200347}
   skill3: {fileID: 1239997857744200346}
   skill4: {fileID: 1239997857744200295}
@@ -532,7 +532,7 @@ MonoBehaviour:
   - {fileID: 1239997857722336231}
   isStart: 0
   absPlayerSkills:
-  - {fileID: 1239997857744200344}
+  - {fileID: 3695993669038199943}
   - {fileID: 1239997857744200347}
   - {fileID: 1239997857744200346}
   - {fileID: 1239997857744200295}
@@ -548,7 +548,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77cf0e610e8ba024baf93a6f911ace3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 5
+  maxHealth: 20
   health: 0
   knockDownVFX: {fileID: 5854742832336096459, guid: 8a7c5d19d8a94cb41bccf41896137933,
     type: 3}
@@ -565,47 +565,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   equipmentManager: {fileID: 11400000, guid: 95e4de297bdbf0946830ebbf0a141d8e, type: 2}
-  energyBarPlayer: {fileID: 0}
---- !u!114 &1239997857744200344
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2158405830315843366}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d540c7b8043237b4dac3a26114f350ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skillName: Grenade
-  skillHolder: 0
-  maxCoolDownTime: 0
-  skillLevels:
-  - energy: 0
-    maxCoolDownTime: 0
-    damage: 0
-  - energy: 8
-    maxCoolDownTime: 8
-    damage: 2
-  - energy: 18
-    maxCoolDownTime: 8
-    damage: 4
-  - energy: 6
-    maxCoolDownTime: 6
-    damage: 6
-  - energy: 4
-    maxCoolDownTime: 6
-    damage: 8
-  - energy: 4
-    maxCoolDownTime: 6
-    damage: 8
-  energy: 0
-  cooldownTimer: 0
-  grenadePosition: {x: 0, y: 1.7, z: 1}
-  grenadeObjectPool: {fileID: 8512415354843900337, guid: 648631ec082d88c4b8407d1168a6d26e,
-    type: 3}
-  skillState: {fileID: 11400000, guid: 022a732feea80024ba1374b992035433, type: 2}
+  maxEnergy: 50
 --- !u!114 &1239997857744200347
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -640,14 +600,12 @@ MonoBehaviour:
   - energy: 18
     maxCoolDownTime: 10
     damage: 20
-  energy: 0
-  cooldownTimer: 0
+  skillState: {fileID: 11400000, guid: 8db8153db7190fc418faedb21491381b, type: 2}
   explosionPosition: {x: 0, y: 1.5, z: 0}
   explosionForceObject: {fileID: 6208770777685358958, guid: b8b77c9f612b4c64e8da391b0d8fded7,
     type: 3}
   explosionObject: {fileID: 8169326039529051692, guid: f3ce71a262662da40acd255a12a6adfa,
     type: 3}
-  skillState: {fileID: 11400000, guid: 8db8153db7190fc418faedb21491381b, type: 2}
   playerHurtBox: {fileID: 1239997857722336231}
 --- !u!114 &1239997857744200346
 MonoBehaviour:
@@ -683,12 +641,10 @@ MonoBehaviour:
   - energy: 20
     maxCoolDownTime: 10
     damage: 1
-  energy: 0
-  cooldownTimer: 0
+  skillState: {fileID: 11400000, guid: d290394b229409f4f9ed6a54f0ec014b, type: 2}
   flamePosition: {x: -0.03, y: 1.8, z: 1}
   flameObject: {fileID: 7231578038427852017, guid: fa264294b8fe3d64eba0df4502065604,
     type: 3}
-  skillState: {fileID: 11400000, guid: d290394b229409f4f9ed6a54f0ec014b, type: 2}
 --- !u!114 &1239997857744200295
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -723,12 +679,47 @@ MonoBehaviour:
   - energy: 14
     maxCoolDownTime: 12
     damage: 1
-  energy: 0
-  cooldownTimer: 0
+  skillState: {fileID: 11400000, guid: ac0c9e15d56cc4442b417212a997e9cd, type: 2}
   laserPosition: {x: 0, y: 1.55, z: 0.3}
   laserObject: {fileID: 6197080751168193181, guid: a81c073a5caaaf440b481ed76fbc4eef,
     type: 3}
-  skillState: {fileID: 11400000, guid: ac0c9e15d56cc4442b417212a997e9cd, type: 2}
+--- !u!114 &3695993669038199943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2158405830315843366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efec25c9c0e88ea448a33aa93c4f4dd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillName: 
+  skillHolder: 0
+  maxCoolDownTime: 0
+  skillLevels:
+  - energy: 0
+    maxCoolDownTime: 0
+    damage: 0
+  - energy: 0
+    maxCoolDownTime: 0
+    damage: 0
+  - energy: 0
+    maxCoolDownTime: 0
+    damage: 0
+  - energy: 0
+    maxCoolDownTime: 0
+    damage: 0
+  - energy: 0
+    maxCoolDownTime: 0
+    damage: 0
+  - energy: 0
+    maxCoolDownTime: 0
+    damage: 0
+  skillState: {fileID: 11400000, guid: 022a732feea80024ba1374b992035433, type: 2}
+  grenadePosition: {x: 0, y: 0, z: 0}
+  grenadeObjectPool: {fileID: 0}
 --- !u!1 &2175339671498423421
 GameObject:
   m_ObjectHideFlags: 0

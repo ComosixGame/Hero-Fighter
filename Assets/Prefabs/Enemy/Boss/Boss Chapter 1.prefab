@@ -368,6 +368,7 @@ GameObject:
   - component: {fileID: 3014397241616577148}
   - component: {fileID: 3014397241616577149}
   - component: {fileID: 3014397241616577150}
+  - component: {fileID: 2703406654381666274}
   m_Layer: 7
   m_Name: Boss Chapter 1
   m_TagString: Untagged
@@ -521,6 +522,19 @@ MonoBehaviour:
   maxStun: 20
   health: 0
   stunLevel: 0
+--- !u!114 &2703406654381666274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2918498009295017213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77e633731941a3a4fb2c1dedabd39cc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: Boss1
 --- !u!1 &2918506292675222511
 GameObject:
   m_ObjectHideFlags: 0

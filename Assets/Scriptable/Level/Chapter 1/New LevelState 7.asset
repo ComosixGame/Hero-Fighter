@@ -19,9 +19,13 @@ MonoBehaviour:
     enemies:
     - enemyObjectPool: {fileID: 2703406654381666274, guid: dd88bb71d425abe4987d4a437a7713af,
         type: 3}
-      position: {x: -17.579004, y: 0, z: -5.2071066}
+      position: {x: 12.183544, y: 0, z: -2.0168}
       eulerRotation: {x: -0, y: 286.70227, z: 0}
   bonousCoin: 300
-  areaRestrictors: []
-  wallColliders: []
-  checkPointPlayer: {x: 0, y: 0, z: 0}
+  areaRestrictors:
+  - {x: -28.23937, y: 0.6168137, z: -2.295986}
+  - {x: 37, y: 0.6168137, z: -2.295986}
+  wallColliders:
+  - {x: -28.23937, y: 0.6168137, z: -2.295986}
+  - {x: 37, y: 0.6168137, z: -2.295986}
+  checkPointPlayer: {x: 3, y: 0, z: -5}

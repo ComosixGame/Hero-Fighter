@@ -413,6 +413,7 @@ GameObject:
   - component: {fileID: 1239997857744200346}
   - component: {fileID: 1239997857744200295}
   - component: {fileID: 3695993669038199943}
+  - component: {fileID: 8837048183606612394}
   m_Layer: 6
   m_Name: Silver
   m_TagString: Player
@@ -531,7 +532,7 @@ MonoBehaviour:
   - {fileID: 1239997857219497616}
   - {fileID: 1239997857722336231}
   isStart: 0
-  absPlayerSkills:
+  playerSkills:
   - {fileID: 3695993669038199943}
   - {fileID: 1239997857744200347}
   - {fileID: 1239997857744200346}
@@ -578,6 +579,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f25a7ab3446b2c44184131233965753d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
   skillName: Explosion Energy
   skillHolder: 1
   maxCoolDownTime: 0
@@ -585,14 +587,14 @@ MonoBehaviour:
   - energy: 0
     maxCoolDownTime: 0
     damage: 0
-  - energy: 26
-    maxCoolDownTime: 14
-    damage: 10
-  - energy: 24
-    maxCoolDownTime: 12
-    damage: 0
-  - energy: 22
+  - energy: 0
     maxCoolDownTime: 10
+    damage: 10
+  - energy: 0
+    maxCoolDownTime: 10
+    damage: 0
+  - energy: 0
+    maxCoolDownTime: 0
     damage: 16
   - energy: 20
     maxCoolDownTime: 10
@@ -619,6 +621,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbbd672c7a747204eb24f2d9896462a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
   skillName: Flame Thrower
   skillHolder: 2
   maxCoolDownTime: 0
@@ -657,6 +660,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 397d07ac4d65c834f947eb5a0e46d6cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
   skillName: Laser Cannon
   skillHolder: 3
   maxCoolDownTime: 0
@@ -695,7 +699,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efec25c9c0e88ea448a33aa93c4f4dd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: 
+  id: 0
+  skillName: Lock Target
   skillHolder: 0
   maxCoolDownTime: 0
   skillLevels:
@@ -703,10 +708,10 @@ MonoBehaviour:
     maxCoolDownTime: 0
     damage: 0
   - energy: 0
-    maxCoolDownTime: 0
+    maxCoolDownTime: 5
     damage: 0
   - energy: 0
-    maxCoolDownTime: 0
+    maxCoolDownTime: 5
     damage: 0
   - energy: 0
     maxCoolDownTime: 0
@@ -720,6 +725,22 @@ MonoBehaviour:
   skillState: {fileID: 11400000, guid: 022a732feea80024ba1374b992035433, type: 2}
   grenadePosition: {x: 0, y: 0, z: 0}
   grenadeObjectPool: {fileID: 0}
+--- !u!114 &8837048183606612394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2158405830315843366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22cee4b2ac9c1ff439e901e66796f647, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitSound: {fileID: 8300000, guid: ffbcd18dfedd39e43bed55408153b35c, type: 3}
+  knockDownSound: {fileID: 8300000, guid: 60bc4f1531736e34285310f5f100994f, type: 3}
+  deadSound: {fileID: 8300000, guid: c57fb8dce33b6a648b84f60aeb397b79, type: 3}
+  walkSound: {fileID: 0}
 --- !u!1 &2175339671498423421
 GameObject:
   m_ObjectHideFlags: 0

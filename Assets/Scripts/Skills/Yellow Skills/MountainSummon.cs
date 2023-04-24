@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class MountainSummon : AbsPlayerSkill
+public class MountainSummon : PlayerSkill
 {
     [SerializeField] private GameObjectPool mountainObjectPool;
     [SerializeField] private Vector3 mountainPosition;

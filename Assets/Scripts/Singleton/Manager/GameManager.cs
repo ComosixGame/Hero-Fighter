@@ -28,6 +28,7 @@ public class GameManager : Singleton<GameManager>
     public event Action OnNotEnoughEnergy;
     public event Action OnPlayerRevival;
     public event Action OnNextWaveDone;
+    
     [ReadOnly] public int chapterIndex;
     [ReadOnly] public int levelIndex;
     private PlayerData playerData;

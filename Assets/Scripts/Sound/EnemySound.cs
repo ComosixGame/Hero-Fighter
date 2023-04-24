@@ -1,13 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemySound : MonoBehaviour
 {
     private SoundManager soundManager;
-    public AudioClip fallSound;
-    public AudioClip attackSound;
-    public AudioClip dieSound;
+    [SerializeField] private AudioClip hitSound;
+    [SerializeField] private AudioClip knockDownSound;
+    [SerializeField] private AudioClip deadSound;
+
     private void Awake() {
         soundManager = SoundManager.Instance;
     }
@@ -15,13 +14,13 @@ public class EnemySound : MonoBehaviour
     public void PlayEnemySound(int index){
         switch(index){
             case 1: 
-                soundManager.PlaySound(fallSound);
+                soundManager.PlaySound(hitSound);
                 break;
             case 2:
-                soundManager.PlaySound(attackSound);
+                soundManager.PlaySound(knockDownSound);
                 break;
             case 3:
-                 soundManager.PlaySound(dieSound);
+                 soundManager.PlaySound(deadSound);
                 break;
             default:
                 break;

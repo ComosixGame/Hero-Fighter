@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ExplosionEnergy : AbsPlayerSkill
+public class ExplosionEnergy : PlayerSkill
 {
     [SerializeField] private Vector3 explosionPosition;
     [SerializeField] private EffectObjectPool explosionForceObject;
@@ -23,12 +23,6 @@ public class ExplosionEnergy : AbsPlayerSkill
         energy = skillLevels[currentLevel].energy;
         maxCoolDownTime = skillLevels[currentLevel].maxCoolDownTime;
         playerHurtBox.damage = skillLevels[currentLevel].damage;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void CastExplosion()

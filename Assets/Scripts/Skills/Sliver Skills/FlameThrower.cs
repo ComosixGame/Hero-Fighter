@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class FlameThrower : AbsPlayerSkill
+public class FlameThrower : PlayerSkill
 {
     [SerializeField] private Vector3 flamePosition;
     [SerializeField] private EffectObjectPool flameObject;

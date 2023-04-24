@@ -29,7 +29,7 @@ MonoBehaviour:
     enemies:
     - enemyObjectPool: {fileID: 1165911524298237473, guid: e0063af90519e3e4396084135e6a4162,
         type: 3}
-      position: {x: -3.165909, y: 0, z: -4.140336}
+      position: {x: -19.642147, y: 0, z: -4.140336}
       eulerRotation: {x: -0, y: 276.2635, z: 0}
     - enemyObjectPool: {fileID: 7948901677471127035, guid: e26fec94c38b382469c677bbb5ce1e14,
         type: 3}
@@ -39,7 +39,7 @@ MonoBehaviour:
     enemies:
     - enemyObjectPool: {fileID: 1305857928851026457, guid: 8346756303e46d94f9f3ecbec93086c6,
         type: 3}
-      position: {x: 8.031227, y: 0, z: -2.141678}
+      position: {x: 25.072489, y: 0, z: -2.141678}
       eulerRotation: {x: -0, y: 268.9217, z: 0}
     - enemyObjectPool: {fileID: 2018003970529574609, guid: 59a1d1ba6321dfc45b267c1b7b459c2a,
         type: 3}
@@ -48,7 +48,7 @@ MonoBehaviour:
   bonousCoin: 110
   areaRestrictors:
   - {x: 4.49, y: 3.65, z: -4.12}
-  - {x: 18.68, y: 5.39, z: -4.2}
+  - {x: 16, y: 5.39, z: -4.2}
   wallColliders:
   - {x: -10.3, y: 1.04, z: -2.77}
   - {x: 30.39, y: 1.4, z: -2.4}

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SweepFoot : AbsPlayerSkill
+public class SweepFoot : PlayerSkill
 {
     [SerializeField] private Vector3 sweepFootPosition;
     [SerializeField] private EffectObjectPool sweepFootObject;

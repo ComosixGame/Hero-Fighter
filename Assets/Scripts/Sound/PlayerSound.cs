@@ -1,40 +1,27 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerSound : MonoBehaviour
 {
     private SoundManager soundManager;
-    public AudioClip punchingOneSound;
-    public AudioClip punchingTwoSound;
-    public AudioClip mmaKickOneSound;
-    public AudioClip mmaKichTwoSound; 
-    public AudioClip walkSound;
-    public AudioClip dieSound;
+    [SerializeField] private AudioClip hitSound;
+    [SerializeField] private AudioClip knockDownSound;
+    [SerializeField] private AudioClip deadSound;
+    [SerializeField] private AudioClip walkSound;
 
     private void Awake() {
         soundManager = SoundManager.Instance;
     }
 
-    public void PlaySoundGame(int index){
+    public void PlaySound(int index){
         switch(index){
             case 1: 
-                soundManager.PlaySound(punchingOneSound);
+                soundManager.PlaySound(hitSound);
                 break;
             case 2:
-                soundManager.PlaySound(punchingTwoSound);
+                soundManager.PlaySound(knockDownSound);
                 break;
             case 3:
-                soundManager.PlaySound(mmaKickOneSound);
-                break;
-            case 4:
-                soundManager.PlaySound(mmaKichTwoSound);
-                break;
-            case 5:
-                soundManager.PlaySound(walkSound);
-                break;
-            case 6: 
-                soundManager.PlaySound(dieSound);
+                soundManager.PlaySound(deadSound);
                 break;
             default:
                 break;

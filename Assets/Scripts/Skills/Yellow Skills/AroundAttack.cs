@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class AroundAttack : AbsPlayerSkill
+public class AroundAttack : PlayerSkill
 {
     [SerializeField] private Vector3 aroundAttackPosition;
     [SerializeField] private EffectObjectPool aroundAttackObject;

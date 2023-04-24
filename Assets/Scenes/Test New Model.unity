@@ -995,7 +995,7 @@ Animator:
   m_GameObject: {fileID: 1364752917}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 27cd8465eda3e9140a9b71419255e1b1, type: 3}
-  m_Controller: {fileID: 9100000, guid: 45124fe40a5e9a948bbd0f964cc0d6a0, type: 2}
+  m_Controller: {fileID: 9100000, guid: f28bd6d2b99c0cd47b2ba0ad0958af84, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1073,8 +1073,8 @@ MonoBehaviour:
   - {fileID: 429002702}
   - {fileID: 1594433620}
   - {fileID: 1054085369}
-  isStart: 0
-  absPlayerSkills: []
+  isStart: 1
+  playerSkills: []
 --- !u!65 &1364752926
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1118,6 +1118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 300ac3176722bbf4b8c70d14fbb70dba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
   skillName: 
   skillHolder: 2
   maxCoolDownTime: 0
@@ -1137,6 +1138,7 @@ MonoBehaviour:
   - energy: 0
     maxCoolDownTime: 0
     damage: 0
+  skillState: {fileID: 0}
   rockObjectPool: {fileID: 543559913779944548, guid: ecb98f323b634314696dd390c2f4034d,
     type: 3}
   skillState: {fileID: 0}
@@ -1154,6 +1156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dac5a15e90d88d64c897f40192b3fd6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
   skillName: Mountain Summon
   skillHolder: 3
   maxCoolDownTime: 0
@@ -1173,6 +1176,7 @@ MonoBehaviour:
   - energy: 0
     maxCoolDownTime: 0
     damage: 0
+  skillState: {fileID: 0}
   mountainObjectPool: {fileID: 3711564843598888320, guid: 0bcfa056c246bb340a3ccbce3d3461c0,
     type: 3}
   mountainPosition: {x: 0, y: 0, z: 1.5}
@@ -1190,6 +1194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 262105586db20c04fb29bfa16f4bc554, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
   skillName: Around Attack
   skillHolder: 1
   maxCoolDownTime: 0
@@ -1209,6 +1214,7 @@ MonoBehaviour:
   - energy: 0
     maxCoolDownTime: 0
     damage: 0
+  skillState: {fileID: 0}
   aroundAttackPosition: {x: 0, y: 0, z: 0}
   aroundAttackObject: {fileID: 74189023271161525, guid: 5a41479194c77ef4196144fcabcdf914,
     type: 3}
@@ -1225,6 +1231,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c7f70598ea3fe348b7086e842d457be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
   skillName: Sweep Foot
   skillHolder: 0
   maxCoolDownTime: 0
@@ -1244,6 +1251,7 @@ MonoBehaviour:
   - energy: 0
     maxCoolDownTime: 0
     damage: 0
+  skillState: {fileID: 0}
   sweepFootPosition: {x: 0, y: 0, z: 0}
   sweepFootObject: {fileID: 4970519361014133449, guid: 8184f1be3714b874e8823c20c84987de,
     type: 3}
@@ -1480,7 +1488,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 27cd8465eda3e9140a9b71419255e1b1,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 27cd8465eda3e9140a9b71419255e1b1,
         type: 3}
@@ -3481,7 +3489,6 @@ MonoBehaviour:
   maxSpeed: 3
   walkSpeed: 1
   lockRotation: 1
-  isStart: 0
 --- !u!114 &100288966783701540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4267,6 +4274,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Silver
+      objectReference: {fileID: 0}
+    - target: {fileID: 2158405830315843366, guid: 4b1f5cdcd9ccf9b42904c7732769853a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b1f5cdcd9ccf9b42904c7732769853a, type: 3}
@@ -13045,7 +13057,6 @@ MonoBehaviour:
   maxSpeed: 4
   walkSpeed: 1
   lockRotation: 1
-  isStart: 0
 --- !u!195 &6470155340086731098
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -15287,7 +15298,6 @@ MonoBehaviour:
   maxSpeed: 0
   walkSpeed: 0
   lockRotation: 1
-  isStart: 0
 --- !u!4 &7919933077344056668
 Transform:
   m_ObjectHideFlags: 0
@@ -16181,7 +16191,6 @@ MonoBehaviour:
   maxSpeed: 4
   walkSpeed: 1
   lockRotation: 1
-  isStart: 0
 --- !u!195 &8522840542555607178
 NavMeshAgent:
   m_ObjectHideFlags: 0

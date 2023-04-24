@@ -908,6 +908,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
+  soundId: 2
   thumbnail: {fileID: 491991981992725310}
   title: {fileID: 4830644120004412283}
   lockIcon: {fileID: 8566255270595261169}

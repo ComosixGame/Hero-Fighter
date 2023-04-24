@@ -55,6 +55,15 @@ public class MapGeneration : MonoBehaviour
 
     private void Update()
     {
+        if (levelState.type == LevelType.boss)
+        {
+            if (enemyList[0].gameObject.GetComponent<BossDamageable>().destroyed)
+            {
+                gameManager.GameWin();
+                isStart = false;
+            }
+            return;
+        }
         if (enemyList != null)
         {
             for (int i = 0; i < enemyList.Count; i++)

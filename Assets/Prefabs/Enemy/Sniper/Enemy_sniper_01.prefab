@@ -2290,6 +2290,7 @@ GameObject:
   - component: {fileID: 1281001816391746781}
   - component: {fileID: 1281001816391746780}
   - component: {fileID: -7693793984158827952}
+  - component: {fileID: 6466620050314916266}
   m_Layer: 7
   m_Name: Enemy_sniper_01
   m_TagString: Untagged
@@ -2504,6 +2505,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: sniper_01
+--- !u!114 &6466620050314916266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1281001816391746771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc93016a74dd6844cb07a81736a45cf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitSound: {fileID: 8300000, guid: fefd77d20e159c24a89fc86bbf37d498, type: 3}
+  knockDownSound: {fileID: 8300000, guid: 772a8f319f5c0774d834ffc9ff4d4f69, type: 3}
+  deadSound: {fileID: 8300000, guid: c90c839e829fcb04c856bab8b03b913b, type: 3}
 --- !u!1 &1281001816464611931
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class FollowMissile : AbsPlayerSkill
+public class FollowMissile : PlayerSkill
 {
     [SerializeField] private Vector3 missilePosition;
     [SerializeField] private GameObjectPool missileObjectPool;

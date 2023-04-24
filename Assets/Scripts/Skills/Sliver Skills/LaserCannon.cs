@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class LaserCannon : AbsPlayerSkill
+public class LaserCannon : PlayerSkill
 {
     [SerializeField] private Vector3 laserPosition;
     [SerializeField] private EffectObjectPool laserObject;

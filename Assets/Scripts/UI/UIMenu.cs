@@ -25,12 +25,10 @@ public class UIMenu : MonoBehaviour
     [SerializeField] private Image characterAva;
     [SerializeField] private TextMeshProUGUI characterName;
     [SerializeField] private Image[] skillBtn;
-    [SerializeField] private TextMeshProUGUI[] skillCountTxt;
     [SerializeField] private TextMeshProUGUI energyTxt;
     [SerializeField] private TextMeshProUGUI cooldownTxt;
     [SerializeField] private Slider healthBarPlayer;
-
-    private AbsPlayerSkill[] absPlayerSkills;
+    private PlayerSkill[] playerSkills;
 
     //Coefficient Count Hit Combo
     private float CoefficientCombo;
@@ -51,7 +49,6 @@ public class UIMenu : MonoBehaviour
     public AudioClip backgroundSound;
     public AudioClip winSound;
     public AudioClip loseSound;
-
 
     private void Awake()
     {
@@ -112,27 +109,14 @@ public class UIMenu : MonoBehaviour
             DisplayHitPoint(false);
             Invoke("DisplayTotalHit", 0.5f);
         }
+
     }
 
     private void StartGame()
     {
         animator.SetTrigger(startGameHash);
-        absPlayerSkills = gameManager.player.GetComponent<PlayerController>().absPlayerSkills;
     }
 
-    // private void Update()
-    // {
-    //     for (int i = 0; i < absPlayerSkills.Length; i++)
-    //     {
-    //         if (absPlayerSkills[i].cooldownTimer != 0)
-    //         {
-    //             skillCountTxt[i].text = Mathf.Round(absPlayerSkills[i].cooldownTimer)+"";
-    //         }else
-    //         {
-    //             skillCountTxt[i].text = "";
-    //         }
-    //     }
-    // }
 
     //Display Hit Point in UI
     public void DisplayHitPoint(bool hit)
@@ -288,7 +272,6 @@ public class UIMenu : MonoBehaviour
 
     private void PlayerRevival()
     {
-        absPlayerSkills = gameManager.player.GetComponent<PlayerController>().absPlayerSkills;
+        playerSkills = gameManager.player.GetComponent<PlayerController>().playerSkills;
     }
-
 }

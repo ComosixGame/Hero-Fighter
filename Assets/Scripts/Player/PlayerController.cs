@@ -27,18 +27,19 @@ public class PlayerController : MonoBehaviour
     private bool disable;
     private Vector3 motionMove;
     private Coroutine attackWaitCoroutine;
-    private AbsPlayerSkill[] skills;
-    [SerializeField] private AbsPlayerSkill skill1;
-    [SerializeField] private AbsPlayerSkill skill2;
-    [SerializeField] private AbsPlayerSkill skill3;
-    [SerializeField] private AbsPlayerSkill skill4;
+    private PlayerSkill[] skills;
+    [SerializeField] private PlayerSkill skill1;
+    [SerializeField] private PlayerSkill skill2;
+    [SerializeField] private PlayerSkill skill3;
+    [SerializeField] private PlayerSkill skill4;
     [SerializeField, ReadOnly] private AbsSpecialSkill specialskill;
     [SerializeField] private PlayerHurtBox[] playerHurtBoxes;
     private GameManager gameManager;
     private SoundManager soundManager;
     public bool isStart;
-    public AbsPlayerSkill[] absPlayerSkills;
+    public PlayerSkill[] playerSkills;
     private SkillSystem skillSystem;
+    private PlayerSound playerSound;
 
 
     private void Awake()
@@ -59,6 +60,7 @@ public class PlayerController : MonoBehaviour
         stateTimeHash = Animator.StringToHash("StateTime");
 
         skillSystem = GetComponent<SkillSystem>();
+        playerSound = GetComponent<PlayerSound>();
     }
 
     private void OnEnable()
@@ -140,7 +142,6 @@ public class PlayerController : MonoBehaviour
         }
         motionMove = direction * s;
         characterController.SimpleMove(motionMove);
-        //soundManager.PlaySound(walkSound);
     }
 
     private void HandleAnimation()
@@ -206,7 +207,7 @@ public class PlayerController : MonoBehaviour
         animator.ResetTrigger(attackHash);
     }
 
-    public void AddSkill(AbsPlayerSkill[] skillsAvailable, AbsSpecialSkill specialSkillAvailable)
+    public void AddSkill(PlayerSkill[] skillsAvailable, AbsSpecialSkill specialSkillAvailable)
     {
         specialskill = specialSkillAvailable;
         skills = skillsAvailable;
@@ -216,7 +217,7 @@ public class PlayerController : MonoBehaviour
             throw new InvalidOperationException("skills Length more than 4");
         }
 
-        foreach (AbsPlayerSkill skill in skills)
+        foreach (PlayerSkill skill in skills)
         {
             switch (skill.skillHolder)
             {
@@ -249,7 +250,6 @@ public class PlayerController : MonoBehaviour
     public void AttackEnd(int index)
     {
         playerHurtBoxes[index].gameObject.SetActive(false);
-
     }
 
     private void StartGame()

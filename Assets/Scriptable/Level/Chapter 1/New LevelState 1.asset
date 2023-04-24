@@ -36,7 +36,7 @@ MonoBehaviour:
   bonousCoin: 30
   areaRestrictors:
   - {x: -12.17, y: 5.13, z: -4.05}
-  - {x: 2.29, y: 5.13, z: -4.05}
+  - {x: 2, y: 5.13, z: -4.05}
   wallColliders:
   - {x: -28.23937, y: 0.6168137, z: -2.295986}
   - {x: 19.39, y: 0.6168137, z: -2.295986}

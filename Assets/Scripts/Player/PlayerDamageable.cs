@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 using MyCustomAttribute;
-
+using System.Collections.Generic;
 public class PlayerDamageable : MonoBehaviour, IDamageable
 {
     [SerializeField] private float maxHealth;
@@ -15,6 +15,7 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
     [SerializeField] private EffectObjectPool knockDownVFX;
     private ObjectPoolerManager objectPoolerManager;
     private PlayerController playerController;
+    private List<GameObject> newPlayers = new List<GameObject>();
     public static event Action<float> onTakeDamage;
     public static event Action<float> onInit;
 
@@ -92,9 +93,14 @@ public class PlayerDamageable : MonoBehaviour, IDamageable
 
     public void Revival()
     {
+        foreach(GameObject pl in newPlayers)
+        {
+            pl.SetActive(false);
+        }
         gameObject.SetActive(false);
         playerController.isStart = true;
         GameObject newPlayer = Instantiate(gameObject, transform.position, transform.rotation);
+        newPlayers.Add(newPlayer);
         newPlayer.SetActive(true);
         animator.SetTrigger(revivalHash);
         destroyed = false;

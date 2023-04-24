@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class RockSummon : AbsPlayerSkill
+public class RockSummon : PlayerSkill
 {
     [SerializeField] private GameObjectPool rockObjectPool;
     [SerializeField] private SkillState skillState;

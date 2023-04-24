@@ -11,7 +11,7 @@ public class BossDamageable : MonoBehaviour, IDamageable
     [SerializeField] private float maxStun;
     [SerializeField, ReadOnly] private float health;
     [SerializeField, ReadOnly] private float stunLevel;
-    private bool stunning, destroyed;
+    public bool stunning, destroyed;
     private int dizzyHash, deadHash;
     private Coroutine reduceStunCoroutine;
     private BossBehaviour bossBehaviour;

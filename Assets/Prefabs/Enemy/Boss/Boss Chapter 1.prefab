@@ -522,6 +522,13 @@ MonoBehaviour:
   maxStun: 20
   health: 0
   stunLevel: 0
+  stunning: 0
+  destroyed: 0
+  healthBarRennder:
+    healthBar: {fileID: 2278732330621463760, guid: 89c69c051ed5e2e46938d9c3f33174c4,
+      type: 3}
+    offset: 3
+    _healthBar: {fileID: 0}
 --- !u!114 &2703406654381666274
 MonoBehaviour:
   m_ObjectHideFlags: 0

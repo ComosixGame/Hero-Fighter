@@ -9,7 +9,6 @@ public class ExplosionEnergy : PlayerSkill
     private ParticleSystem generatedExplosionObject;
     private ObjectPoolerManager objectPooler;
     
-
     override protected void Awake()
     {
         base.Awake();

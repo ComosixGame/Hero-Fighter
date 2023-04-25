@@ -14,45 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultCharacter: sliver
   Characters:
-  - keyID: iron_man
-    thumbnail: {fileID: 21300000, guid: 63edeb0b7f7214dc38711d5331b5e15f, type: 3}
-    name: Iron Man
-    price: 500
-    start: 1
-    evaluate: C
-    character: {fileID: 1701021460331676804, guid: 3f49b085976b984488ba0736ecf25ea5,
-      type: 3}
-    skillStates:
-    - {fileID: 11400000, guid: 022a732feea80024ba1374b992035433, type: 2}
-    - {fileID: 11400000, guid: 8db8153db7190fc418faedb21491381b, type: 2}
-    - {fileID: 11400000, guid: d290394b229409f4f9ed6a54f0ec014b, type: 2}
-    - {fileID: 11400000, guid: ac0c9e15d56cc4442b417212a997e9cd, type: 2}
-  - keyID: hero1
-    thumbnail: {fileID: 21300000, guid: 55dd57caf880e487f954759ce13fd24d, type: 3}
-    name: Hero 1
-    price: 800
-    start: 3
-    evaluate: A
-    character: {fileID: 1963772456342324074, guid: bf6f302059923914daf917d3f04736ee,
-      type: 3}
-    skillStates:
-    - {fileID: 11400000, guid: 022a732feea80024ba1374b992035433, type: 2}
-    - {fileID: 11400000, guid: 022a732feea80024ba1374b992035433, type: 2}
-    - {fileID: 11400000, guid: 022a732feea80024ba1374b992035433, type: 2}
-    - {fileID: 11400000, guid: 022a732feea80024ba1374b992035433, type: 2}
-  - keyID: hero2
-    thumbnail: {fileID: 21300000, guid: cd4b92d9387a24fd78f12c20f0f74a53, type: 3}
-    name: Hero 2
-    price: 1000
-    start: 5
-    evaluate: S
-    character: {fileID: 1963772456342324074, guid: e173501746e8b634c8e89f5b465eb8f1,
-      type: 3}
-    skillStates:
-    - {fileID: 11400000, guid: 8db8153db7190fc418faedb21491381b, type: 2}
-    - {fileID: 11400000, guid: 8db8153db7190fc418faedb21491381b, type: 2}
-    - {fileID: 11400000, guid: 8db8153db7190fc418faedb21491381b, type: 2}
-    - {fileID: 11400000, guid: 8db8153db7190fc418faedb21491381b, type: 2}
   - keyID: sliver
     thumbnail: {fileID: 21300000, guid: 8b41931bf3c1b5241ac36a6b7c350828, type: 3}
     name: Sliver
@@ -66,3 +27,16 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 8db8153db7190fc418faedb21491381b, type: 2}
     - {fileID: 11400000, guid: d290394b229409f4f9ed6a54f0ec014b, type: 2}
     - {fileID: 11400000, guid: ac0c9e15d56cc4442b417212a997e9cd, type: 2}
+  - keyID: yellow
+    thumbnail: {fileID: 21300000, guid: 8fd81911ffb43cf4da88171d0bed3420, type: 3}
+    name: Yellow
+    price: 1000
+    start: 5
+    evaluate: S
+    character: {fileID: 2222646457919523294, guid: 48a0ff1410a16c94591b1a4dde5f4245,
+      type: 3}
+    skillStates:
+    - {fileID: 11400000, guid: c198ebf8237db5f41990317e64454490, type: 2}
+    - {fileID: 11400000, guid: d30cc3e90eb87b7459b23d688ad177cd, type: 2}
+    - {fileID: 11400000, guid: c25846c1291d3874cb4005979bea3c82, type: 2}
+    - {fileID: 11400000, guid: d5bac230f26c91a43bc737bf2d6eb173, type: 2}

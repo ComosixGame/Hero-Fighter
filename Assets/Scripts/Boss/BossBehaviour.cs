@@ -28,6 +28,7 @@ public class BossBehaviour : MonoBehaviour
     private Animator animator;
     private BossDamageable damageable;
     private GameManager gameManager;
+    private bool active;
 
     private void Awake()
     {
@@ -37,7 +38,21 @@ public class BossBehaviour : MonoBehaviour
         velocityXHash = Animator.StringToHash("VelocityX");
         velocityZHash = Animator.StringToHash("VelocityZ");
         damageable = GetComponent<BossDamageable>();
+    }
 
+    private void OnEnable()
+    {
+        active = false;
+        StartGameEvent.OnStart += StartGame;
+    }
+
+    private void OnDisable() {
+        StartGameEvent.OnStart -= StartGame;
+    }
+
+    private void StartGame()
+    {
+        active = true;
     }
 
     private void Start()
@@ -48,6 +63,8 @@ public class BossBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!active) return;
+
         HandleLook();
 
         switch (state)

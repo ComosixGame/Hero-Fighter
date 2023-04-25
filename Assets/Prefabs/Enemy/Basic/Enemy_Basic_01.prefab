@@ -1259,7 +1259,7 @@ MonoBehaviour:
       m_Calls: []
   hurtBoxes:
   - {fileID: 3463976318973803344}
-  timeStepBack: 0
+  timeStepBack: 1.5
 --- !u!114 &3463976318942777645
 MonoBehaviour:
   m_ObjectHideFlags: 0

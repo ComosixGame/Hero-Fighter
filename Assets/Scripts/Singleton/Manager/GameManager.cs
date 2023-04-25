@@ -56,6 +56,11 @@ public class GameManager : Singleton<GameManager>
         objectPooler = ObjectPoolerManager.Instance;
         loadSceneManager = LoadSceneManager.Instance;
         settingData = SettingData.Load();
+        if(String.IsNullOrEmpty(playerData.selectedCharacter)) {
+            playerData.selectedCharacter = equipmentManager.defaultCharacter;
+            playerData.characters.Add(new PlayerData.Character(playerData.selectedCharacter));
+            playerData.Save();
+        }
     }
 
     private void Start()
@@ -115,7 +120,9 @@ public class GameManager : Singleton<GameManager>
 
     public void UpdateMoney(int amount)
     {
-        money += amount;
+        playerData = PlayerData.Load();
+        playerData.money += amount;
+        playerData.Save();
         OnUpdateMoney?.Invoke(money);
     }
 

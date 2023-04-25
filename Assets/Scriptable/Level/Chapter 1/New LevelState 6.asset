@@ -19,49 +19,49 @@ MonoBehaviour:
     enemies:
     - enemyObjectPool: {fileID: 3549116654673358126, guid: 46f8cfb4efc8f8d4aab991e8096fedf1,
         type: 3}
-      position: {x: 9.966299, y: 0, z: -3.802531}
+      position: {x: -0.29642248, y: 0, z: -3.802531}
       eulerRotation: {x: -0, y: 276.2635, z: 0}
     - enemyObjectPool: {fileID: 1165911524298237473, guid: e0063af90519e3e4396084135e6a4162,
         type: 3}
-      position: {x: -12.115347, y: 0, z: -0.107245}
+      position: {x: -17.372583, y: 0, z: -0.107245}
       eulerRotation: {x: -0, y: 276.2635, z: 0}
     - enemyObjectPool: {fileID: 7948901677471127035, guid: e26fec94c38b382469c677bbb5ce1e14,
         type: 3}
-      position: {x: -12.902174, y: 0, z: -6.418241}
+      position: {x: -19.694878, y: 0, z: -6.418241}
       eulerRotation: {x: -0, y: 276.2635, z: 0}
   - name: 
     enemies:
     - enemyObjectPool: {fileID: 1305857928851026457, guid: 8346756303e46d94f9f3ecbec93086c6,
         type: 3}
-      position: {x: 24.90366, y: 0, z: -7.993607}
+      position: {x: 9.044357, y: 0, z: -7.993607}
       eulerRotation: {x: -0, y: 268.9217, z: 0}
     - enemyObjectPool: {fileID: 2018003970529574609, guid: 59a1d1ba6321dfc45b267c1b7b459c2a,
         type: 3}
-      position: {x: 24.66374, y: 0, z: -1.197943}
+      position: {x: 10.642023, y: 0, z: -1.197943}
       eulerRotation: {x: -0, y: 268.9217, z: 0}
     - enemyObjectPool: {fileID: -7693793984158827952, guid: 40ce5000199d910489886a884159b416,
         type: 3}
-      position: {x: -6.395414, y: 0, z: -7.061905}
+      position: {x: -16.53582, y: 0, z: -7.061905}
       eulerRotation: {x: -0, y: 268.9217, z: 0}
   - name: 
     enemies:
     - enemyObjectPool: {fileID: 1231653136056299475, guid: e38bdca78999e554ab943fd4ce04306a,
         type: 3}
-      position: {x: 2.2222595, y: 0, z: -5.207107}
+      position: {x: -4.6149154, y: 0, z: -5.207107}
       eulerRotation: {x: -0, y: 286.7023, z: 0}
     - enemyObjectPool: {fileID: 7492265343599478091, guid: 190b7d0bcae2bb0489d1858336996515,
         type: 3}
-      position: {x: 36.827847, y: 0, z: -2.439319}
+      position: {x: 25.494251, y: 0, z: -2.439319}
       eulerRotation: {x: -0, y: 286.7023, z: 0}
     - enemyObjectPool: {fileID: 7669818210105850550, guid: 133e6b66263892a4998f7572ff592123,
         type: 3}
-      position: {x: 38.32183, y: 0, z: -5.207107}
+      position: {x: 29.458267, y: 0, z: -5.207107}
       eulerRotation: {x: -0, y: 286.7023, z: 0}
   bonousCoin: 200
   areaRestrictors:
-  - {x: 20.13, y: 3.65, z: -4.12}
-  - {x: 33.37, y: 5.39, z: -4.2}
+  - {x: 4.49, y: 3.65, z: -4.12}
+  - {x: 16, y: 5.39, z: -4.2}
   wallColliders:
-  - {x: 2, y: 1.04, z: -2.77}
-  - {x: 38.6, y: 1.4, z: -2.4}
-  checkPointPlayer: {x: 3, y: 0, z: -5}
+  - {x: -10.3, y: 1.04, z: -2.77}
+  - {x: 30.39, y: 1.4, z: -2.4}
+  checkPointPlayer: {x: -8, y: 0, z: -5}

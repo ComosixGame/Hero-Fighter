@@ -412,7 +412,7 @@ GameObject:
   - component: {fileID: 1239997857744200347}
   - component: {fileID: 1239997857744200346}
   - component: {fileID: 1239997857744200295}
-  - component: {fileID: 3695993669038199943}
+  - component: {fileID: 6165038277196386618}
   - component: {fileID: 8837048183606612394}
   m_Layer: 6
   m_Name: Silver
@@ -439,6 +439,7 @@ Transform:
   - {fileID: 1239997858348495235}
   - {fileID: 1239997857219497618}
   - {fileID: 1239997857722336224}
+  - {fileID: 4297509832783369132}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
@@ -522,7 +523,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  skill1: {fileID: 3695993669038199943}
+  skill1: {fileID: 6165038277196386618}
   skill2: {fileID: 1239997857744200347}
   skill3: {fileID: 1239997857744200346}
   skill4: {fileID: 1239997857744200295}
@@ -531,9 +532,10 @@ MonoBehaviour:
   - {fileID: 1239997858348495233}
   - {fileID: 1239997857219497616}
   - {fileID: 1239997857722336231}
+  - {fileID: 7850622756548914572}
   isStart: 0
   playerSkills:
-  - {fileID: 3695993669038199943}
+  - {fileID: 6165038277196386618}
   - {fileID: 1239997857744200347}
   - {fileID: 1239997857744200346}
   - {fileID: 1239997857744200295}
@@ -687,7 +689,7 @@ MonoBehaviour:
   laserPosition: {x: 0, y: 1.55, z: 0.3}
   laserObject: {fileID: 6197080751168193181, guid: a81c073a5caaaf440b481ed76fbc4eef,
     type: 3}
---- !u!114 &3695993669038199943
+--- !u!114 &6165038277196386618
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -696,22 +698,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 2158405830315843366}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efec25c9c0e88ea448a33aa93c4f4dd3, type: 3}
+  m_Script: {fileID: 11500000, guid: 262105586db20c04fb29bfa16f4bc554, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
-  skillName: Lock Target
+  skillName: Around Attack
   skillHolder: 0
   maxCoolDownTime: 0
   skillLevels:
   - energy: 0
     maxCoolDownTime: 0
     damage: 0
+  - energy: 10
+    maxCoolDownTime: 10
+    damage: 5
   - energy: 0
-    maxCoolDownTime: 5
-    damage: 0
-  - energy: 0
-    maxCoolDownTime: 5
+    maxCoolDownTime: 0
     damage: 0
   - energy: 0
     maxCoolDownTime: 0
@@ -723,8 +725,7 @@ MonoBehaviour:
     maxCoolDownTime: 0
     damage: 0
   skillState: {fileID: 11400000, guid: 022a732feea80024ba1374b992035433, type: 2}
-  grenadePosition: {x: 0, y: 0, z: 0}
-  grenadeObjectPool: {fileID: 0}
+  playerHurtBox: {fileID: 7850622756548914572}
 --- !u!114 &8837048183606612394
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1468,6 +1469,73 @@ Transform:
   m_Father: {fileID: 6552650367101150472}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5102154361524508920
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4297509832783369132}
+  - component: {fileID: 5531755524429088815}
+  - component: {fileID: 7850622756548914572}
+  m_Layer: 10
+  m_Name: HurtBoxSweep
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4297509832783369132
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5102154361524508920}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1639277305449399708}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &5531755524429088815
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5102154361524508920}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7850622756548914572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5102154361524508920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33dd088018be73d4291ef45d927c7acb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  attackType: 1
+  damage: 0
+  bonusEnergy: 0
+  hitEffect: {fileID: 9046699384457569311, guid: 00e2210b13fc873458ba8b2017fba62e,
+    type: 3}
+  hit: {fileID: 0}
 --- !u!1 &5974721422971817791
 GameObject:
   m_ObjectHideFlags: 0

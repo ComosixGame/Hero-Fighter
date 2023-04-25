@@ -436,21 +436,13 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.072031654
-        functionName: CastAroundAttack
-        data: 
-        objectReferenceParameter: {fileID: 11500000, guid: 262105586db20c04fb29bfa16f4bc554,
-          type: 3}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
       - time: 0.31860158
         functionName: AttackStart
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 8e26f108ee7d8fa4f9d0e476a7355aa4,
           type: 3}
         floatParameter: 0
-        intParameter: 2
+        intParameter: 3
         messageOptions: 0
       - time: 0.753562
         functionName: AttackEnd
@@ -458,7 +450,7 @@ ModelImporter:
         objectReferenceParameter: {fileID: 11500000, guid: 8e26f108ee7d8fa4f9d0e476a7355aa4,
           type: 3}
         floatParameter: 0
-        intParameter: 2
+        intParameter: 3
         messageOptions: 0
       transformMask:
       - path: 

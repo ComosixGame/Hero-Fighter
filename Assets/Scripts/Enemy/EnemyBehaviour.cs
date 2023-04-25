@@ -76,7 +76,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void Update()
     {
-        if (active && gameManager.player != null)  
+        if (active && gameManager.player != null && !gameManager.playerDestroyed)  
         {
             HandleLook();
             HandleAnimationMove();

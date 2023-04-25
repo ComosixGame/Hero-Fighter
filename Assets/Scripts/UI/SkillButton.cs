@@ -9,7 +9,7 @@ public class SkillButton : MonoBehaviour
     [SerializeField] private Image backgroundEnergy;
 
     [SerializeField] private TextMeshProUGUI coolDownTime;
-    private Transform player;
+    private GameObject player;
     private GameManager gameManager;
 
     private void Awake()
@@ -24,7 +24,7 @@ public class SkillButton : MonoBehaviour
 
     private void StartGame()
     {
-        player = gameManager.player;
+        player = gameManager.player.gameObject;
         player.GetComponent<PlayerController>().playerSkills[id].OnCooldownTimer += UpdateCoolDown;
         player.GetComponent<PlayerController>().playerSkills[id].OnCooldownTimerDone += UpdateCoolDownDone;
         player.GetComponent<PlayerController>().playerSkills[id].OnNotEnoughEnergy += NotEnoughEnergy;
@@ -53,12 +53,18 @@ public class SkillButton : MonoBehaviour
         backgroundEnergy.gameObject.SetActive(false);
     }
 
+    private void Update() {
+        if(gameManager.playerDestroyed)
+        {
+            player.GetComponent<PlayerController>().playerSkills[id].OnCooldownTimer -= UpdateCoolDown;
+            player.GetComponent<PlayerController>().playerSkills[id].OnCooldownTimerDone -= UpdateCoolDownDone;
+            player.GetComponent<PlayerController>().playerSkills[id].OnNotEnoughEnergy -= NotEnoughEnergy;
+            player.GetComponent<PlayerController>().playerSkills[id].OnEnoughEnergy -= EnoughEnergy;
+        }
+    }
+
     private void OnDisable()
     {
         StartGameEvent.OnStart -= StartGame;
-        player.GetComponent<PlayerController>().playerSkills[id].OnCooldownTimer -= UpdateCoolDown;
-        player.GetComponent<PlayerController>().playerSkills[id].OnCooldownTimerDone += UpdateCoolDownDone;
-        player.GetComponent<PlayerController>().playerSkills[id].OnNotEnoughEnergy -= NotEnoughEnergy;
-        player.GetComponent<PlayerController>().playerSkills[id].OnEnoughEnergy -= EnoughEnergy;
     }
 }

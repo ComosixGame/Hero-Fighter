@@ -237,11 +237,11 @@ public class UIMenu : MonoBehaviour
         coinTxt.text = coin + "";
     }
 
-    //Used
-    public void BonusCoin(bool isTriple)
-    {
-        gameManager.BonousCoin(isTriple, gameManager.levelState.bonousCoin);
-    }
+    // //Used
+    // public void BonusCoin(bool isTriple)
+    // {
+    //     gameManager.BonousCoin(isTriple, gameManager.levelState.bonousCoin);
+    // }
 
     //Used
     public void SaveLevel(bool isSave)

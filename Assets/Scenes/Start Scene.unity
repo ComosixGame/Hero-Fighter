@@ -6622,6 +6622,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8959714062469345364, guid: 17eece16d83d24d479950205362fb014,
         type: 3}
+      propertyPath: OnRewardx3CoinClose.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8959714062469345364, guid: 17eece16d83d24d479950205362fb014,
+        type: 3}
       propertyPath: OnAdLoaded.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 6
       objectReference: {fileID: 0}
@@ -6692,6 +6697,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8959714062469345364, guid: 17eece16d83d24d479950205362fb014,
         type: 3}
+      propertyPath: OnRewardx3CoinClose.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8959714062469345364, guid: 17eece16d83d24d479950205362fb014,
+        type: 3}
+      propertyPath: OnRewardx3CoinClose.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8959714062469345364, guid: 17eece16d83d24d479950205362fb014,
+        type: 3}
       propertyPath: OnAdFailedLoad.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SetActive
       objectReference: {fileID: 0}
@@ -6717,6 +6732,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8959714062469345364, guid: 17eece16d83d24d479950205362fb014,
         type: 3}
+      propertyPath: OnRewardx3CoinClose.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 610797911}
+    - target: {fileID: 8959714062469345364, guid: 17eece16d83d24d479950205362fb014,
+        type: 3}
       propertyPath: OnRewardAddCoinClose.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 316532236}
@@ -6737,6 +6757,16 @@ PrefabInstance:
       objectReference: {fileID: 610797911}
     - target: {fileID: 8959714062469345364, guid: 17eece16d83d24d479950205362fb014,
         type: 3}
+      propertyPath: OnRewardx3CoinClose.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8959714062469345364, guid: 17eece16d83d24d479950205362fb014,
+        type: 3}
+      propertyPath: OnRewardx3CoinClose.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8959714062469345364, guid: 17eece16d83d24d479950205362fb014,
+        type: 3}
       propertyPath: OnRewardAddCoinClose.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
@@ -6744,6 +6774,11 @@ PrefabInstance:
         type: 3}
       propertyPath: OnRewardAddCoinClose.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8959714062469345364, guid: 17eece16d83d24d479950205362fb014,
+        type: 3}
+      propertyPath: OnRewardx3CoinClose.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: BonousCoin
       objectReference: {fileID: 0}
     - target: {fileID: 8959714062469345364, guid: 17eece16d83d24d479950205362fb014,
         type: 3}
@@ -6807,6 +6842,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8959714062469345364, guid: 17eece16d83d24d479950205362fb014,
         type: 3}
+      propertyPath: OnRewardx3CoinClose.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8959714062469345364, guid: 17eece16d83d24d479950205362fb014,
+        type: 3}
       propertyPath: OnRewardAddCoinClose.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: UnityEngine.GameObject, UnityEngine
       objectReference: {fileID: 0}
@@ -6829,6 +6869,11 @@ PrefabInstance:
         type: 3}
       propertyPath: OnRewardAddCoinFailed.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: GameManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8959714062469345364, guid: 17eece16d83d24d479950205362fb014,
+        type: 3}
+      propertyPath: OnRewardx3CoinClose.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8959714062469345364, guid: 17eece16d83d24d479950205362fb014,
         type: 3}
@@ -6858,6 +6903,11 @@ PrefabInstance:
     - target: {fileID: 8959714062469345364, guid: 17eece16d83d24d479950205362fb014,
         type: 3}
       propertyPath: OnAdFailedLoad.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8959714062469345364, guid: 17eece16d83d24d479950205362fb014,
+        type: 3}
+      propertyPath: OnRewardx3CoinClose.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8959714062469345364, guid: 17eece16d83d24d479950205362fb014,

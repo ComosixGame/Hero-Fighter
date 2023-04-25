@@ -223,13 +223,14 @@ public class GameManager : Singleton<GameManager>
         return equipmentManager.GetCharacter(playerData.selectedCharacter);
     }
 
-    public void BonousCoin(bool isTriple ,int coin)
+    public void BonousCoin(bool isTriple)
     {
-        playerData = PlayerData.Load();
+        int coin = levelState.bonousCoin;
         if (isTriple)
         {
             coin = coin*3;
         }
+        playerData = PlayerData.Load();
         playerData.money += coin;
         playerData.Save();
     }

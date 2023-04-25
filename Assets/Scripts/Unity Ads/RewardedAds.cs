@@ -25,13 +25,14 @@ public class RewardedAds : MonoBehaviour
         public UnityEvent<string> OnAdFailedLoad;
         public UnityEvent OnAdLoaded;
         public UnityEvent OnAdLoadClose;
-        public UnityEvent OnAdRevivalLoadClose;
-
         public UnityEvent OnAdLoadWinClose;
         public UnityEvent<int> OnUserRewarded;
         public UnityEvent OnRevivalPlayerWithAdsFailed;
+        public UnityEvent OnAdRevivalLoadClose;
         public UnityEvent OnRewardAddCoinFailed;
         public UnityEvent OnRewardAddCoinClose;
+        public UnityEvent OnRewardx3CoinFailed;
+        public UnityEvent OnRewardx3CoinClose;
 
         private void Awake() {
             gameManager = GameManager.Instance;
@@ -141,9 +142,10 @@ public class RewardedAds : MonoBehaviour
             // Show Events
             m_RewardedAd.OnUserRewarded += UserRewarded;
 
-            m_RewardedAd.OnClosed += AdWinCloseed;
-            m_RewardedAd.OnClosed += AdRevivalCloseed;
-            m_RewardedAd.OnClosed += AdRewardAddCoin;
+            // m_RewardedAd.OnClosed += AdWinCloseed;
+            // m_RewardedAd.OnClosed += AdRevivalCloseed;
+            // m_RewardedAd.OnClosed += AdRewardAddCoin;
+            // m_RewardedAd.OnClosed += Rewardx3CoinClose;
     
             if(loadAdsOnAwake) {
                 LoadAd();
@@ -200,6 +202,11 @@ public class RewardedAds : MonoBehaviour
             OnRewardAddCoinClose?.Invoke();
         }
 
+        void Rewardx3CoinClose(object sender, EventArgs args)
+        {
+            OnRewardx3CoinClose?.Invoke();
+        }
+
         void AdLoaded(object sender, EventArgs e)
         {
             OnAdLoaded?.Invoke();
@@ -227,6 +234,9 @@ public class RewardedAds : MonoBehaviour
             }else
             {
                 ShowRewarded();
+                m_RewardedAd.OnClosed += AdRevivalCloseed;
+                m_RewardedAd.OnClosed -= AdRewardAddCoin;
+                m_RewardedAd.OnClosed -= Rewardx3CoinClose;
             }
         }
 
@@ -238,6 +248,24 @@ public class RewardedAds : MonoBehaviour
             }
             else
             {
+                ShowRewarded();
+                m_RewardedAd.OnClosed -= AdRevivalCloseed;
+                m_RewardedAd.OnClosed += AdRewardAddCoin;
+                m_RewardedAd.OnClosed -= Rewardx3CoinClose;
+            }
+        }
+
+        public void Rewardx3Coin()
+        {
+            if (loadFailed)
+            {
+                OnRewardx3CoinFailed?.Invoke();
+            }
+            else
+            {
+                m_RewardedAd.OnClosed -= AdRevivalCloseed;
+                m_RewardedAd.OnClosed -= AdRewardAddCoin;
+                m_RewardedAd.OnClosed += Rewardx3CoinClose;
                 ShowRewarded();
             }
         }

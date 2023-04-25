@@ -50,7 +50,7 @@ public class EnemyBehaviour : MonoBehaviour
         gameManager.OnNextWaveDone += NextWaveDone;
         StartCoroutine(CheckPlayerInAttackRange());
 
-        AreaColliderTrigger.onEnter += PlayterEnter;
+        AreaColliderTrigger.onEnter += PlayerEnter;
     }
 
     private void OnDisable()
@@ -58,7 +58,7 @@ public class EnemyBehaviour : MonoBehaviour
         active = false;
         agent.enabled = false;
         StartGameEvent.OnStart -= StartGame;
-        AreaColliderTrigger.onEnter -= PlayterEnter;
+        AreaColliderTrigger.onEnter -= PlayerEnter;
         gameManager.OnNextWaveDone -= NextWaveDone;
         StopAllCoroutines();
     }
@@ -68,7 +68,7 @@ public class EnemyBehaviour : MonoBehaviour
         active = true;
     }
 
-    private void PlayterEnter() {
+    private void PlayerEnter() {
         if(gameObject.activeSelf) {
             active = true;
         }

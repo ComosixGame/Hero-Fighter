@@ -40,8 +40,8 @@ public class CurrencyBonus : MonoBehaviour
         }   
     }
 
-    private void OnDisable() 
-    {
-        gameManager.UpdateMoney(point);
-    }
+    // private void OnDisable() 
+    // {
+    //     gameManager.UpdateMoney(point);
+    // }
 }

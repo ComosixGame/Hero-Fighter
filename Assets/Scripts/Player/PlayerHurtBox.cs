@@ -35,7 +35,7 @@ public class PlayerHurtBox : MonoBehaviour
                 Vector3 dirAttack = transform.position - other.transform.position;
                 damageable.TakeDamgae(dirAttack.normalized, damage, attackType);
                 OnHit?.Invoke(bonusEnergy);
-                soundManager.PlaySound(hit);
+                // soundManager.PlaySound(hit);
             }
         }
     }

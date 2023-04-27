@@ -53,7 +53,7 @@ public class SkillDetailCard : MonoBehaviour
         index = playerData.characters.FindIndex(x => x.keyID == playerCharacter.keyID);
         if (gameManager.BuySkill(playerCharacter, id))
         {
-            SetDataLevel(id);
+            SetDataLevel();
         }
 
         if (playerData.characters[index].levelSkills[id] >= 4)
@@ -75,10 +75,10 @@ public class SkillDetailCard : MonoBehaviour
         RenderInfor();
     }
 
-    private void SetDataLevel(int index)
+    private void SetDataLevel()
     {
         PlayerData playerData = PlayerData.Load();
-        int id = playerData.characters.FindIndex(x => x.keyID == playerCharacter.keyID);
+        int index = playerData.characters.FindIndex(x => x.keyID == playerCharacter.keyID);
         this.skillLevel.text = "Level Skill: " + playerData.characters[index].levelSkills[id];
     }
 }

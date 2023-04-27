@@ -4,14 +4,18 @@ public class FlameThrower : PlayerSkill
 {
     [SerializeField] private Vector3 flamePosition;
     [SerializeField] private EffectObjectPool flameObject;
+    [SerializeField] private int charaterId;
+    [SerializeField] private int skillId;
     private ParticleSystem generatedFlameObject;
     private ObjectPoolerManager objectPooler;
+    private PlayerData playerData;
 
     override protected void Awake()
     {
         base.Awake();
         objectPooler = ObjectPoolerManager.Instance;
-        currentLevel = skillState.level;
+        playerData = PlayerData.Load();
+        currentLevel = playerData.characters[charaterId].levelSkills[skillId];
     }
 
     // Start is called before the first frame update

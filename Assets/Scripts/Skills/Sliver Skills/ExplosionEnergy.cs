@@ -8,12 +8,15 @@ public class ExplosionEnergy : PlayerSkill
     [SerializeField] private PlayerHurtBox playerHurtBox;
     private ParticleSystem generatedExplosionObject;
     private ObjectPoolerManager objectPooler;
-    
+    [SerializeField] private int charaterId;
+    [SerializeField] private int skillId;
+    private PlayerData playerData;
     override protected void Awake()
     {
         base.Awake();
         objectPooler = ObjectPoolerManager.Instance;
-        currentLevel = skillState.level;
+        playerData = PlayerData.Load();
+        currentLevel = playerData.characters[charaterId].levelSkills[skillId];
     }
 
     // Start is called before the first frame update

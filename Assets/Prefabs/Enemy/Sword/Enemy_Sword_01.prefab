@@ -1096,7 +1096,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fef91d7f3b34ced49944c22a7ef31a20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 50
+  maxHealth: 30
   destroyed: 0
   healthBarRennder:
     healthBar: {fileID: 2278732330621463760, guid: 89c69c051ed5e2e46938d9c3f33174c4,

@@ -3,10 +3,14 @@ using UnityEngine;
 public class AroundAttack : PlayerSkill
 {
     [SerializeField] private PlayerHurtBox playerHurtBox;
+    [SerializeField] private int charaterId;
+    [SerializeField] private int skillId;
+    private PlayerData playerData;
     override protected void Awake()
     {
         base.Awake();
-        currentLevel = skillState.level;
+        playerData = PlayerData.Load();
+        currentLevel = playerData.characters[charaterId].levelSkills[skillId];
     }
 
     // Start is called before the first frame update

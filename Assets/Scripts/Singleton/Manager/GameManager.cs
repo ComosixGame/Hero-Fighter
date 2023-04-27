@@ -25,7 +25,9 @@ public class GameManager : Singleton<GameManager>
     public event Action<string> OnSelectCharacter;
     public event Action<string> OnSelectHeroSkill;
     public event Action OnBuyHero;
-    public event Action OnNotEnoughEnergy;
+    public event Action OnBuy;
+
+ public event Action OnNotEnoughEnergy;
     public event Action OnPlayerRevival;
     public event Action OnNextWaveDone;
     
@@ -37,7 +39,6 @@ public class GameManager : Singleton<GameManager>
     private LoadSceneManager loadSceneManager;
     private LoadingScreen loadingScreen;
     [SerializeField] private GameObject windowPopup;
-    public int bonousCoin;
     public bool playerDestroyed;
 
     public LevelState levelState
@@ -160,7 +161,6 @@ public class GameManager : Singleton<GameManager>
             playerData.money -= character.price;
             playerData.characters.Add(new PlayerData.Character(character.keyID));
             playerData.Save();
-
             return true;
         }
         else
@@ -201,12 +201,15 @@ public class GameManager : Singleton<GameManager>
     {
         if (playerData.money >= character.skillStates[skillId].price)
         {
+            playerData = PlayerData.Load();
             int index = playerData.characters.FindIndex(x => x.keyID == character.keyID);
-            if (equipmentManager.Characters[index].skillStates[skillId].level < 5)
+            if(playerData.characters[index].levelSkills[skillId] < 5)
             {
+                playerData = PlayerData.Load();
                 playerData.money -= character.skillStates[skillId].price;
-                equipmentManager.Characters[index].skillStates[skillId].level += 1;
+                playerData.characters[index].levelSkills[skillId] += 1;
                 playerData.Save();
+                OnBuy?.Invoke();
             }
             return true;
         }

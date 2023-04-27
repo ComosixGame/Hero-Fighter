@@ -9,7 +9,6 @@ public class CardChoiceHeroSkillUI : MonoBehaviour
     private Sprite normalBoder;
     private TextMeshProUGUI title = new TextMeshProUGUI();
     private Sprite heroSprite;
-
     private Button button;
     private SkillTreeUI skillTreeUI;
     private string keyId;
@@ -17,13 +16,12 @@ public class CardChoiceHeroSkillUI : MonoBehaviour
     private PlayerCharacter playerCharacter;
 
 
-
     private void Awake()
     {
         button = GetComponent<Button>();
         gameManager = GameManager.Instance;
 
-    }
+    }   
 
     private void OnEnable() {
         button.onClick.AddListener(ClickButton);
@@ -32,7 +30,7 @@ public class CardChoiceHeroSkillUI : MonoBehaviour
 
     private void OnDisable() {
         button.onClick.RemoveListener(ClickButton);
-        gameManager.OnSelectHeroSkill += CheckSelect;
+        gameManager.OnSelectHeroSkill -= CheckSelect;
     }
 
     private void ClickButton()

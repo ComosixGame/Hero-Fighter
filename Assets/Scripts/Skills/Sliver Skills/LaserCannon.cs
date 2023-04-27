@@ -4,15 +4,19 @@ public class LaserCannon : PlayerSkill
 {
     [SerializeField] private Vector3 laserPosition;
     [SerializeField] private EffectObjectPool laserObject;
+    [SerializeField] private int charaterId;
+    [SerializeField] private int skillId;
     private bool casting;
     private ParticleSystem generatedLaserObject;
     private ObjectPoolerManager objectPooler;
+    private PlayerData playerData;
 
     override protected void Awake()
     {
         base.Awake();
         objectPooler = ObjectPoolerManager.Instance;
-        currentLevel = skillState.level;
+        playerData = PlayerData.Load();
+        currentLevel = playerData.characters[charaterId].levelSkills[skillId];
     }
 
     private void Start() {

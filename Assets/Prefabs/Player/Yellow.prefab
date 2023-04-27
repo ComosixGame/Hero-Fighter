@@ -971,7 +971,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77cf0e610e8ba024baf93a6f911ace3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 30
+  maxHealth: 40
   health: 0
   knockDownVFX: {fileID: 5854742832336096459, guid: 8a7c5d19d8a94cb41bccf41896137933,
     type: 3}
@@ -1040,25 +1040,27 @@ MonoBehaviour:
   - energy: 0
     maxCoolDownTime: 0
     damage: 0
-  - energy: 0
-    maxCoolDownTime: 0
-    damage: 0
-  - energy: 0
-    maxCoolDownTime: 0
-    damage: 0
-  - energy: 0
-    maxCoolDownTime: 0
-    damage: 0
-  - energy: 0
-    maxCoolDownTime: 0
-    damage: 0
-  - energy: 0
-    maxCoolDownTime: 0
-    damage: 0
+  - energy: 22
+    maxCoolDownTime: 18
+    damage: 1
+  - energy: 20
+    maxCoolDownTime: 16
+    damage: 1.2
+  - energy: 18
+    maxCoolDownTime: 16
+    damage: 1.4
+  - energy: 16
+    maxCoolDownTime: 14
+    damage: 1.6
+  - energy: 14
+    maxCoolDownTime: 12
+    damage: 1.8
   skillState: {fileID: 11400000, guid: d5bac230f26c91a43bc737bf2d6eb173, type: 2}
   laserPosition: {x: 0, y: 1.55, z: 0.3}
   laserObject: {fileID: 6197080751168193181, guid: a81c073a5caaaf440b481ed76fbc4eef,
     type: 3}
+  charaterId: 1
+  skillId: 3
 --- !u!114 &1304079050589520096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1079,25 +1081,27 @@ MonoBehaviour:
   - energy: 0
     maxCoolDownTime: 0
     damage: 0
-  - energy: 0
-    maxCoolDownTime: 0
-    damage: 0
-  - energy: 0
-    maxCoolDownTime: 0
-    damage: 0
-  - energy: 0
-    maxCoolDownTime: 0
-    damage: 0
-  - energy: 0
-    maxCoolDownTime: 0
-    damage: 0
-  - energy: 0
-    maxCoolDownTime: 0
-    damage: 0
+  - energy: 24
+    maxCoolDownTime: 18
+    damage: 1
+  - energy: 22
+    maxCoolDownTime: 16
+    damage: 1.2
+  - energy: 20
+    maxCoolDownTime: 14
+    damage: 1.4
+  - energy: 24
+    maxCoolDownTime: 12
+    damage: 1.6
+  - energy: 20
+    maxCoolDownTime: 10
+    damage: 1.8
   skillState: {fileID: 11400000, guid: c25846c1291d3874cb4005979bea3c82, type: 2}
   flamePosition: {x: -0.03, y: 1.8, z: 1}
   flameObject: {fileID: 7231578038427852017, guid: fa264294b8fe3d64eba0df4502065604,
     type: 3}
+  charaterId: 1
+  skillId: 2
 --- !u!114 &1304079050589520097
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1118,21 +1122,21 @@ MonoBehaviour:
   - energy: 0
     maxCoolDownTime: 0
     damage: 0
-  - energy: 0
-    maxCoolDownTime: 0
-    damage: 0
-  - energy: 0
-    maxCoolDownTime: 0
-    damage: 0
-  - energy: 0
-    maxCoolDownTime: 0
-    damage: 0
-  - energy: 0
-    maxCoolDownTime: 0
-    damage: 0
-  - energy: 0
-    maxCoolDownTime: 0
-    damage: 0
+  - energy: 20
+    maxCoolDownTime: 15
+    damage: 12
+  - energy: 18
+    maxCoolDownTime: 14
+    damage: 12
+  - energy: 16
+    maxCoolDownTime: 12
+    damage: 14
+  - energy: 14
+    maxCoolDownTime: 10
+    damage: 18
+  - energy: 14
+    maxCoolDownTime: 10
+    damage: 20
   skillState: {fileID: 11400000, guid: d30cc3e90eb87b7459b23d688ad177cd, type: 2}
   explosionPosition: {x: 0, y: 0, z: 0}
   explosionForceObject: {fileID: 6208770777685358958, guid: b8b77c9f612b4c64e8da391b0d8fded7,
@@ -1140,6 +1144,8 @@ MonoBehaviour:
   explosionObject: {fileID: 8169326039529051692, guid: f3ce71a262662da40acd255a12a6adfa,
     type: 3}
   playerHurtBox: {fileID: 1304079051084180027}
+  charaterId: 1
+  skillId: 1
 --- !u!114 &1304079050589520102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1160,23 +1166,25 @@ MonoBehaviour:
   - energy: 0
     maxCoolDownTime: 0
     damage: 0
-  - energy: 0
-    maxCoolDownTime: 0
-    damage: 0
-  - energy: 0
-    maxCoolDownTime: 0
-    damage: 0
-  - energy: 0
-    maxCoolDownTime: 0
-    damage: 0
-  - energy: 0
-    maxCoolDownTime: 0
-    damage: 0
-  - energy: 0
-    maxCoolDownTime: 0
-    damage: 0
+  - energy: 15
+    maxCoolDownTime: 15
+    damage: 6
+  - energy: 14
+    maxCoolDownTime: 14
+    damage: 8
+  - energy: 12
+    maxCoolDownTime: 12
+    damage: 10
+  - energy: 10
+    maxCoolDownTime: 10
+    damage: 12
+  - energy: 8
+    maxCoolDownTime: 8
+    damage: 14
   skillState: {fileID: 11400000, guid: c198ebf8237db5f41990317e64454490, type: 2}
   playerHurtBox: {fileID: 1304079050361042273}
+  charaterId: 1
+  skillId: 0
 --- !u!1 &2746434370946134360
 GameObject:
   m_ObjectHideFlags: 0

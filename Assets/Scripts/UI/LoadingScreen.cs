@@ -36,6 +36,7 @@ public class LoadingScreen : MonoBehaviour
 
     public void BackToMenu()
     {
+        gameManager.ResumeGame();
         loadSceneManager.LoadScene(0);
     }
 

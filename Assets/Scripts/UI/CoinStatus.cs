@@ -13,6 +13,8 @@ public class CoinStatus : MonoBehaviour
 
     private void OnEnable() {
         gameManager.OnUpdateMoney += UpdateMoney;
+        gameManager.OnBuyHero += UpdateMoneyHero;
+        gameManager.OnBuy += UpdateMoneySkill;
         playerData = PlayerData.Load();
         coin.text = playerData.money +"";
     }
@@ -23,7 +25,21 @@ public class CoinStatus : MonoBehaviour
         coin.text = playerData.money + "";
     }
 
+    private void UpdateMoneyHero()
+    {
+        playerData = PlayerData.Load();
+        coin.text = playerData.money + "";
+    }
+
+    private void UpdateMoneySkill()
+    {
+        playerData = PlayerData.Load();
+        coin.text = playerData.money + "";
+    }
+
     private void OnDisable() {
         gameManager.OnUpdateMoney -= UpdateMoney;
+        gameManager.OnBuyHero -= UpdateMoneyHero;
+        gameManager.OnBuy -= UpdateMoneySkill;
     }
 }

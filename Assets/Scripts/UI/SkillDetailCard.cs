@@ -16,6 +16,7 @@ public class SkillDetailCard : MonoBehaviour
     private GameManager gameManager;
     private SoundManager soundManager;
     public AudioClip soundBtn;
+    private int index;
 
     private void Awake()
     {
@@ -31,29 +32,31 @@ public class SkillDetailCard : MonoBehaviour
         updrageBtn.onClick.AddListener(ClickButton);
     }
 
-
-    // Start is called before the first frame update
-    void Start()
+    public void RenderInfor()
     {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        playerData = PlayerData.Load();
+        if (playerData.characters[index].levelSkills[id] == 5)
+        {
+            updrageBtn.gameObject.SetActive(false);
+            this.skillLevel.text = "Max Level";
+        }
+        else
+        {
+            this.skillLevel.text = "Level Skill: " + playerData.characters[index].levelSkills[id];
+            updrageBtn.gameObject.SetActive(true);
+        }
     }
 
     private void ClickButton()
     {
         playerData = PlayerData.Load();
-        int index = playerData.characters.FindIndex(x => x.keyID == playerCharacter.keyID);
+        index = playerData.characters.FindIndex(x => x.keyID == playerCharacter.keyID);
         if (gameManager.BuySkill(playerCharacter, id))
         {
             SetDataLevel(id);
         }
 
-        if (skillState.level >= 5)
+        if (playerData.characters[index].levelSkills[id] >= 4)
         {
             this.skillLevel.text = "Max Level";
             updrageBtn.gameObject.SetActive(false);
@@ -61,20 +64,21 @@ public class SkillDetailCard : MonoBehaviour
 
     }
 
-    public void SetDataCard(PlayerCharacter playerCharacter, int skillStateId, string skillLevel, SkillState skill)
+    public void SetDataCard(PlayerCharacter playerCharacter, int skillStateId, string skillLevel, int id)
     {
+        this.index = id;
         this.playerCharacter = playerCharacter;
         this.thumnail.sprite = playerCharacter.skillStates[skillStateId].sprite;
         this.titleSkill.text = playerCharacter.skillStates[skillStateId].nameSkill;
         this.skillLevel.text = skillLevel;
         this.price.text = playerCharacter.skillStates[skillStateId].price + "";
-        this.skillState = skill;
+        RenderInfor();
     }
 
     private void SetDataLevel(int index)
     {
         PlayerData playerData = PlayerData.Load();
         int id = playerData.characters.FindIndex(x => x.keyID == playerCharacter.keyID);
-        this.skillLevel.text = "Level Skill: " + skillState.level;
+        this.skillLevel.text = "Level Skill: " + playerData.characters[index].levelSkills[id];
     }
 }

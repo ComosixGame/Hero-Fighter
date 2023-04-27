@@ -20,6 +20,7 @@ public class SkillButton : MonoBehaviour
     private void OnEnable()
     {
         StartGameEvent.OnStart += StartGame;
+        gameManager.OnEndGame += EndGame;
     }
 
     private void StartGame()
@@ -53,18 +54,17 @@ public class SkillButton : MonoBehaviour
         backgroundEnergy.gameObject.SetActive(false);
     }
 
-    private void Update() {
-        if(gameManager.playerDestroyed)
-        {
-            player.GetComponent<PlayerController>().playerSkills[id].OnCooldownTimer -= UpdateCoolDown;
-            player.GetComponent<PlayerController>().playerSkills[id].OnCooldownTimerDone -= UpdateCoolDownDone;
-            player.GetComponent<PlayerController>().playerSkills[id].OnNotEnoughEnergy -= NotEnoughEnergy;
-            player.GetComponent<PlayerController>().playerSkills[id].OnEnoughEnergy -= EnoughEnergy;
-        }
+    private void EndGame(bool endGame)
+    {
+        player.GetComponent<PlayerController>().playerSkills[id].OnCooldownTimer -= UpdateCoolDown;
+        player.GetComponent<PlayerController>().playerSkills[id].OnCooldownTimerDone -= UpdateCoolDownDone;
+        player.GetComponent<PlayerController>().playerSkills[id].OnNotEnoughEnergy -= NotEnoughEnergy;
+        player.GetComponent<PlayerController>().playerSkills[id].OnEnoughEnergy -= EnoughEnergy;
     }
 
     private void OnDisable()
     {
         StartGameEvent.OnStart -= StartGame;
+        gameManager.OnEndGame -= EndGame;
     }
 }

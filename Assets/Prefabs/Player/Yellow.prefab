@@ -1055,6 +1055,9 @@ MonoBehaviour:
   - energy: 14
     maxCoolDownTime: 12
     damage: 1.8
+  - energy: 14
+    maxCoolDownTime: 12
+    damage: 1.8
   skillState: {fileID: 11400000, guid: d5bac230f26c91a43bc737bf2d6eb173, type: 2}
   laserPosition: {x: 0, y: 1.55, z: 0.3}
   laserObject: {fileID: 6197080751168193181, guid: a81c073a5caaaf440b481ed76fbc4eef,
@@ -1093,6 +1096,9 @@ MonoBehaviour:
   - energy: 24
     maxCoolDownTime: 12
     damage: 1.6
+  - energy: 20
+    maxCoolDownTime: 10
+    damage: 1.8
   - energy: 20
     maxCoolDownTime: 10
     damage: 1.8
@@ -1137,6 +1143,9 @@ MonoBehaviour:
   - energy: 14
     maxCoolDownTime: 10
     damage: 20
+  - energy: 14
+    maxCoolDownTime: 10
+    damage: 20
   skillState: {fileID: 11400000, guid: d30cc3e90eb87b7459b23d688ad177cd, type: 2}
   explosionPosition: {x: 0, y: 0, z: 0}
   explosionForceObject: {fileID: 6208770777685358958, guid: b8b77c9f612b4c64e8da391b0d8fded7,
@@ -1178,6 +1187,9 @@ MonoBehaviour:
   - energy: 10
     maxCoolDownTime: 10
     damage: 12
+  - energy: 8
+    maxCoolDownTime: 8
+    damage: 14
   - energy: 8
     maxCoolDownTime: 8
     damage: 14

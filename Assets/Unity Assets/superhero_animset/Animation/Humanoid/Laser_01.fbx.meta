@@ -459,8 +459,7 @@ ModelImporter:
       - time: 0.39894456
         functionName: CastGrenade
         data: 
-        objectReferenceParameter: {fileID: 11500000, guid: d540c7b8043237b4dac3a26114f350ee,
-          type: 3}
+        objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0

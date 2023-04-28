@@ -11,7 +11,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PlayScene Map.unity
     guid: ab56f2f94e6df6241a05d4750f0ee236
-  - enabled: 1
-    path: Assets/Scenes/Test New Model.unity
-    guid: edf93c16f3acdc448a37709cf5f71bbb
   m_configObjects: {}

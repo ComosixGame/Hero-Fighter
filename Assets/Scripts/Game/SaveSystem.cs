@@ -59,7 +59,6 @@ public static class SaveSystem<T> where T : class, new()
 
 public class PlayerData
 {
-    private string defaultCharacter = EquipmentManager.defaultCharacterStatic;
     public int money;
     public string selectedCharacter;
     public List<int> levels, chapters;
@@ -84,13 +83,12 @@ public class PlayerData
     public PlayerData()
     {
         money = 0;
-        selectedCharacter = defaultCharacter;
+        selectedCharacter = "";
         chapters = new List<int>();
         levels = new List<int>();
         characters = new List<Character>();
         chapters.Add(0);
         levels.Add(0);
-        characters.Add(new Character(defaultCharacter));
     }
     public void Save()
     {

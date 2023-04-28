@@ -1432,7 +1432,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1169891396189989815
 Transform:
   m_ObjectHideFlags: 0
@@ -1528,7 +1528,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fef91d7f3b34ced49944c22a7ef31a20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 50
+  maxHealth: 40
   destroyed: 0
   healthBarRennder:
     healthBar: {fileID: 2278732330621463760, guid: 89c69c051ed5e2e46938d9c3f33174c4,
@@ -1600,9 +1600,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc93016a74dd6844cb07a81736a45cf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fallSound: {fileID: 8300000, guid: 33fcda97233176e45b9a9064332bea6b, type: 3}
-  attackSound: {fileID: 8300000, guid: 702fde88eaef9c94b829dab2f72ba66a, type: 3}
-  dieSound: {fileID: 8300000, guid: c90c839e829fcb04c856bab8b03b913b, type: 3}
+  hitSound: {fileID: 8300000, guid: fefd77d20e159c24a89fc86bbf37d498, type: 3}
+  knockDownSound: {fileID: 8300000, guid: 772a8f319f5c0774d834ffc9ff4d4f69, type: 3}
+  deadSound: {fileID: 8300000, guid: c90c839e829fcb04c856bab8b03b913b, type: 3}
 --- !u!1 &1165913640038863813
 GameObject:
   m_ObjectHideFlags: 0
@@ -1956,7 +1956,7 @@ MonoBehaviour:
   targetLayer:
     serializedVersion: 2
     m_Bits: 64
-  damage: 0
+  damage: 1
   attackType: 0
   hitEffect: {fileID: 9046699384457569311, guid: 00e2210b13fc873458ba8b2017fba62e,
     type: 3}

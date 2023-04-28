@@ -1,13 +1,12 @@
-using System.Collections;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class UIMenu : MonoBehaviour
 {
     public GameObject hitCount;
     public GameObject totalHit;
-    public TMP_Text pointTxt, totalHitTxt, totalComboTxt, textPointTxt, moneyTxt, moneyStartTxt;
+    public TMP_Text pointTxt, totalHitTxt, totalComboTxt, textPointTxt, coinTxt, moneyStartTxt;
     private PlayerData playerData;
     private Animator animator;
     private int previousHash;
@@ -19,10 +18,17 @@ public class UIMenu : MonoBehaviour
     private int totalHitPoint;
     [SerializeField] private Slider countHitComboTimer;
     private bool flagCountHit;
-    private int money;
-    private int totalMoney;
     private SoundManager soundManager;
     private SettingData settingData;
+    public Slider processGame;
+    public TextMeshProUGUI processPrecent;
+    [SerializeField] private Image characterAva;
+    [SerializeField] private TextMeshProUGUI characterName;
+    [SerializeField] private Image[] skillBtn;
+    [SerializeField] private TextMeshProUGUI energyTxt;
+    [SerializeField] private TextMeshProUGUI cooldownTxt;
+    [SerializeField] private Slider healthBarPlayer;
+    private PlayerSkill[] playerSkills;
 
     //Coefficient Count Hit Combo
     private float CoefficientCombo;
@@ -35,18 +41,17 @@ public class UIMenu : MonoBehaviour
 
     //Time display big size
     private float timerBigSize;
-
     //Color 
     [SerializeField] private Color color, color1, color2, color3, color4;
     private GameManager gameManager;
-
     //Audio
     public AudioClip clickBtn;
     public AudioClip backgroundSound;
     public AudioClip winSound;
     public AudioClip loseSound;
 
-    private void Awake() {
+    private void Awake()
+    {
         animator = GetComponent<Animator>();
         previousHash = Animator.StringToHash("isPrevious");
         startGameHash = Animator.StringToHash("StartGame");
@@ -58,14 +63,26 @@ public class UIMenu : MonoBehaviour
         settingData = SettingData.Load();
     }
 
-    private void OnEnable() {
-        gameManager.OnStartGame += StartGame;
+    private void OnEnable()
+    {
         gameManager.OnEndGame += HandleEndGameUI;
+        gameManager.OnNotEnoughEnergy += DisplayNotEnoughEnergy;
+        gameManager.OnPlayerRevival += PlayerRevival;
+        PlayerCharacter playerCharacter = gameManager.DisplayHeroInUi();
+        characterAva.sprite = playerCharacter.thumbnail;
+        characterName.text = playerCharacter.name;
+        for (int i = 0; i < playerCharacter.skillStates.Length; i++)
+        {
+            skillBtn[i].sprite = playerCharacter.skillStates[i].sprite;
+        }
+        animator.SetTrigger(startGameHash);
     }
 
-    private void OnDisable() {
-        gameManager.OnStartGame -= StartGame;
+    private void OnDisable()
+    {
         gameManager.OnEndGame -= HandleEndGameUI;
+        gameManager.OnNotEnoughEnergy -= DisplayNotEnoughEnergy;
+        gameManager.OnPlayerRevival -= PlayerRevival;
     }
 
     void Start()
@@ -73,7 +90,7 @@ public class UIMenu : MonoBehaviour
         soundManager.MuteGame(settingData.mute);
         playerData = PlayerData.Load();
         CoefficientCombo = 0.5f;
-        bigSize = 150;
+        bigSize = 140;
         smallSize = 120;
         timerBigSize = 0.2f;
         soundManager.SetMusicbackGround(backgroundSound);
@@ -92,12 +109,14 @@ public class UIMenu : MonoBehaviour
             DisplayHitPoint(false);
             Invoke("DisplayTotalHit", 0.5f);
         }
+
     }
 
     private void StartGame()
     {
         animator.SetTrigger(startGameHash);
     }
+
 
     //Display Hit Point in UI
     public void DisplayHitPoint(bool hit)
@@ -181,6 +200,10 @@ public class UIMenu : MonoBehaviour
     //True if Clear Wave and False if Player Move to new Wave
     public void PreviousAnimation(bool isActive)
     {
+        if (!isActive)
+        {
+            gameManager.NextWaveDone();
+        }
         animator.SetBool(previousHash, isActive);
     }
 
@@ -196,43 +219,29 @@ public class UIMenu : MonoBehaviour
 
     private void HandleEndGameUI(bool win)
     {
-        if(win) {
-            BonusMoney();
+        if (win)
+        {
+            BonusCoin(gameManager.levelState.bonousCoin);
             animator.SetTrigger(winGameHash);
             soundManager.PlaySound(winSound);
-        } else {
+        }
+        else
+        {
             animator.SetTrigger(loseGameHash);
             soundManager.PlaySound(loseSound);
         }
     }
 
-    private void BonusMoney()
+    private void BonusCoin(int coin)
     {
-        money = Random.Range(150, 210);
-        moneyTxt.text = money + "";
+        coinTxt.text = coin + "";
     }
 
-    public void BonusX3Money()
-    {
-        money = money * 3;
-        SaveMoney();
-    }
-
-    public void SaveMoney()
-    {
-        // playerData = PlayerData.Load();
-        // totalMoney = playerData.money;
-        // totalMoney += money;
-        // playerData.money = totalMoney;
-        // playerData.Save();
-    }
-
-    public void LoadMoney()
-    {
-        playerData = PlayerData.Load();
-        Debug.Log(playerData.money);
-        moneyStartTxt.text = playerData.money + "";
-    }
+    // //Used
+    // public void BonusCoin(bool isTriple)
+    // {
+    //     gameManager.BonousCoin(isTriple, gameManager.levelState.bonousCoin);
+    // }
 
     //Used
     public void SaveLevel(bool isSave)
@@ -240,13 +249,29 @@ public class UIMenu : MonoBehaviour
         gameManager.NewGame(isSave);
     }
 
-    public void ReadyFight()
+    private void DisplayNotEnoughEnergy()
     {
-        gameManager.InitUiDone();
+        energyTxt.gameObject.SetActive(true);
+        Invoke("HideNotEnoughEnergy", 2f);
     }
 
-    public void PlaySound(){
+    private void DisplayWaitForCoolDown()
+    {
+        cooldownTxt.gameObject.SetActive(true);
+    }
+
+    private void HideNotEnoughEnergy()
+    {
+        energyTxt.gameObject.SetActive(false);
+    }
+
+    public void PlaySound()
+    {
         soundManager.PlaySound(clickBtn);
     }
 
+    private void PlayerRevival()
+    {
+        playerSkills = gameManager.player.GetComponent<PlayerController>().playerSkills;
+    }
 }

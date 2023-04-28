@@ -11,7 +11,7 @@ public class BossDamageable : MonoBehaviour, IDamageable
     [SerializeField] private float maxStun;
     [SerializeField, ReadOnly] private float health;
     [SerializeField, ReadOnly] private float stunLevel;
-    private bool stunning, destroyed;
+    public bool stunning, destroyed;
     private int dizzyHash, deadHash;
     private Coroutine reduceStunCoroutine;
     private BossBehaviour bossBehaviour;
@@ -19,6 +19,7 @@ public class BossDamageable : MonoBehaviour, IDamageable
     private NavMeshAgent agent;
     private Animator animator;
     public event Action<float> OnTakeDamage;
+    [SerializeField] private HealthBarRennder healthBarRennder = new HealthBarRennder();
 
     private void Awake()
     {
@@ -31,6 +32,7 @@ public class BossDamageable : MonoBehaviour, IDamageable
         deadHash = Animator.StringToHash("Dead");
 
         health = maxHealth;
+        healthBarRennder.CreateHealthBar(transform, maxHealth);
     }
 
     private void OnEnable()
@@ -38,9 +40,13 @@ public class BossDamageable : MonoBehaviour, IDamageable
         destroyed = false;
         bossBehaviour.enabled = true;
         colliderObject.enabled = true;
+        healthBarRennder.UpdateHealthBarValue(health);
+        healthBarRennder.SetActive(true);
     }
 
-    private void Update() {
+    private void LateUpdate()
+    {
+        healthBarRennder.UpdateHealthBarRotation();
     }
 
     public void TakeDamgae(Vector3 dirAttack, float damage, AttackType attackType)
@@ -63,6 +69,7 @@ public class BossDamageable : MonoBehaviour, IDamageable
             else
             {
                 health -= damage;
+                healthBarRennder.UpdateHealthBarValue(health);
             }
 
             if (health <= 0)
@@ -109,6 +116,7 @@ public class BossDamageable : MonoBehaviour, IDamageable
     private void Destroy()
     {
         Time.timeScale = 0.3f;
+        healthBarRennder.SetActive(false);
         destroyed = true;
         CancelInvoke("CancelStun");
         CancelStun();

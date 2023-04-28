@@ -15,24 +15,22 @@ public class GrenadeOP : GameObjectPool
     [SerializeField] private float speed = 2;
     [SerializeField] private float rotateSpeed = 100;
 
+    private GameManager gameManager;
+    private bool isStart;
+
 
     private void Awake()
     {
+        gameManager = GameManager.Instance;
         objectPoolerManager = ObjectPoolerManager.Instance;
     }
 
-    private void OnEnable()
-    {
-        // target = FindObjectOfType<EnemyBehaviour>().transform;
+    private void OnDisable() {
+        // gameManager.OnInitUiDone -= StartGame;
     }
-
-    private void Start() {
-        target = FindObjectOfType<EnemyBehaviour>().transform;
-    }
-
 
     private void FixedUpdate()
-    {
+    { 
         Vector3 direction = new Vector3(target.transform.position.x, target.transform.position.y + 1, target.transform.position.z) - rb.position;
         direction.Normalize();
         rb.angularVelocity = -Vector3.Cross(direction, transform.forward) * rotateSpeed;

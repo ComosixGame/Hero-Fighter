@@ -13,8 +13,10 @@ public class LevelState : ScriptableObject
     public string nameLevel;
     public LevelType type;
     public List<Wave> waves = new List<Wave>();
-
-
+    public int bonousCoin;
+    public List<Vector3> areaRestrictors = new List<Vector3>();
+    public List<Vector3> wallColliders = new List<Vector3>();
+    public Vector3 checkPointPlayer;
 
     [Serializable]
     public class Wave

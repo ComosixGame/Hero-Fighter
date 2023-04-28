@@ -19,29 +19,6 @@ public class Firer : EffectObjectPool
         }
     }
 
-    private void FixedUpdate()
-    {
-        if (particle.IsAlive() && !explored)
-        {
-            explored = true;
-            Collider[] hitColliders = Physics.OverlapSphere(transform.position, 2f, layerTarget);
-            if (hitColliders.Length > 0)
-            {
-                foreach (Collider collider in hitColliders)
-                {
-                    if ((layerTarget & (1 << collider.gameObject.layer)) != 0)
-                    {
-                        if (collider.TryGetComponent(out IDamageable damageable))
-                        {
-                            Vector3 dirAttack = transform.position - collider.transform.position;
-                            damageable.TakeDamgae(dirAttack.normalized, damage * 2, AttackType.heavy);
-                        }
-                    }
-                }
-            }
-        }
-    }
-
     private void OnDisable() {
         explored = false;
     }

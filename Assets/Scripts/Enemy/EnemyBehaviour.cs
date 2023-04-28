@@ -20,13 +20,12 @@ public class EnemyBehaviour : MonoBehaviour
     [HideInInspector] public bool lockRotation = true;
     private int velocityXHash, velocityZHash;
     private State state = State.chase;
-    private bool disable;
     private NavMeshAgent agent;
     private Animator animator;
     private EnemyDamageable damageable;
     private AbsEnemyAttack absEnemyAttack;
     private GameManager gameManager;
-    private bool isStart;
+    private bool active;
 
     private void Awake()
     {
@@ -47,26 +46,37 @@ public class EnemyBehaviour : MonoBehaviour
         {
             agent.ResetPath();
         }
-        gameManager.OnInitUiDone += StartGame;
+        StartGameEvent.OnStart += StartGame;
+        gameManager.OnNextWaveDone += NextWaveDone;
         StartCoroutine(CheckPlayerInAttackRange());
+
+        AreaColliderTrigger.onEnter += PlayerEnter;
     }
 
     private void OnDisable()
     {
+        active = false;
         agent.enabled = false;
-        gameManager.OnInitUiDone -= StartGame;
+        StartGameEvent.OnStart -= StartGame;
+        AreaColliderTrigger.onEnter -= PlayerEnter;
+        gameManager.OnNextWaveDone -= NextWaveDone;
         StopAllCoroutines();
     }
 
     private void StartGame()
     {
-        isStart = true;
-        disable = !isStart;
+        active = true;
+    }
+
+    private void PlayerEnter() {
+        if(gameObject.activeSelf) {
+            active = true;
+        }
     }
 
     private void Update()
     {
-        if (isStart)
+        if (active && gameManager.player != null && !gameManager.playerDestroyed)  
         {
             HandleLook();
             HandleAnimationMove();
@@ -170,6 +180,11 @@ public class EnemyBehaviour : MonoBehaviour
         {
             agent.SetDestination(targetPos);
         }
+    }
+
+    private void NextWaveDone()
+    {
+        active = true;
     }
 
 #if UNITY_EDITOR

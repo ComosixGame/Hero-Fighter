@@ -1,11 +1,12 @@
+using System;
 using UnityEngine;
 
 public class AreaColliderTrigger : MonoBehaviour
-{   
+{ 
     [SerializeField] private UIMenu uIMenu;
     [SerializeField] private MapGeneration mapGeneration;
     [SerializeField] private LayerMask playerLayer;
-
+    public static event Action onEnter;
     private SoundManager soundManager;
     public AudioClip backgroundSound;
 
@@ -23,10 +24,11 @@ public class AreaColliderTrigger : MonoBehaviour
             uIMenu.PreviousAnimation(false);
             if(mapGeneration != null)
             {
-                mapGeneration.NextWave();
+                // mapGeneration.NextWave();
                 gameObject.SetActive(false);
                 soundManager.SetMusicbackGround(backgroundSound);
                 soundManager.SetPlayMusic(true);
+                onEnter?.Invoke();
             }
             
         }

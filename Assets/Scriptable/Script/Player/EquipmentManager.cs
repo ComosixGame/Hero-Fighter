@@ -5,7 +5,6 @@ using UnityEngine;
 public class EquipmentManager : ScriptableObject
 {
     public string defaultCharacter;
-    public static string defaultCharacterStatic;
     public PlayerCharacter[] Characters;
     public int CharactersCount {
         get {
@@ -15,9 +14,5 @@ public class EquipmentManager : ScriptableObject
 
     public PlayerCharacter GetCharacter(string id) {
         return Array.Find(Characters, el => el.keyID == id);
-    }
-
-    private void OnValidate() {
-        defaultCharacterStatic = defaultCharacter;
     }
 }

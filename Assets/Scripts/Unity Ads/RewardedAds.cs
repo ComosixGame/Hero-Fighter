@@ -9,7 +9,8 @@ public class RewardedAds : MonoBehaviour
     {
         public enum TypeReward {
             Double,
-            Plus
+            Plus,
+            Revival
         }
         public bool loadAdsOnAwake = true;
         private TypeReward typeReward;
@@ -20,12 +21,18 @@ public class RewardedAds : MonoBehaviour
 
         IRewardedAd m_RewardedAd;
         private GameManager gameManager;
-
+        private bool loadFailed;
         public UnityEvent<string> OnAdFailedLoad;
         public UnityEvent OnAdLoaded;
         public UnityEvent OnAdLoadClose;
         public UnityEvent OnAdLoadWinClose;
         public UnityEvent<int> OnUserRewarded;
+        public UnityEvent OnRevivalPlayerWithAdsFailed;
+        public UnityEvent OnAdRevivalLoadClose;
+        public UnityEvent OnRewardAddCoinFailed;
+        public UnityEvent OnRewardAddCoinClose;
+        public UnityEvent OnRewardx3CoinFailed;
+        public UnityEvent OnRewardx3CoinClose;
 
         private void Awake() {
             gameManager = GameManager.Instance;
@@ -135,10 +142,11 @@ public class RewardedAds : MonoBehaviour
             // Show Events
             m_RewardedAd.OnUserRewarded += UserRewarded;
 
-            m_RewardedAd.OnClosed += AdWinCloseed;
-          
+            // m_RewardedAd.OnClosed += AdWinCloseed;
+            // m_RewardedAd.OnClosed += AdRevivalCloseed;
+            // m_RewardedAd.OnClosed += AdRewardAddCoin;
+            // m_RewardedAd.OnClosed += Rewardx3CoinClose;
     
-
             if(loadAdsOnAwake) {
                 LoadAd();
             }
@@ -152,6 +160,7 @@ public class RewardedAds : MonoBehaviour
                 initializationError = initializeFailedException.initializationError;
             }
             OnAdFailedLoad?.Invoke(error.Message);
+            loadFailed = true;
         }
 
         void UserRewarded(object sender, RewardEventArgs e)
@@ -163,6 +172,8 @@ public class RewardedAds : MonoBehaviour
                     break;
                 case TypeReward.Plus:
                     // gameManager.UpdateCurrency(pointReward, true);
+                    break;
+                case TypeReward.Revival:
                     break;
                 default:
                     break;
@@ -181,6 +192,21 @@ public class RewardedAds : MonoBehaviour
             OnAdLoadClose?.Invoke();
         }
 
+        void AdRevivalCloseed(object sender, EventArgs args)
+        {
+            OnAdRevivalLoadClose?.Invoke();
+        }
+
+        void AdRewardAddCoin(object sender, EventArgs args)
+        {
+            OnRewardAddCoinClose?.Invoke();
+        }
+
+        void Rewardx3CoinClose(object sender, EventArgs args)
+        {
+            OnRewardx3CoinClose?.Invoke();
+        }
+
         void AdLoaded(object sender, EventArgs e)
         {
             OnAdLoaded?.Invoke();
@@ -191,12 +217,57 @@ public class RewardedAds : MonoBehaviour
         {
             Debug.Log(e.Message);
             OnAdFailedLoad?.Invoke(e.Message);
+            loadFailed = true;
         }
 
         void ImpressionEvent(object sender, ImpressionEventArgs args)
         {
             var impressionData = args.ImpressionData != null ? JsonUtility.ToJson(args.ImpressionData, true) : "null";
             Debug.Log($"Impression event from ad unit id {args.AdUnitId} : {impressionData}");
+        }
+
+        public void RevivalPlayerWithAds()
+        {
+            if(loadFailed)
+            {
+                OnRevivalPlayerWithAdsFailed?.Invoke();
+            }else
+            {
+                ShowRewarded();
+                m_RewardedAd.OnClosed += AdRevivalCloseed;
+                m_RewardedAd.OnClosed -= AdRewardAddCoin;
+                m_RewardedAd.OnClosed -= Rewardx3CoinClose;
+            }
+        }
+
+        public void RewardAddCoin()
+        {
+            if (loadFailed)
+            {
+                OnRewardAddCoinFailed?.Invoke();
+            }
+            else
+            {
+                ShowRewarded();
+                m_RewardedAd.OnClosed -= AdRevivalCloseed;
+                m_RewardedAd.OnClosed += AdRewardAddCoin;
+                m_RewardedAd.OnClosed -= Rewardx3CoinClose;
+            }
+        }
+
+        public void Rewardx3Coin()
+        {
+            if (loadFailed)
+            {
+                OnRewardx3CoinFailed?.Invoke();
+            }
+            else
+            {
+                m_RewardedAd.OnClosed -= AdRevivalCloseed;
+                m_RewardedAd.OnClosed -= AdRewardAddCoin;
+                m_RewardedAd.OnClosed += Rewardx3CoinClose;
+                ShowRewarded();
+            }
         }
 
         public void DoubleReward() {

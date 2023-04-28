@@ -3,11 +3,11 @@ using Cinemachine;
 
 public class CharacterSelection : MonoBehaviour
 {
-    private GameObject player;
-    private PlayerData playerData;
+    public GameObject player;
     public EquipmentManager equipmentManager;
-    public Vector3 playerPos;
+    private Vector3 playerPos;
     public CinemachineVirtualCamera virtualCamera;
+    [SerializeField] private MapGeneration mapGeneration;
     private GameManager gameManager;
 
     private void Awake()
@@ -15,26 +15,20 @@ public class CharacterSelection : MonoBehaviour
         gameManager = GameManager.Instance;
     }
 
-    private void OnEnable() 
+    private void OnEnable()
     {
-        gameManager.OnStartGame += StartGame;
         gameManager.OnNewGame += NewGame;
     }
 
-    private void OnDisable() 
+    private void OnDisable()
     {
-        gameManager.OnStartGame -= StartGame;
         gameManager.OnNewGame -= NewGame;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        playerData = PlayerData.Load();
-    }
-
-    private void StartGame()
-    {
+        playerPos = gameManager.levelState.checkPointPlayer;
         SpawnSelectedCharacter(playerPos);
     }
 
@@ -60,8 +54,7 @@ public class CharacterSelection : MonoBehaviour
     //Check Point is Position Spawn Player each Level
     public void SpawnSelectedCharacter(Vector3 checkPoint)
     {
-        playerData = PlayerData.Load();
-        string selectedCharacter = playerData.selectedCharacter;
+        string selectedCharacter = PlayerData.Load().selectedCharacter;
         GameObject character = equipmentManager.GetCharacter(selectedCharacter).character;
         player = Instantiate(character, checkPoint, Quaternion.LookRotation(Vector3.right));
         virtualCamera.Follow = player.transform;
@@ -69,7 +62,13 @@ public class CharacterSelection : MonoBehaviour
         gameManager.virtualCamera = virtualCamera;
     }
 
-    private void OnDrawGizmos() 
+    public void RevivalPlayer()
+    {
+        player.GetComponent<PlayerDamageable>().Revival();
+        gameManager.RevivalPlayer();
+    }
+
+    private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
         Gizmos.DrawSphere(playerPos, 0.5f);

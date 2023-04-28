@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65aa1e524ed141e439483100d47bc6e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: "Bullet R\xECle"
+  key: Bullet Rifle
   attackType: 0
   layerTarget:
     serializedVersion: 2

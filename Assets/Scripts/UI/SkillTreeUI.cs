@@ -12,37 +12,33 @@ public class SkillTreeUI : MonoBehaviour
     [SerializeField] private Sprite selectedBoder;
     [SerializeField] private Sprite normalBoder;
     private int index = 0;
-
     //Skill
     [SerializeField] private Transform contentSkill;
     [SerializeField] private SkillDetailCard skillDetailCard;
     private List<GameObject> children;
-
+    private List<GameObject> childrenButton;
     private GameManager gameManager;
-
+    private PlayerData playerData;
 
     private void Awake()
     {
         gameManager = GameManager.Instance;
         children = new List<GameObject>();
+        childrenButton = new List<GameObject>();
     }
 
     private void OnEnable() {
-        gameManager.OnBuyHero += UnLockNewButtonHero;
+        RenderHeroButton();
+        // gameManager.OnBuyHero += UnLockNewButtonHero;
     }
 
     private void OnDisable() {
-        gameManager.OnBuyHero -= UnLockNewButtonHero;
+        // gameManager.OnBuyHero -= UnLockNewButtonHero;
     }
 
-    private void Start()
+    public void RenderHeroButton()
     {
-        RenderHeroButton();
-    }
-
-
-    private void RenderHeroButton()
-    {
+        ClearDataButton();
         PlayerData playerData = PlayerData.Load();
         List<PlayerData.Character> characters = playerData.characters;
         string selectedCharacter = playerData.selectedCharacter;
@@ -56,6 +52,7 @@ public class SkillTreeUI : MonoBehaviour
             heroBtnInit.GetComponent<CardChoiceHeroSkillUI>().SetDataButton(selected, selectedBoder, normalBoder, equipmentManager.GetCharacter(characters[i].keyID), this);
             heroBtnInit.GetComponentInChildren<TextMeshProUGUI>().text = equipmentManager.Characters[i].name;
             heroBtnInit.transform.SetParent(contentHero.transform, false);
+            childrenButton.Add(heroBtnInit.gameObject);
         }
 
         heroTitle.text = equipmentManager.Characters[index].name;
@@ -64,18 +61,25 @@ public class SkillTreeUI : MonoBehaviour
 
     public void RenderSkillDetail(string charaterId)
     {
-        PlayerData playerData = PlayerData.Load();
+        playerData = PlayerData.Load();
         EquipmentManager equipmentManager = gameManager.equipmentManager;
         PlayerCharacter playerCharacter = equipmentManager.GetCharacter(charaterId);
         for (int i = 0; i < playerCharacter.skillStates.Length; i++)
         {
             SkillDetailCard skillDetailCardInit = Instantiate(skillDetailCard);
             skillDetailCardInit.id = i;
-            int index =  playerData.characters.FindIndex(x => x.keyID == charaterId);
-            string skillLevel = "Level Skill: " + playerData.characters[index].levelSkills[i];
-            skillDetailCardInit.SetDataCard(playerCharacter, i, skillLevel, equipmentManager.Characters[index].skillStates[i]);
-            skillDetailCardInit.transform.SetParent(contentSkill.transform, false);
-            children.Add(skillDetailCardInit.gameObject);
+        int index = playerData.characters.FindIndex(x => x.keyID == charaterId);
+        string skillLevel;
+        if (playerData.characters[index].levelSkills[i] >= 4)
+        {
+            skillLevel = "Max Level";
+        }else
+        {
+            skillLevel = "Level Skill: " + playerData.characters[index].levelSkills[i];
+        }
+        skillDetailCardInit.SetDataCard(playerCharacter, i, skillLevel, index);
+        skillDetailCardInit.transform.SetParent(contentSkill.transform, false);
+        children.Add(skillDetailCardInit.gameObject);
         }
     }
 
@@ -85,11 +89,10 @@ public class SkillTreeUI : MonoBehaviour
         heroTitle.text = heroName;
     }
 
-    
-    private void UnLockNewButtonHero()
-    {
-        RenderHeroButton();
-    }
+    // private void UnLockNewButtonHero()
+    // {
+    //     RenderHeroButton();
+    // }
 
     public void ClearSkillCardData()
     {
@@ -99,7 +102,12 @@ public class SkillTreeUI : MonoBehaviour
         }
     }
 
-    
-
+    public void ClearDataButton()
+    {
+        foreach (GameObject child in childrenButton)
+        {
+            child.SetActive(false);
+        }
+    }
 }
 

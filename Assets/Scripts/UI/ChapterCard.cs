@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class ChapterCard : MonoBehaviour
 {
     public int id;
+    [SerializeField] private int soundId;
     [SerializeField] private Image thumbnail;
     [SerializeField] private TextMeshProUGUI title;
     [SerializeField] private GameObject lockIcon;
@@ -12,12 +13,14 @@ public class ChapterCard : MonoBehaviour
     private Button button;
     private GameManager gameManager;
     private SoundManager soundManager;
+    private SoundEffect soundEffect;
     public AudioClip soundBtn;
     private void Awake()
     {
         button = GetComponent<Button>();
         gameManager = GameManager.Instance;
         soundManager = SoundManager.Instance;
+        soundEffect = FindObjectOfType<SoundEffect>();
     }
 
     private void OnEnable()
@@ -31,6 +34,7 @@ public class ChapterCard : MonoBehaviour
     private void ClickButton()
     {
         gameManager.SetChapter(id);
+        soundEffect.PlaySoundEffect(soundId);
         windowSelectLevel.SetActive(true);
     }
 
